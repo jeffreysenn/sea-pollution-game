@@ -14,6 +14,18 @@ public class Drop : MonoBehaviour
     EntityType type = EntityType.NONE;
     FollowMouse followMouse = null;
 
+    void Start()
+    {
+        if (GetComponent<Factory>()) { type = EntityType.FACTORY; }
+        else if (GetComponent<Filter>()) { type = EntityType.FILTER; }
+        followMouse = GetComponent<FollowMouse>();
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1")) { DropEntity(); }
+    }
+
     public void DropEntity()
     {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, new Vector3(0, -1, 0));
@@ -35,22 +47,10 @@ public class Drop : MonoBehaviour
         if (validSpace)
         {
             Destroy(followMouse);
-            validSpace.isAvailable = false;
+            validSpace.polluter = GetComponent<Polluter>();
             transform.position = validSpace.transform.position;
             transform.parent = validSpace.transform;
             Destroy(this);
         }
-    }
-
-    void Start()
-    {
-        if (GetComponent<Factory>()) { type = EntityType.FACTORY; }
-        else if (GetComponent<Filter>()) { type = EntityType.FILTER; }
-        followMouse = GetComponent<FollowMouse>();
-    }
-
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1")) { DropEntity(); }
     }
 }

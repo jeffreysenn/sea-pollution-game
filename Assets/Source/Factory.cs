@@ -4,9 +4,26 @@ public class Factory : Polluter
 {
     [SerializeField] FactoryAttrib attrib = null;
 
-    new void Start()
+    PollutionSum pollutionSum = null;
+
+    void Awake()
     {
         polluterAttrib = attrib;
-        base.Start();
+    }
+
+    public void Operate()
+    {
+        MakeMoney();
+        Pollute();
+
+        var type = attrib.GetPollutionType();
+        var emission = attrib.pollutionAttrib.emissionPerTurn;
+        pollutionSum.AddPollution(type, emission);
+    }
+
+    public void GetReady()
+    {
+        stateManager.AddEndTurnEventListener(Operate);
+        pollutionSum = transform.parent.parent.GetComponent<PollutionSum>();
     }
 }

@@ -13,7 +13,7 @@ public class WorldStateManager : MonoBehaviour
         playerStates.Add(id, new PlayerState { });
     }
 
-    public void SubscribeToEndTurnEvent(UnityAction action) { endTurnEvent.AddListener(action); }
+    public void AddEndTurnEventListener(UnityAction action) { endTurnEvent.AddListener(action); }
 
     public void AddMoney(int id, float money) { playerStates[id].money += money; }
     public void AddPollution(int id, float pollution)

@@ -2,39 +2,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Polluter : MonoBehaviour
 {
-    [SerializeField] protected Text descriptionText = null;
     protected PolluterAttrib polluterAttrib = null;
-    protected string description = "";
+    protected WorldStateManager stateManager = null;
 
     int ownerID = -1;
-    WorldStateManager stateManager = null;
 
     public void SetOwnerID(int id) { ownerID = id; }
+    public int GetOwnerID() { return ownerID; }
+
+    public PolluterAttrib GetAttrib() { return polluterAttrib; }
 
     protected void Start()
     {
-        description = polluterAttrib.GetDescription();
         stateManager = FindObjectOfType<WorldStateManager>();
         Debug.Assert(stateManager, "World state manager must be in the scene!");
     }
 
-    protected void OnMouseEnter()
+    protected void MakeMoney()
     {
-        if (descriptionText)
-        {
-            descriptionText.text = description;
-        }
+        var profit = polluterAttrib.economicAttrib.profitPerTurn;
+        stateManager.AddMoney(ownerID, profit);
     }
 
-    protected void OnMouseExit()
+    protected void Pollute()
     {
-        if (descriptionText)
-        {
-            descriptionText.text = "";
-        }
+        var emission = polluterAttrib.pollutionAttrib.emissionPerTurn;
+        stateManager.AddPollution(ownerID, emission);
     }
+
+
 }

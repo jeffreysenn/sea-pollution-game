@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class WorldStateManager : MonoBehaviour
 {
     [SerializeField] int turnCount = 12;
-    Dictionary<int, PlayerState> playerStates;
+    Dictionary<int, PlayerState> playerStates = new Dictionary<int, PlayerState> { };
     UnityEvent endTurnEvent = new UnityEvent { };
 
     public void RegisterPlayer(int id)
@@ -43,7 +43,8 @@ public class WorldStateManager : MonoBehaviour
 
     public float GetNetPollutionSum() { return GetProducedPollutionSum() - GetFilteredPollutionSum(); }
 
-    public void EndTurn() { 
+    public void EndTurn()
+    {
         --turnCount;
         endTurnEvent.Invoke();
     }

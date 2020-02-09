@@ -9,6 +9,10 @@ public class Polluter : MonoBehaviour
     protected string description = "";
     [SerializeField] protected Text descriptionText = null;
 
+    int ownerID = -1;
+
+    public void SetOwnerID(int id) { ownerID = id; }
+
     protected void Start()
     {
         description = polluterAttrib.GetDescription();
@@ -27,6 +31,6 @@ public class Polluter : MonoBehaviour
         if (descriptionText)
         {
             descriptionText.text = "";
-        }    
+        }
     }
 }

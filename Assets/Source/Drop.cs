@@ -31,6 +31,7 @@ public class Drop : MonoBehaviour
     {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, new Vector3(0, -1, 0));
         Space validSpace = null;
+
         foreach (var hit in hits)
         {
             var hitObj = hit.transform.gameObject;
@@ -45,7 +46,10 @@ public class Drop : MonoBehaviour
             }
             if (validSpace) { break; }
         }
-        if (validSpace)
+
+
+        if (validSpace && validSpace.ownerID == 
+            WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
         {
             Destroy(followMouse);
             var polluter = GetComponent<Polluter>();

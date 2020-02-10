@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Space : MonoBehaviour
 {
+    public int ownerID = -1;
     public Polluter polluter;
 }

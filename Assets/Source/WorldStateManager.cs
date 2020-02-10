@@ -109,6 +109,11 @@ public class WorldStateManager : MonoBehaviour
     void EndWholeTurn()
     {
         --turnCount;
+        if (turnCount == 0)
+        {
+            endGameEvent.Invoke();
+            return;
+        }
         endTurnEvent.Invoke();
     }
 }

@@ -13,6 +13,8 @@ public class Polluter : MonoBehaviour
     public void SetOwnerID(int id) { ownerID = id; }
     public int GetOwnerID() { return ownerID; }
 
+    public void SetAttrib(PolluterAttrib attrib) { polluterAttrib = attrib; }
+
     public PolluterAttrib GetAttrib() { return polluterAttrib; }
 
     protected void Start()

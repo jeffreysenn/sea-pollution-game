@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DrawDiscription : MonoBehaviour
 {
-    [SerializeField] Text descriptionText = null;
+    [SerializeField] public Text descriptionText = null;
 
     string description = "";
     void Start()

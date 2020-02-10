@@ -2,20 +2,14 @@
 
 public class Factory : Polluter
 {
-    [SerializeField] FactoryAttrib attrib = null;
-
     PollutionSum pollutionSum = null;
-
-    void Awake()
-    {
-        polluterAttrib = attrib;
-    }
 
     public void Operate()
     {
         MakeMoney();
         Pollute();
 
+        var attrib = GetAttrib();
         var type = attrib.GetPollutionType();
         var emission = attrib.pollutionAttrib.emissionPerTurn;
         pollutionSum.AddPollution(type, emission);

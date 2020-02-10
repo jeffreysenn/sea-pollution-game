@@ -6,11 +6,14 @@ public class Filter : Polluter
     public void Operate(Dictionary<Pollution.Type, float> pollutionMap)
     {
         var type = GetAttrib().GetPollutionType();
-        float targetPollution = pollutionMap[type];
-        float filterAbility = -GetAttrib().pollutionAttrib.emissionPerTurn;
-        float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
-        pollutionMap[type] -= filtered;
-        stateManager.AddPollution(GetOwnerID(), -filtered);
+        if (pollutionMap.ContainsKey(type))
+        {
+            float targetPollution = pollutionMap[type];
+            float filterAbility = -GetAttrib().pollutionAttrib.emissionPerTurn;
+            float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
+            pollutionMap[type] -= filtered;
+            stateManager.AddPollution(GetOwnerID(), -filtered);
+        }
 
         var parentFilterSpaceObj = transform.parent.parent.gameObject;
         if (parentFilterSpaceObj)

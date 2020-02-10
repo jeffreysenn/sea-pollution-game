@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] int id = 0;
+    [SerializeField] public int id = 0;
 
     void Start()
     {

@@ -24,9 +24,10 @@ public class Drop : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Fire1")) { DropEntity(); }
+        if (Input.GetButtonDown("Fire3")) { }
     }
 
-    public void DropEntity()
+    void DropEntity()
     {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, new Vector3(0, -1, 0));
         Space validSpace = null;
@@ -47,9 +48,13 @@ public class Drop : MonoBehaviour
         if (validSpace)
         {
             Destroy(followMouse);
-            validSpace.polluter = GetComponent<Polluter>();
-            transform.position = validSpace.transform.position;
+            var polluter = GetComponent<Polluter>();
+            validSpace.polluter = polluter;
+            var targetPos = validSpace.transform.position;
+            targetPos.y = transform.position.y;
+            transform.position = targetPos;
             transform.parent = validSpace.transform;
+            polluter.Activate();
             Destroy(this);
         }
     }

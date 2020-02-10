@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
 public class WorldStateManager : MonoBehaviour
 {
     [SerializeField] int turnCount = 12;
-    Dictionary<int, PlayerState> playerStates = new Dictionary<int, PlayerState> { };
+    SortedDictionary<int, PlayerState> playerStates = new SortedDictionary<int, PlayerState> { };
     int whoseTurn = 0;
     Dictionary<int, UnityEvent> endPlayerTurnEvents = new Dictionary<int, UnityEvent> { };
     UnityEvent endTurnEvent = new UnityEvent { };
+    UnityEvent endGameEvent = new UnityEvent { };
+
+    public static WorldStateManager FindWorldStateManager()
+    {
+        var mgrObj = FindObjectOfType<WorldStateManager>();
+        return mgrObj.GetComponent<WorldStateManager>();
+    }
 
     public void RegisterPlayer(int id)
     {
@@ -23,9 +31,11 @@ public class WorldStateManager : MonoBehaviour
         endPlayerTurnEvents[playerID].AddListener(action);
     }
 
+    public void AddEndGameEventListener(UnityAction action) { endGameEvent.AddListener(action); }
+
     public int GetRemainingTurnCount() { return turnCount; }
 
-    public int GetCurrentPlayer()
+    public int GetCurrentPlayerID()
     {
         int mapIndex = 0;
         foreach (var pair in playerStates)
@@ -82,9 +92,10 @@ public class WorldStateManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        int currentPlayer = GetCurrentPlayer();
+        if (turnCount == 0) return;
+
+        int currentPlayer = GetCurrentPlayerID();
         endPlayerTurnEvents[currentPlayer].Invoke();
-        Debug.Log("Current player: " + currentPlayer);
         int mapIndex = GetPlayerMapIndex(currentPlayer);
         if (mapIndex == playerStates.Count - 1)
         {
@@ -99,6 +110,6 @@ public class WorldStateManager : MonoBehaviour
     {
         --turnCount;
         endTurnEvent.Invoke();
-        Debug.Log("Remaining turn: " + turnCount);
     }
 }
+

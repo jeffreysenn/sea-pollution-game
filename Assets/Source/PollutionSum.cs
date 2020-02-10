@@ -9,7 +9,9 @@ public class PollutionSum : MonoBehaviour
 
     int addPollutionCallCount = 0;
 
-    public void AddPollution(Pollution.Type type, float val) { 
+    public void AddPollution(Pollution.Type type, float val) {
+        if (!pollutionMap.ContainsKey(type)) { pollutionMap.Add(type, 0); }
+
         pollutionMap[type] += val;
 
         FactorySpace[] factorySpaces = GetComponentsInChildren<FactorySpace>();

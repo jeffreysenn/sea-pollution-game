@@ -17,8 +17,7 @@ public class Polluter : MonoBehaviour
 
     protected void Start()
     {
-        stateManager = FindObjectOfType<WorldStateManager>();
-        Debug.Assert(stateManager, "World state manager must be in the scene!");
+        stateManager = WorldStateManager.FindWorldStateManager();
     }
 
     protected void MakeMoney()
@@ -33,5 +32,15 @@ public class Polluter : MonoBehaviour
         stateManager.AddPollution(ownerID, emission);
     }
 
+    public void Purchase()
+    {
+        float price = polluterAttrib.economicAttrib.costToPurchase;
+        stateManager.AddMoney(ownerID, -price);
+    }
 
+    public virtual void Activate()
+    {
+        SetOwnerID(stateManager.GetCurrentPlayerID());
+        Purchase();
+    }
 }

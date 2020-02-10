@@ -21,8 +21,9 @@ public class Factory : Polluter
         pollutionSum.AddPollution(type, emission);
     }
 
-    public void GetReady()
+    public override void Activate()
     {
+        base.Activate();
         stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), Operate);
         pollutionSum = transform.parent.parent.GetComponent<PollutionSum>();
     }

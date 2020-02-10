@@ -116,5 +116,14 @@ public class WorldStateManager : MonoBehaviour
         }
         endTurnEvent.Invoke();
     }
+
+    // TODO(Xiaoyue Chen): another class
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 }
 

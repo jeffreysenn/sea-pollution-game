@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class Select : MonoBehaviour
 {
+    // TODO(Xiaoyue Chen): reduce coupling
+    WorldStateManager stateManager = null;
+    float polluterPrice = 0;
+
+    void Start()
+    {
+        stateManager = WorldStateManager.FindWorldStateManager();
+        var polluter = GetComponent<Polluter>();
+        polluterPrice = polluter.GetAttrib().economicAttrib.costToPurchase;
+    }
+
     void OnMouseOver()
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            if (stateManager.GetMoney(stateManager.GetCurrentPlayerID()) < polluterPrice) return;
+
             gameObject.AddComponent<FollowMouse>();
             gameObject.AddComponent<Drop>();
             Destroy(this);

@@ -11,11 +11,17 @@ public class Filter : Polluter
         float filterAbility = -GetAttrib().pollutionAttrib.emissionPerTurn;
         float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
         pollutionMap[type] -= filtered;
-        stateManager.AddPollution(GetOwnerID(), filtered);
-        if(transform.childCount != 0)
+        stateManager.AddPollution(GetOwnerID(), -filtered);
+
+        var parentFilterSpaceObj = transform.parent.parent.gameObject;
+        if (parentFilterSpaceObj)
         {
-            var nextFilter = GetComponentInChildren<Filter>();
-            nextFilter.Operate(pollutionMap);
+            var parentFilterSpace = parentFilterSpaceObj.GetComponent<FilterSpace>();
+            if (parentFilterSpace && parentFilterSpace.polluter)
+            {
+                var parentFilter = (Filter)parentFilterSpace.polluter;
+                parentFilter.Operate(pollutionMap);
+            }
         }
     }
 }

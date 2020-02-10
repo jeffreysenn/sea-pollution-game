@@ -21,8 +21,9 @@ public class Select : MonoBehaviour
         {
             if (stateManager.GetMoney(stateManager.GetCurrentPlayerID()) < polluterPrice) return;
 
+            var drop = gameObject.AddComponent<Drop>();
+            drop.SetCancelDrop(transform.parent, transform.localPosition);
             gameObject.AddComponent<FollowMouse>();
-            gameObject.AddComponent<Drop>();
             Destroy(this);
         }       
     }

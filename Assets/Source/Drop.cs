@@ -14,6 +14,16 @@ public class Drop : MonoBehaviour
     EntityType type = EntityType.NONE;
     FollowMouse followMouse = null;
 
+    // TODO(Xiaoyue Chen): Another class for canceling
+    Transform cancelDropParent;
+    Vector3 cancelDropPos;
+
+    public void SetCancelDrop(Transform parent, Vector3 pos)
+    {
+        cancelDropParent = parent;
+        cancelDropPos = pos;
+    }
+
     void Start()
     {
         if (GetComponent<Factory>()) { type = EntityType.FACTORY; }
@@ -24,7 +34,16 @@ public class Drop : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Fire1")) { DropEntity(); }
-        if (Input.GetButtonDown("Fire3")) { }
+        if (Input.GetButtonDown("Fire2")) { CancelDrop(); }
+    }
+
+    void CancelDrop()
+    {
+        Destroy(GetComponent<FollowMouse>());
+        Destroy(this);
+        transform.parent = cancelDropParent;
+        transform.localPosition = cancelDropPos;
+        gameObject.AddComponent<Select>();
     }
 
     void DropEntity()

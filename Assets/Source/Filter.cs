@@ -5,7 +5,6 @@ public class Filter : Polluter
 {
     public void Operate(Dictionary<Pollution.Type, float> pollutionMap)
     {
-        MakeMoney();
         var type = GetAttrib().GetPollutionType();
         float targetPollution = pollutionMap[type];
         float filterAbility = -GetAttrib().pollutionAttrib.emissionPerTurn;
@@ -23,5 +22,11 @@ public class Filter : Polluter
                 parentFilter.Operate(pollutionMap);
             }
         }
+    }
+
+    public override void Activate()
+    {
+        base.Activate();
+        stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
     }
 }

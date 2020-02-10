@@ -13,11 +13,44 @@ public class WorldStateManager : MonoBehaviour
     public void RegisterPlayer(int id)
     {
         playerStates.Add(id, new PlayerState { });
+        endPlayerTurnEvents.Add(id, new UnityEvent { });
     }
 
     public void AddEndTurnEventListener(UnityAction action) { endTurnEvent.AddListener(action); }
 
-    public void AddEndPlayerTurnEventListener(int playerID, UnityAction action) { endPlayerTurnEvents[playerID].AddListener(action); }
+    public void AddEndPlayerTurnEventListener(int playerID, UnityAction action)
+    {
+        endPlayerTurnEvents[playerID].AddListener(action);
+    }
+
+    public int GetRemainingTurnCount() { return turnCount; }
+
+    public int GetCurrentPlayer()
+    {
+        int mapIndex = 0;
+        foreach (var pair in playerStates)
+        {
+            if (mapIndex++ == whoseTurn)
+            {
+                return pair.Key;
+            }
+        }
+        return -1;
+    }
+
+    int GetPlayerMapIndex(int playerID)
+    {
+        int mapIndex = 0;
+        foreach (var pair in playerStates)
+        {
+            if(pair.Key == playerID)
+            {
+                return mapIndex;
+            }
+            ++mapIndex;
+        }
+        return -1;
+    }
 
     public void AddMoney(int id, float money) { playerStates[id].money += money; }
     public void AddPollution(int id, float pollution)
@@ -49,28 +82,23 @@ public class WorldStateManager : MonoBehaviour
 
     public void EndPlayerTurn()
     {
-        ++whoseTurn;
-        whoseTurn %= playerStates.Count;
-
-        int mapIndex = 0;
-        foreach (var pair in playerStates)
-        {
-            if (mapIndex++ == whoseTurn)
-            {
-                endPlayerTurnEvents[pair.Key].Invoke();
-                break;
-            }
-        }
-
-        if (mapIndex == playerStates.Count)
+        int currentPlayer = GetCurrentPlayer();
+        endPlayerTurnEvents[currentPlayer].Invoke();
+        Debug.Log("Current player: " + currentPlayer);
+        int mapIndex = GetPlayerMapIndex(currentPlayer);
+        if (mapIndex == playerStates.Count - 1)
         {
             EndWholeTurn();
         }
+
+        ++whoseTurn;
+        whoseTurn %= playerStates.Count;
     }
 
     void EndWholeTurn()
     {
         --turnCount;
         endTurnEvent.Invoke();
+        Debug.Log("Remaining turn: " + turnCount);
     }
 }

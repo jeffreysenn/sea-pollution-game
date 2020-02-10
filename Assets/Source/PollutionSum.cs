@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,12 @@ public class PollutionSum : MonoBehaviour
     public void AddPollution(Pollution.Type type, float val) { 
         pollutionMap[type] += val;
 
-        int childCount = transform.childCount;
+        FactorySpace[] factorySpaces = GetComponentsInChildren<FactorySpace>();
+        int childCount = 0;
+        foreach(var factorySpace in factorySpaces)
+        {
+            childCount += Convert.ToInt32(factorySpace.polluter != null);
+        }
         if(++addPollutionCallCount == childCount)
         {
             addPollutionCallCount = 0;

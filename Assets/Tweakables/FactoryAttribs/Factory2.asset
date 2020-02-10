@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   polluterName: Factory2
   economicAttrib:
-    costToPurchase: 80
-    profitPerTurn: 70
+    costToPurchase: 30
+    profitPerTurn: 30
   pollutionAttrib:
     pollution: {fileID: 11400000, guid: a6e66be20a815e74d82655cc64e5e652, type: 2}
     emissionPerTurn: 5

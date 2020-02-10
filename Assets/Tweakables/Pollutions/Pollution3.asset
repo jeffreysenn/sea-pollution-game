@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Pollution3
   m_EditorClassIdentifier: 
   type: 2
-  pollutionName: default pollution
+  pollutionName: Pollution3

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703e9d9ec6806f944b61276a3946d299, type: 3}
   m_Name: Filter13
   m_EditorClassIdentifier: 
-  polluterName: Filter
+  polluterName: Filter13
   economicAttrib:
-    costToPurchase: 20
-    profitPerTurn: -10
+    costToPurchase: 40
+    profitPerTurn: -20
   pollutionAttrib:
     pollution: {fileID: 11400000, guid: 99e4b6f2ae619e046a00030dde89673d, type: 2}
-    emissionPerTurn: -0.5
+    emissionPerTurn: -4

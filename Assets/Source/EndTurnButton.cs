@@ -10,7 +10,7 @@ public class EndTurnButton : MonoBehaviour
         var worldStateObj = FindObjectOfType<WorldStateManager>();
         var worldState = worldStateObj.GetComponent<WorldStateManager>();
         var button = GetComponent<Button>();
-        button.onClick.AddListener(worldState.EndTurn);
+        button.onClick.AddListener(worldState.EndPlayerTurn);
     }
 
 }

@@ -23,7 +23,7 @@ public class Factory : Polluter
 
     public void GetReady()
     {
-        stateManager.AddEndTurnEventListener(Operate);
+        stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), Operate);
         pollutionSum = transform.parent.parent.GetComponent<PollutionSum>();
     }
 }

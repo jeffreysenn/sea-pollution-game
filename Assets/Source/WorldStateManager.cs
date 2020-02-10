@@ -6,6 +6,8 @@ public class WorldStateManager : MonoBehaviour
 {
     [SerializeField] int turnCount = 12;
     Dictionary<int, PlayerState> playerStates = new Dictionary<int, PlayerState> { };
+    int whoseTurn = 0;
+    Dictionary<int, UnityEvent> endPlayerTurnEvents = new Dictionary<int, UnityEvent> { };
     UnityEvent endTurnEvent = new UnityEvent { };
 
     public void RegisterPlayer(int id)
@@ -14,6 +16,8 @@ public class WorldStateManager : MonoBehaviour
     }
 
     public void AddEndTurnEventListener(UnityAction action) { endTurnEvent.AddListener(action); }
+
+    public void AddEndPlayerTurnEventListener(int playerID, UnityAction action) { endPlayerTurnEvents[playerID].AddListener(action); }
 
     public void AddMoney(int id, float money) { playerStates[id].money += money; }
     public void AddPollution(int id, float pollution)
@@ -43,7 +47,28 @@ public class WorldStateManager : MonoBehaviour
 
     public float GetNetPollutionSum() { return GetProducedPollutionSum() - GetFilteredPollutionSum(); }
 
-    public void EndTurn()
+    public void EndPlayerTurn()
+    {
+        ++whoseTurn;
+        whoseTurn %= playerStates.Count;
+
+        int mapIndex = 0;
+        foreach (var pair in playerStates)
+        {
+            if (mapIndex++ == whoseTurn)
+            {
+                endPlayerTurnEvents[pair.Key].Invoke();
+                break;
+            }
+        }
+
+        if (mapIndex == playerStates.Count)
+        {
+            EndWholeTurn();
+        }
+    }
+
+    void EndWholeTurn()
     {
         --turnCount;
         endTurnEvent.Invoke();

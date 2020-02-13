@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class PollutionSum : MonoBehaviour
 {
-    Dictionary<Pollution.Type, float> pollutionMap = new Dictionary<Pollution.Type, float> { };
+    Dictionary<Pollutant.Type, float> pollutionMap = new Dictionary<Pollutant.Type, float> { };
 
     int addPollutionCallCount = 0;
 
-    public void AddPollution(Pollution.Type type, float val) {
+    public void AddPollution(Pollutant.Type type, float val) {
         if (!pollutionMap.ContainsKey(type)) { pollutionMap.Add(type, 0); }
 
         pollutionMap[type] += val;
@@ -33,5 +33,5 @@ public class PollutionSum : MonoBehaviour
         }
 
     }
-    public float GetPollution(Pollution.Type type) { return pollutionMap[type]; }
+    public float GetPollution(Pollutant.Type type) { return pollutionMap[type]; }
 }

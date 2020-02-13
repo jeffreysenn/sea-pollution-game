@@ -30,8 +30,10 @@ public class Polluter : MonoBehaviour
 
     protected void Pollute()
     {
-        var emission = polluterAttrib.pollutionAttrib.emissionPerTurn;
-        stateManager.AddPollution(ownerID, emission);
+        foreach (var emission in polluterAttrib.pollutionAttrib.emissions)
+        {
+            stateManager.AddPollution(ownerID, emission.emissionPerTurn);
+        }
     }
 
     public void Purchase()

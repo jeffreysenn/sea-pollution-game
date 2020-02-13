@@ -10,9 +10,10 @@ public class Factory : Polluter
         Pollute();
 
         var attrib = GetAttrib();
-        var type = attrib.GetPollutionType();
-        var emission = attrib.pollutionAttrib.emissionPerTurn;
-        pollutionSum.AddPollution(type, emission);
+        foreach (var emission in attrib.pollutionAttrib.emissions)
+        {
+            pollutionSum.AddPollution(emission.pollutant.type, emission.emissionPerTurn);
+        }
     }
 
     public override void Activate()

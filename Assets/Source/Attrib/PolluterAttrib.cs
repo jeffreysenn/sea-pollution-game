@@ -9,8 +9,6 @@ public class PolluterAttrib
     public EconomicAttrib economicAttrib;
     public PollutionAttrib pollutionAttrib;
 
-    public Pollution.Type GetPollutionType() { return pollutionAttrib.pollution.type; }
-
     public virtual string GetDescription()
     {
         return title + ":\n" + 

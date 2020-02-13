@@ -36,7 +36,7 @@ public class Polluter : MonoBehaviour
 
     public void Purchase()
     {
-        float price = polluterAttrib.economicAttrib.costToPurchase;
+        float price = polluterAttrib.economicAttrib.price;
         stateManager.AddMoney(ownerID, -price);
     }
 

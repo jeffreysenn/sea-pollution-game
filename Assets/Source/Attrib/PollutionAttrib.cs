@@ -12,7 +12,7 @@ public struct PollutionAttrib
         float[] dir = { 1, -1 };
         int negativeEmission = Convert.ToInt32(emissionPerTurn < 0);
         var pred = preds[negativeEmission];
-        return pred + ": " + pollution.pollutionName + "\n" 
+        return pred + ": " + pollution.title + "\n" 
             + pred + " pollution per turn: " + (dir[negativeEmission] * emissionPerTurn).ToString("0.00") + "\n";
     }
 }

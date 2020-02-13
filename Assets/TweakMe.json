@@ -1,0 +1,19 @@
+{
+  "pollutionList": [
+    { "title": "COx" },
+    { "title": "SOx" },
+    { "title": "NOx" },
+    { "title": "Pb" },
+    { "title": "Hg" },
+    { "title": "Ag" },
+    { "title": "Cu" },
+    { "title": "Fe" },
+    { "title": "Cr" },
+    { "title": "Cd" }
+  ],
+  "factoryList": [
+    {
+      "title": "Fertilizer Factory"
+    }
+  ]
+}

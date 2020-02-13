@@ -12,7 +12,7 @@ public class Select : MonoBehaviour
     {
         stateManager = WorldStateManager.FindWorldStateManager();
         var polluter = GetComponent<Polluter>();
-        polluterPrice = polluter.GetAttrib().economicAttrib.costToPurchase;
+        polluterPrice = polluter.GetAttrib().economicAttrib.price;
     }
 
     void OnMouseOver()

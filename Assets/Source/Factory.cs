@@ -2,23 +2,16 @@
 
 public class Factory : Polluter
 {
-    PollutionSum pollutionSum = null;
-
-    public void Operate()
-    {
-        MakeMoney();
-        Pollute();
-
-        var attrib = GetAttrib();
-        var type = attrib.GetPollutionType();
-        var emission = attrib.pollutionAttrib.emissionPerTurn;
-        pollutionSum.AddPollution(type, emission);
-    }
-
     public override void Activate()
     {
         base.Activate();
-        stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), Operate);
-        pollutionSum = transform.parent.parent.GetComponent<PollutionSum>();
+        stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
+        var factorySpace = transform.parent.GetComponent<FactorySpace>();
+        var pollutionSum = factorySpace.GetPollutionSum();
+        var attrib = GetAttrib();
+        foreach (var emission in attrib.pollutionAttrib.emissions)
+        {
+            pollutionSum.AddPollution(emission.pollutantName, emission.emissionPerTurn);
+        }
     }
 }

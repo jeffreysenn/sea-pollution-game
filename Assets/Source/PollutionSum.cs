@@ -5,33 +5,30 @@ using UnityEngine;
 
 public class PollutionSum : MonoBehaviour
 {
-    Dictionary<Pollution.Type, float> pollutionMap = new Dictionary<Pollution.Type, float> { };
+    public int ownerID = -1;
+    PollutionMap pollutionMap = new PollutionMap { };
 
-    int addPollutionCallCount = 0;
+    public void AddPollution(string pollutantName, float val) {
+        if (!pollutionMap.ContainsKey(pollutantName)) { pollutionMap.Add(pollutantName, 0); }
+        pollutionMap[pollutantName] += val;
 
-    public void AddPollution(Pollution.Type type, float val) {
-        if (!pollutionMap.ContainsKey(type)) { pollutionMap.Add(type, 0); }
-
-        pollutionMap[type] += val;
-
-        FactorySpace[] factorySpaces = GetComponentsInChildren<FactorySpace>();
-        int childCount = 0;
-        foreach(var factorySpace in factorySpaces)
-        {
-            childCount += Convert.ToInt32(factorySpace.polluter != null);
-        }
-        if(++addPollutionCallCount == childCount)
-        {
-            addPollutionCallCount = 0;
-            var filterSpace = transform.parent.GetComponent<FilterSpace>();
-            var polluter = filterSpace.polluter;
-            if (polluter)
-            {
-                var filter = (Filter)polluter;
-                filter.Operate(pollutionMap);
-            }
-        }
-
+        var filterSpace = transform.parent.GetComponent<FilterSpace>();
+        filterSpace.UpdatePollution(pollutionMap);
+        var drawPollutionSumDes = GetComponent<DrawDescription>();
+        drawPollutionSumDes.SetDescription("Pollution sum(per turn):\n" + pollutionMap.GetDescription());
     }
-    public float GetPollution(Pollution.Type type) { return pollutionMap[type]; }
+
+    public float GetPollution(string pollutantName) { return pollutionMap[pollutantName]; }
+
+    void ReportPollution()
+    {
+        var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
+        stateManager.AddProducedPollution(ownerID, pollutionMap);
+    }
+
+    void Start()
+    {
+        var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
+        stateManager.AddEndPlayerTurnEventListener(ownerID, ReportPollution);
+    }
 }

@@ -5,10 +5,18 @@ using UnityEngine;
 
 public class Polluter : MonoBehaviour
 {
-    protected PolluterAttrib polluterAttrib = null;
+    private PolluterAttrib polluterAttrib = null;
     protected WorldStateManager stateManager = null;
 
-    int ownerID = -1;
+    private int ownerID = -1;
+
+    public Polluter Copy(Polluter other)
+    {
+        polluterAttrib = other.polluterAttrib;
+        stateManager = other.stateManager;
+        ownerID = other.ownerID;
+        return this;
+    }
 
     public void SetOwnerID(int id) { ownerID = id; }
     public int GetOwnerID() { return ownerID; }
@@ -28,15 +36,9 @@ public class Polluter : MonoBehaviour
         stateManager.AddMoney(ownerID, profit);
     }
 
-    protected void Pollute()
-    {
-        var emission = polluterAttrib.pollutionAttrib.emissionPerTurn;
-        stateManager.AddPollution(ownerID, emission);
-    }
-
     public void Purchase()
     {
-        float price = polluterAttrib.economicAttrib.costToPurchase;
+        float price = polluterAttrib.economicAttrib.price;
         stateManager.AddMoney(ownerID, -price);
     }
 

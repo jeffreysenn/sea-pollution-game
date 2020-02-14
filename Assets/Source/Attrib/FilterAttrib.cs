@@ -1,4 +1,4 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New FilterAttrib", menuName = "FilterAttrib")]
+[System.Serializable]
 public class FilterAttrib : PolluterAttrib { }

@@ -15,13 +15,13 @@ public class Drop : MonoBehaviour
     FollowMouse followMouse = null;
 
     // TODO(Xiaoyue Chen): Another class for canceling
-    Transform cancelDropParent;
-    Vector3 cancelDropPos;
+    Transform oriParent;
+    Vector3 oriPos;
 
-    public void SetCancelDrop(Transform parent, Vector3 pos)
+    public void SetOriginalPos(Transform parent, Vector3 pos)
     {
-        cancelDropParent = parent;
-        cancelDropPos = pos;
+        oriParent = parent;
+        oriPos = pos;
     }
 
     void Start()
@@ -34,16 +34,16 @@ public class Drop : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Fire1")) { DropEntity(); }
-        if (Input.GetButtonDown("Fire2")) { CancelDrop(); }
+        if (Input.GetButtonDown("Fire2")) { CancelDrop(gameObject); }
     }
 
-    void CancelDrop()
+    void CancelDrop(GameObject obj)
     {
-        Destroy(GetComponent<FollowMouse>());
-        Destroy(this);
-        transform.parent = cancelDropParent;
-        transform.localPosition = cancelDropPos;
-        gameObject.AddComponent<Select>();
+        Destroy(obj.GetComponent<FollowMouse>());
+        Destroy(obj.GetComponent<Drop>());
+        obj.transform.parent = oriParent;
+        obj.transform.localPosition = oriPos;
+        obj.AddComponent<Select>();
     }
 
     void DropEntity()
@@ -70,6 +70,11 @@ public class Drop : MonoBehaviour
         if (validSpace && validSpace.ownerID == 
             WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
         {
+            var clone = Instantiate(gameObject);
+            var clonePolluter = clone.GetComponent<Polluter>();
+            clonePolluter.Copy(GetComponent<Polluter>());
+            CancelDrop(clone);
+
             Destroy(followMouse);
             var polluter = GetComponent<Polluter>();
             validSpace.polluter = polluter;

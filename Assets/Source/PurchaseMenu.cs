@@ -18,14 +18,14 @@ public struct Purchasable
 public class PurchaseMenu : MonoBehaviour
 {
     [SerializeField] Text descriptionText = null;
-    [SerializeField] List<Purchasable> purchasables = null;
+    public List<Purchasable> purchasables = new List<Purchasable> { };
 
     Polluter InstantiatePolluter(GameObject obj, Vector3 pos, Vector3 scale)
     {
         var clone = Instantiate(obj, transform);
         clone.transform.localPosition = pos;
         clone.transform.localScale = scale;
-        var drawDiscription = clone.GetComponent<DrawDiscription>();
+        var drawDiscription = clone.GetComponent<DrawPolluterDescription>();
         drawDiscription.descriptionText = descriptionText;
         return clone.GetComponent<Polluter>();
     }
@@ -41,13 +41,9 @@ public class PurchaseMenu : MonoBehaviour
                 var pos = pur.offset + new Vector3(pur.distanceX * x, 0, -pur.distanceY * y);
                 var polluter = InstantiatePolluter(pur.polluter, pos, pur.sclae);
                 polluter.SetAttrib(pur.polluterAttribs[i]);
+                var textMesh = polluter.GetComponentInChildren<TextMesh>();
+                textMesh.text = (i + 1).ToString();
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

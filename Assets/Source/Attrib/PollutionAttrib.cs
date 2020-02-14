@@ -3,16 +3,39 @@
 [System.Serializable]
 public struct PollutionAttrib
 {
-    public Pollution pollution;
-    public float emissionPerTurn;
+    [System.Serializable]
+    public struct Emission
+    {
+        public string pollutantName;
+        public float emissionPerTurn;
+    }
+
+    public Emission[] emissions;
 
     public string GetDiscription()
     {
-        string[] preds = { "Cause", "Reduce" };
-        float[] dir = { 1, -1 };
-        int negativeEmission = Convert.ToInt32(emissionPerTurn < 0);
-        var pred = preds[negativeEmission];
-        return pred + ": " + pollution.pollutionName + "\n" 
-            + pred + " pollution per turn: " + (dir[negativeEmission] * emissionPerTurn).ToString("0.00") + "\n";
+        string cause = "";
+        string reduce = "";
+        foreach (var emission in emissions)
+        {
+            if (emission.emissionPerTurn > 0)
+            {
+                cause += (emission.pollutantName + ": " + emission.emissionPerTurn.ToString() + "\n");
+            }
+            else if (emission.emissionPerTurn < 0)
+            {
+                reduce += (emission.pollutantName + ": " + (-emission.emissionPerTurn).ToString() + "\n");
+            }
+        }
+        string result = "";
+        if(cause.Length > 0)
+        {
+            result += ("Cause pollution:\n" + cause);
+        }
+        if(reduce.Length > 0)
+        {
+            result += ("Reduce pollution:\n" + reduce);
+        }
+        return result;
     }
 }

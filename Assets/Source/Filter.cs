@@ -3,26 +3,18 @@ using UnityEngine;
 
 public class Filter : Polluter
 {
-    public void Operate(Dictionary<Pollution.Type, float> pollutionMap)
+    public void UpdatePollution(ref PollutionMap pollutionMap)
     {
-        var type = GetAttrib().GetPollutionType();
-        if (pollutionMap.ContainsKey(type))
+        var pollutionAttrib = GetAttrib().pollutionAttrib;
+        foreach(var emission in pollutionAttrib.emissions)
         {
-            float targetPollution = pollutionMap[type];
-            float filterAbility = -GetAttrib().pollutionAttrib.emissionPerTurn;
-            float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
-            pollutionMap[type] -= filtered;
-            stateManager.AddPollution(GetOwnerID(), -filtered);
-        }
-
-        var parentFilterSpaceObj = transform.parent.parent.gameObject;
-        if (parentFilterSpaceObj)
-        {
-            var parentFilterSpace = parentFilterSpaceObj.GetComponent<FilterSpace>();
-            if (parentFilterSpace && parentFilterSpace.polluter)
+            var pollutantName = emission.pollutantName;
+            if (pollutionMap.ContainsKey(pollutantName))
             {
-                var parentFilter = (Filter)parentFilterSpace.polluter;
-                parentFilter.Operate(pollutionMap);
+                float targetPollution = pollutionMap[pollutantName];
+                float filterAbility = -emission.emissionPerTurn;
+                float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
+                pollutionMap[pollutantName] -= filtered;
             }
         }
     }
@@ -31,5 +23,7 @@ public class Filter : Polluter
     {
         base.Activate();
         stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
+        var filterSpace = transform.parent.GetComponent<FilterSpace>();
+        filterSpace.UseFilter();
     }
 }

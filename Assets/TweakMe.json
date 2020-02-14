@@ -12,6 +12,7 @@
     { "title": "Cd" }
   ],
 
+
   "factoryList": [
     {
       "title": "Fertilizer Factory",
@@ -346,5 +347,41 @@
         ]
       }
     }
+  ],
+
+
+  "environmentPollutionList": [
+    {
+      "emissions": [
+        { "pollutantName":  "COx", "emissionPerTurn": 1 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "NOx", "emissionPerTurn": 1 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "NOx", "emissionPerTurn": 2 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "NOx", "emissionPerTurn": 1 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "COx", "emissionPerTurn": 2 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "COx", "emissionPerTurn": 1 }
+      ]
+    }
   ]
+
+
 }

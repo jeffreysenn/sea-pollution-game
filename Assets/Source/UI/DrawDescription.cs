@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DrawDiscription : MonoBehaviour
+public class DrawDescription : MonoBehaviour
 {
     [SerializeField] public Text descriptionText = null;
 
-    string description = "";
-    void Start()
-    {
-        var polluter = GetComponent<Polluter>();
-        var attrib = polluter.GetAttrib();
-        description = attrib.GetDescription();
-    }
+    protected string description = "";
 
     protected void OnMouseEnter()
     {

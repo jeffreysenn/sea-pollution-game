@@ -6,12 +6,15 @@ using UnityEngine;
 public struct AttribData
 {
     public Pollutant[] pollutantList;
+    public PollutionAttrib[] environmentPollutionList;
     public FactoryAttrib[] factoryList;
     public FilterAttrib[] filterList;
 }
 
 public class AttribLoader : MonoBehaviour
 {
+    [SerializeField] EnvironmentPollution[] environmentPollutions;
+
     AttribData attribData = new AttribData { };
 
     void Awake()
@@ -30,6 +33,11 @@ public class AttribLoader : MonoBehaviour
         foreach (var filterAttrib in attribData.filterList)
         {
             filterAttribs.Add(filterAttrib);
+        }
+
+        for(int i = 0; i != attribData.environmentPollutionList.Length; ++i)
+        {
+            environmentPollutions[i].pollutionAttrib = attribData.environmentPollutionList[i];
         }
     }
 }

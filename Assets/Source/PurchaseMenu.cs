@@ -25,7 +25,7 @@ public class PurchaseMenu : MonoBehaviour
         var clone = Instantiate(obj, transform);
         clone.transform.localPosition = pos;
         clone.transform.localScale = scale;
-        var drawDiscription = clone.GetComponent<DrawDiscription>();
+        var drawDiscription = clone.GetComponent<DrawPolluterDescription>();
         drawDiscription.descriptionText = descriptionText;
         return clone.GetComponent<Polluter>();
     }

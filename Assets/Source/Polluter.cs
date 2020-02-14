@@ -36,14 +36,6 @@ public class Polluter : MonoBehaviour
         stateManager.AddMoney(ownerID, profit);
     }
 
-    protected void Pollute()
-    {
-        foreach (var emission in polluterAttrib.pollutionAttrib.emissions)
-        {
-            stateManager.AddPollution(ownerID, emission.emissionPerTurn);
-        }
-    }
-
     public void Purchase()
     {
         float price = polluterAttrib.economicAttrib.price;

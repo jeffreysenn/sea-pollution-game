@@ -8,7 +8,7 @@ public class FilterSpace : Space
 
     public void UpdatePollution(PollutionMap map)
     {
-        pollutionMap = map;
+        pollutionMap = new PollutionMap(map);
         UseFilter();
     }
 

@@ -53,7 +53,7 @@ public class WorldStateManager : MonoBehaviour
         int mapIndex = 0;
         foreach (var pair in playerStates)
         {
-            if(pair.Key == playerID)
+            if (pair.Key == playerID)
             {
                 return mapIndex;
             }
@@ -63,28 +63,42 @@ public class WorldStateManager : MonoBehaviour
     }
 
     public void AddMoney(int id, float money) { playerStates[id].money += money; }
-    public void AddPollution(int id, float pollution)
+
+    void AddPollution(ref float val, PollutionMap map)
+    {
+        foreach (var pair in map)
+        {
+            val += pair.Value;
+        }
+    }
+
+    public void AddProducedPollution(int id, PollutionMap map)
     {
         var state = playerStates[id];
-        if (pollution >= 0) { state.producedPollution += pollution; }
-        else { state.filteredPollution -= pollution; }
+        AddPollution(ref state.producedPollution, map);
+    }
+
+    public void AddNetPollution(int id, PollutionMap map)
+    {
+        var state = playerStates[id];
+        AddPollution(ref state.netPollution, map);
     }
 
     public float GetMoney(int id) { return playerStates[id].money; }
-    public float GetProducedPollution(int id) { return playerStates[id].producedPollution; }
-    public float GetFilteredPollution(int id) { return playerStates[id].filteredPollution; }
+    public float GetProducedPollution(int id) { return playerStates[id].GetProducedPollution(); }
+    public float GetFilteredPollution(int id) { return playerStates[id].GetFilteredPollution(); }
     public float GetNetPollution(int id) { return playerStates[id].GetNetPollution(); }
     public float GetProducedPollutionSum()
     {
         float sum = 0;
-        foreach (var pair in playerStates) { sum += pair.Value.producedPollution; }
+        foreach (var pair in playerStates) { sum += pair.Value.GetProducedPollution() ; }
         return sum;
     }
 
     public float GetFilteredPollutionSum()
     {
         float sum = 0;
-        foreach (var pair in playerStates) { sum += pair.Value.filteredPollution; }
+        foreach (var pair in playerStates) { sum += pair.Value.GetFilteredPollution(); }
         return sum;
     }
 

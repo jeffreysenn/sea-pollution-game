@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] public int id = 0;
 
-    void Start()
+    void Awake()
     {
         var worldStateObj = FindObjectOfType<WorldStateManager>();
         var worldState = worldStateObj.GetComponent<WorldStateManager>();

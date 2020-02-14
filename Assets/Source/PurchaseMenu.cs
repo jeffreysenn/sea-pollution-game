@@ -41,6 +41,8 @@ public class PurchaseMenu : MonoBehaviour
                 var pos = pur.offset + new Vector3(pur.distanceX * x, 0, -pur.distanceY * y);
                 var polluter = InstantiatePolluter(pur.polluter, pos, pur.sclae);
                 polluter.SetAttrib(pur.polluterAttribs[i]);
+                var textMesh = polluter.GetComponentInChildren<TextMesh>();
+                textMesh.text = (i + 1).ToString();
             }
         }
     }

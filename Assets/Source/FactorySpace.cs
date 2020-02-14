@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class FactorySpace : Space
 {
+    public PollutionSum GetPollutionSum()
+    {
+        return transform.parent.GetComponent<PollutionSum>();
+    }
 }

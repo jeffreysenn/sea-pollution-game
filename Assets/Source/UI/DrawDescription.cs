@@ -9,8 +9,12 @@ public class DrawDescription : MonoBehaviour
 
     protected string description = "";
 
+    public void SetDescription(string des) { description = des; }
+
     protected void OnMouseEnter()
     {
+        descriptionText = GameObject.Find("ItemDescription").GetComponent<Text>();
+
         if (descriptionText)
         {
             descriptionText.text = description;

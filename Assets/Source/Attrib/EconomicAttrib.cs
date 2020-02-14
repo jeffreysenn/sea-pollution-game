@@ -6,7 +6,7 @@ public struct EconomicAttrib
 
     public string GetDiscription()
     {
-        return "Cost: " + price.ToString("0.00") + "\n" +
-               "Profit per turn: " + profitPerTurn.ToString("0.00") + "\n";
+        return "Cost: " + price.ToString() + "\n" +
+               "Profit per turn: " + profitPerTurn.ToString() + "\n";
     }
 }

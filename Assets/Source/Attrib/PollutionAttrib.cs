@@ -20,11 +20,11 @@ public struct PollutionAttrib
         {
             if (emission.emissionPerTurn > 0)
             {
-                cause += (emission.pollutantName + ": " + emission.emissionPerTurn.ToString("0.00") + "\n");
+                cause += (emission.pollutantName + ": " + emission.emissionPerTurn.ToString() + "\n");
             }
             else if (emission.emissionPerTurn < 0)
             {
-                reduce += (emission.pollutantName + ": " + (-emission.emissionPerTurn).ToString("0.00") + "\n");
+                reduce += (emission.pollutantName + ": " + (-emission.emissionPerTurn).ToString() + "\n");
             }
         }
         string result = "";

@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class PollutionSum : MonoBehaviour
 {
-    Dictionary<Pollutant.Type, float> pollutionMap = new Dictionary<Pollutant.Type, float> { };
+    Dictionary<string, float> pollutionMap = new Dictionary<string, float> { };
 
     int addPollutionCallCount = 0;
 
-    public void AddPollution(Pollutant.Type type, float val) {
-        if (!pollutionMap.ContainsKey(type)) { pollutionMap.Add(type, 0); }
+    public void AddPollution(string pollutantName, float val) {
+        if (!pollutionMap.ContainsKey(pollutantName)) { pollutionMap.Add(pollutantName, 0); }
 
-        pollutionMap[type] += val;
+        pollutionMap[pollutantName] += val;
 
         FactorySpace[] factorySpaces = GetComponentsInChildren<FactorySpace>();
         int childCount = 0;
@@ -33,5 +33,5 @@ public class PollutionSum : MonoBehaviour
         }
 
     }
-    public float GetPollution(Pollutant.Type type) { return pollutionMap[type]; }
+    public float GetPollution(string pollutantName) { return pollutionMap[pollutantName]; }
 }

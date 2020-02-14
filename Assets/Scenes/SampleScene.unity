@@ -1630,7 +1630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592e2d44ed353f441ac383dab5c68470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attrib: {fileID: 11400000, guid: 737786888bd23394286e02689c159393, type: 2}
 --- !u!4 &1635704289
 Transform:
   m_ObjectHideFlags: 0
@@ -2075,9 +2074,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3429598538209976510, guid: 4d7b39fa779d86041942d545e676b75b,
         type: 3}
+      propertyPath: purchasables.Array.data[0].polluterAttribs.Array.data[0].pollutionAttrib.emissions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429598538209976510, guid: 4d7b39fa779d86041942d545e676b75b,
+        type: 3}
       propertyPath: descriptionText
       value: 
       objectReference: {fileID: 72990842}
+    - target: {fileID: 3429598538209976510, guid: 4d7b39fa779d86041942d545e676b75b,
+        type: 3}
+      propertyPath: purchasables.Array.data[0].polluterAttribs.Array.data[0].pollutionAttrib.emissions.Array.data[0].pollutant.title
+      value: bad
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429598538209976510, guid: 4d7b39fa779d86041942d545e676b75b,
+        type: 3}
+      propertyPath: purchasables.Array.data[0].polluterAttribs.Array.data[0].pollutionAttrib.emissions.Array.data[0].emissionPerTurn
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429598538209976510, guid: 4d7b39fa779d86041942d545e676b75b,
+        type: 3}
+      propertyPath: purchasables.Array.data[0].polluterAttribs.Array.data[0].pollutionAttrib.emissions.Array.data[1].pollutant.title
+      value: very bad
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429598538209976510, guid: 4d7b39fa779d86041942d545e676b75b,
+        type: 3}
+      propertyPath: purchasables.Array.data[0].polluterAttribs.Array.data[0].pollutionAttrib.emissions.Array.data[1].emissionPerTurn
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3429598538209976511, guid: 4d7b39fa779d86041942d545e676b75b,
         type: 3}
       propertyPath: m_LocalPosition.x

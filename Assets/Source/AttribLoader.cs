@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct AttribData
 {
-    public Pollutant[] pollutionList;
+    public Pollutant[] pollutantList;
     public FactoryAttrib[] factoryList;
     public FilterAttrib[] filterList;
 }

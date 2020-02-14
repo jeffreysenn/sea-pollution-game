@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class Filter : Polluter
 {
-    public void Operate(Dictionary<Pollutant.Type, float> pollutionMap)
+    public void Operate(Dictionary<string, float> pollutionMap)
     {
         var pollutionAttrib = GetAttrib().pollutionAttrib;
         foreach(var emission in pollutionAttrib.emissions)
         {
-            if (pollutionMap.ContainsKey(emission.pollutant.type))
+            var pollutantName = emission.pollutant.title;
+            if (pollutionMap.ContainsKey(pollutantName))
             {
-                float targetPollution = pollutionMap[emission.pollutant.type];
+                float targetPollution = pollutionMap[pollutantName];
                 float filterAbility = -emission.emissionPerTurn;
                 float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
-                pollutionMap[emission.pollutant.type] -= filtered;
+                pollutionMap[pollutantName] -= filtered;
                 stateManager.AddPollution(GetOwnerID(), -filtered);
             }
         }

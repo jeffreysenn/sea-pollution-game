@@ -8,7 +8,7 @@ public class Filter : Polluter
         var pollutionAttrib = GetAttrib().pollutionAttrib;
         foreach(var emission in pollutionAttrib.emissions)
         {
-            var pollutantName = emission.pollutant.title;
+            var pollutantName = emission.pollutantName;
             if (pollutionMap.ContainsKey(pollutantName))
             {
                 float targetPollution = pollutionMap[pollutantName];

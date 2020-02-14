@@ -18,7 +18,7 @@ public struct Purchasable
 public class PurchaseMenu : MonoBehaviour
 {
     [SerializeField] Text descriptionText = null;
-    [SerializeField] List<Purchasable> purchasables = null;
+    public List<Purchasable> purchasables = new List<Purchasable> { };
 
     Polluter InstantiatePolluter(GameObject obj, Vector3 pos, Vector3 scale)
     {
@@ -43,11 +43,5 @@ public class PurchaseMenu : MonoBehaviour
                 polluter.SetAttrib(pur.polluterAttribs[i]);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

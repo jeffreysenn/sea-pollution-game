@@ -13,16 +13,23 @@ public struct AttribData
 public class AttribLoader : MonoBehaviour
 {
     AttribData attribData = new AttribData { };
-    void Start()
+
+    void Awake()
     {
         var path = Application.dataPath + "/TweakMe.json";
         string data = System.IO.File.ReadAllText(path);
         attribData = JsonUtility.FromJson<AttribData>(data);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PurchaseMenu purchaseMenu = FindObjectOfType<PurchaseMenu>().GetComponent<PurchaseMenu>();
+        var factoryAttribs = purchaseMenu.purchasables[0].polluterAttribs;
+        foreach (var factoryAttrib in attribData.factoryList)
+        {
+            factoryAttribs.Add(factoryAttrib);
+        }
+        var filterAttribs = purchaseMenu.purchasables[1].polluterAttribs;
+        foreach (var filterAttrib in attribData.filterList)
+        {
+            filterAttribs.Add(filterAttrib);
+        }
     }
 }

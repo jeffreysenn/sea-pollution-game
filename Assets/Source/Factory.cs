@@ -12,7 +12,7 @@ public class Factory : Polluter
         var attrib = GetAttrib();
         foreach (var emission in attrib.pollutionAttrib.emissions)
         {
-            pollutionSum.AddPollution(emission.pollutant.title, emission.emissionPerTurn);
+            pollutionSum.AddPollution(emission.pollutantName, emission.emissionPerTurn);
         }
     }
 

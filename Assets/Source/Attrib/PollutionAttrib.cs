@@ -6,7 +6,7 @@ public struct PollutionAttrib
     [System.Serializable]
     public struct Emission
     {
-        public Pollutant pollutant;
+        public string pollutantName;
         public float emissionPerTurn;
     }
 
@@ -20,11 +20,11 @@ public struct PollutionAttrib
         {
             if (emission.emissionPerTurn > 0)
             {
-                cause += (emission.pollutant.title + ": " + emission.emissionPerTurn.ToString("0.00") + "\n");
+                cause += (emission.pollutantName + ": " + emission.emissionPerTurn.ToString("0.00") + "\n");
             }
             else if (emission.emissionPerTurn < 0)
             {
-                reduce += (emission.pollutant.title + ": " + (-emission.emissionPerTurn).ToString("0.00") + "\n");
+                reduce += (emission.pollutantName + ": " + (-emission.emissionPerTurn).ToString("0.00") + "\n");
             }
         }
         string result = "";

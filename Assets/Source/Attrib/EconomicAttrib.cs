@@ -1,8 +1,9 @@
 ﻿[System.Serializable]
-public struct EconomicAttrib
+public class EconomicAttrib
 {
     public float price;
     public float profitPerTurn;
+    public float removalCost = 10;
 
     public string GetDiscription()
     {

@@ -14,6 +14,7 @@ public struct PollutionAttrib
 
     public string GetDiscription()
     {
+        if(emissions == null) { return ""; }
         string cause = "";
         string reduce = "";
         foreach (var emission in emissions)

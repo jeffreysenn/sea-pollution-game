@@ -21,7 +21,7 @@
   "factoryList": [
     {
       "title": "Fertilizer Factory",
-      "economicAttrib": { "price": 50, "profitPerTurn": 40 },
+      "economicAttrib": { "price": 50, "profitPerTurn": 40, "removalCost": 20 },
       "pollutionAttrib": {
         "emissions": [
           { "pollutantName": "NOx", "emissionPerTurn": 5 },

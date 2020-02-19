@@ -47,4 +47,17 @@ public class Polluter : MonoBehaviour
         SetOwnerID(stateManager.GetCurrentPlayerID());
         Purchase();
     }
+
+    public virtual void Mulfunction() { }
+
+    public bool CanRemove()
+    {
+        if(GetOwnerID() == stateManager.GetCurrentPlayerID()
+            && GetAttrib().economicAttrib.removalCost <= stateManager.GetMoney(GetOwnerID()))
+        {
+            return true;
+        }
+        return false;
+    }
+    public virtual void Remove() { stateManager.AddMoney(GetOwnerID(), -GetAttrib().economicAttrib.removalCost); }
 }

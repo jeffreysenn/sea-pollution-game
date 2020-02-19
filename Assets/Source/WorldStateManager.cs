@@ -31,6 +31,11 @@ public class WorldStateManager : MonoBehaviour
         endPlayerTurnEvents[playerID].AddListener(action);
     }
 
+    public void RemoveEndPlayerTurnEventListener(int playerID, UnityAction action)
+    {
+        endPlayerTurnEvents[playerID].RemoveListener(action);
+    }
+
     public void AddEndGameEventListener(UnityAction action) { endGameEvent.AddListener(action); }
 
     public int GetRemainingTurnCount() { return turnCount; }

@@ -6,7 +6,7 @@ public class SeaEntrance : MonoBehaviour
 {
     public int ownerID = -1;
     PollutionMap pollutionMap = new PollutionMap { };
-    public float warningThreashold = 5;
+    public float warningThreashold = 8;
     public Color fromColor = Color.cyan;
     public Color toColor = Color.red;
 

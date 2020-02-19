@@ -31,9 +31,9 @@
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5},
-          { "disasterName": "Fire", "factor": 1},
-          { "disasterName": "Wind", "factor": 0}
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 0 }
         ]
       }
     },
@@ -64,9 +64,9 @@
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5},
-          { "disasterName": "Fire", "factor": 0.5},
-          { "disasterName": "Wind", "factor": 0.5}
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Wind", "factor": 0.5 }
         ]
       }
     },

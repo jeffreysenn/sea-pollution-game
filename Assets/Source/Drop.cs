@@ -83,7 +83,7 @@ public class Drop : MonoBehaviour
             transform.position = targetPos;
             transform.parent = validSpace.transform;
             polluter.Activate();
-            gameObject.AddComponent<Remove>();
+
             Destroy(this);
         }
     }

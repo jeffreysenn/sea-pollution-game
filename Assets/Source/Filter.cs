@@ -39,6 +39,7 @@ public class Filter : Polluter
     {
         base.Remove();
         Mulfunction();
+        stateManager.RemoveEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
         Destroy(gameObject);
     }
 }

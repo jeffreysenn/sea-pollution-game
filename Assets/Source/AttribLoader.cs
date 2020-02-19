@@ -40,5 +40,8 @@ public class AttribLoader : MonoBehaviour
         {
             environmentPollutions[i].pollutionAttrib = attribData.environmentPollutionList[i];
         }
+
+        var disasterManager = FindObjectOfType<DisasterManager>().GetComponent<DisasterManager>();
+        disasterManager.SetDisasters(attribData.disasterList);
     }
 }

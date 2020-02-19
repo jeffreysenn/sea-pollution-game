@@ -13,9 +13,9 @@
   ],
 
   "disasterList":  [
-    { "title": "Fire", "damage": 100 },
-    { "title": "Flood", "damage": 100 },
-    { "title": "Wind", "damage": 100 }
+    { "title": "Fire", "damage": 100, "chancePerTurn": 0.2 },
+    { "title": "Flood", "damage": 100, "chancePerTurn": 0.2 },
+    { "title": "Wind", "damage": 100, "chancePerTurn": 0.1 }
   ],
 
   "factoryList": [
@@ -31,7 +31,7 @@
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1},
+          { "disasterName": "Flood", "factor": 0.5},
           { "disasterName": "Fire", "factor": 1},
           { "disasterName": "Wind", "factor": 0}
         ]
@@ -39,26 +39,40 @@
     },
     {
       "title": "Oil Factory",
-      "economicAttrib": { "price": 60, "profitPerTurn": 60 },
+      "economicAttrib": { "price": 60, "profitPerTurn": 60, "removalCost": 10 },
       "pollutionAttrib": {
         "emissions": [
           { "pollutantName": "COx", "emissionPerTurn": 7 },
           { "pollutantName": "SOx", "emissionPerTurn": 8 }
         ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 0 }
         ]
       }
     },
     {
       "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "economicAttrib": { "price": 20, "profitPerTurn": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5},
+          { "disasterName": "Fire", "factor": 0.5},
+          { "disasterName": "Wind", "factor": 0.5}
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 10, "profitPerTurn": 5 },
       "pollutionAttrib": {
         "emissions": [
           { "pollutantName": "COx", "emissionPerTurn": 2 }
@@ -202,6 +216,13 @@
         "emissions": [
           { "pollutantName": "COx", "emissionPerTurn": -2 }
         ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
+        ]
       }
     },
     {
@@ -212,6 +233,13 @@
           { "pollutantName": "Hg", "emissionPerTurn": -2 },
           { "pollutantName": "Pb", "emissionPerTurn": -2 },
           { "pollutantName": "Ag", "emissionPerTurn": -1 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
         ]
       }
     },
@@ -224,23 +252,44 @@
           { "pollutantName": "NOx", "emissionPerTurn": -3 },
           { "pollutantName": "SOx", "emissionPerTurn": -3 }
         ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
         ]
       }
     },
     {
       "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "economicAttrib": { "price": 10, "profitPerTurn": -5 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+          { "pollutantName": "SOx", "emissionPerTurn": -1 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 10, "profitPerTurn": -5 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -1 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
         ]
       }
     },

@@ -25,6 +25,14 @@ public class Polluter : MonoBehaviour
 
     public PolluterAttrib GetAttrib() { return polluterAttrib; }
 
+    public virtual void OnDeadth()
+    {
+        Mulfunction();
+        var meshFilter = GetComponentInChildren<MeshFilter>();
+        var renderer = meshFilter.GetComponent<Renderer>();
+        renderer.material.SetColor("_Color", Color.red);
+    }
+
     protected void Start()
     {
         stateManager = WorldStateManager.FindWorldStateManager();
@@ -46,13 +54,16 @@ public class Polluter : MonoBehaviour
     {
         SetOwnerID(stateManager.GetCurrentPlayerID());
         Purchase();
+        gameObject.AddComponent<Remove>();
+        var health = gameObject.AddComponent<Health>();
+        health.AddDeathEventListener(OnDeadth);
     }
 
     public virtual void Mulfunction() { }
 
     public bool CanRemove()
     {
-        if(GetOwnerID() == stateManager.GetCurrentPlayerID()
+        if (GetOwnerID() == stateManager.GetCurrentPlayerID()
             && GetAttrib().economicAttrib.removalCost <= stateManager.GetMoney(GetOwnerID()))
         {
             return true;

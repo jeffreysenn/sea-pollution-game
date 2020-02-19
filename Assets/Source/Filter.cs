@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Filter : Polluter
 {
-    public void UpdatePollution(ref PollutionMap pollutionMap)
+    public void FilterPollution(ref PollutionMap pollutionMap, ref PollutionMap filteredPollutionMap)
     {
         var pollutionAttrib = GetAttrib().pollutionAttrib;
         foreach(var emission in pollutionAttrib.emissions)
@@ -14,6 +14,8 @@ public class Filter : Polluter
                 float targetPollution = pollutionMap[pollutantName];
                 float filterAbility = -emission.emissionPerTurn;
                 float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
+                if (!filteredPollutionMap.ContainsKey(pollutantName)) { filteredPollutionMap.Add(pollutantName, 0); }
+                filteredPollutionMap[pollutantName] += filtered;
                 pollutionMap[pollutantName] -= filtered;
             }
         }
@@ -25,5 +27,18 @@ public class Filter : Polluter
         stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
         var filterSpace = transform.parent.GetComponent<FilterSpace>();
         filterSpace.UseFilter();
+    }
+
+    public override void Mulfunction()
+    {
+        var filterSpace = transform.parent.GetComponent<FilterSpace>();
+        filterSpace.RemoveFilter();
+    }
+
+    public override void Remove()
+    {
+        base.Remove();
+        Mulfunction();
+        Destroy(gameObject);
     }
 }

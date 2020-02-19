@@ -12,6 +12,11 @@
     { "title": "Cd" }
   ],
 
+  "disasterList":  [
+    { "title": "Fire", "damage": 100 },
+    { "title": "Flood", "damage": 100 },
+    { "title": "Wind", "damage": 100 }
+  ],
 
   "factoryList": [
     {
@@ -22,6 +27,13 @@
           { "pollutantName": "NOx", "emissionPerTurn": 5 },
           { "pollutantName": "SOx", "emissionPerTurn": 3 },
           { "pollutantName": "COx", "emissionPerTurn": 4 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1},
+          { "disasterName": "Fire", "factor": 1},
+          { "disasterName": "Wind", "factor": 0}
         ]
       }
     },
@@ -204,11 +216,13 @@
       }
     },
     {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "title": "Generic Gas Filter",
+      "economicAttrib": { "price": 40, "profitPerTurn": -20 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+          { "pollutantName": "COx", "emissionPerTurn": -3 },
+          { "pollutantName": "NOx", "emissionPerTurn": -3 },
+          { "pollutantName": "SOx", "emissionPerTurn": -3 }
         ]
       }
     },

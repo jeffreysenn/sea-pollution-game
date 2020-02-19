@@ -6,6 +6,7 @@ using UnityEngine;
 public struct AttribData
 {
     public Pollutant[] pollutantList;
+    public Disaster[] disasterList;
     public PollutionAttrib[] environmentPollutionList;
     public FactoryAttrib[] factoryList;
     public FilterAttrib[] filterList;
@@ -13,7 +14,7 @@ public struct AttribData
 
 public class AttribLoader : MonoBehaviour
 {
-    [SerializeField] EnvironmentPollution[] environmentPollutions;
+    public EnvironmentPollution[] environmentPollutions;
 
     AttribData attribData = new AttribData { };
 

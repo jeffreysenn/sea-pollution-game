@@ -6,26 +6,28 @@ using UnityEngine.UI;
 public class DrawWorldStats : MonoBehaviour
 {
     WorldStateManager stateManager = null;
-    Text text = null;
+    PieController[] pieControllers = new PieController[3];
+    PollutionMap[] pollutionMaps = new PollutionMap[3];
+
 
     void Start()
     {
-        stateManager = WorldStateManager.FindWorldStateManager();
-        text = GetComponent<Text>();
+        stateManager = GetComponent<WorldStateManager>();
+        stateManager.AddEndPlayerTurnFinishEventListener(UpdateWorldStats);
+        pieControllers[0] = GameObject.Find("ProducedPollutionPie").GetComponent<PieController>();
+        pieControllers[1] = GameObject.Find("FilteredPollutionPie").GetComponent<PieController>();
+        pieControllers[2] = GameObject.Find("NetPollutionPie").GetComponent<PieController>();
+        UpdateWorldStats();
     }
 
-    void Update()
+    void UpdateWorldStats()
     {
-        // TODO(Xiaoyue Chen): using event system to update text
-        float producedPollutionSum = stateManager.GetProducedPollutionSum();
-        float filteredPollutionSum = stateManager.GetFilteredPollutionSum();
-        float netPollutionSum = stateManager.GetNetPollutionSum();
-
-        text.text =
-            "World Stats: \n" +
-            "Total produced pollution: " + producedPollutionSum.ToString() + "\n" +
-            "Total filtered pollution: " + filteredPollutionSum.ToString() + "\n" +
-            "Total pollution into the sea: " + netPollutionSum.ToString();
-
+        for (int i = 0; i != 3; ++i)
+        {
+            var type = (PollutionMapType)i;
+            var map = stateManager.GetPollutionMapSum(type);
+            pieControllers[i].SetPollutionMap(map);
+            pieControllers[i].Draw();
+        }
     }
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 865223721728235373}
   - component: {fileID: 865223721728235368}
   - component: {fileID: 865223721728235371}
-  - component: {fileID: 865223721728235370}
   m_Layer: 5
   m_Name: WorldStats
   m_TagString: Untagged
@@ -78,15 +77,3 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: WorldStats
---- !u!114 &865223721728235370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 865223721728235372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1bb186f4f8cec24c9ebc3c637f76292, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -9,6 +9,7 @@ public class WorldStateManager : MonoBehaviour
     SortedDictionary<int, PlayerState> playerStates = new SortedDictionary<int, PlayerState> { };
     int whoseTurn = 0;
     Dictionary<int, UnityEvent> endPlayerTurnEvents = new Dictionary<int, UnityEvent> { };
+    UnityEvent endPlayerTurnFinishEvent = new UnityEvent { };
     UnityEvent endTurnEvent = new UnityEvent { };
     UnityEvent endGameEvent = new UnityEvent { };
 
@@ -29,6 +30,11 @@ public class WorldStateManager : MonoBehaviour
     public void AddEndPlayerTurnEventListener(int playerID, UnityAction action)
     {
         endPlayerTurnEvents[playerID].AddListener(action);
+    }
+
+    public void AddEndPlayerTurnFinishEventListener(UnityAction action)
+    {
+        endPlayerTurnFinishEvent.AddListener(action);
     }
 
     public void RemoveEndPlayerTurnEventListener(int playerID, UnityAction action)
@@ -80,13 +86,24 @@ public class WorldStateManager : MonoBehaviour
     public void AddProducedPollution(int id, PollutionMap map)
     {
         var state = playerStates[id];
-        AddPollution(ref state.producedPollution, map);
+        state.producedPollutionMap += map;
     }
 
     public void AddNetPollution(int id, PollutionMap map)
     {
         var state = playerStates[id];
-        AddPollution(ref state.netPollution, map);
+        state.netPollutionMap += map;
+    }
+
+    public PollutionMap GetPollutionMap(int id, PollutionMapType type) { return playerStates[id].GetPollutionMap(type); }
+    public PollutionMap GetPollutionMapSum(PollutionMapType type)
+    {
+        PollutionMap sum = new PollutionMap { };
+        foreach(var pair in playerStates)
+        {
+            sum += pair.Value.GetPollutionMap(type);
+        }
+        return sum;
     }
 
     public float GetMoney(int id) { return playerStates[id].money; }
@@ -96,7 +113,7 @@ public class WorldStateManager : MonoBehaviour
     public float GetProducedPollutionSum()
     {
         float sum = 0;
-        foreach (var pair in playerStates) { sum += pair.Value.GetProducedPollution() ; }
+        foreach (var pair in playerStates) { sum += pair.Value.GetProducedPollution(); }
         return sum;
     }
 
@@ -115,6 +132,7 @@ public class WorldStateManager : MonoBehaviour
 
         int currentPlayer = GetCurrentPlayerID();
         endPlayerTurnEvents[currentPlayer].Invoke();
+        endPlayerTurnFinishEvent.Invoke();
         int mapIndex = GetPlayerMapIndex(currentPlayer);
         if (mapIndex == playerStates.Count - 1)
         {

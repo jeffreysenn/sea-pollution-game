@@ -1,15 +1,15 @@
 {
   "pollutantList": [
-    { "title": "COx" },
-    { "title": "SOx" },
-    { "title": "NOx" },
-    { "title": "Pb" },
-    { "title": "Hg" },
-    { "title": "Ag" },
-    { "title": "Cu" },
-    { "title": "Fe" },
-    { "title": "Cr" },
-    { "title": "Cd" }
+    { "title": "COx", "color": { "r": 255, "g": 200, "b": 0,   "a": 255 } },
+    { "title": "SOx", "color": { "r": 200, "g": 100, "b": 0,   "a": 255 } },
+    { "title": "NOx", "color": { "r": 200, "g": 200, "b": 100, "a": 255 } },
+    { "title": "Pb" , "color": { "r": 200, "g": 255, "b": 200, "a": 255 } },
+    { "title": "Hg" , "color": { "r": 255, "g": 0,   "b": 0,   "a": 255 } },
+    { "title": "Ag" , "color": { "r": 200, "g": 200, "b": 200, "a": 255 } },
+    { "title": "Cu" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
+    { "title": "Fe" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
+    { "title": "Cr" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
+    { "title": "Cd" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } }
   ],
 
   "disasterList":  [

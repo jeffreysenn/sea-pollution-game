@@ -9,6 +9,7 @@ public class PieController : MonoBehaviour
     PieChart pie = null;
     PieAnimation pieAnimation = null;
     [SerializeField] Material[] materials = null;
+    PollutantMaterialManager materialManager = null;
 
     public void SetPollutionMap(PollutionMap map) { pollutionMap = map; }
 
@@ -20,17 +21,18 @@ public class PieController : MonoBehaviour
             pie.DataSource.Clear();
         }
         pieAnimation = GetComponent<PieAnimation>();
+        materialManager = FindObjectsOfType<PollutantMaterialManager>()[0];
     }
 
     public void Draw()
     {
-        if (pollutionMap != null && pie)
+        if (pollutionMap != null && pie && materialManager)
         {
             pie.DataSource.Clear();
-            int counter = 0;
             foreach (var pair in pollutionMap)
             {
-                pie.DataSource.AddCategory(pair.Key, materials[counter++]);
+                var mat = materialManager.GetMaterial(pair.Key);
+                pie.DataSource.AddCategory(pair.Key, mat);
                 pie.DataSource.SetValue(pair.Key, pair.Value);
             }
             if (pieAnimation)

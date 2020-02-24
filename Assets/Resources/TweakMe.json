@@ -1,0 +1,450 @@
+{
+  "pollutantList": [
+    { "title": "COx", "color": { "r": 255, "g": 200, "b": 0,   "a": 255 } },
+    { "title": "SOx", "color": { "r": 200, "g": 100, "b": 0,   "a": 255 } },
+    { "title": "NOx", "color": { "r": 200, "g": 200, "b": 100, "a": 255 } },
+    { "title": "Pb" , "color": { "r": 200, "g": 255, "b": 200, "a": 255 } },
+    { "title": "Hg" , "color": { "r": 255, "g": 0,   "b": 0,   "a": 255 } },
+    { "title": "Ag" , "color": { "r": 200, "g": 200, "b": 200, "a": 255 } },
+    { "title": "Cu" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
+    { "title": "Fe" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
+    { "title": "Cr" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
+    { "title": "Cd" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } }
+  ],
+
+  "disasterList":  [
+    { "title": "Fire", "damage": 100, "chancePerTurn": 0.2 },
+    { "title": "Flood", "damage": 100, "chancePerTurn": 0.2 },
+    { "title": "Wind", "damage": 100, "chancePerTurn": 0.1 }
+  ],
+
+  "factoryList": [
+    {
+      "title": "Fertilizer Factory",
+      "economicAttrib": { "price": 50, "profitPerTurn": 40, "removalCost": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "NOx", "emissionPerTurn": 5 },
+          { "pollutantName": "SOx", "emissionPerTurn": 3 },
+          { "pollutantName": "COx", "emissionPerTurn": 4 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Oil Factory",
+      "economicAttrib": { "price": 60, "profitPerTurn": 60, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 7 },
+          { "pollutantName": "SOx", "emissionPerTurn": 8 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 20, "profitPerTurn": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Wind", "factor": 0.5 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 10, "profitPerTurn": 5 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Factory",
+      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": 2 }
+        ]
+      }
+    }
+  ],
+
+
+  "filterList": [
+    {
+      "title": "COx Filter",
+      "economicAttrib": { "price": 40, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": -2 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Heavy Metal Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Hg", "emissionPerTurn": -2 },
+          { "pollutantName": "Pb", "emissionPerTurn": -2 },
+          { "pollutantName": "Ag", "emissionPerTurn": -1 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Generic Gas Filter",
+      "economicAttrib": { "price": 40, "profitPerTurn": -20 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "COx", "emissionPerTurn": -3 },
+          { "pollutantName": "NOx", "emissionPerTurn": -3 },
+          { "pollutantName": "SOx", "emissionPerTurn": -3 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 10, "profitPerTurn": -5 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -1 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 10, "profitPerTurn": -5 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -1 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Wind", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    },
+    {
+      "title": "Placeholder Filter",
+      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+        ]
+      }
+    }
+  ],
+
+
+  "environmentPollutionList": [
+    {
+      "emissions": [
+        { "pollutantName":  "COx", "emissionPerTurn": 1 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "NOx", "emissionPerTurn": 1 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "NOx", "emissionPerTurn": 2 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "NOx", "emissionPerTurn": 1 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "COx", "emissionPerTurn": 2 }
+      ]
+    },
+    {
+      "emissions": [
+        { "pollutantName":  "COx", "emissionPerTurn": 1 }
+      ]
+    }
+  ]
+
+
+}

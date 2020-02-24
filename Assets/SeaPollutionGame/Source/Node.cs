@@ -8,13 +8,16 @@ public class Node : MonoBehaviour
     List<Flow> outFlows = new List<Flow> { };
     Dictionary<Flow, PollutionMap> inFlowPollutions = new Dictionary<Flow, PollutionMap> { };
 
-    public void AddInflow(Flow flow)
+    public void AddInFlow(Flow flow)
     {
         inFlows.Add(flow);
         inFlowPollutions.Add(flow, new PollutionMap { });
     }
 
+    public void RemoveInFlow(Flow flow) { inFlows.Remove(flow); }
+
     public void AddOutFlow(Flow flow) { outFlows.Add(flow); }
+    public void RemoveOutFlow(Flow flow) { outFlows.Remove(flow); }
 
     public void AddInput(Flow flow, PollutionMap map) { inFlowPollutions[flow] = new PollutionMap(map); }
     public void RemoveInput(Flow flow) { inFlowPollutions.Remove(flow); }
@@ -37,5 +40,11 @@ public class Node : MonoBehaviour
             result[pair.Key] = newVal;
         }
         return result;
+    }
+
+    void OnDestroy()
+    {
+        foreach(var flow in inFlows) { flow.ClearOutNode(); }    
+        foreach(var flow in outFlows) { flow.ClearInNode(); }    
     }
 }

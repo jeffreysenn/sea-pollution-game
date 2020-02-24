@@ -9,7 +9,9 @@ public class Flow : MonoBehaviour
     PollutionMap pollutionMap = new PollutionMap { };
 
     public void SetInNode(Node node) { inNode = node; }
+    public void ClearInNode() { inNode = null; }
     public void SetOutNode(Node node) { outNode = node; }
+    public void ClearOutNode() { outNode = null; }
 
     public void Input(PollutionMap map)
     {
@@ -31,4 +33,10 @@ public class Flow : MonoBehaviour
     public Node GetInNode() { return inNode; }
     public Node GetOutNode() { return outNode; }
     public PollutionMap GetPollutionMap() { return pollutionMap; }
+
+    void OnDestroy()
+    {
+        if (inNode) { inNode.RemoveOutFlow(this); }
+        if (outNode) { outNode.RemoveInFlow(this); }
+    }
 }

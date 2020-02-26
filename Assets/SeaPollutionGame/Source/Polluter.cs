@@ -71,4 +71,5 @@ public class Polluter : MonoBehaviour
         return false;
     }
     public virtual void Remove() { stateManager.AddMoney(GetOwnerID(), -GetAttrib().economicAttrib.removalCost); }
+    public Space GetSpace() { return transform.parent.GetComponent<Space>(); }
 }

@@ -8,11 +8,14 @@ public class Factory : Polluter
         stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
 
         var attrib = GetAttrib();
-        var pollutionSum = GetPollutionSum();
+        var space = GetSpace();
+        PollutionMap map = new PollutionMap { };
         foreach (var emission in attrib.pollutionAttrib.emissions)
         {
-            pollutionSum.AddPollution(emission.pollutantName, emission.emissionPerTurn);
+            map.Add(emission.pollutantName, emission.emissionPerTurn);
         }
+        space.SetLocalPollution(map);
+        space.OutPut();
     }
 
     public override void Mulfunction()
@@ -23,19 +26,9 @@ public class Factory : Polluter
     public override void Remove()
     {
         base.Remove();
-        var attrib = GetAttrib();
-        var pollutionSum = GetPollutionSum();
-        foreach (var emission in attrib.pollutionAttrib.emissions)
-        {
-            pollutionSum.AddPollution(emission.pollutantName, -emission.emissionPerTurn);
-        }
+        var space = GetSpace();
+        space.ClearLocalPollution();
         Mulfunction();
         Destroy(gameObject);
-    }
-
-    PollutionSum GetPollutionSum()
-    {
-        var factorySpace = transform.parent.GetComponent<FactorySpace>();
-        return factorySpace.GetPollutionSum();
     }
 }

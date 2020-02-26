@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.Events;
 
-
+[CanEditMultipleObjects]
 public class FlowEditor : EditorWindow
 {
     GameObject flowPrefab = null;
-    bool isEditing = true;
-    Node inNode = null;
+    bool isEditing = false;
     Flow flow = null;
-
 
     [MenuItem("Window/" + "FlowEditor")]
     public static void Init()
@@ -44,50 +41,76 @@ public class FlowEditor : EditorWindow
         if (!isEditing) { return; }
 
         var currentEvent = Event.current;
-        if (currentEvent != null)
+        if (currentEvent == null) { return; }
+
+        if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
         {
-            if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
+            var hitNode = GetHitNode(currentEvent.mousePosition);
+            if (hitNode)
             {
-                if (!inNode)
+                if (!flow)
                 {
-                    inNode = GetHitNode(currentEvent.mousePosition);
-                    if (inNode)
-                    {
-                        var flowObj = GameObject.Instantiate(flowPrefab);
-                        flow = flowObj.GetComponent<Flow>();
-                        inNode.AddOutFlow(flow);
-                        flow.SetInNode(inNode);
-                        var l = flow.GetComponent<LineRenderer>();
-                        l.SetPosition(0, inNode.transform.position);
-                    }
+                    CreateFlow(hitNode);
                 }
                 else
                 {
-                    var outNode = GetHitNode(currentEvent.mousePosition);
-                    if (outNode)
-                    {
-                        outNode.AddInFlow(flow);
-                        flow.SetOutNode(outNode);
-                        var l = flow.GetComponent<LineRenderer>();
-                        l.SetPosition(1, outNode.transform.position);
-                        inNode = null;
-                        flow = null;
-                    }
+                    CompleteFlow(hitNode);
                 }
             }
+        }
 
-            if (inNode && flow)
+        if (flow)
+        {
+            if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1)
+            {
+                EditorUtility.SetDirty(flow.GetInNode());
+                flow.OnDisable();
+                DestroyImmediate(flow.gameObject);
+                flow = null;
+            }
+            else
             {
                 var l = flow.GetComponent<LineRenderer>();
                 var ray = HandleUtility.GUIPointToWorldRay(currentEvent.mousePosition);
                 var pos = ray.origin + ray.direction * 100;
-                //pos = Vector3.ProjectOnPlane(pos, new Vector3(0,1,0));
                 l.SetPosition(1, pos);
             }
         }
-
     }
 
+    void CompleteFlow(Node hitNode)
+    {
+        EditorUtility.SetDirty(hitNode);
+        hitNode.AddInFlow(flow);
+
+        EditorUtility.SetDirty(flow);
+        flow.SetOutNode(hitNode);
+
+        var l = flow.GetComponent<LineRenderer>();
+        l.SetPosition(1, hitNode.transform.position);
+        var arrow = flow.GetComponent<LineRendererArrow>();
+        arrow.origin = flow.GetInNode().transform.position;
+        arrow.target = flow.GetOutNode().transform.position;
+        arrow.UpdateArrow();
+
+        var boxCollider = flow.gameObject.AddComponent<BoxCollider>();
+        var size = boxCollider.size;
+        size.z = 2 * size.z;
+        boxCollider.size = size;
+
+        flow = null;
+    }
+
+    void CreateFlow(Node hitNode)
+    {
+        var flowObj = (GameObject)PrefabUtility.InstantiatePrefab(flowPrefab);
+        flow = flowObj.GetComponent<Flow>();
+        EditorUtility.SetDirty(hitNode);
+        hitNode.AddOutFlow(flow);
+        flow.SetInNode(hitNode);
+        var l = flow.GetComponent<LineRenderer>();
+        l.SetPosition(0, hitNode.transform.position);
+    }
 
     public void OnDestroy()
     {

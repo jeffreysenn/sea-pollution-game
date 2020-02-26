@@ -17,6 +17,7 @@ public class Drop : MonoBehaviour
     // TODO(Xiaoyue Chen): Another class for canceling
     Transform oriParent;
     Vector3 oriPos;
+    GameObject flowPrefab = null;
 
     public void SetOriginalPos(Transform parent, Vector3 pos)
     {
@@ -66,7 +67,6 @@ public class Drop : MonoBehaviour
             if (validSpace) { break; }
         }
 
-
         if (validSpace && validSpace.ownerID == 
             WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
         {
@@ -82,6 +82,7 @@ public class Drop : MonoBehaviour
             targetPos.y = transform.position.y;
             transform.position = targetPos;
             transform.parent = validSpace.transform;
+
             polluter.Activate();
 
             Destroy(this);

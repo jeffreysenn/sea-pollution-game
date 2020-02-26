@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flow : MonoBehaviour
+public class Flow : MonoBehaviour, IPollutionMapOwner
 {
-    Node inNode = null;
-    Node outNode = null;
+    [SerializeField] Node inNode = null;
+    [SerializeField] Node outNode = null;
     PollutionMap pollutionMap = new PollutionMap { };
 
     public void SetInNode(Node node) { inNode = node; }
@@ -34,7 +34,7 @@ public class Flow : MonoBehaviour
     public Node GetOutNode() { return outNode; }
     public PollutionMap GetPollutionMap() { return pollutionMap; }
 
-    void OnDestroy()
+    public void OnDisable()
     {
         if (inNode) { inNode.RemoveOutFlow(this); }
         if (outNode) { outNode.RemoveInFlow(this); }

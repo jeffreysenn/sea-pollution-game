@@ -7,6 +7,10 @@ using DG.Tweening;
 
 public class EndTurnController : MonoBehaviour
 {
+    /*
+     * TODO: event when turn starts (callback will be what is in Update)
+     */
+
     [System.Serializable]
     class InfoPlayerEndTurn
     {
@@ -24,9 +28,11 @@ public class EndTurnController : MonoBehaviour
     private List<InfoPlayerEndTurn> playersInfo;
 
     [SerializeField]
-    private float tweenAnimationSpeed = 1f;
+    private float tweenDuration = 1f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
+
+    private int currentPlayerID = 0;
 
     private void Start()
     {
@@ -34,8 +40,12 @@ public class EndTurnController : MonoBehaviour
         if(worldStateManager == null) { Debug.LogError("[EndTurnController] Start: WorldStateManager not found"); return; }
 
         endTurnButton.onClick.AddListener(OnBtnClick);
+
+        currentPlayerID = worldStateManager.GetCurrentPlayerID();
         
-        ShowPlayer(worldStateManager.GetCurrentPlayerID());
+        ShowPlayer(currentPlayerID);
+
+        worldStateManager.AddEndPlayerTurnFinishEventListener(OnEndTurn);
     }
 
     private void OnDestroy()
@@ -43,22 +53,34 @@ public class EndTurnController : MonoBehaviour
         endTurnButton.onClick.RemoveListener(OnBtnClick);
     }
 
+    private void Update()
+    {
+        if (currentPlayerID != worldStateManager.GetCurrentPlayerID())
+        {
+            currentPlayerID = worldStateManager.GetCurrentPlayerID();
+            ShowPlayer(currentPlayerID);
+        }
+    }
+
+    private void OnEndTurn()
+    {
+        currentPlayerID = worldStateManager.GetCurrentPlayerID();
+
+        HidePlayer(currentPlayerID);
+    }
+
     private void OnBtnClick()
     {
         worldStateManager.EndPlayerTurn();
-
-        int id = worldStateManager.GetCurrentPlayerID();
-        HidePlayers(id);
-        ShowPlayer(id);
     }
 
     private void ShowPlayer(int id)
     {
         InfoPlayerEndTurn currentPlayer = playersInfo.Find(x => x.playerID == id);
-        currentPlayer.playerInformation.DOLocalMoveX(currentPlayer.tweenXOffset, tweenAnimationSpeed).SetEase(tweenEase);
+        currentPlayer.playerInformation.DOLocalMoveX(currentPlayer.tweenXOffset, tweenDuration).SetEase(tweenEase);
     }
 
-    private void HidePlayers(int exceptFromId = 0)
+    private void HidePlayersExcept(int exceptFromId = 0)
     {
         foreach(InfoPlayerEndTurn ip in playersInfo)
         {
@@ -72,6 +94,6 @@ public class EndTurnController : MonoBehaviour
     private void HidePlayer(int id)
     {
         InfoPlayerEndTurn currentPlayer = playersInfo.Find(x => x.playerID == id);
-        currentPlayer.playerInformation.DOLocalMoveX(0, tweenAnimationSpeed).SetEase(tweenEase);
+        currentPlayer.playerInformation.DOLocalMoveX(0, tweenDuration).SetEase(tweenEase);
     }
 }

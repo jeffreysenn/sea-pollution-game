@@ -5,11 +5,6 @@ using TMPro;
 
 public class TurnNumberController : MonoBehaviour
 {
-    /*
-     * TODO: Add an event in WorldStateManager that broadcast "end of turn" and/or when turn count changes
-     *      => removing Update() check
-     */
-
     WorldStateManager worldStateManager = null;
 
     [SerializeField]
@@ -30,9 +25,11 @@ public class TurnNumberController : MonoBehaviour
 
         txtNumber.text = currentNumberTurn.ToString();
         txtTotal.text = totalNumberTurn.ToString();
+
+        worldStateManager.AddEndTurnEventListener(OnEndTurn);
     }
 
-    private void Update()
+    private void OnEndTurn()
     {
         if(totalNumberTurn != worldStateManager.GetRemainingTurnCount())
         {

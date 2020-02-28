@@ -17,4 +17,6 @@ public class Health : MonoBehaviour
     public float GetHealth() { return hp; }
 
     public void AddDeathEventListener(UnityAction action) { deathEvent.AddListener(action); }
+
+    public bool IsAlive() { return hp > 0; }
 }

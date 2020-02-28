@@ -10,18 +10,18 @@ public class Polluter : MonoBehaviour
 
     private int ownerID = -1;
 
-    public Polluter Copy(Polluter other)
+    public Polluter CopyAssign(Polluter rhs)
     {
-        polluterAttrib = other.polluterAttrib;
-        stateManager = other.stateManager;
-        ownerID = other.ownerID;
+        polluterAttrib = rhs.polluterAttrib;
+        stateManager = rhs.stateManager;
+        ownerID = rhs.ownerID;
         return this;
     }
 
     public void SetOwnerID(int id) { ownerID = id; }
     public int GetOwnerID() { return ownerID; }
 
-    public void SetAttrib(PolluterAttrib attrib) { polluterAttrib = attrib; }
+    public void SetAttrib(PolluterAttrib attrib) { polluterAttrib = (PolluterAttrib)attrib.Clone(); }
 
     public PolluterAttrib GetAttrib() { return polluterAttrib; }
 
@@ -55,6 +55,8 @@ public class Polluter : MonoBehaviour
         SetOwnerID(stateManager.GetCurrentPlayerID());
         Purchase();
         stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
+        var playerState = stateManager.GetPlayerState(GetOwnerID());
+        playerState.AddPolluter(this);
         gameObject.AddComponent<Remove>();
         var health = gameObject.AddComponent<Health>();
         health.AddDeathEventListener(OnDeadth);
@@ -76,9 +78,11 @@ public class Polluter : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        if(IsActive())
+        if (IsActive())
         {
             stateManager.AddMoney(GetOwnerID(), -GetAttrib().economicAttrib.removalCost);
+            var playerState = stateManager.GetPlayerState(GetOwnerID());
+            playerState.RemovePolluter(this);
             Mulfunction();
             var space = GetSpace();
             space.ClearLocalPollution();

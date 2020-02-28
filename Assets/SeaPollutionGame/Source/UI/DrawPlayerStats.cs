@@ -22,6 +22,8 @@ public class DrawPlayerStats : MonoBehaviour
         // TODO(Xiaoyue Chen): using event system to update text
         if (!statsText) return;
         float money = stateManager.GetMoney(playerID);
+        var playerState = stateManager.GetPlayerState(playerID);
+        float incomeThisTurn = playerState.GetIncome();
         float producedPollution = stateManager.GetPollution(playerID, PollutionMapType.PRODUCED);
         float filteredPollution = -stateManager.GetPollution(playerID, PollutionMapType.FILTERED);
         float netPollution = stateManager.GetPollution(playerID, PollutionMapType.NET);
@@ -29,6 +31,7 @@ public class DrawPlayerStats : MonoBehaviour
         statsText.text =
             "Player: " + playerID.ToString() + "\n" +
             "Money: " + money.ToString() + "\n" +
+            "Income this turn " + incomeThisTurn.ToString() + "\n" +
             "Produced pollution: " + producedPollution.ToString() + "\n" +
             "Filtered pollution: " + filteredPollution.ToString() + "\n" +
             "Pollution into the sea: " + netPollution.ToString() + "\n";

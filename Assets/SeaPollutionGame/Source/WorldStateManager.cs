@@ -25,6 +25,8 @@ public class WorldStateManager : MonoBehaviour
         endPlayerTurnEvents.Add(id, new UnityEvent { });
     }
 
+    public PlayerState GetPlayerState(int id) { return playerStates[id]; }
+
     public void AddEndTurnEventListener(UnityAction action) { endTurnEvent.AddListener(action); }
 
     public void AddEndPlayerTurnEventListener(int playerID, UnityAction action)
@@ -84,7 +86,7 @@ public class WorldStateManager : MonoBehaviour
     public PollutionMap GetPollutionMapSum(PollutionMapType type)
     {
         PollutionMap sum = new PollutionMap { };
-        foreach(var pair in playerStates)
+        foreach (var pair in playerStates)
         {
             sum += pair.Value.GetPollutionMap(type);
         }

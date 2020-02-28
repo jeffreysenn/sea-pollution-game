@@ -77,6 +77,7 @@ public class FlowEditorWindow : EditorWindow
         }
     }
 
+
     void OnScene(SceneView sceneview)
     {
         if (isEditing) { EditFlow(); }
@@ -165,5 +166,20 @@ public class FlowEditorWindow : EditorWindow
     {
         isEditing = EditorGUILayout.Toggle("Editing Mode On", isEditing);
         autoUpdateFlow = EditorGUILayout.Toggle("Automatically Update Flow", autoUpdateFlow);
+        if (GUILayout.Button("Delete Flow"))
+        {
+            var objs = Selection.gameObjects;
+            foreach(var obj in objs)
+            {
+                var flow = obj.GetComponent<Flow>();
+                if (flow)
+                {
+                    EditorUtility.SetDirty(flow.GetInNode());
+                    EditorUtility.SetDirty(flow.GetOutNode());
+                    flow.OnDisable();
+                    DestroyImmediate(flow.gameObject);
+                }
+            }
+        }
     }
 }

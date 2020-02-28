@@ -16,6 +16,7 @@ public class AttribLoader : MonoBehaviour
 {
     public EnvironmentPollution[] environmentPollutions;
 
+    public AttribData attribData;
 
     void Awake()
     {
@@ -24,8 +25,10 @@ public class AttribLoader : MonoBehaviour
         var attribData = JsonUtility.FromJson<AttribData>(data.ToString());
 #else
         var path = Application.dataPath + "/Resources/TweakMe.json";
+
         string data = System.IO.File.ReadAllText(path);
-        var attribData = JsonUtility.FromJson<AttribData>(data);
+
+        attribData = JsonUtility.FromJson<AttribData>(data);
 #endif
         PurchaseMenu purchaseMenu = FindObjectOfType<PurchaseMenu>().GetComponent<PurchaseMenu>();
         var factoryAttribs = purchaseMenu.purchasables[0].polluterAttribs;

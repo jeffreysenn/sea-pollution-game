@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Flow : MonoBehaviour
+public class Flow : MonoBehaviour, IPollutionMapOwner
 {
-    Node inNode = null;
-    Node outNode = null;
+    public class PollutionEvent : UnityEvent<PollutionMap> { }
+    public PollutionEvent setInputEvent = new PollutionEvent { };
+    public PollutionEvent clearInputEvent = new PollutionEvent { };
+
+    public PollutionEvent[] GetAllPollutionEvents()
+    {
+        return new PollutionEvent[] { setInputEvent, clearInputEvent };
+    }
+
+    [SerializeField] Node inNode = null;
+    [SerializeField] Node outNode = null;
     PollutionMap pollutionMap = new PollutionMap { };
 
     public void SetInNode(Node node) { inNode = node; }
@@ -13,16 +23,18 @@ public class Flow : MonoBehaviour
     public void SetOutNode(Node node) { outNode = node; }
     public void ClearOutNode() { outNode = null; }
 
-    public void Input(PollutionMap map)
+    public void SetInput(PollutionMap map)
     {
         pollutionMap = new PollutionMap(map);
-        OutPut();
+        setInputEvent.Invoke(map);
     }
 
     public void ClearInput()
     {
+        var clearedInput = new PollutionMap(pollutionMap);
         pollutionMap.Clear();
         if (outNode) { outNode.RemoveInput(this); }
+        clearInputEvent.Invoke(clearedInput);
     }
 
     public void OutPut()
@@ -34,7 +46,15 @@ public class Flow : MonoBehaviour
     public Node GetOutNode() { return outNode; }
     public PollutionMap GetPollutionMap() { return pollutionMap; }
 
-    void OnDestroy()
+    private void Start()
+    {
+        foreach (var pollutionEvent in GetAllPollutionEvents())
+        {
+            pollutionEvent.AddListener((PollutionMap) => { OutPut(); });
+        }
+    }
+
+    public void OnDisable()
     {
         if (inNode) { inNode.RemoveOutFlow(this); }
         if (outNode) { outNode.RemoveInFlow(this); }

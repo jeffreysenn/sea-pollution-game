@@ -12,11 +12,22 @@ public enum PollutionMapType
 public class PlayerState
 {
     public float money = 100;
-    public float producedPollution = 0;
-    public float netPollution = 0;
 
-    public PollutionMap producedPollutionMap = new PollutionMap { };
-    public PollutionMap netPollutionMap = new PollutionMap { };
+    PollutionMap producedPollutionMap = new PollutionMap { };
+    PollutionMap filteredPollutionMap = new PollutionMap { };
+    PollutionMap netPollutionMap = new PollutionMap { };
+
+    public void SetPollutionMap(PollutionMapType type, PollutionMap map)
+    {
+        var pollutionMap = GetPollutionMap(type);
+        pollutionMap.CopyAssign(map);
+    }
+
+    public void AddToPollutionMap(PollutionMapType type, PollutionMap map)
+    {
+        var pollutionMap = GetPollutionMap(type);
+        pollutionMap.PlusEquals(map);
+    }
 
     public PollutionMap GetPollutionMap(PollutionMapType type)
     {
@@ -32,17 +43,7 @@ public class PlayerState
 
     PollutionMap GetProducedPollutionMap() { return producedPollutionMap; }
     PollutionMap GetNetPollutionMap() { return netPollutionMap; }
-    PollutionMap GetFilteredPollutionMap()
-    {
-        PollutionMap filteredPollutionMap = new PollutionMap(producedPollutionMap);
-        foreach (var pair in netPollutionMap)
-        {
-            filteredPollutionMap[pair.Key] -= pair.Value;
-        }
-        return filteredPollutionMap;
-    }
+    PollutionMap GetFilteredPollutionMap() { return filteredPollutionMap; }
 
-    public float GetNetPollution() { return netPollution; }
-    public float GetFilteredPollution() { return producedPollution - netPollution; }
-    public float GetProducedPollution() { return producedPollution; }
+    public float GetPollution(PollutionMapType type) { return Util.SumMap(GetPollutionMap(type)); }
 }

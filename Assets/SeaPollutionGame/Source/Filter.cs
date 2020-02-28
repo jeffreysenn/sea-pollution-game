@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class Filter : Polluter
 {
-    public void FilterPollution(ref PollutionMap pollutionMap, ref PollutionMap filteredPollutionMap)
+    public PollutionMap ComputeFilteredPollution(PollutionMap pollutionMap)
     {
+        var result = new PollutionMap { };
         var pollutionAttrib = GetAttrib().pollutionAttrib;
-        foreach(var emission in pollutionAttrib.emissions)
+        foreach (var emission in pollutionAttrib.emissions)
         {
             var pollutantName = emission.pollutantName;
             if (pollutionMap.ContainsKey(pollutantName))
@@ -14,32 +15,35 @@ public class Filter : Polluter
                 float targetPollution = pollutionMap[pollutantName];
                 float filterAbility = -emission.emissionPerTurn;
                 float filtered = targetPollution > filterAbility ? filterAbility : targetPollution;
-                if (!filteredPollutionMap.ContainsKey(pollutantName)) { filteredPollutionMap.Add(pollutantName, 0); }
-                filteredPollutionMap[pollutantName] += filtered;
-                pollutionMap[pollutantName] -= filtered;
+                result[pollutantName] = -filtered;
             }
         }
+        return result;
+    }
+
+    private void UpdateFilteredPollution()
+    {
+        var filterSpace = transform.parent.GetComponent<FilterSpace>();
+        var pollutionMap = filterSpace.GetPollutionMap();
+        var localPollution = ComputeFilteredPollution(pollutionMap);
+        filterSpace.SetLocalPollution(localPollution);
     }
 
     public override void Activate()
     {
         base.Activate();
-        stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
-        var filterSpace = transform.parent.GetComponent<FilterSpace>();
-        filterSpace.UseFilter();
+        UpdateFilteredPollution();
+
+        var space = GetSpace();
+        var inputPollutionEvents = space.GetInputPollutionEvents();
+        foreach (var pollutionEvent in inputPollutionEvents)
+        {
+            pollutionEvent.AddListener((Flow, PollutionMap) => { UpdateFilteredPollution(); });
+        }
     }
 
     public override void Mulfunction()
     {
-        var filterSpace = transform.parent.GetComponent<FilterSpace>();
-        filterSpace.RemoveFilter();
-    }
-
-    public override void Remove()
-    {
-        base.Remove();
-        Mulfunction();
-        stateManager.RemoveEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
-        Destroy(gameObject);
+        GetSpace().ClearLocalPollution();
     }
 }

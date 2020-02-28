@@ -66,7 +66,6 @@ public class Drop : MonoBehaviour
             if (validSpace) { break; }
         }
 
-
         if (validSpace && validSpace.ownerID == 
             WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
         {
@@ -82,6 +81,7 @@ public class Drop : MonoBehaviour
             targetPos.y = transform.position.y;
             transform.position = targetPos;
             transform.parent = validSpace.transform;
+
             polluter.Activate();
 
             Destroy(this);

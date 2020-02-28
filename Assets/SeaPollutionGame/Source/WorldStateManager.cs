@@ -75,24 +75,9 @@ public class WorldStateManager : MonoBehaviour
 
     public void AddMoney(int id, float money) { playerStates[id].money += money; }
 
-    void AddPollution(ref float val, PollutionMap map)
+    public void AddPollution(int id, PollutionMapType type, PollutionMap map)
     {
-        foreach (var pair in map)
-        {
-            val += pair.Value;
-        }
-    }
-
-    public void AddProducedPollution(int id, PollutionMap map)
-    {
-        var state = playerStates[id];
-        state.producedPollutionMap += map;
-    }
-
-    public void AddNetPollution(int id, PollutionMap map)
-    {
-        var state = playerStates[id];
-        state.netPollutionMap += map;
+        playerStates[id].AddToPollutionMap(type, map);
     }
 
     public PollutionMap GetPollutionMap(int id, PollutionMapType type) { return playerStates[id].GetPollutionMap(type); }
@@ -107,24 +92,14 @@ public class WorldStateManager : MonoBehaviour
     }
 
     public float GetMoney(int id) { return playerStates[id].money; }
-    public float GetProducedPollution(int id) { return playerStates[id].GetProducedPollution(); }
-    public float GetFilteredPollution(int id) { return playerStates[id].GetFilteredPollution(); }
-    public float GetNetPollution(int id) { return playerStates[id].GetNetPollution(); }
-    public float GetProducedPollutionSum()
+    public float GetPollution(int id, PollutionMapType type) { return playerStates[id].GetPollution(type); }
+
+    public float GetPollutionSum(int id, PollutionMapType type)
     {
         float sum = 0;
-        foreach (var pair in playerStates) { sum += pair.Value.GetProducedPollution(); }
+        foreach (var pair in playerStates) { sum += pair.Value.GetPollution(type); }
         return sum;
     }
-
-    public float GetFilteredPollutionSum()
-    {
-        float sum = 0;
-        foreach (var pair in playerStates) { sum += pair.Value.GetFilteredPollution(); }
-        return sum;
-    }
-
-    public float GetNetPollutionSum() { return GetProducedPollutionSum() - GetFilteredPollutionSum(); }
 
     public void EndPlayerTurn()
     {

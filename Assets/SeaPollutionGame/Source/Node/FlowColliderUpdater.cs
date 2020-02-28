@@ -6,6 +6,7 @@ public class FlowColliderUpdater : MonoBehaviour
 {
     public float colliderWidth = 0.6f;
     public float colliderHeight = 1;
+    public float nodeRadius = 0.5f;
 
     public void UpdateFlowCollider()
     {
@@ -20,7 +21,7 @@ public class FlowColliderUpdater : MonoBehaviour
             flow.transform.right = delta.normalized;
             
             var boxCollider = flow.GetComponent<BoxCollider>();
-            boxCollider.size = new Vector3(distance, colliderHeight, colliderWidth);
+            boxCollider.size = new Vector3(distance - 2 * nodeRadius, colliderHeight, colliderWidth);
             boxCollider.center = Vector3.zero;
         }
     }

@@ -1,21 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LineRendererArrow : MonoBehaviour
 {
     [Range(0, 1)]
     public float percentHead = 0.4f;
-    public GameObject origin = null;
-    public GameObject target = null;
+
     private LineRenderer cachedLineRenderer = null;
 
     public void UpdateArrow()
     {
+        var origin = GetComponent<Flow>().GetInNode();
+        var target = GetComponent<Flow>().GetOutNode();
         if(!(origin && target)) { return; }
         if (cachedLineRenderer == null)
             cachedLineRenderer = GetComponent<LineRenderer>();
+        EditorUtility.SetDirty(cachedLineRenderer);
         cachedLineRenderer.widthCurve = new AnimationCurve(
             new Keyframe(0, 0.4f)
             , new Keyframe(0.999f - percentHead, 0.4f)  // neck of arrow

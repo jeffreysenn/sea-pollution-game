@@ -138,9 +138,6 @@ public class FlowEditorWindow : EditorWindow
 
         var l = flow.GetComponent<LineRenderer>();
         l.SetPosition(1, hitNode.transform.position);
-        var arrow = flow.GetComponent<LineRendererArrow>();
-        arrow.origin = flow.GetInNode().gameObject;
-        arrow.target = flow.GetOutNode().gameObject;
 
         var colliderUpdater = flow.GetComponent<FlowColliderUpdater>();
         colliderUpdater.UpdateFlowCollider();
@@ -150,7 +147,7 @@ public class FlowEditorWindow : EditorWindow
 
     void CreateFlow(Node hitNode)
     {
-        var flowObj = (GameObject)PrefabUtility.InstantiatePrefab(flowPrefab, hitNode.transform);
+        var flowObj = (GameObject)PrefabUtility.InstantiatePrefab(flowPrefab, hitNode.transform.parent);
         flow = flowObj.GetComponent<Flow>();
         EditorUtility.SetDirty(hitNode);
         hitNode.AddOutFlow(flow);

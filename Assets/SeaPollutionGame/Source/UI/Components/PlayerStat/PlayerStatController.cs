@@ -14,6 +14,13 @@ public class PlayerStatController : MonoBehaviour
      *       Change "tweenYOffsetInitial" to get value from Start
      */
 
+    [System.Serializable]
+    struct PollutionMapTypeWithTransform
+    {
+        public PollutionMapType pollutionMapType;
+        public RectTransform targetTransform;
+    }
+
     WorldStateManager worldStateManager = null;
 
     [SerializeField]
@@ -27,82 +34,64 @@ public class PlayerStatController : MonoBehaviour
 
     [Header("Pie Charts")]
     [SerializeField]
-    private PieChartController totalPollutionPie = null;
+    private PieChartController pollutionPie = null;
     [SerializeField]
-    private PieChartController producedPollutionPie = null;
-    [SerializeField]
-    private PieChartController filteredPollutionPie = null;
+    private List<PollutionMapTypeWithTransform> showingOrder = new List<PollutionMapTypeWithTransform>();
 
-    [Header("Details")]
-    [SerializeField]
-    private RectTransform contentDetails = null;
-    [SerializeField]
-    private Button btnDetails = null;
-    [SerializeField]
-    private float tweenYOffset = 0f;
-    [SerializeField]
-    private float tweenYOffsetInitial = 0f;
-    [SerializeField]
-    private float tweenDuration = 1f;
-    [SerializeField]
-    private Ease tweenEase = Ease.Linear;
 
     private bool isContentDetailsShown = false;
+    private int currentTypeShown = 0;
 
     private void Start()
     {
         worldStateManager = WorldStateManager.FindWorldStateManager();
         if (worldStateManager == null) { Debug.LogError("[PlayerStatController] Start: WorldStateManager not found"); return; }
 
-        txtCoinsValue.text = worldStateManager.GetMoney(player.id).ToString();
+        UpdateCoins(worldStateManager.GetMoney(player.id));
         //UpdateIncome(worldStateManager.GetIncome(player.id));
 
-        //totalPollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, PollutionMapType.NET));
+        worldStateManager.AddEndPlayerTurnFinishEventListener(UpdateCurrentPieChart);
+        pollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType));
 
-        worldStateManager.AddEndPlayerTurnFinishEventListener(UpdatePieCharts);
-
-        totalPollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, PollutionMapType.NET));
-        producedPollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, PollutionMapType.PRODUCED));
-        filteredPollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, PollutionMapType.FILTERED));
-        
-        btnDetails.onClick.AddListener(OnBtnDetailsClick);
+        pollutionPie.OnPieChartClick += PieChart_OnPieChartClick;
     }
 
     private void OnDestroy()
     {
-        btnDetails.onClick.RemoveListener(OnBtnDetailsClick);
-    }
-
-    void UpdatePieCharts()
-    {
-        totalPollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, PollutionMapType.NET));
-        producedPollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, PollutionMapType.PRODUCED));
-        filteredPollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, PollutionMapType.FILTERED));
-
-        totalPollutionPie.Draw();
-        producedPollutionPie.Draw();
-        filteredPollutionPie.Draw();
+        pollutionPie.OnPieChartClick -= PieChart_OnPieChartClick;
     }
 
     private void Update()
     {
-        txtCoinsValue.text = worldStateManager.GetMoney(player.id).ToString();
+        UpdateCoins(worldStateManager.GetMoney(player.id));
     }
 
-    void OnBtnDetailsClick()
+    private void UpdateCurrentPieChart()
     {
-        if(!isContentDetailsShown)
-        {
-            contentDetails.DOLocalMoveY(tweenYOffset, tweenDuration).SetEase(tweenEase);
-        } else
-        {
-            contentDetails.DOLocalMoveY(tweenYOffsetInitial, tweenDuration).SetEase(tweenEase);
-        }
+        Debug.Log(showingOrder.Count + " " + showingOrder[currentTypeShown]);
 
-        isContentDetailsShown = !isContentDetailsShown;
+        pollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType));
+
+        pollutionPie.Draw();
+    }
+    
+    private void PieChart_OnPieChartClick(PieChartController obj)
+    {
+        showingOrder[currentTypeShown].targetTransform.gameObject.SetActive(false);
+
+        currentTypeShown += 1 % showingOrder.Count;
+
+        showingOrder[currentTypeShown].targetTransform.gameObject.SetActive(true);
+
+        UpdateCurrentPieChart();
     }
 
-    void UpdateIncome(int value)
+    private void UpdateCoins(float value)
+    {
+        txtCoinsValue.text = value.ToString();
+    }
+
+    private void UpdateIncome(float value)
     {
         string s = "(";
         if(value > 0)

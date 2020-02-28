@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ChartAndGraph;
 using TMPro;
+using System;
 
 public class PieChartController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PieChartController : MonoBehaviour
     private TextMeshProUGUI txtSum = null;
 
     PollutionMap pollutionMap = null;
+
+    public event Action<PieChartController> OnPieChartClick;
 
     public void SetPollutionMap(PollutionMap map) {
         pollutionMap = map;
@@ -66,4 +69,8 @@ public class PieChartController : MonoBehaviour
         }
     }
 
+    public void OnClick()
+    {
+        OnPieChartClick?.Invoke(this);
+    }
 }

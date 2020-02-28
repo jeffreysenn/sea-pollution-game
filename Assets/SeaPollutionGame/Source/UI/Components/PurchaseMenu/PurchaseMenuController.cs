@@ -29,9 +29,9 @@ public class PurchaseMenuController : MonoBehaviour
     private Button filtersButton = null;
 
     [SerializeField]
-    private Space spaceFactories = null;
+    private GameObject spaceFactories = null;
     [SerializeField]
-    private Space spaceFilters = null;
+    private GameObject spaceFilters = null;
 
     public List<PurchasableItem> purchasables = new List<PurchasableItem> { };
 

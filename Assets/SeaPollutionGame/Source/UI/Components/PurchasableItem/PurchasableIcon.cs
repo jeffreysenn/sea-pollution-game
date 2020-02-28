@@ -12,7 +12,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private PolluterIcon targetPolluterIcon = null;
 
-    private Space spaceForPolluter = null;
+    private GameObject spaceForPolluter = null;
 
     private PolluterAttrib polluterAttrib = null;
 
@@ -40,7 +40,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void SetSpace(Space s) { spaceForPolluter = s; }
+    public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
     public void SetPolluterAttributes(PolluterAttrib attrib){ polluterAttrib = attrib; }
 

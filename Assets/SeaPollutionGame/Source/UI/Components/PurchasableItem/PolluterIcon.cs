@@ -12,7 +12,7 @@ public class PolluterIcon : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI targetText = null;
     
-    private Space spaceForPolluter = null;
+    private GameObject spaceForPolluter = null;
 
     private PolluterAttrib polluterAttrib = null;
 
@@ -20,7 +20,7 @@ public class PolluterIcon : MonoBehaviour
 
     private bool beingDragged = false;
 
-    public void SetSpace(Space s) { spaceForPolluter = s; }
+    public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
     public void SetPolluterAttributes(PolluterAttrib attrib)
     {

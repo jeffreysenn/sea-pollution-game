@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnvironmentPollution : MonoBehaviour
 {
     public PollutionAttrib pollutionAttrib;
+    public PollutionSum pollutionSum = null;
 
     void Start()
     {
-        var pollutionSum = transform.parent.GetComponent<PollutionSum>();
-        foreach (var emission in pollutionAttrib.emissions)
+        if (pollutionSum)
         {
-            pollutionSum.AddPollution(emission.pollutantName, emission.emissionPerTurn);
+            pollutionSum.SetLocalPollution(new PollutionMap(pollutionAttrib.emissions));
         }
     }
 }

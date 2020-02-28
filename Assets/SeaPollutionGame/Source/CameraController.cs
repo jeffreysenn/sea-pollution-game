@@ -7,10 +7,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] Vector2 speed = new Vector2 { };
     [SerializeField] float zoomSpeed = 1.0f;
 
-    Camera camera = null;
+    Camera cam = null;
     private void Start()
     {
-        camera = GetComponent<Camera>();
+        cam = GetComponent<Camera>();
     }
 
     private void Update()
@@ -20,6 +20,6 @@ public class CameraController : MonoBehaviour
         pos.z += Input.GetAxis("Vertical") * speed.y * Time.deltaTime;
         transform.position = pos;
 
-        camera.orthographicSize -= Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime;
+        cam.orthographicSize -= Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime;
     }
 }

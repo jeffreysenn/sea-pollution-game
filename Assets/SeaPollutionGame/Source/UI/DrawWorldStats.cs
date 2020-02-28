@@ -7,7 +7,6 @@ public class DrawWorldStats : MonoBehaviour
 {
     WorldStateManager stateManager = null;
     PieController[] pieControllers = new PieController[3];
-    PollutionMap[] pollutionMaps = new PollutionMap[3];
 
 
     void Start()
@@ -25,7 +24,11 @@ public class DrawWorldStats : MonoBehaviour
         for (int i = 0; i != 3; ++i)
         {
             var type = (PollutionMapType)i;
-            var map = stateManager.GetPollutionMapSum(type);
+            var map = new PollutionMap(stateManager.GetPollutionMapSum(type));
+            if(type == PollutionMapType.FILTERED)
+            {
+                map = Util.MultiplyMap(map, -1);
+            }
             pieControllers[i].SetPollutionMap(map);
             pieControllers[i].Draw();
         }

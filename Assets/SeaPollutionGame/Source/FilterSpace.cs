@@ -4,49 +4,17 @@ using UnityEngine;
 
 public class FilterSpace : Space
 {
-    PollutionMap pollutionMap = new PollutionMap { };
-    PollutionMap filteredPollutionMap = new PollutionMap { };
-
-    public void UpdatePollution(PollutionMap map)
+    void ReportPollution()
     {
-        pollutionMap = new PollutionMap(map);
-        UseFilter();
+        if (!polluter) { return; }
+        var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
+        stateManager.AddPollution(ownerID, PollutionMapType.FILTERED, GetLocalPollution());
     }
 
-    public void UseFilter()
+    public override void Start()
     {
-        filteredPollutionMap.Clear();
-
-        if (polluter)
-        {
-            var filter = (Filter)polluter;
-            filter.FilterPollution(ref pollutionMap, ref filteredPollutionMap);
-        }
-        ForwardPollutionMap();
-    }
-
-    void ForwardPollutionMap()
-    {
-        var parentFilterSpace = transform.parent.GetComponent<FilterSpace>();
-        if (parentFilterSpace)
-        {
-            parentFilterSpace.UpdatePollution(pollutionMap);
-        }
-        else
-        {
-            var parentSeaEntrance = transform.parent.GetComponent<SeaEntrance>();
-            parentSeaEntrance.SetPollutionMap(pollutionMap);
-        }
-    }
-
-    public void RemoveFilter()
-    {
-        polluter = null;
-        foreach(var pair in filteredPollutionMap)
-        {
-            pollutionMap[pair.Key] += pair.Value;
-        }
-        filteredPollutionMap.Clear();
-        ForwardPollutionMap();
+        base.Start();
+        var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
+        stateManager.AddEndPlayerTurnEventListener(ownerID, ReportPollution);
     }
 }

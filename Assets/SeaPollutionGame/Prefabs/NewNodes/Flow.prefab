@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: -7462873554552675915}
   - component: {fileID: 1861992236504727750}
   - component: {fileID: 437151182339912128}
+  - component: {fileID: 504530359162998371}
   - component: {fileID: 645487143288639199}
   - component: {fileID: 8311022802635910003}
   - component: {fileID: 5776519405639489739}
+  - component: {fileID: 6469845689627617341}
   m_Layer: 0
   m_Name: Flow
   m_TagString: Untagged
@@ -48,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67beda5a388a84448adf7060cdb483ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inNode: {fileID: 0}
+  outNode: {fileID: 0}
 --- !u!120 &1861992236504727750
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -84,9 +88,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1009001329
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Positions:
   - {x: -14.8, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
@@ -158,8 +162,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentHead: 0.4
-  origin: {x: 0, y: 0, z: 0}
-  target: {x: 0, y: 0, z: 0}
+  origin: {fileID: 0}
+  target: {fileID: 0}
+--- !u!114 &504530359162998371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2628203977685036081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56520edba38be64fb1780d5a3362e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderWidth: 0.6
+  colliderHeight: 1
 --- !u!114 &645487143288639199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,3 +215,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56520edba38be64fb1780d5a3362e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderWidth: 2
+  colliderHeight: 1
+--- !u!65 &6469845689627617341
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2628203977685036081}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.95, y: 0.15, z: 0.15}
+  m_Center: {x: -6.9, y: 0, z: 0}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeaEntrance : MonoBehaviour
+public class SeaEntrance : Node
 {
     public int ownerID = -1;
     PollutionMap pollutionMap = new PollutionMap { };
@@ -14,9 +14,8 @@ public class SeaEntrance : MonoBehaviour
     {
         pollutionMap = pollution;
         var drawDescrip = GetComponent<DrawDescription>();
-        drawDescrip.SetDescription("Pollution into the sea(per turn):\n"/* + pollutionMap.GetDescription()*/);
         drawDescrip.SetPollutionMap(pollutionMap);
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
             var spriteRenderer = child.GetComponent<SpriteRenderer>();
             if (spriteRenderer)
@@ -30,10 +29,10 @@ public class SeaEntrance : MonoBehaviour
     void ReportPollution()
     {
         var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
-        stateManager.AddNetPollution(ownerID, pollutionMap);
+        stateManager.AddPollution(ownerID, PollutionMapType.NET, pollutionMap);
     }
 
-    void Start()
+    public override void Start()
     {
         var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
         stateManager.AddEndPlayerTurnEventListener(ownerID, ReportPollution);

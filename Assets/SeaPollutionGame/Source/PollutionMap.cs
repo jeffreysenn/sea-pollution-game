@@ -1,10 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class PollutionMap : Dictionary<string, float>
 {
     public PollutionMap(PollutionMap other) : base(other) { }
     public PollutionMap() : base() { }
+    public PollutionMap(PollutionAttrib.Emission[] emissions) : base()
+    {
+        foreach (var emission in emissions)
+        {
+            Add(emission.pollutantName, emission.emissionPerTurn);
+        }
+    }
 
     public static PollutionMap operator +(PollutionMap lhs, PollutionMap rhs)
     {
@@ -15,6 +23,23 @@ public class PollutionMap : Dictionary<string, float>
             else { result[pair.Key] += pair.Value; }
         }
         return result;
+    }
+
+    public PollutionMap CopyAssign(PollutionMap rhs)
+    {
+        Clear();
+        foreach(var pair in rhs)
+        {
+            Add(pair.Key, pair.Value);
+        }
+        return this;
+    }
+
+    public PollutionMap PlusEquals(PollutionMap rhs)
+    {
+        var result = this + rhs;
+        CopyAssign(result);
+        return this;
     }
 
     public string GetDescription()

@@ -17,7 +17,6 @@ public class Drop : MonoBehaviour
     // TODO(Xiaoyue Chen): Another class for canceling
     Transform oriParent;
     Vector3 oriPos;
-    GameObject flowPrefab = null;
 
     public void SetOriginalPos(Transform parent, Vector3 pos)
     {

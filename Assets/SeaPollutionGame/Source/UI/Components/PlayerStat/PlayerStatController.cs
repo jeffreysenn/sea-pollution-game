@@ -68,8 +68,6 @@ public class PlayerStatController : MonoBehaviour
 
     private void UpdateCurrentPieChart()
     {
-        Debug.Log(showingOrder.Count + " " + showingOrder[currentTypeShown]);
-
         pollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType));
 
         pollutionPie.Draw();

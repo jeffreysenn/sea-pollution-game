@@ -33,7 +33,7 @@ public class Polluter : MonoBehaviour
         renderer.material.SetColor("_Color", Color.red);
     }
 
-    protected void Start()
+    protected void Awake()
     {
         stateManager = WorldStateManager.FindWorldStateManager();
     }
@@ -74,12 +74,20 @@ public class Polluter : MonoBehaviour
         return false;
     }
 
-    protected virtual void OnDisable()
+    public void Remove()
     {
         if(IsActive())
         {
             stateManager.AddMoney(GetOwnerID(), -GetAttrib().economicAttrib.removalCost);
             Mulfunction();
+            Destroy(gameObject);
+        }
+    }
+
+    protected virtual void OnDisable()
+    {
+        if(IsActive())
+        {
             var space = GetSpace();
             space.ClearLocalPollution();
             space.polluter = null;

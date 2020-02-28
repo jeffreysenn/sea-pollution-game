@@ -7,7 +7,7 @@ using TMPro;
 [System.Serializable]
 public struct PurchasableItem
 {
-    public GameObject polluter;
+    public PurchasableIcon purchasableIcon;
     public List<PolluterAttrib> polluterAttribs;
 }
 
@@ -23,19 +23,30 @@ public class PurchaseMenuController : MonoBehaviour
     [SerializeField]
     private RectTransform filtersMenu = null;
 
+    [SerializeField]
+    private Button factoriesButton = null;
+    [SerializeField]
+    private Button filtersButton = null;
+
+    [SerializeField]
+    private Space spaceFactories = null;
+    [SerializeField]
+    private Space spaceFilters = null;
+
     public List<PurchasableItem> purchasables = new List<PurchasableItem> { };
 
-    Polluter InstantiatePolluter(GameObject obj)
+    Polluter InstantiatePolluter(PolluterIcon polluter)
     {
-        var clone = Instantiate(obj, transform);
-        var drawDescription = clone.GetComponent<DrawPolluterDescription>();
-        drawDescription.descriptionText = descriptionText;
+        var clone = Instantiate(polluter, transform);
+        //var drawDescription = clone.GetComponent<DrawPolluterDescription>();
+        //drawDescription.descriptionText = descriptionText;
         return clone.GetComponent<Polluter>();
     }
 
     void Start()
     {
-        // fetch data
+        ShowFactories();
+
         var factoryAttribs = purchasables[0].polluterAttribs;
         foreach (var factoryAttrib in attribLoader.attribData.factoryList)
         {
@@ -46,14 +57,68 @@ public class PurchaseMenuController : MonoBehaviour
         {
             filterAttribs.Add(filterAttrib);
         }
-
+        
+        
         foreach (var pur in purchasables)
         {
-            for (int i = 0; i != pur.polluterAttribs.Count; ++i)
+            for (int i = 0; i < pur.polluterAttribs.Count; i++)
             {
-                var polluter = InstantiatePolluter(pur.polluter);
-                polluter.SetAttrib(pur.polluterAttribs[i]);
+                PurchasableIcon purchasableIcon = null;
+                Polluter polluter = pur.purchasableIcon.GetPolluterIcon().GetPolluter();
+
+                if(polluter is Factory)
+                {
+                    purchasableIcon = Instantiate(pur.purchasableIcon, factoriesMenu);
+                    purchasableIcon.SetSpace(spaceFactories);
+                }
+
+                if(polluter is Filter)
+                {
+                    purchasableIcon = Instantiate(pur.purchasableIcon, filtersMenu);
+                    purchasableIcon.SetSpace(spaceFilters);
+                }
+
+                purchasableIcon.SetPolluterAttributes(pur.polluterAttribs[i]);
+
+                purchasableIcon.SetText((i + 1).ToString());
             }
         }
+        
+    }
+
+    public void ShowFactories()
+    {
+        factoriesButton.onClick.RemoveListener(ShowFactories);
+        factoriesButton.interactable = false;
+
+        HideFilters();
+
+        factoriesMenu.gameObject.SetActive(true);
+
+        filtersButton.interactable = true;
+        filtersButton.onClick.AddListener(ShowFilters);
+    }
+
+    public void ShowFilters()
+    {
+        filtersButton.onClick.RemoveListener(ShowFilters);
+        filtersButton.interactable = false;
+
+        HideFactories();
+
+        filtersMenu.gameObject.SetActive(true);
+
+        factoriesButton.interactable = true;
+        factoriesButton.onClick.AddListener(ShowFactories);
+    }
+
+    public void HideFactories()
+    {
+        factoriesMenu.gameObject.SetActive(false);
+    }
+
+    public void HideFilters()
+    {
+        filtersMenu.gameObject.SetActive(false);
     }
 }

@@ -11,7 +11,7 @@ public class Remove : MonoBehaviour
             var polluter = GetComponent<Polluter>();
             if(polluter.CanRemove())
             {
-                Destroy(polluter.gameObject);
+                polluter.Remove();
             }
         }    
     }

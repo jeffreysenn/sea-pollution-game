@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Drop : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class Drop : MonoBehaviour
     // TODO(Xiaoyue Chen): Another class for canceling
     Transform oriParent;
     Vector3 oriPos;
+
+    public event Action<Drop> OnInvalidSpace;
+    public event Action<Drop> OnValidSpace;
 
     public void SetOriginalPos(Transform parent, Vector3 pos)
     {
@@ -46,7 +50,7 @@ public class Drop : MonoBehaviour
         obj.AddComponent<Select>();
     }
 
-    void DropEntity()
+    public void DropEntity()
     {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, new Vector3(0, -1, 0));
         Space validSpace = null;
@@ -69,22 +73,33 @@ public class Drop : MonoBehaviour
         if (validSpace && validSpace.ownerID == 
             WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
         {
+            OnValidSpace?.Invoke(this);
+
             var clone = Instantiate(gameObject);
             var clonePolluter = clone.GetComponent<Polluter>();
+
             clonePolluter.Copy(GetComponent<Polluter>());
             CancelDrop(clone);
 
             Destroy(followMouse);
+
             var polluter = GetComponent<Polluter>();
             validSpace.polluter = polluter;
+
             var targetPos = validSpace.transform.position;
             targetPos.y = transform.position.y;
+
             transform.position = targetPos;
             transform.parent = validSpace.transform;
+
+            polluter.transform.parent = validSpace.transform;
 
             polluter.Activate();
 
             Destroy(this);
+        } else
+        {
+            OnInvalidSpace?.Invoke(this);
         }
     }
 }

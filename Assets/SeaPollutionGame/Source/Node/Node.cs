@@ -83,22 +83,14 @@ public class Node : MonoBehaviour, IPollutionMapOwner
     public void OutPut()
     {
         var sum = GetPollutionMap();
-        var diveded = DivideMap(sum, outFlows.Count);
+        var diveded = Util.DivideMap(sum, outFlows.Count);
         foreach (var flow in outFlows)
         {
             flow.SetInput(diveded);
         }
     }
 
-    private PollutionMap DivideMap(PollutionMap map, float denominator)
-    {
-        var result = new PollutionMap(map);
-        foreach (var key in result.Keys.ToList())
-        {
-            result[key] /= denominator;
-        }
-        return result;
-    }
+
 
     public virtual void Start()
     {

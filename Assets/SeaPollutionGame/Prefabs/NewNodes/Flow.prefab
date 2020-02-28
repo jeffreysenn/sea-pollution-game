@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8311022802635910003}
   - component: {fileID: 5776519405639489739}
   - component: {fileID: 6469845689627617341}
+  - component: {fileID: 5808535206326267601}
   m_Layer: 0
   m_Name: Flow
   m_TagString: Untagged
@@ -162,8 +163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentHead: 0.4
-  origin: {fileID: 0}
-  target: {fileID: 0}
 --- !u!114 &504530359162998371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderWidth: 0.6
   colliderHeight: 1
+  nodeRadius: 0.5
 --- !u!114 &645487143288639199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderWidth: 2
   colliderHeight: 1
+  nodeRadius: 0.5
 --- !u!65 &6469845689627617341
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -230,3 +231,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15.95, y: 0.15, z: 0.15}
   m_Center: {x: -6.9, y: 0, z: 0}
+--- !u!114 &5808535206326267601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2628203977685036081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75cb74786307124b9aa6d066df447db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

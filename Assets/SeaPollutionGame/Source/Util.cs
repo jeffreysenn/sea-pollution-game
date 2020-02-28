@@ -28,10 +28,10 @@ public class Util
         return result;
     }
 
-    private PollutionMap DivideMap(PollutionMap map, float denominator)
+    public static PollutionMap DivideMap(PollutionMap map, float denominator)
     {
         var result = new PollutionMap(map);
-        foreach (var key in result.Keys.ToList())
+        foreach (var key in result.Keys.ToArray())
         {
             result[key] /= denominator;
         }

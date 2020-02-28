@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LineRendererArrow : MonoBehaviour
@@ -18,7 +17,6 @@ public class LineRendererArrow : MonoBehaviour
         if(!(origin && target)) { return; }
         if (cachedLineRenderer == null)
             cachedLineRenderer = GetComponent<LineRenderer>();
-        EditorUtility.SetDirty(cachedLineRenderer);
         cachedLineRenderer.widthCurve = new AnimationCurve(
             new Keyframe(0, 0.4f)
             , new Keyframe(0.999f - percentHead, 0.4f)  // neck of arrow

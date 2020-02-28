@@ -4,24 +4,25 @@ using UnityEngine;
 using UnityEditor;
 
 [CanEditMultipleObjects]
-public class FlowEditor : EditorWindow
+public class FlowEditorWindow : EditorWindow
 {
     GameObject flowPrefab = null;
-    bool isEditing = false;
+    bool isEditing = true;
+    bool autoUpdateFlow = true;
     Flow flow = null;
 
     [MenuItem("Window/" + "FlowEditor")]
     public static void Init()
     {
-        FlowEditor window = GetWindow<FlowEditor>();
+        FlowEditorWindow window = GetWindow<FlowEditorWindow>();
         window.titleContent = new GUIContent { text = "Flow editor" };
-        SceneView.duringSceneGui += window.OnScene;
     }
 
     void OnEnable()
     {
         flowPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(
                                        "Assets/SeaPollutionGame/Prefabs/NewNodes/Flow.prefab");
+        SceneView.duringSceneGui += OnScene;
     }
 
     Node GetHitNode(Vector2 mousePos)
@@ -36,10 +37,8 @@ public class FlowEditor : EditorWindow
         return null;
     }
 
-    void OnScene(SceneView sceneview)
+    private void EditFlow()
     {
-        if (!isEditing) { return; }
-
         var currentEvent = Event.current;
         if (currentEvent == null) { return; }
 
@@ -52,7 +51,7 @@ public class FlowEditor : EditorWindow
                 {
                     CreateFlow(hitNode);
                 }
-                else
+                else if (flow.GetInNode() != hitNode)
                 {
                     CompleteFlow(hitNode);
                 }
@@ -78,6 +77,58 @@ public class FlowEditor : EditorWindow
         }
     }
 
+
+    void OnScene(SceneView sceneview)
+    {
+        if (isEditing) { EditFlow(); }
+        if (autoUpdateFlow) { UpdateFlow(); }
+    }
+
+    private void UpdateFlow()
+    {
+        if (!flow)
+        {
+            var objs = Selection.gameObjects;
+            foreach (var obj in objs)
+            {
+                {
+                    var flow = obj.GetComponent<Flow>();
+                    if (flow)
+                    {
+                        UpdateArrow(flow);
+                        UpdateCollider(flow);
+                    }
+                }
+                {
+                    var node = obj.GetComponent<Node>();
+                    if (node)
+                    {
+                        foreach (var flow in node.GetAllFlows())
+                        {
+                            if (flow)
+                            {
+                                UpdateArrow(flow);
+                                UpdateCollider(flow);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void UpdateArrow(Flow flow)
+    {
+        var arrow = flow.GetComponent<LineRendererArrow>();
+        arrow.UpdateArrow();
+    }
+
+    private void UpdateCollider(Flow flow)
+    {
+        var colliderUpdater = flow.GetComponent<FlowColliderUpdater>();
+        colliderUpdater.UpdateFlowCollider();
+    }
+
     void CompleteFlow(Node hitNode)
     {
         EditorUtility.SetDirty(hitNode);
@@ -88,22 +139,16 @@ public class FlowEditor : EditorWindow
 
         var l = flow.GetComponent<LineRenderer>();
         l.SetPosition(1, hitNode.transform.position);
-        var arrow = flow.GetComponent<LineRendererArrow>();
-        arrow.origin = flow.GetInNode().transform.position;
-        arrow.target = flow.GetOutNode().transform.position;
-        arrow.UpdateArrow();
 
-        var boxCollider = flow.gameObject.AddComponent<BoxCollider>();
-        var size = boxCollider.size;
-        size.z = 2 * size.z;
-        boxCollider.size = size;
+        var colliderUpdater = flow.GetComponent<FlowColliderUpdater>();
+        colliderUpdater.UpdateFlowCollider();
 
         flow = null;
     }
 
     void CreateFlow(Node hitNode)
     {
-        var flowObj = (GameObject)PrefabUtility.InstantiatePrefab(flowPrefab);
+        var flowObj = (GameObject)PrefabUtility.InstantiatePrefab(flowPrefab, hitNode.transform.parent);
         flow = flowObj.GetComponent<Flow>();
         EditorUtility.SetDirty(hitNode);
         hitNode.AddOutFlow(flow);
@@ -120,5 +165,21 @@ public class FlowEditor : EditorWindow
     void OnGUI()
     {
         isEditing = EditorGUILayout.Toggle("Editing Mode On", isEditing);
+        autoUpdateFlow = EditorGUILayout.Toggle("Automatically Update Flow", autoUpdateFlow);
+        if (GUILayout.Button("Delete Flow"))
+        {
+            var objs = Selection.gameObjects;
+            foreach(var obj in objs)
+            {
+                var flow = obj.GetComponent<Flow>();
+                if (flow)
+                {
+                    EditorUtility.SetDirty(flow.GetInNode());
+                    EditorUtility.SetDirty(flow.GetOutNode());
+                    flow.OnDisable();
+                    DestroyImmediate(flow.gameObject);
+                }
+            }
+        }
     }
 }

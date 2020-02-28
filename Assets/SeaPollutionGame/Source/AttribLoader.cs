@@ -15,9 +15,9 @@ public struct AttribData
 public class AttribLoader : MonoBehaviour
 {
     public EnvironmentPollution[] environmentPollutions;
-
+    
     public AttribData attribData;
-
+    
     void Awake()
     {
 #if UNITY_WEBGL
@@ -44,6 +44,7 @@ public class AttribLoader : MonoBehaviour
 
         for(int i = 0; i != attribData.environmentPollutionList.Length; ++i)
         {
+            if(i == environmentPollutions.Length || !environmentPollutions[i]) { break; }
             environmentPollutions[i].pollutionAttrib = attribData.environmentPollutionList[i];
         }
 

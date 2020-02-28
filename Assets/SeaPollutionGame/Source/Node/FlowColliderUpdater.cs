@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class FlowColliderUpdater : MonoBehaviour
 {
-    BoxCollider boxCollider = null;
+    public float colliderWidth = 0.6f;
+    public float colliderHeight = 1;
+    public float nodeRadius = 0.5f;
 
-    void Start()
+    public void UpdateFlowCollider()
     {
-        
+        var flow = GetComponent<Flow>();
+        if (flow)
+        {
+            var originPos = flow.GetInNode().transform.position;
+            var targetPos = flow.GetOutNode().transform.position;
+            var delta = targetPos - originPos;
+            float distance = delta.magnitude;
+            flow.transform.position = originPos + delta / 2;
+            flow.transform.right = delta.normalized;
+            
+            var boxCollider = flow.GetComponent<BoxCollider>();
+            boxCollider.size = new Vector3(distance - 2 * nodeRadius, colliderHeight, colliderWidth);
+            boxCollider.center = Vector3.zero;
+        }
     }
 
-    void UpdateCollider()
-    {
-        
-    }
 }

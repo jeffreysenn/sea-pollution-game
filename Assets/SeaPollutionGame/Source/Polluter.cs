@@ -54,11 +54,14 @@ public class Polluter : MonoBehaviour
     {
         SetOwnerID(stateManager.GetCurrentPlayerID());
         Purchase();
+        stateManager.AddEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
         gameObject.AddComponent<Remove>();
         var health = gameObject.AddComponent<Health>();
         health.AddDeathEventListener(OnDeadth);
     }
 
+    public bool IsActive() { return GetSpace(); }
+    public Space GetSpace() { return transform.parent.GetComponent<Space>(); }
     public virtual void Mulfunction() { }
 
     public bool CanRemove()
@@ -70,6 +73,17 @@ public class Polluter : MonoBehaviour
         }
         return false;
     }
-    public virtual void Remove() { stateManager.AddMoney(GetOwnerID(), -GetAttrib().economicAttrib.removalCost); }
-    public Space GetSpace() { return transform.parent.GetComponent<Space>(); }
+
+    protected virtual void OnDisable()
+    {
+        if(IsActive())
+        {
+            stateManager.AddMoney(GetOwnerID(), -GetAttrib().economicAttrib.removalCost);
+            Mulfunction();
+            var space = GetSpace();
+            space.ClearLocalPollution();
+            space.polluter = null;
+        }
+    }
+
 }

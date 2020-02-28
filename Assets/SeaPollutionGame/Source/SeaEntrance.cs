@@ -2,40 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeaEntrance : MonoBehaviour
+public class SeaEntrance : Node
 {
-    public int ownerID = -1;
-    PollutionMap pollutionMap = new PollutionMap { };
-    public float warningThreashold = 8;
-    public Color fromColor = Color.cyan;
-    public Color toColor = Color.red;
-
-    public void SetPollutionMap(PollutionMap pollution)
-    {
-        pollutionMap = pollution;
-        var drawDescrip = GetComponent<DrawDescription>();
-        drawDescrip.SetDescription("Pollution into the sea(per turn):\n"/* + pollutionMap.GetDescription()*/);
-        drawDescrip.SetPollutionMap(pollutionMap);
-        foreach(Transform child in transform)
-        {
-            var spriteRenderer = child.GetComponent<SpriteRenderer>();
-            if (spriteRenderer)
-            {
-                var targetColor = Color.Lerp(fromColor, toColor, pollutionMap.GetTotalPollution() / warningThreashold);
-                spriteRenderer.color = targetColor;
-            }
-        }
-    }
+    public List<int> ownerIDs = new List<int> { };
 
     void ReportPollution()
     {
         var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
-        stateManager.AddNetPollution(ownerID, pollutionMap);
+        var devidedMap = Util.DivideMap(GetPollutionMap(), ownerIDs.Count);
+        foreach (int id in ownerIDs)
+        {
+            stateManager.AddPollution(id, PollutionMapType.NET, devidedMap);
+        }
     }
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
         var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
-        stateManager.AddEndPlayerTurnEventListener(ownerID, ReportPollution);
+        foreach (int id in ownerIDs)
+        {
+            stateManager.AddEndPlayerTurnEventListener(id, ReportPollution);
+        }
     }
 }

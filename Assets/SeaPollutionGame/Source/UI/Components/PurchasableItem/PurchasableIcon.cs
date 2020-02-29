@@ -25,6 +25,8 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
     public PlayerController playerController { get; set; }
 
+    public Transform shopTransform { get; set; }
+
     public int polluterId { get; set; }
 
     private void Start()
@@ -38,7 +40,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
         if (worldStateManager.GetMoney(worldStateManager.GetCurrentPlayerID()) < polluterAttrib.economicAttrib.price) return;
 
-        PolluterIcon newIcon = Instantiate(targetPolluterIcon, transform);
+        PolluterIcon newIcon = Instantiate(targetPolluterIcon, shopTransform);
         newIcon.transform.position = Input.mousePosition;
 
         newIcon.SetPolluterAttributes(polluterAttrib);

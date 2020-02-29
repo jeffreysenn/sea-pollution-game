@@ -29,7 +29,7 @@ public class LevelController : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            //if(SceneManager.GetActiveScene().buildIndex == 0) { LoadRandomLevel(); }
+            if(SceneManager.GetActiveScene().buildIndex == 0) { LoadRandomLevel(); }
         }
         else if (instance != this)
         {

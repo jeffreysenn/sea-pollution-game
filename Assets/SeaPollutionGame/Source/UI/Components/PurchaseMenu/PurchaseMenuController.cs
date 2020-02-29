@@ -28,7 +28,12 @@ public class PurchaseMenuController : MonoBehaviour
     [SerializeField]
     private RectTransform factoriesMenu = null;
     [SerializeField]
+    private ScrollRect factoriesScrollRect = null;
+
+    [SerializeField]
     private RectTransform filtersMenu = null;
+    [SerializeField]
+    private ScrollRect filtersScrollRect = null;
 
     [SerializeField]
     private Button factoriesButton = null;
@@ -88,6 +93,8 @@ public class PurchaseMenuController : MonoBehaviour
                 purchasableIcon.SetPolluterAttributes(pur.polluterAttribs[i]);
                 purchasableIcon.playerController = playerController;
 
+                purchasableIcon.shopTransform = transform;
+
                 purchasableIcon.polluterId = (i + 1);
                 purchasableIcon.SetText(purchasableIcon.polluterId.ToString());
             }
@@ -102,7 +109,8 @@ public class PurchaseMenuController : MonoBehaviour
 
         HideFilters();
 
-        factoriesMenu.gameObject.SetActive(true);
+        factoriesScrollRect.gameObject.SetActive(true);
+        //factoriesMenu.gameObject.SetActive(true);
 
         filtersButton.interactable = true;
         filtersButton.onClick.AddListener(ShowFilters);
@@ -115,7 +123,8 @@ public class PurchaseMenuController : MonoBehaviour
 
         HideFactories();
 
-        filtersMenu.gameObject.SetActive(true);
+        //filtersMenu.gameObject.SetActive(true);
+        filtersScrollRect.gameObject.SetActive(true);
 
         factoriesButton.interactable = true;
         factoriesButton.onClick.AddListener(ShowFactories);
@@ -123,11 +132,13 @@ public class PurchaseMenuController : MonoBehaviour
 
     public void HideFactories()
     {
-        factoriesMenu.gameObject.SetActive(false);
+        //factoriesMenu.gameObject.SetActive(false);
+        factoriesScrollRect.gameObject.SetActive(false);
     }
 
     public void HideFilters()
     {
-        filtersMenu.gameObject.SetActive(false);
+        //filtersMenu.gameObject.SetActive(false);
+        filtersScrollRect.gameObject.SetActive(false);
     }
 }

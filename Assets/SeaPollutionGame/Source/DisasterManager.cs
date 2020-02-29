@@ -12,7 +12,6 @@ public class DisasterManager : MonoBehaviour
     WorldStateManager stateManager = null;
     DisasterEvent disasterEvent = new DisasterEvent { };
     UnityEvent noDisasterEvent = new UnityEvent { };
-    System.Random random = new System.Random();
 
 
     public void SetDisasters(Disaster[] arr)
@@ -34,6 +33,7 @@ public class DisasterManager : MonoBehaviour
     {
         if (disasters != null)
         {
+            var random = new System.Random();
             foreach (int i in Enumerable.Range(0, disasters.Length).OrderBy(x => random.Next()))
             {
                 var disaster = disasters[i];

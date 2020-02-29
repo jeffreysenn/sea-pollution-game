@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Restart : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    LevelController levelController = null;
+
+    void Awake()
     {
+        levelController = FindObjectOfType<LevelController>();
+
         var button = GetComponent<Button>();
-        button.onClick.AddListener(ReloadLevel);
+        button.onClick.AddListener(levelController.LoadRandomLevel);
+
     }
 
-    void ReloadLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+
 }

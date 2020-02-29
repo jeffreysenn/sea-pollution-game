@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
             var hitObj = hit.transform.gameObject;
             if (holdingPolluter.GetComponent<Factory>()) { validSpace = hitObj.GetComponent<FactorySpace>(); }
             else if (holdingPolluter.GetComponent<Filter>()) { validSpace = hitObj.GetComponent<FilterSpace>(); }
-            if (validSpace && validSpace.ownerID == FindObjectsOfType<WorldStateManager>()[0].GetCurrentPlayerID())
+            if (validSpace && validSpace.ownerID == FindObjectOfType<WorldStateManager>().GetCurrentPlayerID())
             {
                 validSpace.polluter = holdingPolluter;
                 var targetPos = validSpace.transform.position;

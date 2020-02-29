@@ -42,7 +42,14 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
 
     private void UpdateCurrentPieChart()
     {
-        pollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType));
+        PollutionMap map = worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType);
+
+        if(showingOrder[currentTypeShown].pollutionMapType == PollutionMapType.FILTERED)
+        {
+            map = Util.MultiplyMap(map, (-1));
+        }
+
+        pollutionPie.SetPollutionMap(map);
 
         pollutionPie.Draw();
     }

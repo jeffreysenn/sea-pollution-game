@@ -142,6 +142,12 @@ public class DescriptionPopUp : MonoBehaviour
             polluterContent.textVulnerabilities.text = attrib.vulnerabilityAttrib.GetDescription();
 
             PollutionMap map = new PollutionMap(attrib.pollutionAttrib.emissions);
+
+            if(polluter is Filter)
+            {
+                map = Util.MultiplyMap(map, (-1));
+            }
+
             SetPieChart(polluterContent.pieChart, map);
         }
 
@@ -157,7 +163,14 @@ public class DescriptionPopUp : MonoBehaviour
         {
             PollutionMap map = flow.GetPollutionMap();
 
-            if (map.GetTotalPollution() > 0)
+            float total = map.GetTotalPollution();
+
+            if (total < 0)
+            {
+                hasFoundData = true;
+
+                SetPieChart(nodeContent.pieChart, Util.MultiplyMap(map, -1));
+            } else if (total > 0)
             {
                 hasFoundData = true;
 
@@ -177,7 +190,15 @@ public class DescriptionPopUp : MonoBehaviour
         {
             PollutionMap map = node.GetPollutionMap();
 
-            if (map.GetTotalPollution() > 0)
+            float total = map.GetTotalPollution();
+
+            if (total < 0)
+            {
+                hasFoundData = true;
+
+                SetPieChart(nodeContent.pieChart, Util.MultiplyMap(map, -1));
+            }
+            else if (total > 0)
             {
                 hasFoundData = true;
 

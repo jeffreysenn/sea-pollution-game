@@ -16,6 +16,32 @@ public class PlayerState
     PollutionMap producedPollutionMap = new PollutionMap { };
     PollutionMap filteredPollutionMap = new PollutionMap { };
     PollutionMap netPollutionMap = new PollutionMap { };
+    List<Polluter> ownedPolluters = new List<Polluter> { };
+
+    public float GetIncome() {
+        float income = 0;
+        foreach(var polluter in ownedPolluters)
+        {
+            income += polluter.GetAttrib().economicAttrib.profitPerTurn;
+        }
+        return income;
+    }
+
+    public void AddPolluter(Polluter polluter)
+    {
+        Debug.Assert(!HasPolluter(polluter));
+        ownedPolluters.Add(polluter);
+    }
+
+    public void RemovePolluter(Polluter polluter)
+    {
+        ownedPolluters.Remove(polluter);
+    }
+
+    public bool HasPolluter(Polluter polluter)
+    {
+        return ownedPolluters.Contains(polluter);
+    }
 
     public void SetPollutionMap(PollutionMapType type, PollutionMap map)
     {

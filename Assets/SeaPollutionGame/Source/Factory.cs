@@ -14,6 +14,9 @@ public class Factory : Polluter
 
     public override void Mulfunction()
     {
+        base.Mulfunction();
         stateManager.RemoveEndPlayerTurnEventListener(GetOwnerID(), MakeMoney);
+        var attrib = GetAttrib();
+        attrib.economicAttrib.profitPerTurn = 0;
     }
 }

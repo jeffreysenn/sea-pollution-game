@@ -77,8 +77,8 @@ public class Drop : MonoBehaviour
             
             var clone = Instantiate(gameObject);
             var clonePolluter = clone.GetComponent<Polluter>();
+            clonePolluter.CopyAssign(GetComponent<Polluter>());
 
-            clonePolluter.Copy(GetComponent<Polluter>());
             CancelDrop(clone);
 
             Destroy(followMouse);

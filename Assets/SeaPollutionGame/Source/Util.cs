@@ -7,13 +7,22 @@ using System.Threading.Tasks;
 
 public class Util
 {
-    public static TValue SumMap<TKey, TValue>(Dictionary<TKey, TValue> map)
-        where TValue : new()
+    public static float SumMap(PollutionMap map)
     {
-        dynamic sum = new TValue();
+        float sum = 0;
         foreach (var pair in map)
         {
-            sum += (dynamic)pair.Value;
+            sum += pair.Value;
+        }
+        return sum;
+    }
+
+    public static PollutionMap SumMap(Dictionary<Flow, PollutionMap> map)
+    {
+        var sum = new PollutionMap { };
+        foreach (var pair in map)
+        {
+            sum += pair.Value;
         }
         return sum;
     }

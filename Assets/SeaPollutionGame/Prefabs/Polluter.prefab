@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858704798655397196}
-  m_LocalRotation: {x: -0.41480228, y: 0.2385201, z: 0.44625163, w: 0.7562452}
-  m_LocalPosition: {x: -0.004177654, y: 0.014341354, z: -0.024845704}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.762, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7584874410836583695}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -57.168003, y: -0.9990001, z: 61.633003}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &4482656164208439248
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6919057510765301949}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0, z: 0.67}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7584874410836583695}
@@ -158,13 +158,11 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6919057510765301949}
-  m_Text: '1
-
-'
+  m_Text: 1
   m_OffsetZ: 0
   m_CharacterSize: 0.03
   m_LineSpacing: 1
-  m_Anchor: 1
+  m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 335
@@ -173,7 +171,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4280932608
 --- !u!1 &7365798465837297521
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +183,7 @@ GameObject:
   - component: {fileID: 7584874410836583695}
   - component: {fileID: 1437841119581754747}
   - component: {fileID: 7451523539939551769}
-  - component: {fileID: 3723549313344610473}
+  - component: {fileID: 4163770255252185031}
   m_Layer: 0
   m_Name: Polluter
   m_TagString: Untagged
@@ -235,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionText: {fileID: 0}
---- !u!114 &3723549313344610473
+--- !u!114 &4163770255252185031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,6 +242,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7365798465837297521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 450400727e3992543b9ef7a31bb7c527, type: 3}
+  m_Script: {fileID: 11500000, guid: 02d5570698c94e84e99e3ac1f397deb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

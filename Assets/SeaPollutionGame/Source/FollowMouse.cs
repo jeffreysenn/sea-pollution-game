@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class FollowMouse : MonoBehaviour
 {
+    public float boardPlane = 0.0f;
     void Update()
     {
-        var screenPos = Input.mousePosition;
-        var worldPos = Camera.main.ScreenToWorldPoint(screenPos);
-        worldPos.y = transform.position.y;
+        var camera = Camera.main;
+        var mousePos = Input.mousePosition;
+        mousePos.z = camera.transform.position.y - boardPlane;
+        var worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        //worldPos.y = transform.position.y;
+        Debug.Log(worldPos);
         transform.position = worldPos;
     }
 }

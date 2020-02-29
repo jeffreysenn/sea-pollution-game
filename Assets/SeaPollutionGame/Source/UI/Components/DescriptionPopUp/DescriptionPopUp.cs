@@ -43,6 +43,12 @@ public class DescriptionPopUp : MonoBehaviour
         public PieChartController pieChart = null;
     }
 
+    [System.Serializable]
+    class DisasterContent : PopUpContent
+    {
+        public TextMeshProUGUI textTitle = null;
+    }
+
     [SerializeField]
     private GameObject popUp = null;
     
@@ -56,6 +62,9 @@ public class DescriptionPopUp : MonoBehaviour
     private BalticContent balticContent = null;
     [SerializeField]
     private string balticTag = "Sea";
+
+    [SerializeField]
+    private DisasterContent disasterContent = null;
     
     [SerializeField]
     private float tweenDuration = 1f;
@@ -80,10 +89,12 @@ public class DescriptionPopUp : MonoBehaviour
         allPopupContents.Add(polluterContent);
         allPopupContents.Add(nodeContent);
         allPopupContents.Add(balticContent);
-        
+        allPopupContents.Add(disasterContent);
+
         HideDirectPopup(polluterContent);
         HideDirectPopup(nodeContent);
         HideDirectPopup(balticContent);
+        HideDirectPopup(disasterContent);
     }
 
     private void Update()
@@ -127,10 +138,27 @@ public class DescriptionPopUp : MonoBehaviour
                 {
                     currentGameObject = purchasableIcon.gameObject;
 
-                    if (CheckGraphicIcon(purchasableIcon))
+                    if (CheckGraphicPolluter(purchasableIcon))
                     {
                         HidePopupOtherThan(polluterContent);
                         ShowPopup(polluterContent);
+                    }
+                }
+            }
+
+            DisasterIcon disasterIcon = rr.gameObject.GetComponentInChildren<DisasterIcon>();
+            if(disasterIcon != null)
+            {
+                hasHit = true;
+
+                if (disasterIcon.gameObject != currentGameObject)
+                {
+                    currentGameObject = disasterIcon.gameObject;
+
+                    if (CheckGraphicDisaster(disasterIcon))
+                    {
+                        HidePopupOtherThan(disasterContent);
+                        ShowPopup(disasterContent);
                     }
                 }
             }
@@ -183,7 +211,7 @@ public class DescriptionPopUp : MonoBehaviour
         return hasHit;
     }
 
-    private bool CheckGraphicIcon(PurchasableIcon purchasableIcon)
+    private bool CheckGraphicPolluter(PurchasableIcon purchasableIcon)
     {
         bool hasFoundData = false;
 
@@ -194,9 +222,22 @@ public class DescriptionPopUp : MonoBehaviour
 
             polluterContent.textTitle.text = attrib.title;
 
-            polluterContent.textDetails.text = "Price: " + attrib.economicAttrib.price + "\nCost: " + attrib.economicAttrib.profitPerTurn + "\nRemove: " + attrib.economicAttrib.removalCost;
+            polluterContent.textDetails.text = "Price: " + attrib.economicAttrib.price + " Income: " + attrib.economicAttrib.profitPerTurn + "\nRemoval cost: " + attrib.economicAttrib.removalCost;
 
-            polluterContent.textVulnerabilities.text = attrib.vulnerabilityAttrib.GetDescription();
+            VulnerabilityAttrib vulnerabilityAttrib = attrib.vulnerabilityAttrib;
+            if(vulnerabilityAttrib.vulnerabilities != null)
+            {
+                string vulnerabilityString = "Vulnerable to ";
+                foreach (VulnerabilityAttrib.Vulnerability v in vulnerabilityAttrib.vulnerabilities)
+                {
+                    vulnerabilityString += v.disasterName + ":" + v.factor + " ";
+                }
+                polluterContent.textVulnerabilities.text = vulnerabilityString;
+            } else
+            {
+                polluterContent.textVulnerabilities.text = "";
+            }
+
 
             PollutionMap map = new PollutionMap(attrib.pollutionAttrib.emissions);
 
@@ -207,6 +248,21 @@ public class DescriptionPopUp : MonoBehaviour
 
 
             SetPieChart(polluterContent.pieChart, map);
+        }
+
+        return hasFoundData;
+    }
+
+    private bool CheckGraphicDisaster(DisasterIcon disasterIcon)
+    {
+        bool hasFoundData = false;
+
+        Disaster disaster = disasterIcon.GetDisaster();
+        if(disaster != null)
+        {
+            hasFoundData = true;
+
+            disasterContent.textTitle.text = disaster.title;
         }
 
         return hasFoundData;
@@ -224,9 +280,22 @@ public class DescriptionPopUp : MonoBehaviour
 
             polluterContent.textTitle.text = attrib.title;
 
-            polluterContent.textDetails.text = "Price: " + attrib.economicAttrib.price + "\nCost: " + attrib.economicAttrib.profitPerTurn + "\nRemove: " + attrib.economicAttrib.removalCost;
+            polluterContent.textDetails.text = "Price: " + attrib.economicAttrib.price + " Income: " + attrib.economicAttrib.profitPerTurn + "\nRemoval cost: " + attrib.economicAttrib.removalCost;
 
-            polluterContent.textVulnerabilities.text = attrib.vulnerabilityAttrib.GetDescription();
+            VulnerabilityAttrib vulnerabilityAttrib = attrib.vulnerabilityAttrib;
+            if (vulnerabilityAttrib.vulnerabilities != null)
+            {
+                string vulnerabilityString = "Vulnerable to ";
+                foreach (VulnerabilityAttrib.Vulnerability v in vulnerabilityAttrib.vulnerabilities)
+                {
+                    vulnerabilityString += v.disasterName + ":" + v.factor + " ";
+                }
+                polluterContent.textVulnerabilities.text = vulnerabilityString;
+            }
+            else
+            {
+                polluterContent.textVulnerabilities.text = "";
+            }
 
             PollutionMap map = new PollutionMap(attrib.pollutionAttrib.emissions);
 
@@ -352,7 +421,7 @@ public class DescriptionPopUp : MonoBehaviour
         currentShownContent = null;
 
         content.canvas.DOKill();
-        content.canvas.DOFade(0f, 0f).SetEase(tweenEase);
+        content.canvas.DOFade(0f, 0f);
         content.isShown = false;
     }
 

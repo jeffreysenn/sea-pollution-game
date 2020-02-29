@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#define USE_OBJ_MENU
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +31,9 @@ public class AttribLoader : MonoBehaviour
 
         attribData = JsonUtility.FromJson<AttribData>(data);
 #endif
-        PurchaseMenu purchaseMenu = FindObjectOfType<PurchaseMenu>().GetComponent<PurchaseMenu>();
+
+#if USE_OBJ_MENU
+        var purchaseMenu = FindObjectOfType<PurchaseMenu>();
         var factoryAttribs = purchaseMenu.purchasables[0].polluterAttribs;
         foreach (var factoryAttrib in attribData.factoryList)
         {
@@ -41,6 +44,7 @@ public class AttribLoader : MonoBehaviour
         {
             filterAttribs.Add(filterAttrib);
         }
+#endif
 
         for(int i = 0; i != attribData.environmentPollutionList.Length; ++i)
         {
@@ -48,10 +52,10 @@ public class AttribLoader : MonoBehaviour
             environmentPollutions[i].pollutionAttrib = attribData.environmentPollutionList[i];
         }
 
-        var disasterManager = FindObjectOfType<DisasterManager>().GetComponent<DisasterManager>();
+        var disasterManager = FindObjectOfType<DisasterManager>();
         disasterManager.SetDisasters(attribData.disasterList);
 
-        var materialManager = FindObjectsOfType<PollutantMaterialManager>()[0];
+        var materialManager = FindObjectOfType<PollutantMaterialManager>();
         foreach(var pollutant in attribData.pollutantList)
         {
             materialManager.AddPollutant(pollutant.title, pollutant.color);

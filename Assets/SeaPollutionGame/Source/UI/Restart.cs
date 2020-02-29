@@ -15,8 +15,5 @@ public class Restart : MonoBehaviour
 
         var button = GetComponent<Button>();
         button.onClick.AddListener(levelController.LoadRandomLevel);
-
     }
-
-
 }

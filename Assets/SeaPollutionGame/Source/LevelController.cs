@@ -12,7 +12,9 @@ public class LevelController : MonoBehaviour
     public void LoadRandomLevel()
     {
         if (sceneIndice.Count == 0) { GenRandomSceneList(); }
-        SceneManager.LoadScene(sceneIndice[0]);
+        int sceneToLoad = sceneIndice[0];
+        sceneIndice.RemoveAt(0);
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     void Awake()
@@ -36,7 +38,7 @@ public class LevelController : MonoBehaviour
         int sceneCount = SceneManager.sceneCountInBuildSettings;
         foreach (int i in Enumerable.Range(0, sceneCount).OrderBy(x => random.Next()))
         {
-            sceneIndice.Add(i);
+            if (i != 0) { sceneIndice.Add(i); }
         }
     }
 }

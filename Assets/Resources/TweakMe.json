@@ -1,412 +1,765 @@
 {
   "pollutantList": [
-    { "title": "COx", "color": { "r": 255, "g": 200, "b": 0,   "a": 255 } },
-    { "title": "SOx", "color": { "r": 200, "g": 100, "b": 0,   "a": 255 } },
-    { "title": "NOx", "color": { "r": 200, "g": 200, "b": 100, "a": 255 } },
-    { "title": "Pb" , "color": { "r": 200, "g": 255, "b": 200, "a": 255 } },
-    { "title": "Hg" , "color": { "r": 255, "g": 0,   "b": 0,   "a": 255 } },
-    { "title": "Ag" , "color": { "r": 200, "g": 200, "b": 200, "a": 255 } },
-    { "title": "Cu" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
-    { "title": "Fe" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
-    { "title": "Cr" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } },
-    { "title": "Cd" , "color": { "r": 255, "g": 0,   "b": 0 ,  "a": 255 } }
+    { "title": "Phosphor" , "color": { "r": 255, "g": 100, "b": 0, "a": 255 } }
   ],
 
   "disasterList":  [
     { "title": "Fire", "damage": 100, "chancePerTurn": 0.2 },
     { "title": "Flood", "damage": 100, "chancePerTurn": 0.2 },
-    { "title": "Wind", "damage": 100, "chancePerTurn": 0.1 }
+    { "title": "Drought", "damage": 100, "chancePerTurn": 0.1 }
   ],
 
   "factoryList": [
     {
-      "title": "Fertilizer Factory",
-      "economicAttrib": { "price": 50, "profitPerTurn": 40, "removalCost": 20 },
+      "title": "District heating Rural",
+      "economicAttrib": { "price": 80, "profitPerTurn": 25, "removalCost": 15 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "NOx", "emissionPerTurn": 5 },
-          { "pollutantName": "SOx", "emissionPerTurn": 3 },
-          { "pollutantName": "COx", "emissionPerTurn": 4 }
         ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
           { "disasterName": "Flood", "factor": 0.5 },
           { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Wind", "factor": 0 }
+          { "disasterName": "Drought", "factor": 0 }
         ]
       }
     },
     {
-      "title": "Oil Factory",
-      "economicAttrib": { "price": 60, "profitPerTurn": 60, "removalCost": 10 },
+      "title": "Green house",
+      "economicAttrib": { "price": 40, "profitPerTurn": 13, "removalCost": 10 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 7 },
-          { "pollutantName": "SOx", "emissionPerTurn": 8 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0.2 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Tourism",
+      "economicAttrib": { "price": 40, "profitPerTurn": 25, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": 5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.4 },
+          { "disasterName": "Fire", "factor": 0.4 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Building houses for rent",
+      "economicAttrib": { "price": 80, "profitPerTurn": 25, "removalCost": 15 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": 5 }
         ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
           { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Wind", "factor": 0 }
+          { "disasterName": "Fire", "factor": 0.4 },
+          { "disasterName": "Drought", "factor": 0 }
         ]
       }
     },
     {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 20, "profitPerTurn": 10 },
+      "title": "Slaughterhouse",
+      "economicAttrib": { "price": 80, "profitPerTurn": 25, "removalCost": 15 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
+          { "pollutantName": "Phosphor", "emissionPerTurn": 13 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Biogas plant",
+      "economicAttrib": { "price": 80, "profitPerTurn": 15, "removalCost": 15 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Increase in fertilisation",
+      "economicAttrib": { "price": 13, "profitPerTurn": 13, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": 40 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Drought", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Intensify crop production",
+      "economicAttrib": { "price": 15, "profitPerTurn": 10, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": 40 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Drought", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Precision technologies agriculture",
+      "economicAttrib": { "price": 40, "profitPerTurn": 10, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.4 },
+          { "disasterName": "Fire", "factor": 0.4 },
+          { "disasterName": "Drought", "factor": 0.4 }
+        ]
+      }
+    },
+    {
+      "title": "Iintensify biomass removal from forests",
+      "economicAttrib": { "price": 40, "profitPerTurn": 5, "removalCost": 0 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": 2 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.4 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0.4 }
+        ]
+      }
+    },
+    {
+      "title": "Seaweed farm",
+      "economicAttrib": { "price": 80, "profitPerTurn": 10, "removalCost": 15 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Mussel farm",
+      "economicAttrib": { "price": 40, "profitPerTurn": 10, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Irrigation with sea water",
+      "economicAttrib": { "price": 25, "profitPerTurn": 5, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.4 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0.4 }
+        ]
+      }
+    },
+    {
+      "title": "Generic 1",
+      "economicAttrib": { "price": 15, "profitPerTurn": 10, "removalCost": 10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": 40 }
         ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
           { "disasterName": "Flood", "factor": 0.5 },
           { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Wind", "factor": 0.5 }
+          { "disasterName": "Drought", "factor": 0.5 }
         ]
       }
     },
     {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 10, "profitPerTurn": 5 },
+      "title": "Generic 2",
+      "economicAttrib": { "price": 30, "profitPerTurn": 10, "removalCost": 10 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
+          { "pollutantName": "Phosphor", "emissionPerTurn": 30 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Drought", "factor": 0.5 }
         ]
       }
     },
     {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
+      "title": "Generic 3",
+      "economicAttrib": { "price": 40, "profitPerTurn": 10, "removalCost": 10 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
+          { "pollutantName": "Phosphor", "emissionPerTurn": 20 }
         ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Factory",
-      "economicAttrib": { "price": 40, "profitPerTurn": 20 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": 2 }
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Drought", "factor": 0.5 }
         ]
       }
     }
   ],
 
-
   "filterList": [
     {
-      "title": "COx Filter",
+      "title": "Wetlands",
       "economicAttrib": { "price": 40, "profitPerTurn": -10 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": -2 }
+          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
         ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
           { "disasterName": "Flood", "factor": 1 },
           { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Wind", "factor": 1 }
+          { "disasterName": "Drought", "factor": 1 }
         ]
       }
     },
     {
-      "title": "Heavy Metal Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
+      "Buffer strips": "Buffer strips",
+      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Hg", "emissionPerTurn": -2 },
-          { "pollutantName": "Pb", "emissionPerTurn": -2 },
-          { "pollutantName": "Ag", "emissionPerTurn": -1 }
+          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.5 },
+          { "disasterName": "Fire", "factor": 0.5 },
+          { "disasterName": "Drought", "factor": 0.5 }
+        ]
+      }
+    },
+    {
+      "title": "Catch crops",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Crop rotation",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Retention ponds",
+      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 1 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Biochar application Agriculture",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Biochar application Forest",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Compost application Agriculture",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Compost application Agriculture",
+      "economicAttrib": { "price": 10, "profitPerTurn": -2 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -2 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Sludge application Agriculture",
+      "economicAttrib": { "price": 40, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Drought", "factor": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Sludge application Forest",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Improving drainage management on farms",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Restoration of riparian areas",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Floodplains",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Liming /gypsum",
+      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Optimizing fertilization rates-based soil parameters using geo-location systems",
+      "economicAttrib": { "price": 40, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 1 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Optimization of livestock density for nutrient management",
+      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0.4 },
+          { "disasterName": "Fire", "factor": 0.4 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Microstrainer technologies at fish farms ",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Connecting 100% of population to wastewater treatment",
+      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Improved stormwater management",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Improving on-site treatments",
+      "economicAttrib": { "price": 10, "profitPerTurn": -2 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -2 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Source separation of waste for scattered settlements",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Urine-diversion toilets",
+      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Wastewater improvements that deal with overflow",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Biochar treated with source-separated blackwater as soil improver",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Incineration and phosphorus recovery from ash",
+      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Biochar filter",
+      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Enhanced wastewater treatment level through ultrafiltration and UV-disinfection",
+      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities":  [
+          { "disasterName": "Flood", "factor": 0 },
+          { "disasterName": "Fire", "factor": 0 },
+          { "disasterName": "Drought", "factor": 0 }
+        ]
+      }
+    },
+    {
+      "title": "Irrigation with sea water",
+      "economicAttrib": { "price": 400, "profitPerTurn": -10 },
+      "pollutionAttrib": {
+        "emissions": [
+          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
         ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
           { "disasterName": "Flood", "factor": 1 },
           { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Wind", "factor": 1 }
+          { "disasterName": "Drought", "factor": 1 }
         ]
       }
     },
     {
-      "title": "Generic Gas Filter",
-      "economicAttrib": { "price": 40, "profitPerTurn": -20 },
+      "title": "Mussel farming",
+      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "COx", "emissionPerTurn": -3 },
-          { "pollutantName": "NOx", "emissionPerTurn": -3 },
-          { "pollutantName": "SOx", "emissionPerTurn": -3 }
+          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
         ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Wind", "factor": 1 }
+          { "disasterName": "Flood", "factor": 0.4 },
+          { "disasterName": "Fire", "factor": 0.4 },
+          { "disasterName": "Drought", "factor": 0.4 }
         ]
       }
     },
     {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 10, "profitPerTurn": -5 },
+      "title": "Seaweed farming",
+      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -1 }
+          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
         ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Wind", "factor": 1 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 10, "profitPerTurn": -5 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -1 }
-        ]
-      },
-      "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Wind", "factor": 1 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
-        ]
-      }
-    },
-    {
-      "title": "Placeholder Filter",
-      "economicAttrib": { "price": 30, "profitPerTurn": -10 },
-      "pollutionAttrib": {
-        "emissions": [
-          { "pollutantName": "SOx", "emissionPerTurn": -2 }
+          { "disasterName": "Flood", "factor": 0.4 },
+          { "disasterName": "Fire", "factor": 0.4 },
+          { "disasterName": "Drought", "factor": 0.4 }
         ]
       }
     }

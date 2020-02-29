@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67beda5a388a84448adf7060cdb483ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minDeltaInput: 0.01
   inNode: {fileID: 0}
   outNode: {fileID: 0}
 --- !u!120 &1861992236504727750

@@ -229,10 +229,10 @@ public class DescriptionPopUp : MonoBehaviour
             VulnerabilityAttrib vulnerabilityAttrib = attrib.vulnerabilityAttrib;
             if(vulnerabilityAttrib.vulnerabilities != null)
             {
-                string vulnerabilityString = "Vulnerable to ";
+                string vulnerabilityString = ""; //"Vulnerable to ";
                 foreach (VulnerabilityAttrib.Vulnerability v in vulnerabilityAttrib.vulnerabilities)
                 {
-                    vulnerabilityString += v.disasterName + ":" + v.factor + " ";
+                    vulnerabilityString += v.disasterName + ": " + v.factor + " ";
                 }
                 polluterContent.textVulnerabilities.text = vulnerabilityString;
             } else

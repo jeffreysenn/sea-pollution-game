@@ -66,6 +66,7 @@ public class MenuInGameController : MonoBehaviour
     void ShowMenu()
     {
         menuContent.DOFade(1f, tweenDuration).SetEase(tweenEase);
+        menuContent.interactable = true;
 
         isShown = true;
     }
@@ -73,6 +74,7 @@ public class MenuInGameController : MonoBehaviour
     void HideMenu()
     {
         menuContent.DOFade(0f, tweenDuration).SetEase(tweenEase);
+        menuContent.interactable = false;
 
         isShown = false;
     }
@@ -80,6 +82,7 @@ public class MenuInGameController : MonoBehaviour
     void HideDirectMenu()
     {
         menuContent.DOFade(0f, 0f);
+        menuContent.interactable = false;
 
         isShown = false;
     }

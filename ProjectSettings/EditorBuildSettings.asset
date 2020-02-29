@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SeaPollutionGame/Scenes/Map2.unity
     guid: fba51fdc5ea56174bb8bf7cbbb2d4f19
+  - enabled: 1
+    path: Assets/SeaPollutionGame/Scenes/Map3.unity
+    guid: e641ba29cbfca9744a9baa3dac6f8896
+  - enabled: 1
+    path: Assets/SeaPollutionGame/Scenes/Map4.unity
+    guid: 12cdb3b16846d4f49b095b4c67c57b1f
+  - enabled: 1
+    path: Assets/SeaPollutionGame/Scenes/Map5.unity
+    guid: f077563d1a19d754aa94d5bd91e82b48
   m_configObjects: {}

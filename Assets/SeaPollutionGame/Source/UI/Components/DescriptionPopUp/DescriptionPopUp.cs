@@ -146,6 +146,7 @@ public class DescriptionPopUp : MonoBehaviour
                 }
             }
 
+            /*
             DisasterIcon disasterIcon = rr.gameObject.GetComponentInChildren<DisasterIcon>();
             if(disasterIcon != null)
             {
@@ -162,6 +163,7 @@ public class DescriptionPopUp : MonoBehaviour
                     }
                 }
             }
+            */
         }
 
         return hasHit;

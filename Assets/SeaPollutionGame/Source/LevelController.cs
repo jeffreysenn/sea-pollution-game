@@ -17,6 +17,11 @@ public class LevelController : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 
+    public void LoadHomeLevel()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     void Awake()
     {
         if (instance == null)
@@ -24,7 +29,7 @@ public class LevelController : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            if(SceneManager.GetActiveScene().buildIndex == 0) { LoadRandomLevel(); }
+            //if(SceneManager.GetActiveScene().buildIndex == 0) { LoadRandomLevel(); }
         }
         else if (instance != this)
         {

@@ -51,7 +51,7 @@ public class PieChartController : MonoBehaviour
 
             if (txtSum)
             {
-                txtSum.text = pollutionMap.GetTotalPollution().ToString();
+                txtSum.text = Math.Round(pollutionMap.GetTotalPollution(), 1).ToString();
             }
             
         }

@@ -60,7 +60,7 @@ public class MenuInGameController : MonoBehaviour
 
     void QuitOnClick()
     {
-        // return to home menu
+        levelController.LoadHomeLevel();
     }
 
     void ShowMenu()

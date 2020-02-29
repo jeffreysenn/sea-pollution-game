@@ -43,3 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55cce513294ab645a1046a3f4d06043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeScene: StartScene
+  boardScenes:
+  - Map1
+  - Map2
+  - Map3

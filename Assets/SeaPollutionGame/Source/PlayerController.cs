@@ -48,16 +48,24 @@ public class PlayerController : MonoBehaviour
             if (validSpace && validSpace.ownerID == FindObjectOfType<WorldStateManager>().GetCurrentPlayerID())
             {
                 validSpace.polluter = holdingPolluter;
+
                 var targetPos = validSpace.transform.position;
                 targetPos.y = holdingPolluter.transform.position.y;
+
+                holdingPolluter.transform.parent = validSpace.transform;
+
                 holdingPolluter.transform.position = targetPos;
                 holdingPolluter.transform.rotation = Quaternion.Euler(0, 30, 0);
+                holdingPolluter.transform.localScale = Vector3.one;
+                
                 var textMesh = holdingPolluter.GetIdTextMesh();
                 textMesh.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
                 holdingPolluter.SetIdText(holdingPolluter.polluterId.ToString());
-                holdingPolluter.transform.parent = validSpace.transform;
+                
                 holdingPolluter.Activate();
+
                 state = State.EMPTY;
+
                 return true;
             }
         }

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public void Hold(Polluter polluter)
     {
+        if (polluter.GetSpace() != null) return;
         state = State.HOLDING;
         holdingPolluter = polluter;
     }

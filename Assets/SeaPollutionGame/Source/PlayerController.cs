@@ -1,4 +1,7 @@
 ﻿#define USE_OBJ_MENU
+#define CONTROLLER_HANDLES_DROP
+#define CONTROLLER_HANDLES_CANCEL_HOLD
+#define CONTROLLER_HANDLES_REMOVE
 
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public void CancelHold()
     {
-        Destroy(holdingPolluter);
+        Destroy(holdingPolluter.gameObject);
         state = State.EMPTY;
     }
 
@@ -57,6 +60,16 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    public bool TryRemove(Polluter polluter)
+    {
+        if (polluter.CanRemove())
+        {
+            Destroy(polluter.gameObject);
+            return true;
+        }
+        return false;
+    }
+
     private void Update()
     {
         switch (state)
@@ -67,27 +80,39 @@ public class PlayerController : MonoBehaviour
                     if (Input.GetButtonDown("Fire1"))
                     {
                         var hits = MouseRaycastDownAll();
-                        Polluter hitPolluter = null;
-                        foreach(var hit in MouseRaycastDownAll()) {
-                            hitPolluter = hit.transform.gameObject.GetComponent<Polluter>();
-                            if (hitPolluter) {
-                                Hold(hitPolluter);
-                                break;
-                            }
-                        }
+                        Polluter hitPolluter = GetMouseHitPolluter();
+                        if (hitPolluter) { Hold(hitPolluter); }
                     }
 #endif
+#if CONTROLLER_HANDLES_REMOVE
+                    if (Input.GetButtonDown("Fire2"))
+                    {
+                        var hitPolluter = GetMouseHitPolluter();
+                        if (hitPolluter) { TryRemove(hitPolluter); }
                     }
+#endif
+                }
                 break;
             case State.HOLDING:
                 {
                     FollowMouse();
-#if USE_OBJ_MENU
+
+#if CONTROLLER_HANDLES_CANCEL_HOLD
+                    if (Input.GetButtonDown("Fire2"))
+                    {
+                        CancelHold();
+                    }
+#endif
+
+#if CONTROLLER_HANDLES_DROP
                     if (Input.GetButtonDown("Fire1"))
                     {
                         TryDrop();
                     }
 #endif
+
+
+
                 }
                 break;
         }
@@ -111,5 +136,18 @@ public class PlayerController : MonoBehaviour
         var raycastOrigin = GetWorldMousePos();
         raycastOrigin.y += 100;
         return Physics.RaycastAll(raycastOrigin, Vector3.down, 9999);
+    }
+
+    private Polluter GetMouseHitPolluter()
+    {
+        foreach (var hit in MouseRaycastDownAll())
+        {
+            var hitPolluter = hit.transform.gameObject.GetComponent<Polluter>();
+            if (hitPolluter)
+            {
+                return hitPolluter;
+            }
+        }
+        return null;
     }
 }

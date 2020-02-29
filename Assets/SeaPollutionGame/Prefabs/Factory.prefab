@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b998bf2a8d7aed848849aaea800edf9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityType: 1
 --- !u!1001 &9007971360486933932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25,10 +24,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5b59fdc035ec204f92c602607b3e4b5, type: 2}
-    - target: {fileID: 3723549313344610473, guid: e14f444f41f0bf64881969daf314487c,
+    - target: {fileID: 5931361729791678935, guid: e14f444f41f0bf64881969daf314487c,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_Color.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7365798465837297521, guid: e14f444f41f0bf64881969daf314487c,
         type: 3}

@@ -23,7 +23,7 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
 
     private int currentTypeShown = 0;
 
-    private void Start()
+    private void Awake()
     {
         worldStateManager = WorldStateManager.FindWorldStateManager();
         if (worldStateManager == null) { Debug.LogError("[PlayerPieChart] Start: WorldStateManager not found"); return; }

@@ -13,6 +13,12 @@ public struct PurchasableItem
 
 public class PurchaseMenuController : MonoBehaviour
 {
+    /*
+     * PurchaseMenuController: 
+     *  Creates PurchasableIcon in the corresponding menu, with attributes
+     *  Controls the display of each menu
+     */
+
     [SerializeField]
     private AttribLoader attribLoader = null;
 

@@ -4,10 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class PolluterIcon : MonoBehaviour
+public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 {
+    /*
+     * PolluterIcon:
+     *  OnClick: Creates the target Polluter if the space is correct
+     *  Fire2: Remove the GameObject (cancel)
+     */
+
     [SerializeField]
-    private GameObject targetPolluter = null;
+    private Polluter targetPolluter = null;
 
     [SerializeField]
     private TextMeshProUGUI targetText = null;
@@ -27,7 +33,7 @@ public class PolluterIcon : MonoBehaviour
         polluterAttrib = attrib;
     }
     
-    public Polluter GetPolluter() { return targetPolluter.GetComponentInChildren<Polluter>(); }
+    public Polluter GetPolluter() { return targetPolluter; }
 
     public void SetText(string s) { targetText.text = s; }
 
@@ -35,31 +41,26 @@ public class PolluterIcon : MonoBehaviour
     {
         transform.position = Input.mousePosition;
 
-        if(polluterDragged != null)
-        {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(transform.position);
-            pos.y = spaceForPolluter.transform.position.y;
-            polluterDragged.transform.position = pos;
-        } else
-        {
-            Debug.LogError("[PolluterIcon] Update: no target polluter instantied");
-        }
-        
+        if(Input.GetButtonDown("Fire2")) { Destroy(gameObject); }
     }
 
-    public GameObject InstantiatePolluter()
+    public GameObject InstantiatePolluter(Space space)
     {
-        polluterDragged = Instantiate(targetPolluter, spaceForPolluter.transform);
+        polluterDragged = Instantiate(targetPolluter.gameObject, spaceForPolluter.transform);
 
-        Polluter p = polluterDragged.GetComponentInChildren<Polluter>();
+        Polluter polluter = polluterDragged.GetComponentInChildren<Polluter>();
 
-        p.SetAttrib(polluterAttrib);
+        polluter.SetAttrib(polluterAttrib);
 
-        var drop = polluterDragged.AddComponent<Drop>();
-        drop.SetOriginalPos(transform.parent, transform.localPosition);
+        space.polluter = polluter;
 
-        drop.OnInvalidSpace += Drop_OnInvalidSpace;
-        drop.OnValidSpace += Drop_OnValidSpace;
+        var targetPos = space.transform.position;
+        targetPos.y = transform.position.y;
+
+        polluterDragged.transform.parent = space.transform;
+        polluterDragged.transform.localPosition = Vector3.zero;
+
+        polluter.Activate();
 
         return polluterDragged;
     }
@@ -77,5 +78,42 @@ public class PolluterIcon : MonoBehaviour
 
         Destroy(polluterDragged);
         Destroy(gameObject);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits = Physics.RaycastAll(ray); //(transform.position, new Vector3(0, -1, 0));
+        Space validSpace = null;
+        
+
+        foreach (var hit in hits)
+        {
+            var hitObj = hit.transform.gameObject;
+
+            if(targetPolluter.GetComponentInChildren<Factory>() != null)
+            {
+                validSpace = hitObj.GetComponent<FactorySpace>();
+            }
+
+            if(targetPolluter.GetComponentInChildren<Filter>() != null)
+            {
+                validSpace = hitObj.GetComponent<FilterSpace>();
+            }
+
+            if (validSpace)
+            {
+                break;
+            }
+        }
+
+        if (validSpace && validSpace.ownerID == 
+            WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
+        {
+            GameObject instantiatedPolluter = InstantiatePolluter(validSpace);
+            
+
+            Destroy(gameObject);
+        }
     }
 }

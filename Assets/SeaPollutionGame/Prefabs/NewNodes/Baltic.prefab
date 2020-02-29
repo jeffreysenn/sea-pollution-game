@@ -164,6 +164,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmptyNode
       objectReference: {fileID: 0}
+    - target: {fileID: 8812219954927022147, guid: 64cb583563d78a1468edfd34cf98b362,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sea
+      objectReference: {fileID: 0}
     - target: {fileID: 9105732355197220284, guid: 64cb583563d78a1468edfd34cf98b362,
         type: 3}
       propertyPath: m_Enabled

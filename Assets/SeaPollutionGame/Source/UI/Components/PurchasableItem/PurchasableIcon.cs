@@ -6,6 +6,11 @@ using UnityEngine.EventSystems;
 
 public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 {
+    /*
+     * PurchasableIcon:
+     *  OnClick: Creates the corresponding PolluterIcon with attributes
+     */
+
     [SerializeField]
     private TextMeshProUGUI targetText = null;
 
@@ -35,8 +40,6 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
         newIcon.SetPolluterAttributes(polluterAttrib);
         newIcon.SetSpace(spaceForPolluter);
         newIcon.SetText(targetText.text);
-
-        newIcon.InstantiatePolluter();
     }
 
 

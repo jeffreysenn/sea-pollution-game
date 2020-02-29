@@ -35,11 +35,15 @@ public class PlayerStatController : MonoBehaviour
 
     private bool isContentDetailsShown = false;
 
-    private void Start()
+    private void Awake()
     {
         worldStateManager = WorldStateManager.FindWorldStateManager();
         if (worldStateManager == null) { Debug.LogError("[PlayerStatController] Start: WorldStateManager not found"); return; }
+    }
 
+    private void Start()
+    {
+        
         pieChart.SetPlayer(player);
         pieChart.Activate();
 

@@ -3,8 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EntityType
+{
+    NONE,
+    FACTORY,
+    FILTER,
+};
+
 public class Polluter : MonoBehaviour
 {
+    [SerializeField]
+    private EntityType entityType;
+
     private PolluterAttrib polluterAttrib = null;
     protected WorldStateManager stateManager = null;
 
@@ -98,4 +108,5 @@ public class Polluter : MonoBehaviour
         }
     }
 
+    public EntityType GetEntityType() { return entityType; }
 }

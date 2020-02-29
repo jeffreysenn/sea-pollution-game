@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlowColliderUpdater : MonoBehaviour
 {
     public float colliderWidth = 0.6f;
-    public float colliderHeight = 1;
+    public float colliderHeight = 0.6f;
     public float nodeRadius = 0.5f;
 
     public void UpdateFlowCollider()

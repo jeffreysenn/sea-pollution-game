@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderWidth: 0.6
-  colliderHeight: 1
+  colliderHeight: 0.6
   nodeRadius: 0.5
 --- !u!114 &645487143288639199
 MonoBehaviour:
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56520edba38be64fb1780d5a3362e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderWidth: 2
+  colliderWidth: 0.6
   colliderHeight: 1
   nodeRadius: 0.5
 --- !u!65 &6469845689627617341

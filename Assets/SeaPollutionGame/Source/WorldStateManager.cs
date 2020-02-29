@@ -95,6 +95,7 @@ public class WorldStateManager : MonoBehaviour
 
     public float GetMoney(int id) { return playerStates[id].money; }
     public float GetPollution(int id, PollutionMapType type) { return playerStates[id].GetPollution(type); }
+    public float GetIncome(int id) { return playerStates[id].GetIncome(); }
 
     public float GetPollutionSum(int id, PollutionMapType type)
     {

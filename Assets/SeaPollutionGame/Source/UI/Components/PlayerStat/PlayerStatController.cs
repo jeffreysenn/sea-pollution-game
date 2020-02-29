@@ -43,27 +43,19 @@ public class PlayerStatController : MonoBehaviour
 
     private void Start()
     {
-        
         pieChart.SetPlayer(player);
         pieChart.Activate();
 
         UpdateCoins(worldStateManager.GetMoney(player.id));
-        //UpdateIncome(worldStateManager.GetIncome(player.id));
-
-
-    }
-
-    private void OnDestroy()
-    {
+        UpdateIncome(worldStateManager.GetIncome(player.id));
     }
 
     private void Update()
     {
         UpdateCoins(worldStateManager.GetMoney(player.id));
+        UpdateIncome(worldStateManager.GetIncome(player.id));
     }
-
-
-
+    
     private void UpdateCoins(float value)
     {
         txtCoinsValue.text = value.ToString();
@@ -71,6 +63,8 @@ public class PlayerStatController : MonoBehaviour
 
     private void UpdateIncome(float value)
     {
+        if(value == 0) { txtIncome.text = ""; return; }
+
         string s = "(";
         if(value > 0)
         {

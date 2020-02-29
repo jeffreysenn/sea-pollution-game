@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
                 var targetPos = validSpace.transform.position;
                 targetPos.y = holdingPolluter.transform.position.y;
                 holdingPolluter.transform.position = targetPos;
+                holdingPolluter.transform.rotation = Quaternion.Euler(0, 30, 0);
+                var textMesh = holdingPolluter.GetComponentInChildren<TextMesh>();
+                textMesh.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
                 holdingPolluter.transform.parent = validSpace.transform;
                 holdingPolluter.Activate();
                 state = State.EMPTY;
@@ -79,7 +82,6 @@ public class PlayerController : MonoBehaviour
 #if USE_OBJ_MENU
                     if (Input.GetButtonDown("Fire1"))
                     {
-                        var hits = MouseRaycastDownAll();
                         Polluter hitPolluter = GetMouseHitPolluter();
                         if (hitPolluter) { Hold(hitPolluter); }
                     }
@@ -110,9 +112,6 @@ public class PlayerController : MonoBehaviour
                         TryDrop();
                     }
 #endif
-
-
-
                 }
                 break;
         }

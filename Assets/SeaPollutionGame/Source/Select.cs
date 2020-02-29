@@ -17,7 +17,6 @@ public class Select : MonoBehaviour
 
     void OnMouseOver()
     {
-        /*
         if (Input.GetButtonDown("Fire1"))
         {
             if (stateManager.GetMoney(stateManager.GetCurrentPlayerID()) < polluterPrice) return;
@@ -27,6 +26,5 @@ public class Select : MonoBehaviour
             gameObject.AddComponent<FollowMouse>();
             Destroy(this);
         }   
-        */
     }
 }

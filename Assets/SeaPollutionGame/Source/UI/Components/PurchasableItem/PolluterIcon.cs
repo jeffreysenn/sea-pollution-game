@@ -67,6 +67,7 @@ public class PolluterIcon : MonoBehaviour
     private void Drop_OnValidSpace(Drop drop)
     {
         drop.OnValidSpace -= Drop_OnValidSpace;
+        
         Destroy(gameObject);
     }
 

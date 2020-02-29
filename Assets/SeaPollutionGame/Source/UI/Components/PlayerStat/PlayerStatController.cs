@@ -14,12 +14,7 @@ public class PlayerStatController : MonoBehaviour
      *       Change "tweenYOffsetInitial" to get value from Start
      */
 
-    [System.Serializable]
-    struct PollutionMapTypeWithTransform
-    {
-        public PollutionMapType pollutionMapType;
-        public RectTransform targetTransform;
-    }
+
 
     WorldStateManager worldStateManager = null;
 
@@ -32,33 +27,30 @@ public class PlayerStatController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI txtIncome = null;
 
-    [Header("Pie Charts")]
+    [Header("Content")]
     [SerializeField]
-    private PieChartController pollutionPie = null;
-    [SerializeField]
-    private List<PollutionMapTypeWithTransform> showingOrder = new List<PollutionMapTypeWithTransform>();
+    private PlayerPieChart pieChart = null;
+
 
 
     private bool isContentDetailsShown = false;
-    private int currentTypeShown = 0;
 
     private void Start()
     {
         worldStateManager = WorldStateManager.FindWorldStateManager();
         if (worldStateManager == null) { Debug.LogError("[PlayerStatController] Start: WorldStateManager not found"); return; }
 
+        pieChart.SetPlayer(player);
+        pieChart.Activate();
+
         UpdateCoins(worldStateManager.GetMoney(player.id));
         //UpdateIncome(worldStateManager.GetIncome(player.id));
 
-        worldStateManager.AddEndPlayerTurnFinishEventListener(UpdateCurrentPieChart);
-        pollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType));
 
-        pollutionPie.OnPieChartClick += PieChart_OnPieChartClick;
     }
 
     private void OnDestroy()
     {
-        pollutionPie.OnPieChartClick -= PieChart_OnPieChartClick;
     }
 
     private void Update()
@@ -66,23 +58,7 @@ public class PlayerStatController : MonoBehaviour
         UpdateCoins(worldStateManager.GetMoney(player.id));
     }
 
-    private void UpdateCurrentPieChart()
-    {
-        pollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType));
 
-        pollutionPie.Draw();
-    }
-    
-    private void PieChart_OnPieChartClick(PieChartController obj)
-    {
-        showingOrder[currentTypeShown].targetTransform.gameObject.SetActive(false);
-
-        currentTypeShown += 1 % showingOrder.Count;
-
-        showingOrder[currentTypeShown].targetTransform.gameObject.SetActive(true);
-
-        UpdateCurrentPieChart();
-    }
 
     private void UpdateCoins(float value)
     {

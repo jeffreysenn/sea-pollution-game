@@ -74,7 +74,7 @@ public class Drop : MonoBehaviour
             WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
         {
             OnValidSpace?.Invoke(this);
-
+            
             var clone = Instantiate(gameObject);
             var clonePolluter = clone.GetComponent<Polluter>();
 

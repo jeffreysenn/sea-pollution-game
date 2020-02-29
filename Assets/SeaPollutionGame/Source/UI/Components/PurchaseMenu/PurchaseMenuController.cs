@@ -22,7 +22,8 @@ public class PurchaseMenuController : MonoBehaviour
     [SerializeField]
     private AttribLoader attribLoader = null;
 
-    [SerializeField] Text descriptionText = null;
+    [SerializeField]
+    private PlayerController playerController = null;
 
     [SerializeField]
     private RectTransform factoriesMenu = null;
@@ -85,6 +86,7 @@ public class PurchaseMenuController : MonoBehaviour
                 }
 
                 purchasableIcon.SetPolluterAttributes(pur.polluterAttribs[i]);
+                purchasableIcon.playerController = playerController;
 
                 purchasableIcon.SetText((i + 1).ToString());
             }

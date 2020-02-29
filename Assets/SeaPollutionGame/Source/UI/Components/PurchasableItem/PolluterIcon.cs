@@ -28,6 +28,8 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
+    public PlayerController playerController { get; set; }
+
     public void SetPolluterAttributes(PolluterAttrib attrib)
     {
         polluterAttrib = attrib;
@@ -44,23 +46,13 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         if(Input.GetButtonDown("Fire2")) { Destroy(gameObject); }
     }
 
-    public GameObject InstantiatePolluter(Space space)
+    public GameObject InstantiatePolluter()
     {
         polluterDragged = Instantiate(targetPolluter.gameObject, spaceForPolluter.transform);
 
         Polluter polluter = polluterDragged.GetComponentInChildren<Polluter>();
 
         polluter.SetAttrib(polluterAttrib);
-
-        space.polluter = polluter;
-
-        var targetPos = space.transform.position;
-        targetPos.y = transform.position.y;
-
-        polluterDragged.transform.parent = space.transform;
-        polluterDragged.transform.localPosition = Vector3.zero;
-
-        polluter.Activate();
 
         return polluterDragged;
     }
@@ -82,6 +74,22 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        GameObject instantiatedPolluter = InstantiatePolluter();
+
+        playerController.Hold(instantiatedPolluter.GetComponentInChildren<Polluter>());
+
+        bool dropped = playerController.TryDrop();
+
+        if(dropped)
+        {
+            Destroy(gameObject);
+        } else
+        {
+            playerController.CancelHold();
+            Destroy(instantiatedPolluter);
+        }
+
+        /*
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(ray); //(transform.position, new Vector3(0, -1, 0));
         Space validSpace = null;
@@ -115,5 +123,6 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
             Destroy(gameObject);
         }
+        */
     }
 }

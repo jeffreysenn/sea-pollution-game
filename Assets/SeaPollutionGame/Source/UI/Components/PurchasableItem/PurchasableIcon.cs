@@ -23,6 +23,8 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
     WorldStateManager worldStateManager = null;
 
+    public PlayerController playerController { get; set; }
+
     private void Start()
     {
         worldStateManager = WorldStateManager.FindWorldStateManager();
@@ -40,6 +42,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
         newIcon.SetPolluterAttributes(polluterAttrib);
         newIcon.SetSpace(spaceForPolluter);
         newIcon.SetText(targetText.text);
+        newIcon.playerController = playerController;
     }
 
 

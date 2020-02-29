@@ -24,6 +24,8 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
     private GameObject polluterDragged = null;
 
+    public int polluterId { get; set; }
+
     private bool beingDragged = false;
 
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
@@ -53,6 +55,7 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         Polluter polluter = polluterDragged.GetComponentInChildren<Polluter>();
 
         polluter.SetAttrib(polluterAttrib);
+        polluter.polluterId = polluterId;
 
         return polluterDragged;
     }

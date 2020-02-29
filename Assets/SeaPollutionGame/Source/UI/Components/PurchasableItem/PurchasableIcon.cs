@@ -25,6 +25,8 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
     public PlayerController playerController { get; set; }
 
+    public int polluterId { get; set; }
+
     private void Start()
     {
         worldStateManager = WorldStateManager.FindWorldStateManager();
@@ -43,6 +45,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
         newIcon.SetSpace(spaceForPolluter);
         newIcon.SetText(targetText.text);
         newIcon.playerController = playerController;
+        newIcon.polluterId = polluterId;
     }
 
 

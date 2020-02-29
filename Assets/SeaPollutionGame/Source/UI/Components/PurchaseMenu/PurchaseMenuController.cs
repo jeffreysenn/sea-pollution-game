@@ -88,7 +88,8 @@ public class PurchaseMenuController : MonoBehaviour
                 purchasableIcon.SetPolluterAttributes(pur.polluterAttribs[i]);
                 purchasableIcon.playerController = playerController;
 
-                purchasableIcon.SetText((i + 1).ToString());
+                purchasableIcon.polluterId = (i + 1);
+                purchasableIcon.SetText(purchasableIcon.polluterId.ToString());
             }
         }
         

@@ -52,8 +52,9 @@ public class PlayerController : MonoBehaviour
                 targetPos.y = holdingPolluter.transform.position.y;
                 holdingPolluter.transform.position = targetPos;
                 holdingPolluter.transform.rotation = Quaternion.Euler(0, 30, 0);
-                var textMesh = holdingPolluter.GetComponentInChildren<TextMesh>();
+                var textMesh = holdingPolluter.GetIdTextMesh();
                 textMesh.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
+                holdingPolluter.SetIdText(holdingPolluter.polluterId.ToString());
                 holdingPolluter.transform.parent = validSpace.transform;
                 holdingPolluter.Activate();
                 state = State.EMPTY;

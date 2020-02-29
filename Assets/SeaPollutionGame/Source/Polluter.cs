@@ -14,11 +14,15 @@ public class Polluter : MonoBehaviour
 {
     [SerializeField]
     private EntityType entityType;
+    [SerializeField]
+    private TextMesh idTextMesh = null;
 
     private PolluterAttrib polluterAttrib = null;
     protected WorldStateManager stateManager = null;
 
     private int ownerID = -1;
+
+    public int polluterId { get; set; }
 
     public Polluter CopyAssign(Polluter rhs)
     {
@@ -34,6 +38,9 @@ public class Polluter : MonoBehaviour
     public void SetAttrib(PolluterAttrib attrib) { polluterAttrib = (PolluterAttrib)attrib.Clone(); }
 
     public PolluterAttrib GetAttrib() { return polluterAttrib; }
+
+    public void SetIdText(string s) { idTextMesh.text = s; }
+    public TextMesh GetIdTextMesh() { return idTextMesh; }
 
     public virtual void OnDeadth()
     {

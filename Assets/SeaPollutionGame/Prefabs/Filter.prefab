@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityType: 2
+  idTextMesh: {fileID: 2739692360409818768}
 --- !u!1001 &8382669773829340999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,6 +96,12 @@ PrefabInstance:
 --- !u!1 &1327905563938983990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7365798465837297521, guid: e14f444f41f0bf64881969daf314487c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8382669773829340999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!102 &2739692360409818768 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 5931361729791678935, guid: e14f444f41f0bf64881969daf314487c,
     type: 3}
   m_PrefabInstance: {fileID: 8382669773829340999}
   m_PrefabAsset: {fileID: 0}

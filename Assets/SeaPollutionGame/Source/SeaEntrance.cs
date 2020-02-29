@@ -10,10 +10,7 @@ public class SeaEntrance : Node
     {
         var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
         var devidedMap = Util.DivideMap(GetPollutionMap(), ownerIDs.Count);
-        foreach (int id in ownerIDs)
-        {
-            stateManager.AddPollution(id, PollutionMapType.NET, devidedMap);
-        }
+        stateManager.AddPollution(stateManager.GetCurrentPlayerID(), PollutionMapType.NET, devidedMap);
     }
 
     public override void Start()

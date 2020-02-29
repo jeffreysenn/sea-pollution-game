@@ -11,9 +11,10 @@ public class Restart : MonoBehaviour
 
     void Awake()
     {
-        levelController = FindObjectOfType<LevelController>();
-
         var button = GetComponent<Button>();
-        button.onClick.AddListener(levelController.LoadRandomLevel);
+        button.onClick.AddListener(()=> {
+            levelController = FindObjectOfType<LevelController>();
+            levelController.LoadRandomLevel();
+        });
     }
 }

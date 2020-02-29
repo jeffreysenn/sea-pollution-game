@@ -8,6 +8,7 @@ public class Flow : MonoBehaviour, IPollutionMapOwner
     public class PollutionEvent : UnityEvent<PollutionMap> { }
     public PollutionEvent setInputEvent = new PollutionEvent { };
     public PollutionEvent clearInputEvent = new PollutionEvent { };
+    [SerializeField] private float minDeltaInput = 0.01f;
 
     public PollutionEvent[] GetAllPollutionEvents()
     {
@@ -25,8 +26,11 @@ public class Flow : MonoBehaviour, IPollutionMapOwner
 
     public void SetInput(PollutionMap map)
     {
-        pollutionMap = new PollutionMap(map);
-        setInputEvent.Invoke(map);
+        if (Mathf.Abs(Util.SumMap(pollutionMap - map)) >= minDeltaInput)
+        {
+            pollutionMap = new PollutionMap(map);
+            setInputEvent.Invoke(map);
+        }
     }
 
     public void ClearInput()

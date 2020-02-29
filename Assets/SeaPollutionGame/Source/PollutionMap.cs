@@ -25,6 +25,11 @@ public class PollutionMap : Dictionary<string, float>
         return result;
     }
 
+    public static PollutionMap operator -(PollutionMap lhs, PollutionMap rhs)
+    {
+        return lhs + Util.MultiplyMap(rhs, -1);
+    }
+
     public PollutionMap CopyAssign(PollutionMap rhs)
     {
         Clear();

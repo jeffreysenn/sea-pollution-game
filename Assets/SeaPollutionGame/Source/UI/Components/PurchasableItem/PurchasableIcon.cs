@@ -47,6 +47,8 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
     public void SetPolluterAttributes(PolluterAttrib attrib){ polluterAttrib = attrib; }
 
+    public PolluterAttrib GetPolluterAttributes() { return polluterAttrib; }
+
     public void SetText(string s) { targetText.text = s; }
 
     public PolluterIcon GetPolluterIcon() { return targetPolluterIcon; }

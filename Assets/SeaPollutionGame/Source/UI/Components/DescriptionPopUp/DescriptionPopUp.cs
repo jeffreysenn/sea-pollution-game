@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DescriptionPopUp : MonoBehaviour
 {
@@ -64,8 +66,17 @@ public class DescriptionPopUp : MonoBehaviour
     private GameObject currentGameObject = null;
     private PopUpContent currentShownContent = null;
 
+    GraphicRaycaster graphicRaycaster = null;
+    PointerEventData pointerEventData = null;
+    EventSystem eventSystem = null;
+
     private void Start()
     {
+        graphicRaycaster = GetComponent<GraphicRaycaster>();
+        if(graphicRaycaster == null) { Debug.LogError("[DescriptionPopUp] Start: no GraphicRaycaster found"); }
+        eventSystem = EventSystem.current;
+        if (eventSystem == null) { Debug.LogError("[DescriptionPopUp] Start: no EventSystem found"); }
+
         allPopupContents.Add(polluterContent);
         allPopupContents.Add(nodeContent);
         allPopupContents.Add(balticContent);
@@ -79,19 +90,72 @@ public class DescriptionPopUp : MonoBehaviour
     {
         transform.position = Input.mousePosition;
 
+        bool uiRaycast = UIRaycasting();
+        bool igRaycast = InGameRaycasting();
+
+        if(!uiRaycast && !igRaycast)
+        {
+            currentGameObject = null;
+
+            if(currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+        }
+        
+    }
+
+    private bool UIRaycasting()
+    {
+        bool hasHit = false;
+
+        pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = transform.position;
+        List<RaycastResult> graphicResults = new List<RaycastResult>();
+        graphicRaycaster.Raycast(pointerEventData, graphicResults);
+
+        EventSystem.current.RaycastAll(pointerEventData, graphicResults);
+
+        foreach (RaycastResult rr in graphicResults)
+        {
+            PurchasableIcon purchasableIcon = rr.gameObject.GetComponentInChildren<PurchasableIcon>();
+            if (purchasableIcon != null)
+            {
+                hasHit = true;
+
+                if (purchasableIcon.gameObject != currentGameObject)
+                {
+                    currentGameObject = purchasableIcon.gameObject;
+
+                    if (CheckGraphicIcon(purchasableIcon))
+                    {
+                        HidePopupOtherThan(polluterContent);
+                        ShowPopup(polluterContent);
+                    }
+                }
+            }
+        }
+
+        return hasHit;
+    }
+
+    private bool InGameRaycasting()
+    {
+        bool hasHit = false;
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit))
         {
-            if(hit.transform.gameObject.GetComponent<DrawDescription>() != null)
+            if (hit.transform.gameObject.GetComponent<DrawDescription>() != null)
             {
-                if(hit.transform.gameObject != currentGameObject)
+                hasHit = true;
+
+                if (hit.transform.gameObject != currentGameObject)
                 {
-                    //ClearFields();
-                    
                     currentGameObject = hit.transform.gameObject;
-                    
+
                     if (CheckPolluter(currentGameObject))
                     {
                         HidePopupOtherThan(polluterContent);
@@ -112,17 +176,40 @@ public class DescriptionPopUp : MonoBehaviour
                         HidePopupOtherThan(nodeContent);
                         ShowPopup(nodeContent);
                     }
-
                 }
             }
-        } else
-        {
-            currentGameObject = null;
-            if(currentShownContent != null)
-            {
-                HidePopup(currentShownContent);
-            }
         }
+
+        return hasHit;
+    }
+
+    private bool CheckGraphicIcon(PurchasableIcon purchasableIcon)
+    {
+        bool hasFoundData = false;
+
+        PolluterAttrib attrib = purchasableIcon.GetPolluterAttributes();
+        if (attrib != null)
+        {
+            hasFoundData = true;
+
+            polluterContent.textTitle.text = attrib.title;
+
+            polluterContent.textDetails.text = "Price: " + attrib.economicAttrib.price + "\nCost: " + attrib.economicAttrib.profitPerTurn + "\nRemove: " + attrib.economicAttrib.removalCost;
+
+            polluterContent.textVulnerabilities.text = attrib.vulnerabilityAttrib.GetDescription();
+
+            PollutionMap map = new PollutionMap(attrib.pollutionAttrib.emissions);
+
+            if (purchasableIcon.GetPolluterIcon().GetPolluter().GetEntityType() == EntityType.FILTER)
+            {
+                map = Util.MultiplyMap(map, (-1));
+            }
+
+
+            SetPieChart(polluterContent.pieChart, map);
+        }
+
+        return hasFoundData;
     }
 
     private bool CheckPolluter(GameObject targetGameObject)

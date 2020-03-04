@@ -284,7 +284,7 @@
       }
     },
     {
-      "Buffer strips": "Buffer strips",
+      "title": "Buffer strips",
       "economicAttrib": { "price": 25, "profitPerTurn": -8 },
       "pollutionAttrib": {
         "emissions": [

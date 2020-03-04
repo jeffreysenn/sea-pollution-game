@@ -49,8 +49,9 @@ public class DisasterUIController : MonoBehaviour
     [SerializeField]
     private bool isDebug = false;
     [SerializeField]
-    private string defaultVideoClip = "World_Farm_Fine_Rabbit.mp4";
-    
+    private string defaultVideoClip = "World_Farm_Fine_Rabbit";
+
+    private DisasterContent currentContentShown = null;
 
     private void Start()
     {
@@ -61,6 +62,11 @@ public class DisasterUIController : MonoBehaviour
             defaultContent.disasterIcon.SetDisaster(tempDefaultDisaster);
         }
 
+        defaultContent.disasterIcon.OnClick += DisasterIcon_OnClick;
+        disasterContent.disasterIcon.OnClick += DisasterIcon_OnClick;
+
+        videoContent.videoLoader.OnClipFinish += VideoLoader_OnClipFinish;
+
         HideDirectContent(disasterContent);
         HideVideo(videoContent);
 
@@ -69,15 +75,23 @@ public class DisasterUIController : MonoBehaviour
         disasterManager.AddDisasterEventListener(OnDisaster);
         disasterManager.AddNoDisasterEventListener(OnNoDisaster);
     }
-    
-    
+
+    private void OnDestroy()
+    {
+        defaultContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
+        disasterContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
+
+        videoContent.videoLoader.OnClipFinish -= VideoLoader_OnClipFinish;
+    }
+
+
     private void ShowContent(DisasterContent content)
     {
         content.canvasGroup.DOFade(1f, tweenDuration).SetEase(tweenEase);
         content.canvasGroup.blocksRaycasts = true;
-        
-        content.disasterIcon.OnClick += DisasterIcon_OnClick;
 
+        currentContentShown = content;
+        
         videoContent.videoLoader.LoadVideo(content.disasterIcon.GetDisaster().clipTitle);
     }
 
@@ -85,24 +99,20 @@ public class DisasterUIController : MonoBehaviour
     {
         content.canvasGroup.DOFade(0f, tweenDuration).SetEase(tweenEase);
         content.canvasGroup.blocksRaycasts = false;
-
-        content.disasterIcon.OnClick -= DisasterIcon_OnClick;
     }
 
     private void HideDirectContent(DisasterContent content)
     {
         content.canvasGroup.DOFade(0f, 0f);
         content.canvasGroup.blocksRaycasts = false;
-
-        content.disasterIcon.OnClick -= DisasterIcon_OnClick;
     }
 
     private void ShowVideo(VideoContent content)
     {
+        content.videoLoader.StopVideo();
+
         content.canvasGroup.DOFade(1f, tweenDuration).SetEase(tweenEase);
         content.isShown = true;
-
-        content.videoLoader.OnClipFinish += VideoLoader_OnClipFinish;
 
         content.videoLoader.PlayVideo();
     }
@@ -111,8 +121,6 @@ public class DisasterUIController : MonoBehaviour
     {
         content.canvasGroup.DOFade(0f, tweenDuration).SetEase(tweenEase);
         content.isShown = false;
-
-        content.videoLoader.OnClipFinish -= VideoLoader_OnClipFinish;
 
         content.videoLoader.StopVideo();
     }
@@ -134,10 +142,14 @@ public class DisasterUIController : MonoBehaviour
 
     private void OnNoDisaster()
     {
-        disasterContent.disasterIcon.SetDisaster(null);
+        if (currentContentShown == disasterContent)
+        {
+            HideContent(disasterContent);
+            ShowContent(defaultContent);
 
-        HideContent(disasterContent);
-        ShowContent(defaultContent);
+        }
+
+        disasterContent.disasterIcon.SetDisaster(null);
     }
 
     private void DisasterIcon_OnClick(DisasterIcon obj)

@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 5628367126204968503}
+  clipExtension: .mp4
 --- !u!225 &9218087565685231867
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -171,14 +172,14 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: 
+  m_Url: Assets/Resources/Clips/World_Farm_Fine_Rabbit.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -578,7 +579,7 @@ MonoBehaviour:
   videoContent:
     canvasGroup: {fileID: 9218087565685231867}
     videoLoader: {fileID: 2314980912683972907}
-  tweenDuration: 1
+  tweenDuration: 0.5
   tweenEase: 21
   isDebug: 1
   defaultVideoClip: Clips/World_Farm_Fine_Rabbit

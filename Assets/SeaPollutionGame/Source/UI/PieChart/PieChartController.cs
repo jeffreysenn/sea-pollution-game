@@ -12,8 +12,9 @@ public class PieChartController : MonoBehaviour
     private PieChart pie = null;
     [SerializeField]
     private PieAnimation pieAnimation = null;
-    [SerializeField]
+
     private PollutantMaterialManager pollutantMaterialManager = null;
+
     [SerializeField]
     private TextMeshProUGUI txtSum = null;
 
@@ -28,6 +29,8 @@ public class PieChartController : MonoBehaviour
 
     void Start()
     {
+        pollutantMaterialManager = UIManager.Instance.pollutantMaterialManager;
+
         Clear();
         
         pollutantMaterialManager = FindObjectsOfType<PollutantMaterialManager>()[0];

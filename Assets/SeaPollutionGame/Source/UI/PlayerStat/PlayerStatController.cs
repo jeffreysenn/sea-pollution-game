@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class PlayerStatController : MonoBehaviour
 {
+    enum PlayerNumber { ONE, TWO };
+
     /*
      * TODO: Add Player Income data
      *       Add event when money of a player changes
@@ -19,6 +21,8 @@ public class PlayerStatController : MonoBehaviour
     WorldStateManager worldStateManager = null;
 
     [SerializeField]
+    private PlayerNumber playerNumber = PlayerNumber.ONE;
+    
     private Player player = null;
 
     [Header("Header")]
@@ -43,6 +47,14 @@ public class PlayerStatController : MonoBehaviour
 
     private void Start()
     {
+        if(playerNumber == PlayerNumber.ONE)
+        {
+            player = UIManager.Instance.player1;
+        } else if (playerNumber == PlayerNumber.TWO)
+        {
+            player = UIManager.Instance.player2;
+        }
+
         pieChart.SetPlayer(player);
         pieChart.Activate();
 

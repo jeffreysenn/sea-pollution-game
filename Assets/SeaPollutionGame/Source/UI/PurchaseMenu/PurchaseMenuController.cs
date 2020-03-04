@@ -18,11 +18,9 @@ public class PurchaseMenuController : MonoBehaviour
      *  Creates PurchasableIcon in the corresponding menu, with attributes
      *  Controls the display of each menu
      */
-
-    [SerializeField]
+     
     private AttribLoader attribLoader = null;
-
-    [SerializeField]
+    
     private PlayerController playerController = null;
 
     [SerializeField]
@@ -57,6 +55,9 @@ public class PurchaseMenuController : MonoBehaviour
 
     void Start()
     {
+        attribLoader = UIManager.Instance.attribLoader;
+        playerController = UIManager.Instance.playerController;
+
         ShowFactories();
 
         var factoryAttribs = purchasables[0].polluterAttribs;

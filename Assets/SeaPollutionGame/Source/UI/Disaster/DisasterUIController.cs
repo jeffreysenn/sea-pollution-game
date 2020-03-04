@@ -27,8 +27,7 @@ public class DisasterUIController : MonoBehaviour
         public VideoLoader videoLoader = null;
         public bool isShown { get; set; }
     }
-
-    [SerializeField]
+    
     private DisasterManager disasterManager = null;
 
     [SerializeField]
@@ -55,6 +54,8 @@ public class DisasterUIController : MonoBehaviour
 
     private void Start()
     {
+        disasterManager = UIManager.Instance.disasterManager;
+
         if (isDebug)
         {
             Disaster tempDefaultDisaster = new Disaster();

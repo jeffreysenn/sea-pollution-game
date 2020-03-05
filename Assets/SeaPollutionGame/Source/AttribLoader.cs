@@ -29,7 +29,7 @@ public class AttribLoader : MonoBehaviour
         [System.Serializable]
         public class PlacementJson
         {
-            public bool ocean = true, urban = true, agriculture = true, forest = true;
+            public bool urban = true, agriculture = true, forest = true, ocean = true;
             public PlaceType GetSignature()
             {
                 var sig = PlaceType.NONE;

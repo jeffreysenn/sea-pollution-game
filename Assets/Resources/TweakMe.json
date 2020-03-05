@@ -70,7 +70,8 @@
           { "disasterName": "Fire", "factor": 0.4 },
           { "disasterName": "Drought", "factor": 0 }
         ]
-      }
+      },
+      "placementAttrib": { "urban": true, "agriculture": false, "forest": false, "ocean": false }
     },
     {
       "title": "Slaughterhouse",

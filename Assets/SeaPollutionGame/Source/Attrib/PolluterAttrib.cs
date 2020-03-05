@@ -16,10 +16,11 @@ public class PolluterAttrib : System.ICloneable
 
     public PolluterAttrib(PolluterAttrib other)
     {
-        title = (string)other.title.Clone();
+        title = other.title;
         economicAttrib = (EconomicAttrib)other.economicAttrib.Clone();
         pollutionAttrib = (PollutionAttrib)other.pollutionAttrib.Clone();
         vulnerabilityAttrib = (VulnerabilityAttrib)other.vulnerabilityAttrib.Clone();
+        placementAttrib = other.placementAttrib;
     }
 
     public object Clone()

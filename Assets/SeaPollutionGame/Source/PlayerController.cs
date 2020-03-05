@@ -1,5 +1,4 @@
-﻿#define USE_OBJ_MENU
-#define CONTROLLER_HANDLES_DROP
+﻿#define CONTROLLER_HANDLES_DROP
 #define CONTROLLER_HANDLES_CANCEL_HOLD
 #define CONTROLLER_HANDLES_REMOVE
 
@@ -89,13 +88,6 @@ public class PlayerController : MonoBehaviour
         {
             case State.EMPTY:
                 {
-#if USE_OBJ_MENU
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        Polluter hitPolluter = GetMouseHitPolluter();
-                        if (hitPolluter) { Hold(hitPolluter); }
-                    }
-#endif
 #if CONTROLLER_HANDLES_REMOVE
                     if (Input.GetButtonDown("Fire2"))
                     {

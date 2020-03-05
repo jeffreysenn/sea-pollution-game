@@ -10,20 +10,26 @@ public class PolluterAttrib : System.ICloneable
     public EconomicAttrib economicAttrib = new EconomicAttrib { };
     public PollutionAttrib pollutionAttrib = new PollutionAttrib { };
     public VulnerabilityAttrib vulnerabilityAttrib = new VulnerabilityAttrib { };
+    public PlacementAttrib placementAttrib = new PlacementAttrib { };
+
+    public PolluterAttrib() { }
+
+    public PolluterAttrib(PolluterAttrib other)
+    {
+        title = (string)other.title.Clone();
+        economicAttrib = (EconomicAttrib)other.economicAttrib.Clone();
+        pollutionAttrib = (PollutionAttrib)other.pollutionAttrib.Clone();
+        vulnerabilityAttrib = (VulnerabilityAttrib)other.vulnerabilityAttrib.Clone();
+    }
 
     public object Clone()
     {
-        var clone = new PolluterAttrib { };
-        clone.title = (string)title.Clone();
-        clone.economicAttrib = (EconomicAttrib)economicAttrib.Clone();
-        clone.pollutionAttrib = (PollutionAttrib)pollutionAttrib.Clone();
-        clone.vulnerabilityAttrib = (VulnerabilityAttrib)vulnerabilityAttrib.Clone();
-        return clone;
+        return new PolluterAttrib(this);
     }
 
     public virtual string GetDescription()
     {
-        return title + ":\n" + 
+        return title + ":\n" +
                economicAttrib.GetDiscription() + pollutionAttrib.GetDiscription() + vulnerabilityAttrib.GetDescription();
     }
 }

@@ -31,6 +31,8 @@ public class WorldStateManager : MonoBehaviour
 
     public void AddEndPlayerTurnEventListener(int playerID, UnityAction action)
     {
+        if(!endPlayerTurnEvents.ContainsKey(playerID)) { Debug.LogError("[WorldStateManager] AddEndPlayerTurnEventListener: playerID " + playerID + " not found"); return; }
+
         endPlayerTurnEvents[playerID].AddListener(action);
     }
 

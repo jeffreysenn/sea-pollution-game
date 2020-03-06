@@ -16,6 +16,10 @@ public class Polluter : MonoBehaviour
     private EntityType entityType;
     [SerializeField]
     private TextMesh idTextMesh = null;
+    [SerializeField]
+    private Color onDeathColor = Color.red;
+    [SerializeField]
+    private Renderer meshRenderer = null;
 
     private PolluterAttrib polluterAttrib = null;
     protected WorldStateManager stateManager = null;
@@ -45,9 +49,9 @@ public class Polluter : MonoBehaviour
     public virtual void OnDeadth()
     {
         Mulfunction();
-        var meshFilter = GetComponentInChildren<MeshFilter>();
-        var renderer = meshFilter.GetComponent<Renderer>();
-        renderer.material.SetColor("_Color", Color.red);
+
+        meshRenderer.material.SetColor("_Color", onDeathColor);
+
     }
 
     protected void Awake()

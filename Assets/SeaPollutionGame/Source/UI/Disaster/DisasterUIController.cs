@@ -69,7 +69,7 @@ public class DisasterUIController : MonoBehaviour
         videoContent.videoLoader.OnClipFinish += VideoLoader_OnClipFinish;
 
         HideDirectContent(disasterContent);
-        HideVideo(videoContent);
+        HideDirectVideo(videoContent);
 
         ShowContent(defaultContent);
 
@@ -121,6 +121,14 @@ public class DisasterUIController : MonoBehaviour
     private void HideVideo(VideoContent content)
     {
         content.canvasGroup.DOFade(0f, tweenDuration).SetEase(tweenEase);
+        content.isShown = false;
+
+        content.videoLoader.StopVideo();
+    }
+
+    private void HideDirectVideo(VideoContent content)
+    {
+        content.canvasGroup.DOFade(0f, 0f).SetEase(tweenEase);
         content.isShown = false;
 
         content.videoLoader.StopVideo();

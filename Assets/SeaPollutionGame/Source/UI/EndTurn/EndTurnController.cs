@@ -23,6 +23,8 @@ public class EndTurnController : MonoBehaviour
 
     [SerializeField]
     private Button endTurnButton = null;
+    [SerializeField]
+    private Button newGameButton = null;
 
     [SerializeField]
     private List<InfoPlayerEndTurn> playersInfo;
@@ -39,6 +41,8 @@ public class EndTurnController : MonoBehaviour
         worldStateManager = WorldStateManager.FindWorldStateManager();
         if(worldStateManager == null) { Debug.LogError("[EndTurnController] Start: WorldStateManager not found"); return; }
 
+        newGameButton.gameObject.SetActive(false);
+
         endTurnButton.onClick.AddListener(OnBtnClick);
 
         currentPlayerID = worldStateManager.GetCurrentPlayerID();
@@ -46,20 +50,13 @@ public class EndTurnController : MonoBehaviour
         ShowPlayer(currentPlayerID);
 
         worldStateManager.AddEndPlayerTurnFinishEventListener(OnEndTurn);
+        worldStateManager.AddEndGameEventListener(OnEndGame);
     }
 
     private void OnDestroy()
     {
         endTurnButton.onClick.RemoveListener(OnBtnClick);
-    }
-
-    private void Update()
-    {
-        if (currentPlayerID != worldStateManager.GetCurrentPlayerID())
-        {
-            currentPlayerID = worldStateManager.GetCurrentPlayerID();
-            ShowPlayer(currentPlayerID);
-        }
+        newGameButton.onClick.RemoveListener(OnNewBtnClick);
     }
 
     private void OnEndTurn()
@@ -67,6 +64,18 @@ public class EndTurnController : MonoBehaviour
         currentPlayerID = worldStateManager.GetCurrentPlayerID();
 
         HidePlayer(currentPlayerID);
+        
+        ShowPlayersExcept(currentPlayerID);
+    }
+
+    private void OnEndGame()
+    {
+        HidePlayersExcept();
+
+        endTurnButton.gameObject.SetActive(false);
+
+        newGameButton.gameObject.SetActive(true);
+        newGameButton.onClick.AddListener(OnNewBtnClick);
     }
 
     private void OnBtnClick()
@@ -74,10 +83,28 @@ public class EndTurnController : MonoBehaviour
         worldStateManager.EndPlayerTurn();
     }
 
+    private void OnNewBtnClick()
+    {
+        UIManager.Instance.levelController.LoadRandomLevel();
+    }
+
     private void ShowPlayer(int id)
     {
         InfoPlayerEndTurn currentPlayer = playersInfo.Find(x => x.playerID == id);
+
+        currentPlayer.playerInformation.DOKill();
         currentPlayer.playerInformation.DOLocalMoveX(currentPlayer.tweenXOffset, tweenDuration).SetEase(tweenEase);
+    }
+
+    private void ShowPlayersExcept(int exceptFromId = 0)
+    {
+        foreach (InfoPlayerEndTurn ip in playersInfo)
+        {
+            if (ip.playerID != exceptFromId)
+            {
+                ShowPlayer(ip.playerID);
+            }
+        }
     }
 
     private void HidePlayersExcept(int exceptFromId = 0)
@@ -94,6 +121,8 @@ public class EndTurnController : MonoBehaviour
     private void HidePlayer(int id)
     {
         InfoPlayerEndTurn currentPlayer = playersInfo.Find(x => x.playerID == id);
+
+        currentPlayer.playerInformation.DOKill();
         currentPlayer.playerInformation.DOLocalMoveX(0, tweenDuration).SetEase(tweenEase);
     }
 }

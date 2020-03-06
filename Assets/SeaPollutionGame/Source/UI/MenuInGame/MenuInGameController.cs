@@ -13,6 +13,8 @@ public class MenuInGameController : MonoBehaviour
     [SerializeField]
     private Button btnRestart = null;
     [SerializeField]
+    private Button btnNewGame = null;
+    [SerializeField]
     private Button btnQuit = null;
 
     [SerializeField]
@@ -33,6 +35,7 @@ public class MenuInGameController : MonoBehaviour
 
         btnOpen.onClick.AddListener(OpenOnClick);
         btnRestart.onClick.AddListener(RestartOnClick);
+        btnNewGame.onClick.AddListener(NewGameOnClick);
         btnQuit.onClick.AddListener(QuitOnClick);
     }
 
@@ -40,6 +43,7 @@ public class MenuInGameController : MonoBehaviour
     {
         btnOpen.onClick.RemoveListener(OpenOnClick);
         btnRestart.onClick.RemoveListener(RestartOnClick);
+        btnNewGame.onClick.RemoveListener(NewGameOnClick);
         btnQuit.onClick.RemoveListener(QuitOnClick);
     }
 
@@ -55,6 +59,11 @@ public class MenuInGameController : MonoBehaviour
     }
 
     void RestartOnClick()
+    {
+        levelController.LoadRandomLevel();
+    }
+
+    void NewGameOnClick()
     {
         levelController.LoadRandomLevel();
     }

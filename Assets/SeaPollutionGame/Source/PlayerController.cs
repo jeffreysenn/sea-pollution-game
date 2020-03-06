@@ -48,29 +48,33 @@ public class PlayerController : MonoBehaviour
             {
                 var attrib = holdingPolluter.GetAttrib();
                 var placementAttrib = attrib.placementAttrib;
-                if (placementAttrib.CanPlaceOn(validSpace.GetPlaceType())
-                    && validSpace.ownerID == FindObjectOfType<WorldStateManager>().GetCurrentPlayerID())
+                if (placementAttrib.CanPlaceOn(validSpace.GetPlaceType()))
                 {
-                    validSpace.polluter = holdingPolluter;
+                    int currentPlayerID = FindObjectOfType<WorldStateManager>().GetCurrentPlayerID();
+                    if (!validSpace.HasOwner()) { validSpace.ownerID = currentPlayerID; }
+                    if (validSpace.ownerID == currentPlayerID)
+                    {
+                        validSpace.polluter = holdingPolluter;
 
-                    var targetPos = validSpace.transform.position;
-                    targetPos.y = holdingPolluter.transform.position.y;
+                        var targetPos = validSpace.transform.position;
+                        targetPos.y = holdingPolluter.transform.position.y;
 
-                    holdingPolluter.transform.parent = validSpace.transform;
+                        holdingPolluter.transform.parent = validSpace.transform;
 
-                    holdingPolluter.transform.position = targetPos;
-                    holdingPolluter.transform.rotation = Quaternion.Euler(0, 30, 0);
-                    holdingPolluter.transform.localScale = Vector3.one;
+                        holdingPolluter.transform.position = targetPos;
+                        holdingPolluter.transform.rotation = Quaternion.Euler(0, 30, 0);
+                        holdingPolluter.transform.localScale = Vector3.one;
 
-                    var textMesh = holdingPolluter.GetIdTextMesh();
-                    textMesh.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
-                    holdingPolluter.SetIdText(holdingPolluter.polluterId.ToString());
+                        var textMesh = holdingPolluter.GetIdTextMesh();
+                        textMesh.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
+                        holdingPolluter.SetIdText(holdingPolluter.polluterId.ToString());
 
-                    holdingPolluter.Activate();
+                        holdingPolluter.Activate();
 
-                    state = State.EMPTY;
+                        state = State.EMPTY;
 
-                    return true;
+                        return true;
+                    }
                 }
             }
         }

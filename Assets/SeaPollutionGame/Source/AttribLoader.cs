@@ -103,11 +103,12 @@ public class AttribLoader : MonoBehaviour
     {
 #if UNITY_WEBGL
         var data = Resources.Load<TextAsset>("TweakMe");
+        var jsonData = JsonUtility.FromJson<JsonData>(data.text);
 #else
         var path = Application.dataPath + "/Resources/TweakMe.json";
         var data = System.IO.File.ReadAllText(path);
-#endif
         var jsonData = JsonUtility.FromJson<JsonData>(data);
+#endif
         attribData = jsonData.ToAttribData();
 
         for (int i = 0; i != attribData.environmentPollutionList.Length; ++i)

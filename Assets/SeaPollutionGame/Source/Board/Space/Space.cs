@@ -16,4 +16,6 @@ public class Space : Node
         }
         return PlaceType.NONE;
     }
+
+    public bool HasOwner() { return ownerID > 0 || polluter; }
 }

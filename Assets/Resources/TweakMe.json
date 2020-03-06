@@ -183,7 +183,8 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
-      }
+      },
+      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true }
     },
     {
       "title": "Mussel farm",
@@ -199,7 +200,8 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
-      }
+      },
+      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true }
     },
     {
       "title": "Irrigation with sea water",

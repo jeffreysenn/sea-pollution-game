@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FactorySpace : Space {
+public class FactorySpace : Space
+{
     void ReportPollution()
     {
-        if (!polluter) { return; }
+        if (!HasOwner()) { return; }
         var stateManager = FindObjectOfType<WorldStateManager>().GetComponent<WorldStateManager>();
         stateManager.AddPollution(ownerID, PollutionMapType.PRODUCED, GetLocalPollution());
     }

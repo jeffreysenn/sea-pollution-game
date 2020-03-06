@@ -9,9 +9,7 @@ public struct PollutionAttrib : System.ICloneable
 
         public object Clone()
         {
-            var clone = (Emission)MemberwiseClone();
-            clone.pollutantName = (string)pollutantName.Clone();
-            return this;
+            return MemberwiseClone();
         }
     }
 
@@ -20,10 +18,13 @@ public struct PollutionAttrib : System.ICloneable
     public object Clone()
     {
         var clone = new PollutionAttrib { };
-        clone.emissions = new Emission[emissions.Length];
-        for (int i = 0; i != clone.emissions.Length; ++i)
+        if (emissions != null)
         {
-            clone.emissions[i] = (Emission)emissions[i].Clone();
+            clone.emissions = new Emission[emissions.Length];
+            for (int i = 0; i != clone.emissions.Length; ++i)
+            {
+                clone.emissions[i] = (Emission)emissions[i].Clone();
+            }
         }
         return clone;
     }

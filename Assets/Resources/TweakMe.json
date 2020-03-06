@@ -70,7 +70,8 @@
           { "disasterName": "Fire", "factor": 0.4 },
           { "disasterName": "Drought", "factor": 0 }
         ]
-      }
+      },
+      "placementAttrib": { "urban": true, "agriculture": false, "forest": false, "ocean": false }
     },
     {
       "title": "Slaughterhouse",
@@ -182,7 +183,8 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
-      }
+      },
+      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true }
     },
     {
       "title": "Mussel farm",
@@ -198,7 +200,8 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
-      }
+      },
+      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true }
     },
     {
       "title": "Irrigation with sea water",

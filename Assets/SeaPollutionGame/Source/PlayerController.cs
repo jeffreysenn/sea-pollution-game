@@ -1,5 +1,4 @@
-﻿#define USE_OBJ_MENU
-#define CONTROLLER_HANDLES_DROP
+﻿#define CONTROLLER_HANDLES_DROP
 #define CONTROLLER_HANDLES_CANCEL_HOLD
 #define CONTROLLER_HANDLES_REMOVE
 
@@ -45,28 +44,38 @@ public class PlayerController : MonoBehaviour
             var hitObj = hit.transform.gameObject;
             if (holdingPolluter.GetComponent<Factory>()) { validSpace = hitObj.GetComponent<FactorySpace>(); }
             else if (holdingPolluter.GetComponent<Filter>()) { validSpace = hitObj.GetComponent<FilterSpace>(); }
-            if (validSpace && validSpace.ownerID == FindObjectOfType<WorldStateManager>().GetCurrentPlayerID())
+            if (validSpace)
             {
-                validSpace.polluter = holdingPolluter;
+                var attrib = holdingPolluter.GetAttrib();
+                var placementAttrib = attrib.placementAttrib;
+                if (placementAttrib.CanPlaceOn(validSpace.GetPlaceType()))
+                {
+                    int currentPlayerID = FindObjectOfType<WorldStateManager>().GetCurrentPlayerID();
+                    if (!validSpace.HasOwner()) { validSpace.ownerID = currentPlayerID; }
+                    if (validSpace.ownerID == currentPlayerID)
+                    {
+                        validSpace.polluter = holdingPolluter;
 
-                var targetPos = validSpace.transform.position;
-                targetPos.y = holdingPolluter.transform.position.y;
+                        var targetPos = validSpace.transform.position;
+                        targetPos.y = holdingPolluter.transform.position.y;
 
-                holdingPolluter.transform.parent = validSpace.transform;
+                        holdingPolluter.transform.parent = validSpace.transform;
 
-                holdingPolluter.transform.position = targetPos;
-                holdingPolluter.transform.rotation = Quaternion.Euler(0, 30, 0);
-                holdingPolluter.transform.localScale = Vector3.one;
-                
-                var textMesh = holdingPolluter.GetIdTextMesh();
-                textMesh.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
-                holdingPolluter.SetIdText(holdingPolluter.polluterId.ToString());
-                
-                holdingPolluter.Activate();
+                        holdingPolluter.transform.position = targetPos;
+                        holdingPolluter.transform.rotation = Quaternion.Euler(0, 30, 0);
+                        holdingPolluter.transform.localScale = Vector3.one;
 
-                state = State.EMPTY;
+                        var textMesh = holdingPolluter.GetIdTextMesh();
+                        textMesh.gameObject.transform.rotation = Quaternion.Euler(90, 0, 0);
+                        holdingPolluter.SetIdText(holdingPolluter.polluterId.ToString());
 
-                return true;
+                        holdingPolluter.Activate();
+
+                        state = State.EMPTY;
+
+                        return true;
+                    }
+                }
             }
         }
 
@@ -89,13 +98,6 @@ public class PlayerController : MonoBehaviour
         {
             case State.EMPTY:
                 {
-#if USE_OBJ_MENU
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        Polluter hitPolluter = GetMouseHitPolluter();
-                        if (hitPolluter) { Hold(hitPolluter); }
-                    }
-#endif
 #if CONTROLLER_HANDLES_REMOVE
                     if (Input.GetButtonDown("Fire2"))
                     {

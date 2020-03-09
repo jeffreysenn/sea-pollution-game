@@ -71,7 +71,21 @@ public class DescriptionPopUp : MonoBehaviour
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
+    [Header("Raycast")]
+    [SerializeField]
+    private bool raycastPolluter = true;
+    [SerializeField]
+    private bool raycastBaltic = true;
+    [SerializeField]
+    private bool raycastNode = true;
+    [SerializeField]
+    private bool raycastFlow = true;
+    [SerializeField]
+    private bool raycastDisaster = false;
+
     private List<PopUpContent> allPopupContents = new List<PopUpContent>();
+
+    private bool currentFromGame = false;
     private GameObject currentGameObject = null;
     private PopUpContent currentShownContent = null;
 
@@ -99,12 +113,64 @@ public class DescriptionPopUp : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Input.mousePosition;
+        /*
+         * Raycast in game on click: 
+         *  hide the current shown content
+         *  
+         *  if hit show the content at the object position
+         *  if misses hide the current content
+         */
+
+        bool igRaycast = false;
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if(currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+
+            igRaycast = InGameRaycasting();
+
+            if(!igRaycast)
+            {
+                currentGameObject = null;
+
+                if (currentShownContent != null)
+                {
+                    HidePopup(currentShownContent);
+                }
+            } else
+            {
+                currentFromGame = true;
+                transform.position = Camera.main.WorldToScreenPoint(currentGameObject.transform.position);
+            }
+        }
+        
+        /*
+         * Raycast UI
+         *  if true: hide the current shown content if any and show the new one at mouse position
+         */
 
         bool uiRaycast = UIRaycasting();
-        bool igRaycast = InGameRaycasting();
 
-        if(!uiRaycast && !igRaycast)
+        if(uiRaycast)
+        {
+            currentFromGame = false;
+            transform.position = Input.mousePosition;
+        }
+
+        if(!uiRaycast && !currentFromGame)
+        {
+            currentGameObject = null;
+
+            if (currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+        }
+        /*
+        if (!uiRaycast && currentShownContent != null)
         {
             currentGameObject = null;
 
@@ -113,7 +179,7 @@ public class DescriptionPopUp : MonoBehaviour
                 HidePopup(currentShownContent);
             }
         }
-        
+        */
     }
 
     private bool UIRaycasting()
@@ -121,7 +187,7 @@ public class DescriptionPopUp : MonoBehaviour
         bool hasHit = false;
 
         pointerEventData = new PointerEventData(eventSystem);
-        pointerEventData.position = transform.position;
+        pointerEventData.position = Input.mousePosition;
         List<RaycastResult> graphicResults = new List<RaycastResult>();
         graphicRaycaster.Raycast(pointerEventData, graphicResults);
 
@@ -140,30 +206,33 @@ public class DescriptionPopUp : MonoBehaviour
 
                     if (CheckGraphicPolluter(purchasableIcon))
                     {
+
                         HidePopupOtherThan(polluterContent);
                         ShowPopup(polluterContent);
                     }
                 }
             }
 
-            /*
-            DisasterIcon disasterIcon = rr.gameObject.GetComponentInChildren<DisasterIcon>();
-            if(disasterIcon != null)
+            
+            if(raycastDisaster)
             {
-                hasHit = true;
-
-                if (disasterIcon.gameObject != currentGameObject)
+                DisasterIcon disasterIcon = rr.gameObject.GetComponentInChildren<DisasterIcon>();
+                if (disasterIcon != null)
                 {
-                    currentGameObject = disasterIcon.gameObject;
+                    hasHit = true;
 
-                    if (CheckGraphicDisaster(disasterIcon))
+                    if (disasterIcon.gameObject != currentGameObject)
                     {
-                        HidePopupOtherThan(disasterContent);
-                        ShowPopup(disasterContent);
+                        currentGameObject = disasterIcon.gameObject;
+
+                        if (CheckGraphicDisaster(disasterIcon))
+                        {
+                            HidePopupOtherThan(disasterContent);
+                            ShowPopup(disasterContent);
+                        }
                     }
                 }
             }
-            */
         }
 
         return hasHit;
@@ -180,29 +249,35 @@ public class DescriptionPopUp : MonoBehaviour
         {
             if (hit.transform.gameObject.GetComponent<DrawDescription>() != null)
             {
-                hasHit = true;
-
                 if (hit.transform.gameObject != currentGameObject)
                 {
                     currentGameObject = hit.transform.gameObject;
 
-                    if (CheckPolluter(currentGameObject))
+                    if (CheckPolluter(currentGameObject) && raycastPolluter)
                     {
+                        hasHit = true;
+
                         HidePopupOtherThan(polluterContent);
                         ShowPopup(polluterContent);
                     }
-                    else if (CheckBalticSea(currentGameObject))
+                    else if (CheckBalticSea(currentGameObject) && raycastBaltic)
                     {
+                        hasHit = true;
+
                         HidePopupOtherThan(balticContent);
                         ShowPopup(balticContent);
                     }
-                    else if (CheckNode(currentGameObject))
+                    else if (CheckNode(currentGameObject) && raycastNode)
                     {
+                        hasHit = true;
+
                         HidePopupOtherThan(nodeContent);
                         ShowPopup(nodeContent);
                     }
-                    else if (CheckFlow(currentGameObject))
+                    else if (CheckFlow(currentGameObject) && raycastFlow)
                     {
+                        hasHit = true;
+
                         HidePopupOtherThan(nodeContent);
                         ShowPopup(nodeContent);
                     }
@@ -400,7 +475,7 @@ public class DescriptionPopUp : MonoBehaviour
 
         if (!content.isShown)
         {
-            content.canvas.DOKill();
+            //content.canvas.DOKill();
             content.canvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
             content.isShown = true;
         }
@@ -412,7 +487,7 @@ public class DescriptionPopUp : MonoBehaviour
 
         if (content.isShown)
         {
-            content.canvas.DOKill();
+            //content.canvas.DOKill();
             content.canvas.DOFade(0f, tweenDuration).SetEase(tweenEase);
             content.isShown = false;
         }
@@ -437,4 +512,5 @@ public class DescriptionPopUp : MonoBehaviour
             }
         }
     }
+
 }

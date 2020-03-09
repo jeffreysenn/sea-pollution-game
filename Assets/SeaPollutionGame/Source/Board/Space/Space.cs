@@ -7,6 +7,12 @@ public class Space : Node
     public int ownerID = -1;
     private Polluter polluter = null;
 
+    public bool CanPlacePolluter(int playerID, Polluter polluter)
+    {
+        var placementAttrib = polluter.GetAttrib().placementAttrib;
+        return placementAttrib.CanPlaceOn(GetPlaceType()) && polluter == null && ownerID == playerID;
+    }
+
     public void SetPolluter(Polluter polluter)
     {
         this.polluter = polluter;
@@ -26,6 +32,16 @@ public class Space : Node
     }
 
     public bool HasOwner() { return ownerID > 0 || polluter; }
+
+    public void Highlight()
+    {
+
+    }
+
+    public void HideHighlight()
+    {
+
+    }
 
     private void Start()
     {

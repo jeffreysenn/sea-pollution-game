@@ -7,28 +7,21 @@ using System.Linq;
 public class Node : MonoBehaviour, IPollutionMapOwner
 {
     public class PollutionEvent : UnityEvent<Flow, PollutionMap> { }
-    public PollutionEvent addInputEvent = new PollutionEvent { };
-    public PollutionEvent removeInputEvent = new PollutionEvent { };
-    public PollutionEvent setLocalPollutionEvent = new PollutionEvent { };
-    public PollutionEvent clearLocalPollutionEvent = new PollutionEvent { };
+    public PollutionEvent inputEvent = new PollutionEvent { };
+    public PollutionEvent localPollutionEvent = new PollutionEvent { };
 
-    public PollutionEvent[] GetInputPollutionEvents()
-    {
-        return new PollutionEvent[] { addInputEvent, removeInputEvent };
-    }
+    public PollutionEvent GetInputEvent() { return inputEvent; }
 
     public PollutionEvent[] GetAllPollutionEvents()
     {
-        return new PollutionEvent[] { addInputEvent,
-                                      removeInputEvent ,
-                                      setLocalPollutionEvent,
-                                      clearLocalPollutionEvent
+        return new PollutionEvent[] { inputEvent,
+                                      localPollutionEvent,
         };
     }
 
     [SerializeField] private List<Flow> inFlows = new List<Flow> { };
     [SerializeField] private List<Flow> outFlows = new List<Flow> { };
-    [SerializeField] private Dictionary<Flow, PollutionMap> inFlowPollutions = new Dictionary<Flow, PollutionMap> { };
+    private Dictionary<Flow, PollutionMap> inFlowPollutions = new Dictionary<Flow, PollutionMap> { };
     private PollutionMap localPollution = new PollutionMap { };
 
     public List<Flow> GetInFlows() { return inFlows; }
@@ -44,7 +37,6 @@ public class Node : MonoBehaviour, IPollutionMapOwner
     public void AddInFlow(Flow flow)
     {
         inFlows.Add(flow);
-        inFlowPollutions.Add(flow, new PollutionMap { });
     }
 
     public void RemoveInFlow(Flow flow) { inFlows.Remove(flow); }
@@ -55,29 +47,21 @@ public class Node : MonoBehaviour, IPollutionMapOwner
     public void SetLocalPollution(PollutionMap map)
     {
         localPollution.CopyAssign(map);
-        setLocalPollutionEvent.Invoke(null, map);
-    }
+        localPollutionEvent.Invoke(null, map);
 
-    public void ClearLocalPollution()
-    {
-        var clearedLocalPollution = new PollutionMap(localPollution);
-        localPollution.Clear();
-        clearLocalPollutionEvent.Invoke(null, clearedLocalPollution);
+        OutPut();
     }
 
     public PollutionMap GetLocalPollution() { return localPollution; }
 
-    public void AddInput(Flow flow, PollutionMap map)
+    public void Input(Flow flow, PollutionMap map)
     {
-        inFlowPollutions[flow] = new PollutionMap(map);
-        addInputEvent.Invoke(flow, map);
-    }
+        if (!inFlowPollutions.ContainsKey(flow)) { inFlowPollutions.Add(flow, new PollutionMap { }); }
 
-    public void RemoveInput(Flow flow)
-    {
-        var removedPollution = new PollutionMap(inFlowPollutions[flow]);
-        inFlowPollutions.Remove(flow);
-        removeInputEvent.Invoke(flow, removedPollution);
+        inFlowPollutions[flow].CopyAssign(map);
+        inputEvent.Invoke(flow, map);
+
+        OutPut();
     }
 
     public void OutPut()
@@ -86,17 +70,7 @@ public class Node : MonoBehaviour, IPollutionMapOwner
         var diveded = Util.DivideMap(sum, outFlows.Count);
         foreach (var flow in outFlows)
         {
-            flow.SetInput(diveded);
-        }
-    }
-
-
-
-    public virtual void Start()
-    {
-        foreach (var pollutionEvent in GetAllPollutionEvents())
-        {
-            pollutionEvent.AddListener((Flow, PollutionMap) => { OutPut(); });
+            flow.Input(diveded);
         }
     }
 
@@ -106,10 +80,13 @@ public class Node : MonoBehaviour, IPollutionMapOwner
         foreach (var flow in outFlows) { flow.ClearInNode(); }
     }
 
+    public PollutionMap GetInputPollutionMap()
+    {
+        return Util.SumMap(inFlowPollutions);
+    }
+
     public PollutionMap GetPollutionMap()
     {
-        var sum = Util.SumMap(inFlowPollutions);
-        sum += localPollution;
-        return sum;
+        return GetInputPollutionMap() + localPollution;
     }
 }

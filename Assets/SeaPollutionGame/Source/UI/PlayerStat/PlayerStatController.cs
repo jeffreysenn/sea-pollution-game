@@ -41,7 +41,7 @@ public class PlayerStatController : MonoBehaviour
 
     private void Awake()
     {
-        worldStateManager = WorldStateManager.FindWorldStateManager();
+        worldStateManager = FindObjectOfType<WorldStateManager>();
         if (worldStateManager == null) { Debug.LogError("[PlayerStatController] Start: WorldStateManager not found"); return; }
     }
 
@@ -58,14 +58,14 @@ public class PlayerStatController : MonoBehaviour
         pieChart.SetPlayer(player);
         pieChart.Activate();
 
-        UpdateCoins(worldStateManager.GetMoney(player.id));
-        UpdateIncome(worldStateManager.GetIncome(player.id));
+        Update();
     }
 
     private void Update()
     {
-        UpdateCoins(worldStateManager.GetMoney(player.id));
-        UpdateIncome(worldStateManager.GetIncome(player.id));
+        var playerState = worldStateManager.GetPlayerState(player.id);
+        UpdateCoins(playerState.GetMoney());
+        UpdateIncome(playerState.GetTurnIncome());
     }
     
     private void UpdateCoins(float value)

@@ -31,14 +31,14 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        worldStateManager = WorldStateManager.FindWorldStateManager();
+        worldStateManager = FindObjectOfType<WorldStateManager>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!gameObject.activeInHierarchy) return;
 
-        if (worldStateManager.GetMoney(worldStateManager.GetCurrentPlayerID()) < polluterAttrib.economicAttrib.price) return;
+        if (worldStateManager.GetCurrentPlayerState().GetMoney() < polluterAttrib.economicAttrib.price) return;
 
         PolluterIcon newIcon = Instantiate(targetPolluterIcon, shopTransform);
         newIcon.transform.position = Input.mousePosition;
@@ -53,7 +53,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
-    public void SetPolluterAttributes(PolluterAttrib attrib){ polluterAttrib = attrib; }
+    public void SetPolluterAttributes(PolluterAttrib attrib) { polluterAttrib = attrib; }
 
     public PolluterAttrib GetPolluterAttributes() { return polluterAttrib; }
 

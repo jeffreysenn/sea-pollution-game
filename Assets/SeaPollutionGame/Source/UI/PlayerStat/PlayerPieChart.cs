@@ -11,7 +11,7 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
         public PollutionMapType pollutionMapType;
         public RectTransform targetTransform;
     }
-    
+
     [SerializeField]
     private PieChartController pollutionPie = null;
     [SerializeField]
@@ -25,26 +25,28 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        worldStateManager = WorldStateManager.FindWorldStateManager();
+        worldStateManager = FindObjectOfType<WorldStateManager>();
         if (worldStateManager == null) { Debug.LogError("[PlayerPieChart] Start: WorldStateManager not found"); return; }
 
     }
 
     public void Activate()
     {
-        if(player==null) { Debug.LogError("[PlayerPieChart] Active: Player not found"); return; }
+        if (player == null) { Debug.LogError("[PlayerPieChart] Active: Player not found"); return; }
 
-        worldStateManager.AddEndPlayerTurnFinishEventListener(UpdateCurrentPieChart);
-
-        pollutionPie.SetPollutionMap(worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType));
-
+        var playerState = worldStateManager.GetPlayerState(player.id);
+        foreach (var stateChangeEvent in playerState.GetStateChangeEvents())
+        {
+            stateChangeEvent.AddListener(UpdateCurrentPieChart);
+        }
+        pollutionPie.SetPollutionMap(worldStateManager.GetPlayerState(player.id).GetAccumulatedPollutionMap(showingOrder[currentTypeShown].pollutionMapType));
     }
 
     private void UpdateCurrentPieChart()
     {
-        PollutionMap map = worldStateManager.GetPollutionMap(player.id, showingOrder[currentTypeShown].pollutionMapType);
+        PollutionMap map = worldStateManager.GetPlayerState(player.id).GetAccumulatedPollutionMap(showingOrder[currentTypeShown].pollutionMapType);
 
-        if(showingOrder[currentTypeShown].pollutionMapType == PollutionMapType.FILTERED)
+        if (showingOrder[currentTypeShown].pollutionMapType == PollutionMapType.FILTERED)
         {
             map = Util.MultiplyMap(map, (-1));
         }

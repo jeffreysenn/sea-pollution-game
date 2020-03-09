@@ -38,7 +38,7 @@ public class EndTurnController : MonoBehaviour
 
     private void Start()
     {
-        worldStateManager = WorldStateManager.FindWorldStateManager();
+        worldStateManager = FindObjectOfType<WorldStateManager>();
         if(worldStateManager == null) { Debug.LogError("[EndTurnController] Start: WorldStateManager not found"); return; }
 
         newGameButton.gameObject.SetActive(false);

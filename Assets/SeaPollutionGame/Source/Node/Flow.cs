@@ -6,13 +6,12 @@ using UnityEngine.Events;
 public class Flow : MonoBehaviour, IPollutionMapOwner
 {
     public class PollutionEvent : UnityEvent<PollutionMap> { }
-    public PollutionEvent setInputEvent = new PollutionEvent { };
-    public PollutionEvent clearInputEvent = new PollutionEvent { };
+    private PollutionEvent inputEvent = new PollutionEvent { };
     [SerializeField] private float minDeltaInput = 0.01f;
 
-    public PollutionEvent[] GetAllPollutionEvents()
+    public PollutionEvent GetInputEvent()
     {
-        return new PollutionEvent[] { setInputEvent, clearInputEvent };
+        return inputEvent;
     }
 
     [SerializeField] Node inNode = null;
@@ -24,39 +23,25 @@ public class Flow : MonoBehaviour, IPollutionMapOwner
     public void SetOutNode(Node node) { outNode = node; }
     public void ClearOutNode() { outNode = null; }
 
-    public void SetInput(PollutionMap map)
+    public void Input(PollutionMap map)
     {
         if (Mathf.Abs(Util.SumMap(pollutionMap - map)) >= minDeltaInput)
         {
             pollutionMap = new PollutionMap(map);
-            setInputEvent.Invoke(map);
-        }
-    }
+            inputEvent.Invoke(map);
 
-    public void ClearInput()
-    {
-        var clearedInput = new PollutionMap(pollutionMap);
-        pollutionMap.Clear();
-        if (outNode) { outNode.RemoveInput(this); }
-        clearInputEvent.Invoke(clearedInput);
+            OutPut();
+        }
     }
 
     public void OutPut()
     {
-        if (outNode) { outNode.AddInput(this, pollutionMap); }
+        if (outNode) { outNode.Input(this, pollutionMap); }
     }
 
     public Node GetInNode() { return inNode; }
     public Node GetOutNode() { return outNode; }
     public PollutionMap GetPollutionMap() { return pollutionMap; }
-
-    private void Start()
-    {
-        foreach (var pollutionEvent in GetAllPollutionEvents())
-        {
-            pollutionEvent.AddListener((PollutionMap) => { OutPut(); });
-        }
-    }
 
     public void OnDisable()
     {

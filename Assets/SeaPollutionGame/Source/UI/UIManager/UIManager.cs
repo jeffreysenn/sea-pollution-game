@@ -9,8 +9,8 @@ public class UIManager : MonoBehaviour
      */
 
     [SerializeField]
-    private LevelController _levelController = null;
-    public LevelController levelController { get { return _levelController; } }
+    private SingletonLevelManager _levelController = null;
+    public SingletonLevelManager levelController { get { return _levelController; } }
 
     [SerializeField]
     private AttribLoader _attribLoader = null;

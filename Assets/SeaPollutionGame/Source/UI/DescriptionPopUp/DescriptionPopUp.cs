@@ -114,6 +114,18 @@ public class DescriptionPopUp : MonoBehaviour
     private void Update()
     {
         /*
+         * Close popup with right click
+         */
+
+        if(Input.GetButtonDown("Fire2"))
+        {
+            if(currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+        }
+
+        /*
          * Raycast in game on click: 
          *  hide the current shown content
          *  

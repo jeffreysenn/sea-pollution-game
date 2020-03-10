@@ -22,7 +22,8 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
     private PolluterAttrib polluterAttrib = null;
 
-    private GameObject polluterDragged = null;
+    private GameObject gameObjectDragged = null;
+    private Polluter polluterDragged = null;
 
     public int polluterId { get; set; }
 
@@ -41,30 +42,68 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
     public void SetText(string s) { targetText.text = s; }
 
+    private void Start()
+    {
+        gameObjectDragged = InstantiatePolluter();
+
+        if(polluterDragged == null) { Debug.LogError("[PolluterIcon] Start: Polluter null"); return; }
+
+        int id = UIManager.Instance.worldStateManager.GetCurrentPlayerID();
+
+        // spaces
+        Space[] spaces = UIManager.Instance.spaceManager.spaces;
+        foreach (Space s in spaces)
+        {
+            if(s.CanPlacePolluter(id, polluterDragged))
+            {
+                s.Highlight();
+            }
+        }
+
+        // flows
+        Flow[] flows = UIManager.Instance.flowManager.flows;
+        foreach(Flow f in flows)
+        {
+            
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Space[] spaces = UIManager.Instance.spaceManager.spaces;
+        foreach (Space s in spaces)
+        {
+            s.HideHighlight();
+        }
+    }
+
     private void Update()
     {
         transform.position = Input.mousePosition;
 
-        if(Input.GetButtonDown("Fire2")) { Destroy(gameObject); }
+        if(Input.GetButtonDown("Fire2")) {
+            RemoveDraggedObject();
+            Destroy(gameObject);
+        }
     }
 
     public GameObject InstantiatePolluter()
     {
-        polluterDragged = Instantiate(targetPolluter.gameObject, spaceForPolluter.transform);
+        GameObject g = Instantiate(targetPolluter.gameObject, spaceForPolluter.transform);
 
-        Polluter polluter = polluterDragged.GetComponentInChildren<Polluter>();
+        Polluter p = g.GetComponentInChildren<Polluter>();
+        
+        p.SetAttrib(polluterAttrib);
+        p.polluterId = polluterId;
 
-        polluter.SetAttrib(polluterAttrib);
-        polluter.polluterId = polluterId;
+        polluterDragged = p;
 
-        return polluterDragged;
+        return g;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GameObject instantiatedPolluter = InstantiatePolluter();
-
-        playerController.Hold(instantiatedPolluter.GetComponentInChildren<Polluter>());
+        playerController.Hold(polluterDragged);
 
         bool dropped = playerController.TryDrop();
 
@@ -74,43 +113,14 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         } else
         {
             playerController.CancelHold();
-            Destroy(instantiatedPolluter);
+            RemoveDraggedObject();
         }
+    }
 
-        /*
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit[] hits = Physics.RaycastAll(ray); //(transform.position, new Vector3(0, -1, 0));
-        Space validSpace = null;
-        
-
-        foreach (var hit in hits)
-        {
-            var hitObj = hit.transform.gameObject;
-
-            if(targetPolluter.GetComponentInChildren<Factory>() != null)
-            {
-                validSpace = hitObj.GetComponent<FactorySpace>();
-            }
-
-            if(targetPolluter.GetComponentInChildren<Filter>() != null)
-            {
-                validSpace = hitObj.GetComponent<FilterSpace>();
-            }
-
-            if (validSpace)
-            {
-                break;
-            }
-        }
-
-        if (validSpace && validSpace.ownerID == 
-            FindObjectOfType<WorldStateManager>().GetCurrentPlayerID())
-        {
-            GameObject instantiatedPolluter = InstantiatePolluter(validSpace);
-            
-
-            Destroy(gameObject);
-        }
-        */
+    private void RemoveDraggedObject()
+    {
+        Destroy(gameObjectDragged);
+        gameObjectDragged = null;
+        polluterDragged = null;
     }
 }

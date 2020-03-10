@@ -51,6 +51,9 @@ public class DescriptionPopUp : MonoBehaviour
 
     [SerializeField]
     private GameObject popUp = null;
+
+    [SerializeField]
+    private WorldWindow worldWindow = null;
     
     [SerializeField]
     private PolluterContent polluterContent = null;
@@ -88,6 +91,8 @@ public class DescriptionPopUp : MonoBehaviour
     private bool currentFromGame = false;
     private GameObject currentGameObject = null;
     private PopUpContent currentShownContent = null;
+
+    private bool imageToShow = false;
 
     GraphicRaycaster graphicRaycaster = null;
     PointerEventData pointerEventData = null;
@@ -335,6 +340,16 @@ public class DescriptionPopUp : MonoBehaviour
                 map = Util.MultiplyMap(map, (-1));
             }
 
+            VisualAttrib visualAttrib = attrib.visualAttrib;
+            if(visualAttrib.imageName != "")
+            {
+                worldWindow.imageLoader.LoadImage(visualAttrib.imageName);
+                imageToShow = true;
+            } else
+            {
+                imageToShow = false;
+            }
+
 
             SetPieChart(polluterContent.pieChart, map);
         }
@@ -353,6 +368,8 @@ public class DescriptionPopUp : MonoBehaviour
 
             disasterContent.textTitle.text = disaster.title;
         }
+
+        imageToShow = false;
 
         return hasFoundData;
     }
@@ -392,6 +409,17 @@ public class DescriptionPopUp : MonoBehaviour
             {
                 map = Util.MultiplyMap(map, (-1));
             }
+            
+            VisualAttrib visualAttrib = attrib.visualAttrib;
+            if (visualAttrib.imageName != "")
+            {
+                worldWindow.imageLoader.LoadImage(visualAttrib.imageName);
+                imageToShow = true;
+            } else
+            {
+                imageToShow = false;
+            }
+
 
             SetPieChart(polluterContent.pieChart, map);
         }
@@ -421,6 +449,8 @@ public class DescriptionPopUp : MonoBehaviour
 
                 SetPieChart(nodeContent.pieChart, map);
             }
+
+            imageToShow = false;
         }
 
         return hasFoundData;
@@ -449,6 +479,8 @@ public class DescriptionPopUp : MonoBehaviour
 
                 SetPieChart(nodeContent.pieChart, map);
             }
+
+            imageToShow = false;
         }
 
         return hasFoundData;
@@ -469,6 +501,8 @@ public class DescriptionPopUp : MonoBehaviour
                 
                 SetPieChart(balticContent.pieChart, map);
             }
+
+            imageToShow = false;
         }
 
         return hasFoundData;
@@ -490,6 +524,16 @@ public class DescriptionPopUp : MonoBehaviour
             //content.canvas.DOKill();
             content.canvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
             content.isShown = true;
+            
+        }
+
+        if (imageToShow)
+        {
+            worldWindow.ShowImage();
+        }
+        else
+        {
+            worldWindow.HideImage();
         }
     }
 
@@ -502,6 +546,8 @@ public class DescriptionPopUp : MonoBehaviour
             //content.canvas.DOKill();
             content.canvas.DOFade(0f, tweenDuration).SetEase(tweenEase);
             content.isShown = false;
+            
+            worldWindow.HideImage();
         }
     }
 
@@ -512,6 +558,9 @@ public class DescriptionPopUp : MonoBehaviour
         content.canvas.DOKill();
         content.canvas.DOFade(0f, 0f);
         content.isShown = false;
+
+        worldWindow.HideDirectImage();
+        
     }
 
     private void HidePopupOtherThan(PopUpContent content)

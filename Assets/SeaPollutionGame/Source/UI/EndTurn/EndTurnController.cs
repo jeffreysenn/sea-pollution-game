@@ -14,9 +14,9 @@ public class EndTurnController : MonoBehaviour
     [System.Serializable]
     class InfoPlayerEndTurn
     {
-        public int playerID;
-        public RectTransform playerInformation;
-        public float tweenXOffset;
+        public int playerID = 0;
+        public RectTransform playerInformation = null;
+        public float tweenXOffset = 0f;
     }
 
     WorldStateManager worldStateManager = null;
@@ -27,7 +27,7 @@ public class EndTurnController : MonoBehaviour
     private Button newGameButton = null;
 
     [SerializeField]
-    private List<InfoPlayerEndTurn> playersInfo;
+    private List<InfoPlayerEndTurn> playersInfo = null;
 
     [SerializeField]
     private float tweenDuration = 1f;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using System;
+using DG.Tweening;
 
 public class VideoLoader : MonoBehaviour
 {
@@ -76,6 +77,4 @@ public class VideoLoader : MonoBehaviour
 
         videoPlayer.Stop();
     }
-
-
 }

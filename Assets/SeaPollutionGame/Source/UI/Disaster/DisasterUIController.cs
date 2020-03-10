@@ -19,14 +19,6 @@ public class DisasterUIController : MonoBehaviour
         public CanvasGroup canvasGroup = null;
         public DisasterIcon disasterIcon = null;
     }
-
-    [System.Serializable]
-    class VideoContent
-    {
-        public CanvasGroup canvasGroup = null;
-        public VideoLoader videoLoader = null;
-        public bool isShown { get; set; }
-    }
     
     private DisasterManager disasterManager = null;
 
@@ -37,7 +29,7 @@ public class DisasterUIController : MonoBehaviour
     private DisasterContent disasterContent = null;
 
     [SerializeField]
-    private VideoContent videoContent = null;
+    private WorldWindow worldWindow = null;
 
     [SerializeField]
     private float tweenDuration = 0.25f;
@@ -66,10 +58,9 @@ public class DisasterUIController : MonoBehaviour
         defaultContent.disasterIcon.OnClick += DisasterIcon_OnClick;
         disasterContent.disasterIcon.OnClick += DisasterIcon_OnClick;
 
-        videoContent.videoLoader.OnClipFinish += VideoLoader_OnClipFinish;
+        worldWindow.videoLoader.OnClipFinish += VideoLoader_OnClipFinish;
 
         HideDirectContent(disasterContent);
-        HideDirectVideo(videoContent);
 
         ShowContent(defaultContent);
 
@@ -82,7 +73,7 @@ public class DisasterUIController : MonoBehaviour
         defaultContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
         disasterContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
 
-        videoContent.videoLoader.OnClipFinish -= VideoLoader_OnClipFinish;
+        worldWindow.videoLoader.OnClipFinish -= VideoLoader_OnClipFinish;
     }
 
 
@@ -92,8 +83,8 @@ public class DisasterUIController : MonoBehaviour
         content.canvasGroup.blocksRaycasts = true;
 
         currentContentShown = content;
-        
-        videoContent.videoLoader.LoadVideo(content.disasterIcon.GetDisaster().clipTitle);
+
+        worldWindow.videoLoader.LoadVideo(content.disasterIcon.GetDisaster().clipTitle);
     }
 
     private void HideContent(DisasterContent content)
@@ -106,32 +97,6 @@ public class DisasterUIController : MonoBehaviour
     {
         content.canvasGroup.DOFade(0f, 0f);
         content.canvasGroup.blocksRaycasts = false;
-    }
-
-    private void ShowVideo(VideoContent content)
-    {
-        content.videoLoader.StopVideo();
-
-        content.canvasGroup.DOFade(1f, tweenDuration).SetEase(tweenEase);
-        content.isShown = true;
-
-        content.videoLoader.PlayVideo();
-    }
-
-    private void HideVideo(VideoContent content)
-    {
-        content.canvasGroup.DOFade(0f, tweenDuration).SetEase(tweenEase);
-        content.isShown = false;
-
-        content.videoLoader.StopVideo();
-    }
-
-    private void HideDirectVideo(VideoContent content)
-    {
-        content.canvasGroup.DOFade(0f, 0f).SetEase(tweenEase);
-        content.isShown = false;
-
-        content.videoLoader.StopVideo();
     }
 
     // callbacks
@@ -163,21 +128,22 @@ public class DisasterUIController : MonoBehaviour
 
     private void DisasterIcon_OnClick(DisasterIcon obj)
     {
-        if (videoContent.isShown)
+
+        if (worldWindow.IsVideoShown())
         {
-            HideVideo(videoContent);
+            worldWindow.HideVideo();
         }
         else
         {
-            ShowVideo(videoContent);
+            worldWindow.ShowVideo();
         }
     }
 
     private void VideoLoader_OnClipFinish()
     {
-        if(videoContent.isShown)
+        if(worldWindow.IsVideoShown())
         {
-            HideVideo(videoContent);
+            worldWindow.HideVideo();
         } else
         {
 

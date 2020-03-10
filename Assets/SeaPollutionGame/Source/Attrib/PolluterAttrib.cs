@@ -11,6 +11,7 @@ public class PolluterAttrib : System.ICloneable
     public PollutionAttrib pollutionAttrib = new PollutionAttrib { };
     public VulnerabilityAttrib vulnerabilityAttrib = new VulnerabilityAttrib { };
     public PlacementAttrib placementAttrib = new PlacementAttrib { };
+    public VisualAttrib visualAttrib = new VisualAttrib { };
 
     public PolluterAttrib() { }
 
@@ -21,6 +22,7 @@ public class PolluterAttrib : System.ICloneable
         pollutionAttrib = (PollutionAttrib)other.pollutionAttrib.Clone();
         vulnerabilityAttrib = (VulnerabilityAttrib)other.vulnerabilityAttrib.Clone();
         placementAttrib = other.placementAttrib;
+        visualAttrib = (VisualAttrib)other.visualAttrib.Clone();
     }
 
     public object Clone()

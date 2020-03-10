@@ -33,6 +33,14 @@ public class UIManager : MonoBehaviour
     public WorldStateManager worldStateManager { get { return _worldStateManager; } }
 
     [SerializeField]
+    private SpaceManager _spaceManager = null;
+    public SpaceManager spaceManager { get { return _spaceManager; } }
+
+    [SerializeField]
+    private FlowManager _flowManager = null;
+    public FlowManager flowManager { get { return _flowManager; } }
+
+    [SerializeField]
     private Player _player1 = null;
     public Player player1 { get { return _player1; } }
 

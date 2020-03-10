@@ -18,9 +18,9 @@ public class PlayersPieChart : MonoBehaviour, IPointerClickHandler
     }
 
     [SerializeField]
-    private PlayerStatData player1;
+    private PlayerStatData player1 = null;
     [SerializeField]
-    private PlayerStatData player2;
+    private PlayerStatData player2 = null;
 
     [SerializeField]
     private PieChart pieChart = null;

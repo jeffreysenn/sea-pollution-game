@@ -9,25 +9,25 @@ public class PlayersStatController : MonoBehaviour
     class PlayerStat
     {
         public PlayerState playerState { get; set; }
-        public TextMeshProUGUI txtCoinsValue;
-        public TextMeshProUGUI txtIncomeValue;
+        public TextMeshProUGUI txtCoinsValue = null;
+        public TextMeshProUGUI txtIncomeValue = null;
         public Player player { get; set; }
     }
 
     [System.Serializable]
     class MapType
     {
-        public PollutionMapType mapType;
-        public string title;
+        public PollutionMapType mapType = PollutionMapType.NET;
+        public string title = "";
     }
 
     [SerializeField]
     private PlayersPieChart pieChart = null;
 
     [SerializeField]
-    private PlayerStat player1Stat;
+    private PlayerStat player1Stat = null;
     [SerializeField]
-    private PlayerStat player2Stat;
+    private PlayerStat player2Stat = null;
 
     [SerializeField]
     private List<MapType> typeOrder = null;

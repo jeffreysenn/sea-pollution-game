@@ -60,7 +60,7 @@ public class MenuInGameController : MonoBehaviour
 
     void RestartOnClick()
     {
-        levelController.LoadRandomLevel();
+        levelController.LoadCurrentLevel();
     }
 
     void NewGameOnClick()

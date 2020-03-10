@@ -22,6 +22,8 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
 
     private bool isSelected = false;
 
+    public bool isClickable = true;
+
     private void Start()
     {
         HideDirectSelected();
@@ -29,7 +31,8 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnClick?.Invoke(this);
+        if(isClickable)
+            OnClick?.Invoke(this);
     }
 
     public void Select()
@@ -45,17 +48,15 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
     public void Deselect()
     {
         if (!isSelected) return;
-
+        Debug.Log("deselect");
         isSelected = false;
 
         selectedCanvas.DOKill();
         selectedCanvas.DOFade(0f, tweenDuration).SetEase(tweenEase);
     }
 
-    private void HideDirectSelected()
+    public void HideDirectSelected()
     {
-        if (!isSelected) return;
-
         isSelected = false;
 
         selectedCanvas.DOKill();

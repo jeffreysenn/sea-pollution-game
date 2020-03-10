@@ -18,8 +18,6 @@ public class FlagMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject countrySelected = null;
-    [SerializeField]
-    private TextMeshProUGUI countrySelectedText = null;
 
     [SerializeField]
     private float tweenDuration = 0.5f;
@@ -82,10 +80,24 @@ public class FlagMenu : MonoBehaviour
 
     private void BtnStart_OnClick()
     {
-        countrySelectedText.text = GetSelectedFlag().ToString();
-        countrySelected.SetActive(true);
+        if(flagSelected != null)
+        {
+            FlagIcon ingameFlag = (FlagIcon) Instantiate(flagSelected, countrySelected.transform);
+            ingameFlag.HideDirectSelected();
+            ingameFlag.isClickable = false;
 
-        Hide();
+            RectTransform rectTransformFlag = ingameFlag.GetComponent<RectTransform>();
+            rectTransformFlag.anchorMin = new Vector2(0, 0);
+            rectTransformFlag.anchorMax = new Vector2(1, 1);
+
+            rectTransformFlag.offsetMin = Vector2.zero;
+            rectTransformFlag.offsetMax = Vector2.zero;
+
+            countrySelected.SetActive(true);
+
+            Hide();
+        }
+
     }
 
     public FlagType GetSelectedFlag() {

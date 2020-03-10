@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1063329369710182440, guid: 697da72451f40604bad6f8db6abbab93,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ab158cc6838ae404e8aa465724df27b3,
+        type: 3}
     - target: {fileID: 2484839671085188869, guid: 697da72451f40604bad6f8db6abbab93,
         type: 3}
       propertyPath: m_textInfo.characterCount

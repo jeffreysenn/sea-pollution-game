@@ -16,7 +16,7 @@ public class Space : Node
         return placementAttrib.CanPlaceOn(GetPlaceType()) && polluter == null && ownerID == playerID;
     }
 
-    public bool CanPlacePolluter(int playerID, PolluterAttrib polluterAttrib)
+    public virtual bool CanPlacePolluter(int playerID, PolluterAttrib polluterAttrib)
     {
         var placementAttrib = polluterAttrib.placementAttrib;
         return placementAttrib.CanPlaceOn(GetPlaceType()) && polluter == null && ownerID == playerID;

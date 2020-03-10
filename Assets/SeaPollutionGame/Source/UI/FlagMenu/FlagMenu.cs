@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class FlagMenu : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class FlagMenu : MonoBehaviour
 
     private List<FlagIcon> flags = null;
     private FlagIcon flagSelected = null;
+
+    public event Action<FlagType> OnStart;
 
     private void Start()
     {
@@ -96,6 +99,8 @@ public class FlagMenu : MonoBehaviour
             countrySelected.SetActive(true);
 
             Hide();
+
+            OnStart?.Invoke(GetSelectedFlag());
         }
 
     }

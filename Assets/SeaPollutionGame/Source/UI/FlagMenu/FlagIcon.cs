@@ -48,7 +48,7 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
     public void Deselect()
     {
         if (!isSelected) return;
-        Debug.Log("deselect");
+
         isSelected = false;
 
         selectedCanvas.DOKill();

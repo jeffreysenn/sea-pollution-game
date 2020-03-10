@@ -53,7 +53,6 @@ public class Space : Node
 
     private void Start()
     {
-        Highlight();
         var inputEvent = GetInputEvent();
         inputEvent.AddListener((Flow, PollutionMap) => OperatePolluter());
     }

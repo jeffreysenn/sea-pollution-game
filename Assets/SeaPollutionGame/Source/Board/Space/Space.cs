@@ -10,7 +10,7 @@ public class Space : Node
 
     private GameObject highlight = null;
 
-    public bool CanPlacePolluter(int playerID, Polluter polluter)
+    public virtual bool CanPlacePolluter(int playerID, Polluter polluter)
     {
         var placementAttrib = polluter.GetAttrib().placementAttrib;
         return placementAttrib.CanPlaceOn(GetPlaceType()) && polluter == null && ownerID == playerID;

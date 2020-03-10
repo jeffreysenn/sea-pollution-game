@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FactorySpace : Space {
-    public override bool CanPlacePolluter(int playerID, Polluter polluter)
+    public override bool CanPlacePolluter(int playerID, PolluterAttrib attrib)
     {
-        if(base.CanPlacePolluter(playerID, polluter))
+        if(base.CanPlacePolluter(playerID, attrib))
         {
-            return polluter.GetComponent<Factory>();
+            return attrib is FactoryAttrib;
         }
         return false;
     }

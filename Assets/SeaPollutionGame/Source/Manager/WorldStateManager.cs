@@ -105,7 +105,9 @@ public class WorldStateManager : MonoBehaviour
     public float GetEfficiency(int playerID)
     {
         var playerState = GetPlayerState(playerID);
-        return playerState.GetMoney() / Util.SumMap(playerState.GetAccumulatedPollutionMap(PollutionMapType.NET));
+        float emission = Util.SumMap(playerState.GetAccumulatedPollutionMap(PollutionMapType.NET));
+        if(emission == 0) { return 0; }
+        return playerState.GetMoney() / emission;
     }
 
     public float GetScore(int playerID)

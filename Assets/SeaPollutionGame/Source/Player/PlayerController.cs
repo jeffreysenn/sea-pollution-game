@@ -46,9 +46,8 @@ public class PlayerController : MonoBehaviour
             if (placementAttrib.CanPlaceOn(hitSpace.GetPlaceType()))
             {
                 int currentPlayerID = stateManager.GetCurrentPlayerID();
-                if (!hitSpace.HasOwner()) { hitSpace.ownerID = currentPlayerID; }
 
-                if (hitSpace.ownerID == currentPlayerID)
+                if (hitSpace.CanPlacePolluter(currentPlayerID, holdingPolluter.GetAttrib()))
                 {
                     Purchase();
                     hitSpace.SetPolluter(holdingPolluter);

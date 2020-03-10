@@ -186,17 +186,6 @@ public class DescriptionPopUp : MonoBehaviour
                 HidePopup(currentShownContent);
             }
         }
-        /*
-        if (!uiRaycast && currentShownContent != null)
-        {
-            currentGameObject = null;
-
-            if(currentShownContent != null)
-            {
-                HidePopup(currentShownContent);
-            }
-        }
-        */
     }
 
     private bool UIRaycasting()

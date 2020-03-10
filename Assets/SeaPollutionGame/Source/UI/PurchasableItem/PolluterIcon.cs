@@ -44,28 +44,20 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        gameObjectDragged = InstantiatePolluter();
-
-        if(polluterDragged == null) { Debug.LogError("[PolluterIcon] Start: Polluter null"); return; }
-
         int id = UIManager.Instance.worldStateManager.GetCurrentPlayerID();
 
         // spaces
         Space[] spaces = UIManager.Instance.spaceManager.spaces;
         foreach (Space s in spaces)
         {
-            if(s.CanPlacePolluter(id, polluterDragged))
+            if(s.CanPlacePolluter(id, polluterAttrib))
             {
                 s.Highlight();
             }
         }
 
         // flows
-        Flow[] flows = UIManager.Instance.flowManager.flows;
-        foreach(Flow f in flows)
-        {
-            
-        }
+        UIManager.Instance.flowManager.Show();
     }
 
     private void OnDestroy()
@@ -75,6 +67,8 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         {
             s.HideHighlight();
         }
+
+        UIManager.Instance.flowManager.Hide();
     }
 
     private void Update()
@@ -82,7 +76,6 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         transform.position = Input.mousePosition;
 
         if(Input.GetButtonDown("Fire2")) {
-            RemoveDraggedObject();
             Destroy(gameObject);
         }
     }
@@ -97,12 +90,15 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         p.polluterId = polluterId;
 
         polluterDragged = p;
+        gameObjectDragged = g;
 
         return g;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        InstantiatePolluter();
+
         playerController.Hold(polluterDragged);
 
         bool dropped = playerController.TryDrop();
@@ -113,14 +109,6 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         } else
         {
             playerController.CancelHold();
-            RemoveDraggedObject();
         }
-    }
-
-    private void RemoveDraggedObject()
-    {
-        Destroy(gameObjectDragged);
-        gameObjectDragged = null;
-        polluterDragged = null;
     }
 }

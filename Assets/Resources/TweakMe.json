@@ -9,6 +9,13 @@
     { "title": "Drought", "damage": 100, "chancePerTurn": 0.1 }
   ],
 
+    "baseEmission": {
+      "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 24 }] },
+      "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 120 }] },
+      "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
+      "ocean": { "emissions": [] }
+    },
+
   "factoryList": [
     {
       "title": "District heating Rural",
@@ -766,41 +773,10 @@
         ]
       }
     }
-  ],
-
-
-  "environmentPollutionList": [
-    {
-      "emissions": [
-        { "pollutantName":  "COx", "emissionPerTurn": 1 }
-      ]
-    },
-    {
-      "emissions": [
-        { "pollutantName":  "NOx", "emissionPerTurn": 1 }
-      ]
-    },
-    {
-      "emissions": [
-        { "pollutantName":  "NOx", "emissionPerTurn": 2 }
-      ]
-    },
-    {
-      "emissions": [
-        { "pollutantName":  "NOx", "emissionPerTurn": 1 }
-      ]
-    },
-    {
-      "emissions": [
-        { "pollutantName":  "COx", "emissionPerTurn": 2 }
-      ]
-    },
-    {
-      "emissions": [
-        { "pollutantName":  "COx", "emissionPerTurn": 1 }
-      ]
-    }
   ]
+
+
+
 
 
 }

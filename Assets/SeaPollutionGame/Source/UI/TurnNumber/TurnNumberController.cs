@@ -17,7 +17,7 @@ public class TurnNumberController : MonoBehaviour
 
     private void Start()
     {
-        worldStateManager = WorldStateManager.FindWorldStateManager();
+        worldStateManager = FindObjectOfType<WorldStateManager>();
         if (worldStateManager == null) { Debug.LogError("[TurnNumberController] Start: WorldStateManager not found"); return; }
 
         totalNumberTurn = worldStateManager.GetRemainingTurnCount();

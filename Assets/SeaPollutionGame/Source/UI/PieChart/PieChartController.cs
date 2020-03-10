@@ -33,7 +33,7 @@ public class PieChartController : MonoBehaviour
 
         Clear();
         
-        pollutantMaterialManager = FindObjectsOfType<PollutantMaterialManager>()[0];
+        pollutantMaterialManager = FindObjectOfType<PollutantMaterialManager>();
     }
 
     public void Draw()

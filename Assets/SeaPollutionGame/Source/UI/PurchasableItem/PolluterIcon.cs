@@ -60,21 +60,6 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         return polluterDragged;
     }
 
-    private void Drop_OnValidSpace(Drop drop)
-    {
-        drop.OnValidSpace -= Drop_OnValidSpace;
-        
-        Destroy(gameObject);
-    }
-
-    private void Drop_OnInvalidSpace(Drop drop)
-    {
-        drop.OnInvalidSpace -= Drop_OnInvalidSpace;
-
-        Destroy(polluterDragged);
-        Destroy(gameObject);
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         GameObject instantiatedPolluter = InstantiatePolluter();
@@ -119,7 +104,7 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         }
 
         if (validSpace && validSpace.ownerID == 
-            WorldStateManager.FindWorldStateManager().GetCurrentPlayerID())
+            FindObjectOfType<WorldStateManager>().GetCurrentPlayerID())
         {
             GameObject instantiatedPolluter = InstantiatePolluter(validSpace);
             

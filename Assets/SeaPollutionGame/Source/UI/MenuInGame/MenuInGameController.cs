@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class MenuInGameController : MonoBehaviour
 {
-    private LevelController levelController = null;
+    private SingletonLevelManager levelController = null;
 
     [SerializeField]
     private Button btnOpen = null;

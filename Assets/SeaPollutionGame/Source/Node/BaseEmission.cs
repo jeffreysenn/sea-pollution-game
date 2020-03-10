@@ -2,4 +2,4 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FilterSpace : Space { }
+public class BaseEmission : Node { }

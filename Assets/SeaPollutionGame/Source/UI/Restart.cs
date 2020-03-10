@@ -7,14 +7,15 @@ using System.Linq;
 
 public class Restart : MonoBehaviour
 {
-    LevelController levelController = null;
+    SingletonLevelManager levelManager = null;
 
     void Awake()
     {
         var button = GetComponent<Button>();
-        button.onClick.AddListener(()=> {
-            levelController = FindObjectOfType<LevelController>();
-            levelController.LoadRandomLevel();
+        button.onClick.AddListener(() =>
+        {
+            levelManager = FindObjectOfType<SingletonLevelManager>();
+            levelManager.LoadRandomLevel();
         });
     }
 }

@@ -306,4 +306,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75cb74786307124b9aa6d066df447db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleInGame: 1
+  visibleInGame: 0

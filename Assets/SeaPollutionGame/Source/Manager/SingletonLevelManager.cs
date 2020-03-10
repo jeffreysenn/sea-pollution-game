@@ -17,6 +17,11 @@ public class SingletonLevelManager : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 
+    public void LoadCurrentLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void LoadHomeLevel()
     {
         SceneManager.LoadScene(0);

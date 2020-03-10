@@ -5,7 +5,10 @@ using UnityEngine;
 public class Space : Node
 {
     public int ownerID = -1;
+    [SerializeField] private GameObject highlightPrefab = null;
     private Polluter polluter = null;
+
+    private GameObject highlight = null;
 
     public bool CanPlacePolluter(int playerID, Polluter polluter)
     {
@@ -35,16 +38,22 @@ public class Space : Node
 
     public void Highlight()
     {
+        if (!highlight)
+        {
+            highlight = Instantiate(highlightPrefab, transform);
+        }
 
+        highlight.SetActive(true);
     }
 
     public void HideHighlight()
     {
-
+        if (highlight) { highlight.SetActive(false); }
     }
 
     private void Start()
     {
+        Highlight();
         var inputEvent = GetInputEvent();
         inputEvent.AddListener((Flow, PollutionMap) => OperatePolluter());
     }

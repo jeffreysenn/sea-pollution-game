@@ -15,6 +15,7 @@ public class WorldStateManager : MonoBehaviour
     };
 
     [SerializeField] int turnCount = 12;
+
     SortedDictionary<int, PlayerState> playerStates = new SortedDictionary<int, PlayerState> { };
     [SerializeField] ScoreWeight scoreWeight = new ScoreWeight { };
     int whoseTurn = 0;

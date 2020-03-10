@@ -29,6 +29,10 @@ public class UIManager : MonoBehaviour
     public PlayerController playerController { get { return _playerController; } }
 
     [SerializeField]
+    private WorldStateManager _worldStateManager = null;
+    public WorldStateManager worldStateManager { get { return _worldStateManager; } }
+
+    [SerializeField]
     private Player _player1 = null;
     public Player player1 { get { return _player1; } }
 

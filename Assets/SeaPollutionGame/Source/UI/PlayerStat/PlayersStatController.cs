@@ -8,6 +8,7 @@ public class PlayersStatController : MonoBehaviour
     [System.Serializable]
     class PlayerStat
     {
+        public PlayerState playerState { get; set; }
         public TextMeshProUGUI txtCoinsValue;
         public TextMeshProUGUI txtIncomeValue;
         public Player player { get; set; }
@@ -34,18 +35,16 @@ public class PlayersStatController : MonoBehaviour
 
     private WorldStateManager worldStateManager = null;
 
-    private void Awake()
-    {
-        worldStateManager = WorldStateManager.FindWorldStateManager();
-        if (worldStateManager == null) { Debug.LogError("[PlayersStatController] Start: WorldStateManager not found"); return; }
-    }
-
     private void Start()
     {
         player1Stat.player = UIManager.Instance.player1;
         player2Stat.player = UIManager.Instance.player2;
-        
+
+        worldStateManager = UIManager.Instance.worldStateManager;
         worldStateManager.AddEndPlayerTurnFinishEventListener(UpdateEndTurn);
+
+        player1Stat.playerState = worldStateManager.GetPlayerState(player1Stat.player.id);
+        player2Stat.playerState = worldStateManager.GetPlayerState(player2Stat.player.id);
 
         pieChart.OnClick += PieChart_OnClick;
     }
@@ -69,10 +68,10 @@ public class PlayersStatController : MonoBehaviour
 
     private void UpdatePieChart()
     {
-        PollutionMap map1 = worldStateManager.GetPollutionMap(player1Stat.player.id, typeOrder[currentTypeIndex].mapType);
+        PollutionMap map1 = player1Stat.playerState.GetTurnPollutionMap(typeOrder[currentTypeIndex].mapType);
         float value1 = map1.GetTotalPollution();
 
-        PollutionMap map2 = worldStateManager.GetPollutionMap(player2Stat.player.id, typeOrder[currentTypeIndex].mapType);
+        PollutionMap map2 = player2Stat.playerState.GetTurnPollutionMap(typeOrder[currentTypeIndex].mapType);
         float value2 = map2.GetTotalPollution();
 
         if (typeOrder[currentTypeIndex].mapType == PollutionMapType.FILTERED)
@@ -89,11 +88,11 @@ public class PlayersStatController : MonoBehaviour
 
     private void UpdateValues()
     {
-        UpdateCoins(player1Stat.txtCoinsValue, worldStateManager.GetMoney(player1Stat.player.id));
-        UpdateCoins(player2Stat.txtCoinsValue, worldStateManager.GetMoney(player2Stat.player.id));
+        UpdateCoins(player1Stat.txtCoinsValue, player1Stat.playerState.GetMoney());
+        UpdateCoins(player2Stat.txtCoinsValue, player2Stat.playerState.GetMoney());
 
-        UpdateIncome(player1Stat.txtIncomeValue, worldStateManager.GetIncome(player1Stat.player.id));
-        UpdateIncome(player2Stat.txtIncomeValue, worldStateManager.GetIncome(player2Stat.player.id));
+        UpdateIncome(player1Stat.txtIncomeValue, player1Stat.playerState.GetTurnIncome());
+        UpdateIncome(player2Stat.txtIncomeValue, player2Stat.playerState.GetTurnIncome());
     }
 
     private void UpdateCoins(TextMeshProUGUI txt, float value)

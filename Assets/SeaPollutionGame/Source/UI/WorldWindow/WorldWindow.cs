@@ -49,9 +49,11 @@ public class WorldWindow : MonoBehaviour
         alertBackground.SetActive(false);
     }
 
-    public void ShowImage()
+    public void ShowImage(bool isAlert = false)
     {
-        if(!isImageShown)
+        if (isAlert) SetAlert();
+
+        if (!isImageShown)
         {
             content.DOKill();
             content.DOFade(1f, tweenDuration).SetEase(tweenEase);
@@ -68,6 +70,8 @@ public class WorldWindow : MonoBehaviour
 
     public void HideImage()
     {
+        RemoveAlert();
+
         if(isImageShown)
         {
             content.DOKill();
@@ -85,6 +89,8 @@ public class WorldWindow : MonoBehaviour
 
     public void HideDirectImage()
     {
+        RemoveAlert();
+
         content.DOKill();
         content.DOFade(0f, 0f).SetEase(tweenEase);
         imageCanvas.DOFade(0f, 0f).SetEase(tweenEase);
@@ -97,9 +103,11 @@ public class WorldWindow : MonoBehaviour
         }
     }
 
-    public void ShowVideo()
+    public void ShowVideo(bool isAlert = false)
     {
-        if(!isVideoShown)
+        if (isAlert) SetAlert();
+
+        if (!isVideoShown)
         {
             _videoLoader.StopVideo();
 
@@ -120,7 +128,9 @@ public class WorldWindow : MonoBehaviour
 
     public void HideVideo()
     {
-        if(isVideoShown)
+        RemoveAlert();
+
+        if (isVideoShown)
         {
             content.DOKill();
             content.DOFade(0f, tweenDuration).SetEase(tweenEase);
@@ -139,6 +149,8 @@ public class WorldWindow : MonoBehaviour
 
     public void HideDirectVideo()
     {
+        RemoveAlert();
+
         content.DOKill();
         content.DOFade(0f, 0f).SetEase(tweenEase);
         videoCanvas.DOFade(0f, 0f).SetEase(tweenEase);

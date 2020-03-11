@@ -128,14 +128,21 @@ public class DisasterUIController : MonoBehaviour
 
     private void DisasterIcon_OnClick(DisasterIcon obj)
     {
-
         if (worldWindow.IsVideoShown())
         {
             worldWindow.HideVideo();
         }
         else
         {
-            worldWindow.ShowVideo();
+            if (disasterContent.disasterIcon == obj)
+            {
+
+                worldWindow.ShowVideo(true);
+            } else
+            {
+                worldWindow.ShowVideo();
+            }
+
         }
     }
 

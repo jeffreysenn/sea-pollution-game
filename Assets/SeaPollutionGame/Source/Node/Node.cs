@@ -24,8 +24,26 @@ public class Node : MonoBehaviour, IPollutionMapOwner
     private Dictionary<Flow, PollutionMap> inFlowPollutions = new Dictionary<Flow, PollutionMap> { };
     private PollutionMap localPollution = new PollutionMap { };
 
-    public List<Flow> GetInFlows() { return inFlows; }
-    public List<Flow> GetOutFlows() { return outFlows; }
+    public List<Flow> GetFlows(PutDir dir)
+    {
+        if(dir == PutDir.IN) { return inFlows; }
+        if(dir == PutDir.OUT) { return outFlows; }
+        Debug.Assert(false);
+        return inFlows;
+    }
+
+    public void AddFlow(PutDir dir, Flow flow)
+    {
+        var flows = GetFlows(dir);
+        flows.Add(flow);
+    }
+
+    public void RemoveFlow(PutDir dir, Flow flow)
+    {
+        var flows = GetFlows(dir);
+        flows.Remove(flow);
+    }
+
     public List<Flow> GetAllFlows()
     {
         var result = new List<Flow> { };
@@ -34,15 +52,6 @@ public class Node : MonoBehaviour, IPollutionMapOwner
         return result;
     }
 
-    public void AddInFlow(Flow flow)
-    {
-        inFlows.Add(flow);
-    }
-
-    public void RemoveInFlow(Flow flow) { inFlows.Remove(flow); }
-
-    public void AddOutFlow(Flow flow) { outFlows.Add(flow); }
-    public void RemoveOutFlow(Flow flow) { outFlows.Remove(flow); }
 
     public void SetLocalPollution(PollutionMap map)
     {
@@ -72,12 +81,6 @@ public class Node : MonoBehaviour, IPollutionMapOwner
         {
             flow.Input(diveded);
         }
-    }
-
-    public void OnDisable()
-    {
-        foreach (var flow in inFlows) { flow.ClearOutNode(); }
-        foreach (var flow in outFlows) { flow.ClearInNode(); }
     }
 
     public PollutionMap GetInputPollutionMap()

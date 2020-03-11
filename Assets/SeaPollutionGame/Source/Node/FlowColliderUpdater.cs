@@ -13,8 +13,8 @@ public class FlowColliderUpdater : MonoBehaviour
         var flow = GetComponent<Flow>();
         if (flow)
         {
-            var originPos = flow.GetInNode().transform.position;
-            var targetPos = flow.GetOutNode().transform.position;
+            var originPos = flow.GetNode(PutDir.IN).transform.position;
+            var targetPos = flow.GetNode(PutDir.OUT).transform.position;
             var delta = targetPos - originPos;
             float distance = delta.magnitude;
             flow.transform.position = originPos + delta / 2;

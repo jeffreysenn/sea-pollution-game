@@ -12,8 +12,8 @@ public class LineRendererArrow : MonoBehaviour
 
     public void UpdateArrow()
     {
-        var origin = GetComponent<Flow>().GetInNode();
-        var target = GetComponent<Flow>().GetOutNode();
+        var origin = GetComponent<Flow>().GetNode(PutDir.IN);
+        var target = GetComponent<Flow>().GetNode(PutDir.OUT);
         if(!(origin && target)) { return; }
         if (cachedLineRenderer == null)
             cachedLineRenderer = GetComponent<LineRenderer>();

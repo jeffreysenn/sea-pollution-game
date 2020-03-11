@@ -3,6 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum PutDir
+{
+    IN = 0, OUT = 1,
+}
+
+public class PutDirUtil
+{
+    static public PutDir[] GetPutDirs()
+    {
+        return new PutDir[] { PutDir.IN, PutDir.OUT };
+    }
+
+    static public PutDir GetOpposite(PutDir dir)
+    {
+        return (PutDir)(((int)dir + 1) % 2);
+    }
+}
+
 public class Flow : MonoBehaviour, IPollutionMapOwner
 {
     public class PollutionEvent : UnityEvent<PollutionMap> { }
@@ -18,10 +36,11 @@ public class Flow : MonoBehaviour, IPollutionMapOwner
     [SerializeField] Node outNode = null;
     PollutionMap pollutionMap = new PollutionMap { };
 
-    public void SetInNode(Node node) { inNode = node; }
-    public void ClearInNode() { inNode = null; }
-    public void SetOutNode(Node node) { outNode = node; }
-    public void ClearOutNode() { outNode = null; }
+    public void SetNode(PutDir type, Node node)
+    {
+        ref var n = ref GetNodeRef(type);
+        n = node;
+    }
 
     public void Input(PollutionMap map)
     {
@@ -39,13 +58,18 @@ public class Flow : MonoBehaviour, IPollutionMapOwner
         if (outNode) { outNode.Input(this, pollutionMap); }
     }
 
-    public Node GetInNode() { return inNode; }
-    public Node GetOutNode() { return outNode; }
+    private ref Node GetNodeRef(PutDir type)
+    {
+        if (type == PutDir.IN) { return ref inNode; }
+        if (type == PutDir.OUT) { return ref outNode; }
+        return ref inNode;
+    }
+
+    public Node GetNode(PutDir type)
+    {
+        return GetNodeRef(type);
+    }
+
     public PollutionMap GetPollutionMap() { return pollutionMap; }
 
-    public void OnDisable()
-    {
-        if (inNode) { inNode.RemoveOutFlow(this); }
-        if (outNode) { outNode.RemoveInFlow(this); }
-    }
 }

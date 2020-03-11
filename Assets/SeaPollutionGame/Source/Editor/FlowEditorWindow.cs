@@ -13,7 +13,7 @@ public class FlowEditorWindow : EditorWindow
 
     float nodeRadius = 0.5f;
     float colliderWidth = 0.6f;
-    float colliderHeight = 1.0f;
+    float colliderHeight = 0.6f;
     float percentHead = 0.4f;
 
     [MenuItem("Window/" + "FlowEditor")]
@@ -56,7 +56,7 @@ public class FlowEditorWindow : EditorWindow
                 {
                     CreateFlow(hitNode);
                 }
-                else if (editingFlow.GetInNode() != hitNode)
+                else if (editingFlow.GetNode(PutDir.IN) != hitNode)
                 {
                     CompleteFlow(hitNode);
                 }
@@ -67,9 +67,7 @@ public class FlowEditorWindow : EditorWindow
         {
             if (currentEvent.type == EventType.MouseDown && currentEvent.button == 1)
             {
-                EditorUtility.SetDirty(editingFlow.GetInNode());
-                editingFlow.OnDisable();
-                DestroyImmediate(editingFlow.gameObject);
+                DeleteFlow(editingFlow);
                 editingFlow = null;
             }
             else
@@ -97,8 +95,8 @@ public class FlowEditorWindow : EditorWindow
             foreach (var obj in objs)
             {
                 {
-                    var flow = obj.GetComponent<Flow>();
-                    if (flow)
+                    var flows = obj.GetComponentsInChildren<Flow>();
+                    foreach (var flow in flows)
                     {
                         UpdateArrow(flow);
                         UpdateCollider(flow);
@@ -129,8 +127,8 @@ public class FlowEditorWindow : EditorWindow
 
     private void UpdateArrow(Flow flow)
     {
-        var origin = flow.GetInNode();
-        var target = flow.GetOutNode();
+        var origin = flow.GetNode(PutDir.IN);
+        var target = flow.GetNode(PutDir.OUT);
         if (!(origin && target)) { return; }
         var cachedLineRenderer = flow.GetComponent<LineRenderer>();
         cachedLineRenderer.widthCurve = new AnimationCurve(
@@ -150,8 +148,8 @@ public class FlowEditorWindow : EditorWindow
 
     private void UpdateCollider(Flow flow)
     {
-        var originPos = flow.GetInNode().transform.position;
-        var targetPos = flow.GetOutNode().transform.position;
+        var originPos = flow.GetNode(PutDir.IN).transform.position;
+        var targetPos = flow.GetNode(PutDir.OUT).transform.position;
         var delta = targetPos - originPos;
         float distance = delta.magnitude;
         flow.transform.position = originPos + delta / 2;
@@ -165,10 +163,10 @@ public class FlowEditorWindow : EditorWindow
     void CompleteFlow(Node hitNode)
     {
         EditorUtility.SetDirty(hitNode);
-        hitNode.AddInFlow(editingFlow);
+        hitNode.AddFlow(PutDir.IN, editingFlow);
 
         EditorUtility.SetDirty(editingFlow);
-        editingFlow.SetOutNode(hitNode);
+        editingFlow.SetNode(PutDir.OUT, hitNode);
 
         UpdateFlow(editingFlow);
 
@@ -180,8 +178,8 @@ public class FlowEditorWindow : EditorWindow
         var flowObj = (GameObject)PrefabUtility.InstantiatePrefab(flowPrefab, hitNode.transform.parent);
         editingFlow = flowObj.GetComponent<Flow>();
         EditorUtility.SetDirty(hitNode);
-        hitNode.AddOutFlow(editingFlow);
-        editingFlow.SetInNode(hitNode);
+        hitNode.AddFlow(PutDir.OUT, editingFlow);
+        editingFlow.SetNode(PutDir.IN, hitNode);
         var l = editingFlow.GetComponent<LineRenderer>();
         l.SetPosition(0, hitNode.transform.position);
     }
@@ -191,7 +189,7 @@ public class FlowEditorWindow : EditorWindow
         SceneView.duringSceneGui -= OnScene;
     }
 
-    void OnGUI()
+    private void OnGUI()
     {
         isEditing = EditorGUILayout.Toggle("Editing Mode On", isEditing);
         autoUpdateFlow = EditorGUILayout.Toggle("Automatically Update Flow", autoUpdateFlow);
@@ -200,7 +198,7 @@ public class FlowEditorWindow : EditorWindow
         colliderHeight = EditorGUILayout.FloatField("Collider Height", colliderHeight);
         percentHead = EditorGUILayout.FloatField("Percent Arrow Head", percentHead);
 
-        if (GUILayout.Button("Delete Flow"))
+        if (GUILayout.Button("Delete"))
         {
             var objs = Selection.gameObjects;
             foreach (var obj in objs)
@@ -208,10 +206,15 @@ public class FlowEditorWindow : EditorWindow
                 var flow = obj.GetComponent<Flow>();
                 if (flow)
                 {
-                    EditorUtility.SetDirty(flow.GetInNode());
-                    EditorUtility.SetDirty(flow.GetOutNode());
-                    flow.OnDisable();
-                    DestroyImmediate(flow.gameObject);
+                    DeleteFlow(flow);
+                    continue;
+                }
+
+                var node = obj.GetComponent<Node>();
+                if (node)
+                {
+                    DeleteNode(node);
+                    continue;
                 }
             }
         }
@@ -228,8 +231,8 @@ public class FlowEditorWindow : EditorWindow
                     {
                         if (editingFlow)
                         {
-                            var outNode = editingFlow.GetOutNode();
-                            if (outNode.GetInFlows().Find(f => f == editingFlow))
+                            var outNode = editingFlow.GetNode(PutDir.OUT);
+                            if (outNode && outNode.GetFlows(PutDir.IN).Find(f => f == editingFlow))
                             {
                                 continue;
                             }
@@ -240,5 +243,31 @@ public class FlowEditorWindow : EditorWindow
             }
             Selection.objects = buggedNodes.ToArray();
         }
+    }
+
+    private void DeleteFlow(Flow flow)
+    {
+        foreach (var dir in PutDirUtil.GetPutDirs())
+        {
+            var node = flow.GetNode(dir);
+            if (node)
+            {
+                EditorUtility.SetDirty(node);
+                node.RemoveFlow(PutDirUtil.GetOpposite(dir), flow);
+            }
+        }
+
+        DestroyImmediate(flow.gameObject);
+    }
+
+    private void DeleteNode(Node node)
+    {
+        var flows = node.GetAllFlows();
+        foreach (var flow in flows)
+        {
+            DeleteFlow(flow);
+        }
+
+        DestroyImmediate(node.gameObject);
     }
 }

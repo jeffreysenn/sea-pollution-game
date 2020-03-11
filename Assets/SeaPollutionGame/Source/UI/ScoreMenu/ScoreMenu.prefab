@@ -206,7 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreBar: {fileID: 8517730581461533862}
   resourcesChart: {fileID: 1454908132581477228}
-  pollutionChart: {fileID: 1454908131162914083}
+  totalChart: {fileID: 8381268951523986520}
+  producedChart: {fileID: 1454908131162914083}
   filteredChart: {fileID: 1454908130857375807}
   efficiencyChart: {fileID: 1454908131040842178}
   detailsTransform: {fileID: 8517730581072317298}
@@ -668,6 +669,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1609454528333061265}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8381268951523986520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7063282390834516169, guid: b2bc72dfdde2bd747a7ab66471397809,
+    type: 3}
+  m_PrefabInstance: {fileID: 1609454528333061265}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3450a1d1d134a2b438b9478abd16cec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8517730581095521189
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,6 +58,8 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
         // flows
         UIManager.Instance.flowManager.Show();
+
+        playerController.Hold();
     }
 
     private void OnDestroy()

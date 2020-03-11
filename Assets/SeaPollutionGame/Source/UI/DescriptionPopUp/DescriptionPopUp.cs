@@ -85,6 +85,9 @@ public class DescriptionPopUp : MonoBehaviour
     private bool raycastFlow = true;
     [SerializeField]
     private bool raycastDisaster = false;
+    [SerializeField]
+    private string blockingRaycastTag = "BlockingUI";
+    private bool isBlocked = false;
 
     private List<PopUpContent> allPopupContents = new List<PopUpContent>();
 
@@ -98,8 +101,12 @@ public class DescriptionPopUp : MonoBehaviour
     PointerEventData pointerEventData = null;
     EventSystem eventSystem = null;
 
+    private PlayerController playerController = null;
+
     private void Start()
     {
+        playerController = UIManager.Instance.playerController;
+
         graphicRaycaster = GetComponent<GraphicRaycaster>();
         if(graphicRaycaster == null) { Debug.LogError("[DescriptionPopUp] Start: no GraphicRaycaster found"); }
         eventSystem = EventSystem.current;
@@ -118,9 +125,15 @@ public class DescriptionPopUp : MonoBehaviour
 
     private void Update()
     {
-        /*
-         * Close popup with right click
-         */
+        if (playerController.GetState() == PlayerController.State.HOLDING)
+        {
+            if (currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+
+            return;
+        }
 
         if(Input.GetButtonDown("Fire2"))
         {
@@ -140,7 +153,7 @@ public class DescriptionPopUp : MonoBehaviour
 
         bool igRaycast = false;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !isBlocked)
         {
             if(currentShownContent != null)
             {
@@ -191,6 +204,7 @@ public class DescriptionPopUp : MonoBehaviour
     private bool UIRaycasting()
     {
         bool hasHit = false;
+        isBlocked = false;
 
         pointerEventData = new PointerEventData(eventSystem);
         pointerEventData.position = Input.mousePosition;
@@ -201,6 +215,12 @@ public class DescriptionPopUp : MonoBehaviour
 
         foreach (RaycastResult rr in graphicResults)
         {
+            if(rr.gameObject.CompareTag(blockingRaycastTag))
+            {
+                isBlocked = true;
+                return hasHit;
+            }
+
             PurchasableIcon purchasableIcon = rr.gameObject.GetComponentInChildren<PurchasableIcon>();
             if (purchasableIcon != null)
             {

@@ -16,13 +16,17 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float boardPlaneY = 0;
 
+    [SerializeField] private bool handlingDrop = false;
+    [SerializeField] private bool handlingCancelHold = false;
+    [SerializeField] private bool handlingRemove = true;
+
     State state = State.EMPTY;
     Polluter holdingPolluter = null;
     WorldStateManager stateManager = null;
 
     public State GetState() { return state; }
 
-    public void Hold(Polluter polluter)
+    public void Hold(Polluter polluter = null)
     {
         state = State.HOLDING;
         holdingPolluter = polluter;
@@ -30,8 +34,9 @@ public class PlayerController : MonoBehaviour
 
     public void CancelHold()
     {
-        Destroy(holdingPolluter.gameObject);
         state = State.EMPTY;
+        if (holdingPolluter != null)
+            Destroy(holdingPolluter.gameObject);
     }
 
     public bool TryDrop()
@@ -107,32 +112,36 @@ public class PlayerController : MonoBehaviour
         {
             case State.EMPTY:
                 {
-#if CONTROLLER_HANDLES_REMOVE
-                    if (Input.GetButtonDown("Fire2"))
+                    if(handlingRemove)
                     {
-                        var hitSpace = GetMouseHitComp<Space>();
-                        if (hitSpace) { TryRemove(hitSpace); }
+                        if (Input.GetButtonDown("Fire2"))
+                        {
+                            var hitSpace = GetMouseHitComp<Space>();
+                            if (hitSpace) { TryRemove(hitSpace); }
+                        }
                     }
-#endif
                 }
                 break;
             case State.HOLDING:
                 {
-                    FollowMouse();
+                    //FollowMouse();
 
-#if CONTROLLER_HANDLES_CANCEL_HOLD
-                    if (Input.GetButtonDown("Fire2"))
+                    if(handlingCancelHold)
                     {
-                        CancelHold();
+                        if (Input.GetButtonDown("Fire2"))
+                        {
+                            CancelHold();
+                        }
                     }
-#endif
+                    
+                    if(handlingDrop)
+                    {
+                        if (Input.GetButtonDown("Fire1"))
+                        {
+                            TryDrop();
+                        }
+                    }
 
-#if CONTROLLER_HANDLES_DROP
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        TryDrop();
-                    }
-#endif
                 }
                 break;
         }

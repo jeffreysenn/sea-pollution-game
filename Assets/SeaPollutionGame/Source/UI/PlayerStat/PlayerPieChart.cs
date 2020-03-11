@@ -34,7 +34,8 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
         {
             stateChangeEvent.AddListener(UpdateCurrentPieChart);
         }
-        pollutionPie.SetPollutionMap(worldStateManager.GetPlayerState(player.id).GetTurnPollutionMap(showingOrder[currentTypeShown].pollutionMapType));
+
+        UpdateCurrentPieChart();
     }
 
     private void UpdateCurrentPieChart()

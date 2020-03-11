@@ -12,7 +12,9 @@ public class ScoreMenu : MonoBehaviour
     [SerializeField]
     private CustomBarChart resourcesChart = null;
     [SerializeField]
-    private CustomBarChart pollutionChart = null;
+    private CustomBarChart totalChart = null;
+    [SerializeField]
+    private CustomBarChart producedChart = null;
     [SerializeField]
     private CustomBarChart filteredChart = null;
     [SerializeField]
@@ -63,6 +65,7 @@ public class ScoreMenu : MonoBehaviour
         if(isShown)
         {
             UpdateResources();
+            UpdateTotal();
             UpdatePollution();
             UpdateFiltered();
             UpdateEfficiency();
@@ -110,6 +113,21 @@ public class ScoreMenu : MonoBehaviour
         resourcesChart.SetLeftValue(ratioResources);
     }
 
+    private void UpdateTotal()
+    {
+        float player1Total = player1State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
+        float player2Total = player2State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
+
+        float ratioTotal = (player1Total / (player1Total + player2Total)) * 100;
+
+        if (player1Total + player2Total == 0)
+        {
+            ratioTotal = 50;
+        }
+
+        totalChart.SetLeftValue(ratioTotal);
+    }
+
     private void UpdatePollution()
     {
         float player1Pollution = player1State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
@@ -122,7 +140,7 @@ public class ScoreMenu : MonoBehaviour
             ratioPollution = 50;
         }
 
-        pollutionChart.SetLeftValue(ratioPollution);
+        producedChart.SetLeftValue(ratioPollution);
     }
 
     private void UpdateFiltered()

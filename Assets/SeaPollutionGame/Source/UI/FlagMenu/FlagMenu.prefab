@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4557956815282346133}
   m_Layer: 5
   m_Name: FlagSelected
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2741331207520867279}
   m_Layer: 5
   m_Name: Menu
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2741331207904099759}
   m_Layer: 5
   m_Name: Button_Start
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
+    m_PressedColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 2741331208504214915}
   m_Layer: 5
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 2741331208545149738}
   m_Layer: 5
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 2741331208600576067}
   m_Layer: 5
   m_Name: Content
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 2741331209081958453}
   m_Layer: 5
   m_Name: FlagMenu
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 2741331209187746665}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 2741331209300501608}
   m_Layer: 5
   m_Name: Flags
-  m_TagString: Untagged
+  m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

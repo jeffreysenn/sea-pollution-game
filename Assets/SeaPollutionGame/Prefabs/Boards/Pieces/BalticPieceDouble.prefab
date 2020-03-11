@@ -7749,6 +7749,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 2533029439806868688, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Sea
+      objectReference: {fileID: 0}
     - target: {fileID: 2913755438004030515, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
         type: 3}
       propertyPath: m_IsActive

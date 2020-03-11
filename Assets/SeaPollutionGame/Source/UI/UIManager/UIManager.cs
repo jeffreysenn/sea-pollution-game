@@ -17,6 +17,10 @@ public class UIManager : MonoBehaviour
     public AttribLoader attribLoader { get { return _attribLoader; } }
 
     [SerializeField]
+    private BaseEmissionManager _baseEmissionManager = null;
+    public BaseEmissionManager baseEmissionManager { get { return _baseEmissionManager; } }
+
+    [SerializeField]
     private DisasterManager _disasterManager = null;
     public DisasterManager disasterManager { get { return _disasterManager; } }
 

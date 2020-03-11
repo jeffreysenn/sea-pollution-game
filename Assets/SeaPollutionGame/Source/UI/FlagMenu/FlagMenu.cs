@@ -85,6 +85,8 @@ public class FlagMenu : MonoBehaviour
     {
         if(flagSelected != null)
         {
+            UIManager.Instance.baseEmissionManager.SetCountry(GetSelectedFlag().ToString().ToUpper());
+
             FlagIcon ingameFlag = (FlagIcon) Instantiate(flagSelected, countrySelected.transform);
             ingameFlag.HideDirectSelected();
             ingameFlag.isClickable = false;

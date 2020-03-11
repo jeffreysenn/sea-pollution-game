@@ -11,7 +11,7 @@
 
   "countryList": [
     {
-      "countryName": "Sweden",
+      "countryName": "SWEDEN",
       "baseEmission": {
          "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
          "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 12 }] },
@@ -20,7 +20,7 @@
       }
     },
     {
-      "countryName": "Finland",
+      "countryName": "FINLAND",
       "baseEmission": {
          "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
          "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 21 }] },
@@ -29,7 +29,7 @@
       }
      },
     {
-      "countryName": "Poland",
+      "countryName": "POLAND",
       "baseEmission": {
          "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
          "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 21 }] },

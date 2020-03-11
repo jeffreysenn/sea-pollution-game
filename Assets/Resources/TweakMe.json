@@ -13,26 +13,26 @@
     {
       "countryName": "Sweden",
       "baseEmission": {
-         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 24 }] },
-         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 120 }] },
-         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
+         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
+         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 12 }] },
+         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 18 }] },
          "ocean": { "emissions": [] }
       }
     },
     {
       "countryName": "Finland",
       "baseEmission": {
-         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 30 }] },
-         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 30 }] },
-         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
+         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
+         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 21 }] },
+         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
          "ocean": { "emissions": [] }
       },
       {
       "countryName": "Poland",
       "baseEmission": {
-         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 24 }] },
-         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 60 }] },
-         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 30 }] },
+         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
+         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 21 }] },
+         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 15 }] },
          "ocean": { "emissions": [] }
       }
     }

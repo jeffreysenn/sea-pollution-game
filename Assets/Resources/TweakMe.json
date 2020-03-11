@@ -9,12 +9,34 @@
     { "title": "Drought", "damage": 100, "chancePerTurn": 0.1 }
   ],
 
-    "baseEmission": {
-      "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 24 }] },
-      "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 120 }] },
-      "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
-      "ocean": { "emissions": [] }
+  "countryList": [
+    {
+      "countryName": "Sweden",
+      "baseEmission": {
+         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 24 }] },
+         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 120 }] },
+         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
+         "ocean": { "emissions": [] }
+      }
     },
+    {
+      "countryName": "Finland",
+      "baseEmission": {
+         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 30 }] },
+         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 30 }] },
+         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
+         "ocean": { "emissions": [] }
+      },
+      {
+      "countryName": "Poland",
+      "baseEmission": {
+         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 24 }] },
+         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 60 }] },
+         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 30 }] },
+         "ocean": { "emissions": [] }
+      }
+    }
+  ],
 
   "factoryList": [
     {

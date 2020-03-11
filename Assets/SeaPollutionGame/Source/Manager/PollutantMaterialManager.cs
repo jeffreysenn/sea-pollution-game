@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class PollutantMaterialManager : MonoBehaviour
 {
-    Dictionary<string, Material> materialMap = new Dictionary<string, Material> { };
+    private Dictionary<string, Material> materialMap = new Dictionary<string, Material> { };
+
+    public void SetPollutants(Pollutant[] pollutants)
+    {
+        foreach (var pollutant in pollutants)
+        {
+            AddPollutant(pollutant.title, pollutant.color);
+        }
+    }
 
     public void AddPollutant(string name, Color32 color)
     {

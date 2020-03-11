@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class AttribData
 {
+    public ScoreWeight scoreWeight = new ScoreWeight { };
     public Pollutant[] pollutantList;
     public Disaster[] disasterList;
     public CountryAttrib[] countryList;
@@ -67,8 +68,7 @@ public class AttribLoader : MonoBehaviour
             }
         }
 
-
-
+        public ScoreWeight scoreWeight;
         public Pollutant[] pollutantList;
         public Disaster[] disasterList;
         public CountryAttrib[] countryList;
@@ -79,6 +79,7 @@ public class AttribLoader : MonoBehaviour
         {
             return new AttribData
             {
+                scoreWeight = scoreWeight,
                 pollutantList = pollutantList,
                 disasterList = disasterList,
                 countryList = countryList,

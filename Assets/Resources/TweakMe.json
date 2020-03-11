@@ -1,4 +1,11 @@
 {
+  "scoreWeight": {
+    "money": 2,
+    "emission": -1,
+    "filtered": 1,
+    "efficiency": 2
+  },
+
   "pollutantList": [
     {
       "title": "Phosphor",

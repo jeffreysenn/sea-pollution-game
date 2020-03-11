@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ScoreWeight
+{
+    public float money = 1;
+    public float emission = -1;
+    public float filtered = 1;
+    public float efficiency = 2;
+};
+
 public class WorldStateManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class ScoreWeight
-    {
-        public float money = 1;
-        public float emission = -1;
-        public float filtered = 1;
-        public float efficiency = 2;
-    };
 
     [SerializeField] int turnCount = 12;
 
     SortedDictionary<int, PlayerState> playerStates = new SortedDictionary<int, PlayerState> { };
-    [SerializeField] ScoreWeight scoreWeight = new ScoreWeight { };
+    ScoreWeight scoreWeight = new ScoreWeight { };
     int whoseTurn = 0;
     Dictionary<int, UnityEvent> endPlayerTurnEvents = new Dictionary<int, UnityEvent> { };
 
@@ -25,6 +26,7 @@ public class WorldStateManager : MonoBehaviour
     UnityEvent endTurnEvent = new UnityEvent { };
     UnityEvent endGameEvent = new UnityEvent { };
 
+    public void SetScoreWeight(ScoreWeight weight) { scoreWeight = weight; }
 
     public void RegisterPlayer(int id)
     {
@@ -106,7 +108,7 @@ public class WorldStateManager : MonoBehaviour
     {
         var playerState = GetPlayerState(playerID);
         float emission = Util.SumMap(playerState.GetAccumulatedPollutionMap(PollutionMapType.NET));
-        if(emission == 0) { return 0; }
+        if (emission == 0) { return 0; }
         return playerState.GetMoney() / emission;
     }
 

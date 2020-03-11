@@ -96,6 +96,7 @@ public class DescriptionPopUp : MonoBehaviour
     private PopUpContent currentShownContent = null;
 
     private bool imageToShow = false;
+    private bool imageIsDisaster = false;
 
     GraphicRaycaster graphicRaycaster = null;
     PointerEventData pointerEventData = null;
@@ -359,6 +360,7 @@ public class DescriptionPopUp : MonoBehaviour
                 imageToShow = false;
             }
 
+            imageIsDisaster = false;
 
             SetPieChart(polluterContent.pieChart, map);
         }
@@ -428,7 +430,8 @@ public class DescriptionPopUp : MonoBehaviour
             {
                 imageToShow = false;
             }
-
+            
+            imageIsDisaster = !polluter.IsAlive();
 
             SetPieChart(polluterContent.pieChart, map);
         }
@@ -460,6 +463,7 @@ public class DescriptionPopUp : MonoBehaviour
             }
 
             imageToShow = false;
+            imageIsDisaster = false;
         }
 
         return hasFoundData;
@@ -490,6 +494,7 @@ public class DescriptionPopUp : MonoBehaviour
             }
 
             imageToShow = false;
+            imageIsDisaster = false;
         }
 
         return hasFoundData;
@@ -512,6 +517,7 @@ public class DescriptionPopUp : MonoBehaviour
             }
 
             imageToShow = false;
+            imageIsDisaster = false;
         }
 
         return hasFoundData;
@@ -538,7 +544,7 @@ public class DescriptionPopUp : MonoBehaviour
 
         if (imageToShow)
         {
-            worldWindow.ShowImage();
+            worldWindow.ShowImage(imageIsDisaster);
         }
         else
         {

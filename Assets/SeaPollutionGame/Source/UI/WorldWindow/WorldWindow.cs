@@ -52,6 +52,7 @@ public class WorldWindow : MonoBehaviour
     public void ShowImage(bool isAlert = false)
     {
         if (isAlert) SetAlert();
+        else RemoveAlert();
 
         if (!isImageShown)
         {
@@ -106,6 +107,7 @@ public class WorldWindow : MonoBehaviour
     public void ShowVideo(bool isAlert = false)
     {
         if (isAlert) SetAlert();
+        else RemoveAlert();
 
         if (!isVideoShown)
         {

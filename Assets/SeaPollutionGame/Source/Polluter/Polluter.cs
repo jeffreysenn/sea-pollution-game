@@ -21,6 +21,8 @@ public class Polluter : MonoBehaviour
     private Color onDeathColor = Color.red;
     [SerializeField]
     private Renderer meshRenderer = null;
+    [SerializeField]
+    private Health health;
 
     private PolluterAttrib polluterAttrib = null;
 
@@ -100,11 +102,12 @@ public class Polluter : MonoBehaviour
 
     protected void Awake()
     {
-        var health = GetComponent<Health>();
         health.AddDeathEventListener(OnDeadth);
     }
 
     public virtual void Mulfunction() { }
 
     public EntityType GetEntityType() { return entityType; }
+
+    public bool IsAlive() { return health.IsAlive(); }
 }

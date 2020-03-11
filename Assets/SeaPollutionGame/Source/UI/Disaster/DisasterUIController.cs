@@ -110,12 +110,16 @@ public class DisasterUIController : MonoBehaviour
 
         disasterContent.disasterIcon.SetDisaster(disaster);
 
+        worldWindow.SetAlert();
+
         HideContent(defaultContent);
         ShowContent(disasterContent);
     }
 
     private void OnNoDisaster()
     {
+        worldWindow.RemoveAlert();
+
         if (currentContentShown == disasterContent)
         {
             HideContent(disasterContent);
@@ -136,7 +140,6 @@ public class DisasterUIController : MonoBehaviour
         {
             if (disasterContent.disasterIcon == obj)
             {
-
                 worldWindow.ShowVideo(true);
             } else
             {

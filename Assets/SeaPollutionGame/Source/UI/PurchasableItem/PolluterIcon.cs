@@ -78,6 +78,7 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
         transform.position = Input.mousePosition;
 
         if(Input.GetButtonDown("Fire2")) {
+            playerController.CancelHold();
             Destroy(gameObject);
         }
     }

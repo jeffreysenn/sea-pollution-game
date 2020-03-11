@@ -138,6 +138,8 @@ public class DescriptionPopUp : MonoBehaviour
 
         if(Input.GetButtonDown("Fire2"))
         {
+            currentGameObject = null;
+
             if(currentShownContent != null)
             {
                 HidePopup(currentShownContent);

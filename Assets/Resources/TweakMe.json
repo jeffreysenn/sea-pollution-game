@@ -55,7 +55,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName":  "DistrictHeatingRural"
+        "imageName":  "Default"
       }
     },
     {
@@ -71,6 +71,9 @@
           { "disasterName": "Fire", "factor": 0.2 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "GreenHouse"
       }
     },
     {
@@ -87,6 +90,9 @@
           { "disasterName": "Fire", "factor": 0.4 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -104,7 +110,10 @@
           { "disasterName": "Drought", "factor": 0 }
         ]
       },
-      "placementAttrib": { "urban": true, "agriculture": false, "forest": false, "ocean": false }
+      "placementAttrib": { "urban": true, "agriculture": false, "forest": false, "ocean": false },
+      "visualAttrib": {
+        "imageName":  "Default"
+      }
     },
     {
       "title": "Slaughterhouse",
@@ -120,6 +129,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -136,6 +148,9 @@
           { "disasterName": "Fire", "factor": 0.5 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -152,6 +167,9 @@
           { "disasterName": "Fire", "factor": 0.5 },
           { "disasterName": "Drought", "factor": 1 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -168,6 +186,9 @@
           { "disasterName": "Fire", "factor": 0.5 },
           { "disasterName": "Drought", "factor": 1 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "IntensifyCropProduction"
       }
     },
     {
@@ -184,10 +205,13 @@
           { "disasterName": "Fire", "factor": 0.4 },
           { "disasterName": "Drought", "factor": 0.4 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
-      "title": "Iintensify biomass removal from forests",
+      "title": "Intensify biomass removal from forests",
       "economicAttrib": { "price": 40, "profitPerTurn": 5, "removalCost": 0 },
       "pollutionAttrib": {
         "emissions": [
@@ -200,6 +224,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0.4 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "IntensifyBiomassRemovalForest"
       }
     },
     {
@@ -217,7 +244,10 @@
           { "disasterName": "Drought", "factor": 0 }
         ]
       },
-      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true }
+      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true },
+      "visualAttrib": {
+        "imageName":  "Default"
+      }
     },
     {
       "title": "Mussel farm",
@@ -234,7 +264,10 @@
           { "disasterName": "Drought", "factor": 0 }
         ]
       },
-      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true }
+      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true },
+      "visualAttrib": {
+        "imageName":  "Default"
+      }
     },
     {
       "title": "Irrigation with sea water",
@@ -250,6 +283,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0.4 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "IrrigationWithSeaWater"
       }
     },
     {
@@ -266,6 +302,9 @@
           { "disasterName": "Fire", "factor": 0.5 },
           { "disasterName": "Drought", "factor": 0.5 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Factory1"
       }
     },
     {
@@ -282,6 +321,9 @@
           { "disasterName": "Fire", "factor": 0.5 },
           { "disasterName": "Drought", "factor": 0.5 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Factory2"
       }
     },
     {
@@ -298,6 +340,9 @@
           { "disasterName": "Fire", "factor": 0.5 },
           { "disasterName": "Drought", "factor": 0.5 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Factory3"
       }
     }
   ],
@@ -317,6 +362,9 @@
           { "disasterName": "Fire", "factor": 1 },
           { "disasterName": "Drought", "factor": 1 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Wetlands"
       }
     },
     {
@@ -333,6 +381,9 @@
           { "disasterName": "Fire", "factor": 0.5 },
           { "disasterName": "Drought", "factor": 0.5 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "BufferStrips"
       }
     },
     {
@@ -349,6 +400,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "CatchCrops"
       }
     },
     {
@@ -365,6 +419,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "CropRotation1"
       }
     },
     {
@@ -381,6 +438,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "RetentionPonds"
       }
     },
     {
@@ -397,6 +457,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "BiocharAgriculture"
       }
     },
     {
@@ -413,6 +476,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "BiocharForest"
       }
     },
     {
@@ -429,6 +495,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -445,6 +514,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -461,6 +533,9 @@
           { "disasterName": "Fire", "factor": 1 },
           { "disasterName": "Drought", "factor": 1 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -477,6 +552,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -493,6 +571,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -509,6 +590,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -525,6 +609,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -541,6 +628,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -557,6 +647,9 @@
           { "disasterName": "Fire", "factor": 1 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -573,6 +666,9 @@
           { "disasterName": "Fire", "factor": 0.4 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -589,6 +685,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -605,6 +704,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -621,6 +723,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -637,6 +742,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "ImprovingOn-siteTreatments"
       }
     },
     {
@@ -653,6 +761,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -669,6 +780,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -685,6 +799,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -701,6 +818,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -717,6 +837,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -733,6 +856,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -749,6 +875,9 @@
           { "disasterName": "Fire", "factor": 0 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -765,6 +894,9 @@
           { "disasterName": "Fire", "factor": 1 },
           { "disasterName": "Drought", "factor": 1 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "IrrigationWithSeaWater"
       }
     },
     {
@@ -781,6 +913,9 @@
           { "disasterName": "Fire", "factor": 0.4 },
           { "disasterName": "Drought", "factor": 0.4 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     },
     {
@@ -797,6 +932,9 @@
           { "disasterName": "Fire", "factor": 0.4 },
           { "disasterName": "Drought", "factor": 0.4 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "Default"
       }
     }
   ]

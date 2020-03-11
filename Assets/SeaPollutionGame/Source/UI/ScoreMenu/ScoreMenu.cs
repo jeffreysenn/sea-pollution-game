@@ -176,43 +176,21 @@ public class ScoreMenu : MonoBehaviour
     {
         float value1 = v1;
         float value2 = v2;
-        if (value1 < 0)
-        {
-            value1 *= -1;
 
-            if (value2 < 0)
-            {
-                value2 *= -1;
-            }
-            else
-            {
-                value2 += value1;
-            }
-        }
+        if (value1 < 0) value1 = 0;
+        if (value2 < 0) value2 = 0;
 
-        if (value2 < 0)
-        {
-            value2 *= -1;
+        float ratio = 0f;
 
-            if (value2 < 0)
-            {
-                value2 *= -1;
-            }
-            else
-            {
-                value1 += value2;
-            }
 
-        }
-
-        float ratio = (value1 / (value1 + value2)) * 100;
-        //Debug.Log("\t" + value1 + " " + value2 + " " + ratio + " (" + (value1 + value2) + ")");
-
-        if ((value1 + value2 == 0))
+        if(value1 == 0 && value2 == 0)
         {
             ratio = 50;
+        } else
+        {
+            ratio = (value1) / (value1 + value2) * 100f;
         }
-
+        
         if (value1 == Mathf.Infinity || value2 == Mathf.Infinity)
         {
             Debug.LogWarning("sanity infinity");

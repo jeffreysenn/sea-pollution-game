@@ -26,8 +26,9 @@
          "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 21 }] },
          "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
          "ocean": { "emissions": [] }
-      },
-      {
+      }
+     },
+    {
       "countryName": "Poland",
       "baseEmission": {
          "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },

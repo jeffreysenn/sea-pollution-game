@@ -38,18 +38,26 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
 
     public void SetLeftValue(float d)
     {
-        if(d < 0 || d > 100) {
-            //Debug.LogWarning("[CustomBarChart] SetLeftValue: " + d + " is not between 0 and 100");
+        float max = 100;
+
+        if(d < 0)
+        {
+            d *= -1;
+            max += d;
+        }
+
+        if(d > 100) {
+            Debug.LogWarning("[CustomBarChart] SetLeftValue: " + d + " is above 100");
             return;
         }
 
         float value = d;
         if (value < threshold) value = threshold;
-        if (value > 100 - threshold) value = 100 - threshold;
+        if (value > max - threshold) value = max - threshold;
 
-        float leftValue = (widthTotalContent * value) / 100;
+        float leftValue = (widthTotalContent * value) / max;
 
-        float rightValue = (widthTotalContent * (100 - value)) / 100;
+        float rightValue = (widthTotalContent * (max - value)) / max;
 
         leftContent.sizeDelta = new Vector2((float) leftValue, leftContent.sizeDelta.y);
         rightContent.sizeDelta = new Vector2((float) rightValue, leftContent.sizeDelta.y);
@@ -58,10 +66,12 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
         rightText.text = Math.Round((100 - d), textDecimal).ToString() + textSuffixe;
     }
 
+    /*
     public void SetRightValue(float d)
     {
         SetLeftValue(100 - d);
     }
+    */
 
     public void OnPointerClick(PointerEventData eventData)
     {

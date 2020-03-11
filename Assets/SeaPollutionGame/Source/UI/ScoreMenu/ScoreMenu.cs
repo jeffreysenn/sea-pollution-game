@@ -84,48 +84,24 @@ public class ScoreMenu : MonoBehaviour
     {
         float player1Score = worldStateManager.GetScore(player1.id);
         float player2Score = worldStateManager.GetScore(player2.id);
-        float ratioScore = (player1Score / (player1Score + player2Score)) * 100;
 
-        if ((player1Score + player2Score == 0))
-        {
-            ratioScore = 50;
-        }
-
-        if (player1Score == Mathf.Infinity || player2Score == Mathf.Infinity)
-        {
-            ratioScore = 50;
-        }
-
-        scoreBar.SetLeftValue(ratioScore);
+        scoreBar.SetLeftValue(NormalizedRatio(player1Score, player2Score));
     }
 
     private void UpdateResources()
     {
         float player1Resources = player1State.GetMoney();
         float player2Resources = player2State.GetMoney();
-        float ratioResources = (player1Resources / (player1Resources + player2Resources)) * 100;
 
-        if (player1Resources + player2Resources == 0)
-        {
-            ratioResources = 50;
-        }
-
-        resourcesChart.SetLeftValue(ratioResources);
+        resourcesChart.SetLeftValue(NormalizedRatio(player1Resources, player2Resources));
     }
 
     private void UpdateTotal()
     {
         float player1Total = player1State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
         float player2Total = player2State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
-
-        float ratioTotal = (player1Total / (player1Total + player2Total)) * 100;
-
-        if (player1Total + player2Total == 0)
-        {
-            ratioTotal = 50;
-        }
-
-        totalChart.SetLeftValue(ratioTotal);
+        
+        totalChart.SetLeftValue(NormalizedRatio(player1Total, player2Total));
     }
 
     private void UpdatePollution()
@@ -133,14 +109,8 @@ public class ScoreMenu : MonoBehaviour
         float player1Pollution = player1State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
         float player2Pollution = player2State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
 
-        float ratioPollution = (player1Pollution / (player1Pollution + player2Pollution)) * 100;
 
-        if (player1Pollution + player2Pollution == 0)
-        {
-            ratioPollution = 50;
-        }
-
-        producedChart.SetLeftValue(ratioPollution);
+        producedChart.SetLeftValue(NormalizedRatio(player1Pollution, player2Pollution));
     }
 
     private void UpdateFiltered()
@@ -148,33 +118,15 @@ public class ScoreMenu : MonoBehaviour
         float player1Filtered = player1State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
         float player2Filtered = player2State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
 
-        float ratioFiltered = (player1Filtered / (player1Filtered + player2Filtered)) * 100;
-
-        if (player1Filtered + player2Filtered == 0)
-        {
-            ratioFiltered = 50;
-        }
-
-        filteredChart.SetLeftValue(ratioFiltered);
+        filteredChart.SetLeftValue(NormalizedRatio(player1Filtered, player2Filtered));
     }
 
     private void UpdateEfficiency()
     {
         float player1Efficiency = worldStateManager.GetEfficiency(player1.id);
         float player2Efficiency = worldStateManager.GetEfficiency(player2.id);
-        float ratioEfficiency = (player1Efficiency / (player1Efficiency + player2Efficiency)) * 100;
 
-        if ((player1Efficiency + player2Efficiency == 0))
-        {
-            ratioEfficiency = 50;
-        }
-
-        if (player1Efficiency == Mathf.Infinity || player2Efficiency == Mathf.Infinity)
-        {
-            ratioEfficiency = 50;
-        }
-
-        efficiencyChart.SetLeftValue(ratioEfficiency);
+        efficiencyChart.SetLeftValue(NormalizedRatio(player1Efficiency, player2Efficiency));
     }
 
     public void Show()
@@ -218,5 +170,55 @@ public class ScoreMenu : MonoBehaviour
         {
             psc.Show();
         }
+    }
+
+    private float NormalizedRatio(float v1, float v2)
+    {
+        float value1 = v1;
+        float value2 = v2;
+        if (value1 < 0)
+        {
+            value1 *= -1;
+
+            if (value2 < 0)
+            {
+                value2 *= -1;
+            }
+            else
+            {
+                value2 += value1;
+            }
+        }
+
+        if (value2 < 0)
+        {
+            value2 *= -1;
+
+            if (value2 < 0)
+            {
+                value2 *= -1;
+            }
+            else
+            {
+                value1 += value2;
+            }
+
+        }
+
+        float ratio = (value1 / (value1 + value2)) * 100;
+        //Debug.Log("\t" + value1 + " " + value2 + " " + ratio + " (" + (value1 + value2) + ")");
+
+        if ((value1 + value2 == 0))
+        {
+            ratio = 50;
+        }
+
+        if (value1 == Mathf.Infinity || value2 == Mathf.Infinity)
+        {
+            Debug.LogWarning("sanity infinity");
+            ratio = 50;
+        }
+
+        return ratio;
     }
 }

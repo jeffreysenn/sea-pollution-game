@@ -36,6 +36,8 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
         }
 
         UpdateCurrentPieChart();
+
+        pollutionPie.OnPieChartClick += OnPieChartClick;
     }
 
     private void UpdateCurrentPieChart()
@@ -53,6 +55,16 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
     }
 
     public void OnPointerClick(PointerEventData eventData)
+    {
+        OnClick();
+    }
+
+    private void OnPieChartClick(PieChartController pcc)
+    {
+        OnClick();
+    }
+
+    public void OnClick()
     {
         showingOrder[currentTypeShown].targetTransform.gameObject.SetActive(false);
 

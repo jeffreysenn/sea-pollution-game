@@ -34,6 +34,9 @@ public class PieChartController : MonoBehaviour
         Clear();
         
         pollutantMaterialManager = FindObjectOfType<PollutantMaterialManager>();
+
+        CanvasPieChart canvasPieChart = pie as CanvasPieChart;
+        canvasPieChart.PieClicked.AddListener(OnPieClick);
     }
 
     public void Draw()
@@ -70,6 +73,11 @@ public class PieChartController : MonoBehaviour
         {
             txtSum.text = "";
         }
+    }
+
+    private void OnPieClick(PieChart.PieEventArgs pieEventArgs)
+    {
+        OnClick();
     }
 
     public void OnClick()

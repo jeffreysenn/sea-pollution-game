@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetImage: {fileID: 5215341720652252416}
-  imageExtension: .png
+  imageExtension: .jpg
   path: Images/
 --- !u!225 &5525876323080693146
 CanvasGroup:

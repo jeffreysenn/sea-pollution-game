@@ -835,8 +835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe410e9ee464b2247b6840cc5ceb94c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attribLoader: {fileID: 0}
-  playerController: {fileID: 0}
   factoriesMenu: {fileID: 8659991577337735908}
   factoriesScrollRect: {fileID: 3914646524251814359}
   filtersMenu: {fileID: 1633430593829119635}
@@ -1411,8 +1409,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
+    m_PressedColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
     m_ColorMultiplier: 1
@@ -1529,8 +1527,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
+    m_PressedColor: {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
     m_ColorMultiplier: 1

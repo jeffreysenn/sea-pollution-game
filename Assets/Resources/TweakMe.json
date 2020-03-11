@@ -664,7 +664,7 @@
 
     },
     {
-      "title": "Generic 1",
+      "title": "Industry 1",
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": 10,
@@ -707,7 +707,7 @@
 
     },
     {
-      "title": "Generic 2",
+      "title": "Industry 2",
       "economicAttrib": {
         "price": 30,
         "profitPerTurn": 10,
@@ -750,7 +750,7 @@
 
     },
     {
-      "title": "Generic 3",
+      "title": "Industry 3",
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": 10,

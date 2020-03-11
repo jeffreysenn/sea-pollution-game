@@ -23,15 +23,10 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
 
     private int currentTypeShown = 0;
 
-    private void Awake()
-    {
-        worldStateManager = FindObjectOfType<WorldStateManager>();
-        if (worldStateManager == null) { Debug.LogError("[PlayerPieChart] Start: WorldStateManager not found"); return; }
-
-    }
-
     public void Activate()
     {
+        worldStateManager = UIManager.Instance.worldStateManager;
+
         if (player == null) { Debug.LogError("[PlayerPieChart] Active: Player not found"); return; }
 
         var playerState = worldStateManager.GetPlayerState(player.id);
@@ -39,12 +34,12 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
         {
             stateChangeEvent.AddListener(UpdateCurrentPieChart);
         }
-        pollutionPie.SetPollutionMap(worldStateManager.GetPlayerState(player.id).GetAccumulatedPollutionMap(showingOrder[currentTypeShown].pollutionMapType));
+        pollutionPie.SetPollutionMap(worldStateManager.GetPlayerState(player.id).GetTurnPollutionMap(showingOrder[currentTypeShown].pollutionMapType));
     }
 
     private void UpdateCurrentPieChart()
     {
-        PollutionMap map = worldStateManager.GetPlayerState(player.id).GetAccumulatedPollutionMap(showingOrder[currentTypeShown].pollutionMapType);
+        PollutionMap map = worldStateManager.GetPlayerState(player.id).GetTurnPollutionMap(showingOrder[currentTypeShown].pollutionMapType);
 
         if (showingOrder[currentTypeShown].pollutionMapType == PollutionMapType.FILTERED)
         {

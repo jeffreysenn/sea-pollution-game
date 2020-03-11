@@ -27,6 +27,8 @@ public class ScoreMenu : MonoBehaviour
     private float tweenDuration = 0.25f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
+    [SerializeField]
+    private List<PlayerStatController> playerStatControllers = null;
 
     private Vector2 defaultDetailsPosition = Vector2.zero;
 
@@ -165,6 +167,11 @@ public class ScoreMenu : MonoBehaviour
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(detailsTargetPosition, tweenDuration).SetEase(tweenEase);
+
+        foreach(PlayerStatController psc in playerStatControllers)
+        {
+            psc.Hide();
+        }
     }
 
     public void Hide()
@@ -175,6 +182,11 @@ public class ScoreMenu : MonoBehaviour
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, tweenDuration).SetEase(tweenEase);
+
+        foreach (PlayerStatController psc in playerStatControllers)
+        {
+            psc.Show();
+        }
     }
 
     public void HideDirect()
@@ -183,5 +195,10 @@ public class ScoreMenu : MonoBehaviour
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, 0f).SetEase(tweenEase);
+
+        foreach (PlayerStatController psc in playerStatControllers)
+        {
+            psc.Show();
+        }
     }
 }

@@ -38,7 +38,10 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
 
     public void SetLeftValue(float d)
     {
-        if(d < 0 || d > 100) { Debug.LogWarning("[CustomBarChart] SetLeftValue: " + d + " is not between 0 and 100"); return; }
+        if(d < 0 || d > 100) {
+            //Debug.LogWarning("[CustomBarChart] SetLeftValue: " + d + " is not between 0 and 100");
+            return;
+        }
 
         float value = d;
         if (value < threshold) value = threshold;

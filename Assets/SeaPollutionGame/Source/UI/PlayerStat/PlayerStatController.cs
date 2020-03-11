@@ -33,20 +33,22 @@ public class PlayerStatController : MonoBehaviour
 
     [Header("Content")]
     [SerializeField]
+    private CanvasGroup contentCanvas = null;
+    [SerializeField]
     private PlayerPieChart pieChart = null;
 
-
-
-    private bool isContentDetailsShown = false;
-
-    private void Awake()
-    {
-        worldStateManager = FindObjectOfType<WorldStateManager>();
-        if (worldStateManager == null) { Debug.LogError("[PlayerStatController] Start: WorldStateManager not found"); return; }
-    }
+    [Header("Tween")]
+    [SerializeField]
+    private float tweenDuration = 0.25f;
+    [SerializeField]
+    private Ease tweenEase = Ease.InSine;
+    
+    private bool isShown = true;
 
     private void Start()
     {
+        worldStateManager = UIManager.Instance.worldStateManager;
+
         if(playerNumber == PlayerNumber.ONE)
         {
             player = UIManager.Instance.player1;
@@ -88,5 +90,25 @@ public class PlayerStatController : MonoBehaviour
         s += ")";
 
         txtIncome.text = s;
+    }
+
+    public void Show()
+    {
+        if (isShown) return;
+
+        isShown = true;
+
+        contentCanvas.DOKill();
+        contentCanvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
+    }
+
+    public void Hide()
+    {
+        if (!isShown) return;
+
+        isShown = false;
+
+        contentCanvas.DOKill();
+        contentCanvas.DOFade(0f, tweenDuration).SetEase(tweenEase);
     }
 }

@@ -18,12 +18,6 @@ public class Space : Node
             && (ownerID == playerID || !HasOwner());
     }
 
-    public virtual bool CanPlacePolluter(int playerID, PolluterAttrib polluterAttrib)
-    {
-        var placementAttrib = polluterAttrib.placementAttrib;
-        return placementAttrib.CanPlaceOn(GetPlaceType()) && polluter == null && ownerID == playerID;
-    }
-
     public void SetPolluter(Polluter polluter)
     {
         this.polluter = polluter;

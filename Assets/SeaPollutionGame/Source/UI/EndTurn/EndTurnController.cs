@@ -30,6 +30,9 @@ public class EndTurnController : MonoBehaviour
     private List<InfoPlayerEndTurn> playersInfo = null;
 
     [SerializeField]
+    private ScoreMenu scoreMenu = null;
+
+    [SerializeField]
     private float tweenDuration = 1f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
@@ -70,6 +73,8 @@ public class EndTurnController : MonoBehaviour
 
     private void OnEndGame()
     {
+        scoreMenu.Show();
+
         HidePlayersExcept();
 
         endTurnButton.gameObject.SetActive(false);

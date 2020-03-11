@@ -11,6 +11,8 @@ public class VideoLoader : MonoBehaviour
     VideoPlayer videoPlayer = null;
     [SerializeField]
     private string clipExtension = ".mp4";
+    [SerializeField]
+    private string filePath = "Clips/";
 
     public event Action OnClipFinish;
 
@@ -31,26 +33,19 @@ public class VideoLoader : MonoBehaviour
 
     public void LoadVideo(string videoName)
     {
-#if UNITY_WEBGL
-        videoPlayer.url = "Assets/Resources/" + videoName + clipExtension;
-#else
-        VideoClip clip = Resources.Load<VideoClip>(videoName) as VideoClip;
+        //videoPlayer.url = "Assets/Resources/" + videoName + clipExtension;
+        VideoClip clip = Resources.Load<VideoClip>(filePath + videoName) as VideoClip;
 
         if (clip == null) { Debug.LogError("[VideoLoader] LoadVideo: clip doesn't exist: " + videoName); return; }
 
         videoPlayer.clip = clip;
-#endif
         
         videoPlayer.Prepare();
     }
 
     public void PlayVideo()
     {
-#if UNITY_WEBGL
-        if(videoPlayer.url == "") { Debug.LogWarning("[VideoLoader] PlayVideo: clip not found"); return; }
-#else
         if(videoPlayer.clip == null) { Debug.LogWarning("[VideoLoader] PlayVideo: clip not found"); return; }
-#endif
 
         if(videoPlayer.isPrepared)
         {
@@ -69,11 +64,7 @@ public class VideoLoader : MonoBehaviour
 
     public void StopVideo()
     {
-#if UNITY_WEBGL
-        if (videoPlayer.url == "") { Debug.LogWarning("[VideoLoader] PlayVideo: clip not found"); return; }
-#else
-        if(videoPlayer.clip == null) { Debug.LogWarning("[VideoLoader] PlayVideo: clip not found"); return; }
-#endif
+        if(videoPlayer.clip == null) { Debug.LogWarning("[VideoLoader] StopVideo: clip not found"); return; }
 
         videoPlayer.Stop();
     }

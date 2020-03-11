@@ -56,6 +56,7 @@ public class AttribLoader : MonoBehaviour
             public PollutionAttrib pollutionAttrib = new PollutionAttrib { };
             public VulnerabilityAttrib vulnerabilityAttrib = new VulnerabilityAttrib { };
             public PlacementJson placementAttrib = new PlacementJson { };
+            public VisualAttrib visualAttrib = new VisualAttrib { };
 
             public PolluterAttrib ToPolluterAttrib()
             {
@@ -65,7 +66,8 @@ public class AttribLoader : MonoBehaviour
                     economicAttrib = economicAttrib,
                     pollutionAttrib = pollutionAttrib,
                     vulnerabilityAttrib = vulnerabilityAttrib,
-                    placementAttrib = new PlacementAttrib(placementAttrib.GetSignature())
+                    placementAttrib = new PlacementAttrib(placementAttrib.GetSignature()),
+                    visualAttrib = visualAttrib
                 };
                 return r;
             }

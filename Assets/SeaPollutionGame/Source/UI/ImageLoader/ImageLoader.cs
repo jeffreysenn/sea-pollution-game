@@ -20,11 +20,9 @@ public class ImageLoader : MonoBehaviour
 
     public void LoadImage(string imageName)
     {
-        string file = path + imageName;
+        Sprite image = Resources.Load<Sprite>(path + imageName);
 
-        Sprite image = Resources.Load<Sprite>(imageName);
-
-        if(image == null) { Debug.LogError("[ImageLoader] LoadImage: image doesn't exist: " + file); return; }
+        if(image == null) { Debug.LogError("[ImageLoader] LoadImage: image doesn't exist: " + imageName); return; }
 
         SetImage(image);
     }

@@ -30,6 +30,9 @@
           { "disasterName": "Fire", "factor": 1 },
           { "disasterName": "Drought", "factor": 0 }
         ]
+      },
+      "visualAttrib": {
+        "imageName":  "DistrictHeatingRural"
       }
     },
     {

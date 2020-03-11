@@ -57,16 +57,17 @@ public class PurchaseMenuController : MonoBehaviour
     {
         attribLoader = UIManager.Instance.attribLoader;
         playerController = UIManager.Instance.playerController;
+        var data = attribLoader.LoadLazy();
 
         ShowFactories();
 
         var factoryAttribs = purchasables[0].polluterAttribs;
-        foreach (var factoryAttrib in attribLoader.attribData.factoryList)
+        foreach (var factoryAttrib in data.factoryList)
         {
             factoryAttribs.Add(factoryAttrib);
         }
         var filterAttribs = purchasables[1].polluterAttribs;
-        foreach (var filterAttrib in attribLoader.attribData.filterList)
+        foreach (var filterAttrib in data.filterList)
         {
             filterAttribs.Add(filterAttrib);
         }

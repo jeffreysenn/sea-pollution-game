@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[System.Serializable]
-public class BaseEmissionAttrib
-{
-    public PollutionAttrib urban, agriculture, forest, ocean;
-}
-
 /// <summary>
 /// A data structure storing the data loaded from Json
 /// </summary>
-public struct AttribData
+public class AttribData
 {
     public Pollutant[] pollutantList;
     public Disaster[] disasterList;
-    public BaseEmissionAttrib baseEmission;
+    public CountryAttrib[] countryList;
     public FactoryAttrib[] factoryList;
     public FilterAttrib[] filterList;
 }
@@ -77,7 +71,7 @@ public class AttribLoader : MonoBehaviour
 
         public Pollutant[] pollutantList;
         public Disaster[] disasterList;
-        public BaseEmissionAttrib baseEmission;
+        public CountryAttrib[] countryList;
         public PolluterJson[] factoryList;
         public PolluterJson[] filterList;
 
@@ -87,7 +81,7 @@ public class AttribLoader : MonoBehaviour
             {
                 pollutantList = pollutantList,
                 disasterList = disasterList,
-                baseEmission = baseEmission,
+                countryList = countryList,
                 factoryList = System.Array.ConvertAll(ToPolluterAttribs(factoryList), attrib => new FactoryAttrib(attrib)),
                 filterList = System.Array.ConvertAll(ToPolluterAttribs(filterList), attrib => new FilterAttrib(attrib)),
             };
@@ -106,52 +100,23 @@ public class AttribLoader : MonoBehaviour
         }
     }
 
-    public AttribData attribData;
+    public AttribData attribData = null;
 
-    void Awake()
+    public AttribData LoadLazy()
     {
+        if (attribData == null)
+        {
 #if UNITY_WEBGL
-        var data = Resources.Load<TextAsset>("TweakMe");
-        var jsonData = JsonUtility.FromJson<JsonData>(data.text);
+            var data = Resources.Load<TextAsset>("TweakMe");
+            var jsonData = JsonUtility.FromJson<JsonData>(data.text);
 #else
         var path = Application.dataPath + "/Resources/TweakMe.json";
         var data = System.IO.File.ReadAllText(path);
         var jsonData = JsonUtility.FromJson<JsonData>(data);
 #endif
-        attribData = jsonData.ToAttribData();
-
-        var baseEmission = attribData.baseEmission;
-        var boardPieces = FindObjectsOfType<BoardPiece>();
-        foreach (var piece in boardPieces)
-        {
-            PollutionAttrib attrib;
-            switch (piece.GetPlaceType())
-            {
-                case PlaceType.URBAN:
-                    attrib = baseEmission.urban;
-                    break;
-                case PlaceType.AGRICULTURE:
-                    attrib = baseEmission.agriculture;
-                    break;
-                case PlaceType.FOREST:
-                    attrib = baseEmission.forest;
-                    break;
-                case PlaceType.OCEAN:
-                    attrib = baseEmission.ocean;
-                    break;
-                default:
-                    continue;
-            }
-            piece.SetBaseEmission(attrib);
+            attribData = jsonData.ToAttribData();
         }
 
-        var disasterManager = FindObjectOfType<DisasterManager>();
-        disasterManager.SetDisasters(attribData.disasterList);
-
-        var materialManager = FindObjectOfType<PollutantMaterialManager>();
-        foreach (var pollutant in attribData.pollutantList)
-        {
-            materialManager.AddPollutant(pollutant.title, pollutant.color);
-        }
+        return attribData;
     }
 }

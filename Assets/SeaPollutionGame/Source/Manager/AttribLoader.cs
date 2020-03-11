@@ -100,7 +100,7 @@ public class AttribLoader : MonoBehaviour
         }
     }
 
-    public AttribData attribData = null;
+    private AttribData attribData = null;
 
     public AttribData LoadLazy()
     {

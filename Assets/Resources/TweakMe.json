@@ -1,40 +1,123 @@
 {
   "pollutantList": [
-    { "title": "Phosphor" , "color": { "r": 255, "g": 100, "b": 0, "a": 255 } }
+    {
+      "title": "Phosphor",
+      "color": {
+        "r": 255,
+        "g": 100,
+        "b": 0,
+        "a": 255
+      }
+    }
   ],
 
-  "disasterList":  [
-    { "title": "Fire", "damage": 100, "chancePerTurn": 0.2 },
-    { "title": "Flood", "damage": 100, "chancePerTurn": 0.2 },
-    { "title": "Drought", "damage": 100, "chancePerTurn": 0.1 }
+  "disasterList": [
+    {
+      "title": "Fire",
+      "damage": 100,
+      "chancePerTurn": 0.2
+    },
+    {
+      "title": "Flood",
+      "damage": 100,
+      "chancePerTurn": 0.2
+    },
+    {
+      "title": "Drought",
+      "damage": 100,
+      "chancePerTurn": 0.1
+    }
   ],
 
   "countryList": [
     {
       "countryName": "SWEDEN",
       "baseEmission": {
-         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
-         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 12 }] },
-         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 18 }] },
-         "ocean": { "emissions": [] }
+        "urban": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 3
+            }
+          ]
+        },
+        "agriculture": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 12
+            }
+          ]
+        },
+        "forest": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 18
+            }
+          ]
+        },
+        "ocean": { "emissions": [] }
       }
     },
     {
       "countryName": "FINLAND",
       "baseEmission": {
-         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 6 }] },
-         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 21 }] },
-         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
-         "ocean": { "emissions": [] }
+        "urban": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 6
+            }
+          ]
+        },
+        "agriculture": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 21
+            }
+          ]
+        },
+        "forest": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 3
+            }
+          ]
+        },
+        "ocean": { "emissions": [] }
       }
-     },
+    },
     {
       "countryName": "POLAND",
       "baseEmission": {
-         "urban": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 3 }] },
-         "agriculture": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 21 }] },
-         "forest": { "emissions": [{ "pollutantName": "Phosphor", "emissionPerTurn": 15 }] },
-         "ocean": { "emissions": [] }
+        "urban": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 3
+            }
+          ]
+        },
+        "agriculture": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 21
+            }
+          ]
+        },
+        "forest": {
+          "emissions": [
+            {
+              "pollutantName": "Phosphor",
+              "emissionPerTurn": 15
+            }
+          ]
+        },
+        "ocean": { "emissions": [] }
       }
     }
   ],
@@ -42,900 +125,1969 @@
   "factoryList": [
     {
       "title": "District heating Rural",
-      "economicAttrib": { "price": 80, "profitPerTurn": 25, "removalCost": 15 },
+      "economicAttrib": {
+        "price": 80,
+        "profitPerTurn": 25,
+        "removalCost": 15
+      },
       "pollutionAttrib": {
         "emissions": [
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 1
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Green house",
-      "economicAttrib": { "price": 40, "profitPerTurn": 13, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": 13,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 0.2 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.2
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
+      },
       "visualAttrib": {
-        "imageName":  "GreenHouse"
+        "imageName": "GreenHouse"
       }
     },
     {
       "title": "Tourism",
-      "economicAttrib": { "price": 40, "profitPerTurn": 25, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": 25,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.4 },
-          { "disasterName": "Fire", "factor": 0.4 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Building houses for rent",
-      "economicAttrib": { "price": 80, "profitPerTurn": 25, "removalCost": 15 },
+      "economicAttrib": {
+        "price": 80,
+        "profitPerTurn": 25,
+        "removalCost": 15
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0.4 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
-      "placementAttrib": { "urban": true, "agriculture": false, "forest": false, "ocean": false },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Slaughterhouse",
-      "economicAttrib": { "price": 80, "profitPerTurn": 25, "removalCost": 15 },
+      "economicAttrib": {
+        "price": 80,
+        "profitPerTurn": 25,
+        "removalCost": 15
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Biogas plant",
-      "economicAttrib": { "price": 80, "profitPerTurn": 15, "removalCost": 15 },
+      "economicAttrib": {
+        "price": 80,
+        "profitPerTurn": 15,
+        "removalCost": 15
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Increase in fertilisation",
-      "economicAttrib": { "price": 13, "profitPerTurn": 13, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 13,
+        "profitPerTurn": 13,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Drought", "factor": 1 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 1
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 1
+          }
         ]
       },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Intensify crop production",
-      "economicAttrib": { "price": 15, "profitPerTurn": 10, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": 10,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Drought", "factor": 1 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 1
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 1
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "IntensifyCropProduction"
+        "imageName": "IntensifyCropProduction"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Precision technologies agriculture",
-      "economicAttrib": { "price": 40, "profitPerTurn": 10, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": 10,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.4 },
-          { "disasterName": "Fire", "factor": 0.4 },
-          { "disasterName": "Drought", "factor": 0.4 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.4
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Intensify biomass removal from forests",
-      "economicAttrib": { "price": 40, "profitPerTurn": 5, "removalCost": 0 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": 5,
+        "removalCost": 0
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 2 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 2
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.4 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0.4 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.4
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "IntensifyBiomassRemovalForest"
+        "imageName": "IntensifyBiomassRemovalForest"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Seaweed farm",
-      "economicAttrib": { "price": 80, "profitPerTurn": 10, "removalCost": 15 },
+      "economicAttrib": {
+        "price": 80,
+        "profitPerTurn": 10,
+        "removalCost": 15
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
-      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": false,
+        "ocean": true
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Mussel farm",
-      "economicAttrib": { "price": 40, "profitPerTurn": 10, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": 10,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
-      "placementAttrib": { "urban": false, "agriculture": false, "forest": false, "ocean": true },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": false,
+        "ocean": true
+      },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
       }
     },
     {
       "title": "Irrigation with sea water",
-      "economicAttrib": { "price": 25, "profitPerTurn": 5, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 25,
+        "profitPerTurn": 5,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.4 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0.4 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.4
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "IrrigationWithSeaWater"
+        "imageName": "IrrigationWithSeaWater"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": true
       }
+
     },
     {
       "title": "Generic 1",
-      "economicAttrib": { "price": 15, "profitPerTurn": 10, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": 10,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Drought", "factor": 0.5 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.5
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Factory1"
+        "imageName": "Factory1"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": false,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Generic 2",
-      "economicAttrib": { "price": 30, "profitPerTurn": 10, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 30,
+        "profitPerTurn": 10,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 30 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 30
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Drought", "factor": 0.5 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.5
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Factory2"
+        "imageName": "Factory2"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": false,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Generic 3",
-      "economicAttrib": { "price": 40, "profitPerTurn": 10, "removalCost": 10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": 10,
+        "removalCost": 10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": 20 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 20
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Drought", "factor": 0.5 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.5
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Factory3"
+        "imageName": "Factory3"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": false,
+        "forest": false,
+        "ocean": false
       }
+
     }
   ],
 
   "filterList": [
     {
       "title": "Wetlands",
-      "economicAttrib": { "price": 40, "profitPerTurn": -10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": -10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Drought", "factor": 1 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 1
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 1
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 1
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Wetlands"
+        "imageName": "Wetlands"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Buffer strips",
-      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "economicAttrib": {
+        "price": 25,
+        "profitPerTurn": -8
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.5 },
-          { "disasterName": "Fire", "factor": 0.5 },
-          { "disasterName": "Drought", "factor": 0.5 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.5
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "BufferStrips"
+        "imageName": "BufferStrips"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Catch crops",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "CatchCrops"
+        "imageName": "CatchCrops"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Crop rotation",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "CropRotation1"
+        "imageName": "CropRotation1"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Retention ponds",
-      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "economicAttrib": {
+        "price": 25,
+        "profitPerTurn": -8
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 1
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "RetentionPonds"
+        "imageName": "RetentionPonds"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Biochar application Agriculture",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "BiocharAgriculture"
+        "imageName": "BiocharAgriculture"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Biochar application Forest",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "BiocharForest"
+        "imageName": "BiocharForest"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Compost application Agriculture",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
-      "title": "Compost application Agriculture",
-      "economicAttrib": { "price": 10, "profitPerTurn": -2 },
+      "title": "Compost application Forest",
+      "economicAttrib": {
+        "price": 10,
+        "profitPerTurn": -2
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -2 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -2
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Sludge application Agriculture",
-      "economicAttrib": { "price": 40, "profitPerTurn": -10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": -10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Drought", "factor": 1 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 1
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 1
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Sludge application Forest",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Improving drainage management on farms",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Restoration of riparian areas",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Floodplains",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Liming /gypsum",
-      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "economicAttrib": {
+        "price": 13,
+        "profitPerTurn": -4
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -3
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Optimizing fertilization rates-based soil parameters using geo-location systems",
-      "economicAttrib": { "price": 40, "profitPerTurn": -10 },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": -10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 1
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Optimization of livestock density for nutrient management",
-      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "economicAttrib": {
+        "price": 25,
+        "profitPerTurn": -8
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.4 },
-          { "disasterName": "Fire", "factor": 0.4 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Microstrainer technologies at fish farms ",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": false,
+        "ocean": true
       }
+
     },
     {
       "title": "Connecting 100% of population to wastewater treatment",
-      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "economicAttrib": {
+        "price": 13,
+        "profitPerTurn": -4
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -3
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": false,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Improved stormwater management",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": false,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Improving on-site treatments",
-      "economicAttrib": { "price": 10, "profitPerTurn": -2 },
+      "economicAttrib": {
+        "price": 10,
+        "profitPerTurn": -2
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -2 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -2
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "ImprovingOn-siteTreatments"
+        "imageName": "ImprovingOn-siteTreatments"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Source separation of waste for scattered settlements",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Urine-diversion toilets",
-      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "economicAttrib": {
+        "price": 13,
+        "profitPerTurn": -4
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -3
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Wastewater improvements that deal with overflow",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
       }
+
     },
     {
       "title": "Biochar treated with source-separated blackwater as soil improver",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
+
         ]
       },
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
       }
     },
     {
       "title": "Incineration and phosphorus recovery from ash",
-      "economicAttrib": { "price": 13, "profitPerTurn": -4 },
+      "economicAttrib": {
+        "price": 13,
+        "profitPerTurn": -4
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -3 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -3
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Biochar filter",
-      "economicAttrib": { "price": 15, "profitPerTurn": -6 },
+      "economicAttrib": {
+        "price": 15,
+        "profitPerTurn": -6
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -5 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -5
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Enhanced wastewater treatment level through ultrafiltration and UV-disinfection",
-      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "economicAttrib": {
+        "price": 25,
+        "profitPerTurn": -8
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0 },
-          { "disasterName": "Fire", "factor": 0 },
-          { "disasterName": "Drought", "factor": 0 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Irrigation with sea water",
-      "economicAttrib": { "price": 400, "profitPerTurn": -10 },
+      "economicAttrib": {
+        "price": 400,
+        "profitPerTurn": -10
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -40 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -40
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 1 },
-          { "disasterName": "Fire", "factor": 1 },
-          { "disasterName": "Drought", "factor": 1 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 1
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 1
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 1
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "IrrigationWithSeaWater"
+        "imageName": "IrrigationWithSeaWater"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
       }
+
     },
     {
       "title": "Mussel farming",
-      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "economicAttrib": {
+        "price": 25,
+        "profitPerTurn": -8
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.4 },
-          { "disasterName": "Fire", "factor": 0.4 },
-          { "disasterName": "Drought", "factor": 0.4 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.4
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": false,
+        "ocean": true
       }
+
     },
     {
       "title": "Seaweed farming",
-      "economicAttrib": { "price": 25, "profitPerTurn": -8 },
+      "economicAttrib": {
+        "price": 25,
+        "profitPerTurn": -8
+      },
       "pollutionAttrib": {
         "emissions": [
-          { "pollutantName": "Phosphor", "emissionPerTurn": -13 }
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -13
+          }
         ]
       },
       "vulnerabilityAttrib": {
-        "vulnerabilities":  [
-          { "disasterName": "Flood", "factor": 0.4 },
-          { "disasterName": "Fire", "factor": 0.4 },
-          { "disasterName": "Drought", "factor": 0.4 }
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.4
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.4
+          }
         ]
       },
+
       "visualAttrib": {
-        "imageName":  "Default"
+        "imageName": "Default"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": false,
+        "ocean": true
       }
+
     }
   ]
 

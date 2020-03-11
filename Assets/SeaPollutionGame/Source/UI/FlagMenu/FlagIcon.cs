@@ -10,7 +10,7 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
     public event Action<FlagIcon> OnClick;
 
     [SerializeField]
-    private FlagType flagType = FlagType.SWEDEN;
+    private CountryType flagType = CountryType.SWEDEN;
 
     [SerializeField]
     private CanvasGroup selectedCanvas = null;
@@ -63,5 +63,5 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
         selectedCanvas.DOFade(0f, 0f).SetEase(tweenEase);
     }
 
-    public FlagType GetFlagType() { return flagType; }
+    public CountryType GetFlagType() { return flagType; }
 }

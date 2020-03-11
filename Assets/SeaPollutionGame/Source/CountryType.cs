@@ -1,4 +1,4 @@
-﻿public enum FlagType
+﻿public enum CountryType
 {
     SWEDEN, FINLAND, POLAND
 }

@@ -28,7 +28,7 @@ public class FlagMenu : MonoBehaviour
     private List<FlagIcon> flags = null;
     private FlagIcon flagSelected = null;
 
-    public event Action<FlagType> OnStart;
+    public event Action<CountryType> OnStart;
 
     private void Start()
     {
@@ -105,7 +105,7 @@ public class FlagMenu : MonoBehaviour
 
     }
 
-    public FlagType GetSelectedFlag() {
+    public CountryType GetSelectedFlag() {
 
         if(flagSelected == null) { Debug.LogError("[FlagMenu] GetSelectedFlag: no flag selected");}
 

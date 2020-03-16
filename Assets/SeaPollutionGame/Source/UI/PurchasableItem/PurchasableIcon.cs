@@ -38,7 +38,10 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
     {
         if (!gameObject.activeInHierarchy) return;
 
-        if (worldStateManager.GetCurrentPlayerState().GetMoney() < polluterAttrib.economicAttrib.price) return;
+        if (worldStateManager.GetCurrentPlayerState().GetMoney() < polluterAttrib.economicAttrib.price)
+        {
+            return;
+        }
 
         PolluterIcon newIcon = Instantiate(targetPolluterIcon, shopTransform);
         newIcon.transform.position = Input.mousePosition;

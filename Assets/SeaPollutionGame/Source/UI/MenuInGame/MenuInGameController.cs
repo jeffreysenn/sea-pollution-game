@@ -19,6 +19,10 @@ public class MenuInGameController : MonoBehaviour
 
     [SerializeField]
     private CanvasGroup menuContent = null;
+    private RectTransform menuTransform = null;
+    [SerializeField]
+    private Vector2 menuTargetPosition = Vector2.zero;
+    private Vector2 menuDefaultPosition = Vector2.zero;
 
     [SerializeField]
     private float tweenDuration = 0.25f;
@@ -30,6 +34,9 @@ public class MenuInGameController : MonoBehaviour
     private void Start()
     {
         levelController = UIManager.Instance.levelController;
+
+        menuTransform = menuContent.GetComponent<RectTransform>();
+        menuDefaultPosition = menuTransform.anchoredPosition;
 
         HideDirectMenu();
 
@@ -76,7 +83,9 @@ public class MenuInGameController : MonoBehaviour
 
     void ShowMenu()
     {
-        menuContent.DOFade(1f, tweenDuration).SetEase(tweenEase);
+        //menuContent.DOFade(1f, tweenDuration).SetEase(tweenEase);
+        menuTransform.DOKill();
+        menuTransform.DOAnchorPos(menuTargetPosition, tweenDuration).SetEase(tweenEase);
         menuContent.interactable = true;
 
         isShown = true;
@@ -84,7 +93,9 @@ public class MenuInGameController : MonoBehaviour
 
     void HideMenu()
     {
-        menuContent.DOFade(0f, tweenDuration).SetEase(tweenEase);
+        //menuContent.DOFade(0f, tweenDuration).SetEase(tweenEase);
+        menuTransform.DOKill();
+        menuTransform.DOAnchorPos(menuDefaultPosition, tweenDuration).SetEase(tweenEase);
         menuContent.interactable = false;
 
         isShown = false;
@@ -92,7 +103,9 @@ public class MenuInGameController : MonoBehaviour
 
     void HideDirectMenu()
     {
-        menuContent.DOFade(0f, 0f);
+        //menuContent.DOFade(0f, 0f);
+        menuTransform.DOKill();
+        menuTransform.DOAnchorPos(menuDefaultPosition, 0f).SetEase(tweenEase);
         menuContent.interactable = false;
 
         isShown = false;

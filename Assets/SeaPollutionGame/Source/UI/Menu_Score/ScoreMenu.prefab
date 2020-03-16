@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreBar: {fileID: 8517730581461533862}
+  percentageValues: 1
   resourcesChart: {fileID: 1454908132581477228}
   totalChart: {fileID: 8381268951523986520}
   producedChart: {fileID: 1454908131162914083}

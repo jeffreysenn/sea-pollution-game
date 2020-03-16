@@ -36,7 +36,21 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
         widthTotalContent = totalContent.sizeDelta.x;
     }
 
-    public void SetLeftValue(float d)
+    public void SetValues(float left, float right)
+    {
+        float[] values = SetLeftValue(left);
+        
+        SetTextValues(left, right);
+    }
+
+    public void SetValuesPercentage(float left)
+    {
+        float[] values = SetLeftValue(left);
+
+        SetTextValues(values[0], values[1], true);
+    }
+
+    private float[] SetLeftValue(float d)
     {
         float max = 100;
 
@@ -46,10 +60,12 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
             max += d;
         }
 
+        /*
         if(d > 100) {
             Debug.LogWarning("[CustomBarChart] SetLeftValue: " + d + " is above 100");
-            return;
+            return null;
         }
+        */
 
         float value = d;
         if (value < threshold) value = threshold;
@@ -62,16 +78,20 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
         leftContent.sizeDelta = new Vector2((float) leftValue, leftContent.sizeDelta.y);
         rightContent.sizeDelta = new Vector2((float) rightValue, leftContent.sizeDelta.y);
 
-        leftText.text = Math.Round(d, textDecimal).ToString() + textSuffixe;
-        rightText.text = Math.Round((100 - d), textDecimal).ToString() + textSuffixe;
+        return new float[] { d, (100 - d) };
     }
-
-    /*
-    public void SetRightValue(float d)
+    
+    private void SetTextValues(float left, float right, bool percentage = false)
     {
-        SetLeftValue(100 - d);
+        leftText.text = Math.Round(left, textDecimal).ToString();
+        rightText.text = Math.Round(right, textDecimal).ToString();
+
+        if(percentage)
+        {
+            leftText.text += textSuffixe;
+            rightText.text += textSuffixe;
+        }
     }
-    */
 
     public void OnPointerClick(PointerEventData eventData)
     {

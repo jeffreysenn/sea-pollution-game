@@ -19,8 +19,8 @@ public class DrawDescription : MonoBehaviour
 
     void Start()
     {
-        if (!descriptionText) { descriptionText = GameObject.Find("ItemDescription").GetComponent<Text>(); }
-        pieController = GameObject.Find("ItemDescriptionPie").GetComponent<PieController>();
+        //if (!descriptionText) { descriptionText = GameObject.Find("ItemDescription").GetComponent<Text>(); }
+        //pieController = GameObject.Find("ItemDescriptionPie").GetComponent<PieController>();
     }
 
     protected void OnMouseEnter()

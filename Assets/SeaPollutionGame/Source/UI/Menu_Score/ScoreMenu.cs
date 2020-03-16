@@ -7,6 +7,8 @@ public class ScoreMenu : MonoBehaviour
 {
     [SerializeField]
     private CustomBarChart scoreBar = null;
+    [SerializeField]
+    private bool percentageValues = true;
 
     [Header("Details")]
     [SerializeField]
@@ -51,7 +53,7 @@ public class ScoreMenu : MonoBehaviour
         player1State = worldStateManager.GetPlayerState(player1.id);
         player2State = worldStateManager.GetPlayerState(player2.id);
 
-        scoreBar.SetLeftValue(50);
+        scoreBar.SetValuesPercentage(50);
 
         defaultDetailsPosition = detailsTransform.anchoredPosition;
 
@@ -82,51 +84,68 @@ public class ScoreMenu : MonoBehaviour
 
     private void UpdateScore()
     {
-        float player1Score = worldStateManager.GetScore(player1.id);
-        float player2Score = worldStateManager.GetScore(player2.id);
+        float p1 = worldStateManager.GetScore(player1.id);
+        float p2 = worldStateManager.GetScore(player2.id);
 
-        scoreBar.SetLeftValue(NormalizedRatio(player1Score, player2Score));
+        if(percentageValues)
+            scoreBar.SetValuesPercentage(NormalizedRatio(p1, p2));
+        else
+            scoreBar.SetValues(p1, p2);
     }
 
     private void UpdateResources()
     {
-        float player1Resources = player1State.GetMoney();
-        float player2Resources = player2State.GetMoney();
+        float p1 = player1State.GetMoney();
+        float p2 = player2State.GetMoney();
 
-        resourcesChart.SetLeftValue(NormalizedRatio(player1Resources, player2Resources));
+        if (percentageValues)
+            resourcesChart.SetValuesPercentage(NormalizedRatio(p1, p2));
+        else
+            resourcesChart.SetValues(p1, p2);
     }
 
     private void UpdateTotal()
     {
-        float player1Total = player1State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
-        float player2Total = player2State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
+        float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
+        float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
         
-        totalChart.SetLeftValue(NormalizedRatio(player1Total, player2Total));
+        if(percentageValues)
+            totalChart.SetValuesPercentage(NormalizedRatio(p1, p2));
+        else
+            totalChart.SetValues(p1, p2);
     }
 
     private void UpdatePollution()
     {
-        float player1Pollution = player1State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
-        float player2Pollution = player2State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
+        float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
+        float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
 
-
-        producedChart.SetLeftValue(NormalizedRatio(player1Pollution, player2Pollution));
+        if (percentageValues)
+            producedChart.SetValuesPercentage(NormalizedRatio(p1, p2));
+        else
+            producedChart.SetValues(p1, p2);
     }
 
     private void UpdateFiltered()
     {
-        float player1Filtered = player1State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
-        float player2Filtered = player2State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
+        float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
+        float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
 
-        filteredChart.SetLeftValue(NormalizedRatio(player1Filtered, player2Filtered));
+        if (percentageValues)
+            filteredChart.SetValuesPercentage(NormalizedRatio(p1, p2));
+        else
+            filteredChart.SetValues(p1, p2);
     }
 
     private void UpdateEfficiency()
     {
-        float player1Efficiency = worldStateManager.GetEfficiency(player1.id);
-        float player2Efficiency = worldStateManager.GetEfficiency(player2.id);
+        float p1 = worldStateManager.GetEfficiency(player1.id);
+        float p2 = worldStateManager.GetEfficiency(player2.id);
 
-        efficiencyChart.SetLeftValue(NormalizedRatio(player1Efficiency, player2Efficiency));
+        if (percentageValues)
+            efficiencyChart.SetValuesPercentage(NormalizedRatio(p1, p2));
+        else
+            efficiencyChart.SetValues(p1, p2);
     }
 
     public void Show()

@@ -6,10 +6,6 @@ using DG.Tweening;
 public class TutorialArea : MonoBehaviour
 {
     [SerializeField]
-    private PopUpOrientation _popUpOrientation = PopUpOrientation.LEFT;
-    public PopUpOrientation popUpOrientation { get { return _popUpOrientation; } }
-
-    [SerializeField]
     private CanvasGroup _canvasGroup = null;
     public CanvasGroup canvasGroup { get { return _canvasGroup; } }
 

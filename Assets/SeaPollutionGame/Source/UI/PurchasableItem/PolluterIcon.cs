@@ -27,8 +27,6 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
 
     public int polluterId { get; set; }
 
-    private bool beingDragged = false;
-
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
     public PlayerController playerController { get; set; }

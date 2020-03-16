@@ -49,8 +49,13 @@ public class DescriptionPopUp : MonoBehaviour
         public TextMeshProUGUI textTitle = null;
     }
 
-    [SerializeField]
-    private GameObject popUp = null;
+    [System.Serializable]
+    class TutorialContent : PopUpContent
+    {
+        public TextMeshProUGUI textTitle = null;
+        public TextMeshProUGUI textDescription = null;
+        //video
+    }
 
     [SerializeField]
     private WorldWindow worldWindow = null;
@@ -68,6 +73,9 @@ public class DescriptionPopUp : MonoBehaviour
 
     [SerializeField]
     private DisasterContent disasterContent = null;
+
+    [SerializeField]
+    private TutorialContent tutorialContent = null;
     
     [SerializeField]
     private float tweenDuration = 1f;
@@ -117,11 +125,13 @@ public class DescriptionPopUp : MonoBehaviour
         allPopupContents.Add(nodeContent);
         allPopupContents.Add(balticContent);
         allPopupContents.Add(disasterContent);
+        allPopupContents.Add(tutorialContent);
 
         HideDirectPopup(polluterContent);
         HideDirectPopup(nodeContent);
         HideDirectPopup(balticContent);
         HideDirectPopup(disasterContent);
+        HideDirectPopup(tutorialContent);
     }
 
     private void Update()
@@ -145,40 +155,6 @@ public class DescriptionPopUp : MonoBehaviour
                 HidePopup(currentShownContent);
             }
         }
-
-        /*
-         * Raycast in game on click: 
-         *  hide the current shown content
-         *  
-         *  if hit show the content at the object position
-         *  if misses hide the current content
-         */
-
-        bool igRaycast = false;
-
-        if (Input.GetButtonDown("Fire1") && !isBlocked)
-        {
-            if(currentShownContent != null)
-            {
-                HidePopup(currentShownContent);
-            }
-
-            igRaycast = InGameRaycasting();
-
-            if(!igRaycast)
-            {
-                currentGameObject = null;
-
-                if (currentShownContent != null)
-                {
-                    HidePopup(currentShownContent);
-                }
-            } else
-            {
-                currentFromGame = true;
-                transform.position = Camera.main.WorldToScreenPoint(currentGameObject.transform.position);
-            }
-        }
         
         /*
          * Raycast UI
@@ -193,7 +169,43 @@ public class DescriptionPopUp : MonoBehaviour
             transform.position = Input.mousePosition;
         }
 
-        if(!uiRaycast && !currentFromGame)
+        /*
+         * Raycast in game on click: 
+         *  hide the current shown content
+         *  
+         *  if hit show the content at the object position
+         *  if misses hide the current content
+         */
+
+        bool igRaycast = false;
+
+        if (Input.GetButtonDown("Fire1") && !isBlocked && !uiRaycast)
+        {
+            if (currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+
+            igRaycast = InGameRaycasting();
+
+            if (!igRaycast)
+            {
+                currentGameObject = null;
+
+                if (currentShownContent != null)
+                {
+                    HidePopup(currentShownContent);
+                }
+            }
+            else
+            {
+                currentFromGame = true;
+                transform.position = Camera.main.WorldToScreenPoint(currentGameObject.transform.position);
+            }
+        }
+
+        // cleanup
+        if (!uiRaycast && !currentFromGame)
         {
             currentGameObject = null;
 
@@ -224,6 +236,23 @@ public class DescriptionPopUp : MonoBehaviour
                 return hasHit;
             }
 
+            TutorialArea tutorialArea = rr.gameObject.GetComponentInChildren<TutorialArea>();
+            if(tutorialArea != null)
+            {
+                hasHit = true;
+
+                if(tutorialArea.gameObject != currentGameObject)
+                {
+                    currentGameObject = tutorialArea.gameObject;
+
+                    if(CheckGraphicTutorial(tutorialArea))
+                    {
+                        HidePopupOtherThan(tutorialContent);
+                        ShowPopup(tutorialContent);
+                    }
+                }
+            }
+
             PurchasableIcon purchasableIcon = rr.gameObject.GetComponentInChildren<PurchasableIcon>();
             if (purchasableIcon != null)
             {
@@ -235,7 +264,6 @@ public class DescriptionPopUp : MonoBehaviour
 
                     if (CheckGraphicPolluter(purchasableIcon))
                     {
-
                         HidePopupOtherThan(polluterContent);
                         ShowPopup(polluterContent);
                     }
@@ -380,6 +408,23 @@ public class DescriptionPopUp : MonoBehaviour
             hasFoundData = true;
 
             disasterContent.textTitle.text = disaster.title;
+        }
+
+        imageToShow = false;
+
+        return hasFoundData;
+    }
+
+    private bool CheckGraphicTutorial(TutorialArea tutorialArea)
+    {
+        bool hasFoundData = false;
+
+        if(tutorialArea != null)
+        {
+            hasFoundData = true;
+
+            tutorialContent.textTitle.text = tutorialArea.title;
+            tutorialContent.textDescription.text = tutorialArea.description;
         }
 
         imageToShow = false;

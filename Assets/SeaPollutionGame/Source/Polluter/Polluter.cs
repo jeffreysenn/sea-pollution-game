@@ -22,7 +22,7 @@ public class Polluter : MonoBehaviour
     [SerializeField]
     private Renderer meshRenderer = null;
     [SerializeField]
-    private Health health;
+    private Health health = null;
 
     private PolluterAttrib polluterAttrib = null;
 

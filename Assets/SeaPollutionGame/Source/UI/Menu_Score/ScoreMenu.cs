@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class ScoreMenu : MonoBehaviour
 {
@@ -31,8 +32,6 @@ public class ScoreMenu : MonoBehaviour
     private float tweenDuration = 0.25f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
-    [SerializeField]
-    private List<PlayerStatController> playerStatControllers = null;
 
     private Vector2 defaultDetailsPosition = Vector2.zero;
 
@@ -41,7 +40,10 @@ public class ScoreMenu : MonoBehaviour
     Player player1 = null; PlayerState player1State = null;
     Player player2 = null; PlayerState player2State = null;
 
-    private bool isShown = false;
+    public event Action<ScoreMenu> OnClick;
+
+    private bool _isShown = false;
+    public bool isShown { get { return _isShown; } }
 
     private void Start()
     {
@@ -64,7 +66,7 @@ public class ScoreMenu : MonoBehaviour
     {
         UpdateScore();
 
-        if(isShown)
+        if(_isShown)
         {
             UpdateResources();
             UpdateTotal();
@@ -76,10 +78,7 @@ public class ScoreMenu : MonoBehaviour
 
     private void ScoreBar_OnClick(CustomBarChart chart)
     {
-        if (isShown)
-            Hide();
-        else
-            Show();
+        OnClick?.Invoke(this);
     }
 
     private void UpdateScore()
@@ -138,44 +137,29 @@ public class ScoreMenu : MonoBehaviour
 
     public void Show()
     {
-        if (isShown) return;
+        if (_isShown) return;
 
-        isShown = true;
+        _isShown = true;
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(detailsTargetPosition, tweenDuration).SetEase(tweenEase);
-
-        foreach(PlayerStatController psc in playerStatControllers)
-        {
-            psc.Hide();
-        }
     }
 
     public void Hide()
     {
-        if (!isShown) return;
+        if (!_isShown) return;
 
-        isShown = false;
+        _isShown = false;
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, tweenDuration).SetEase(tweenEase);
-
-        foreach (PlayerStatController psc in playerStatControllers)
-        {
-            psc.Show();
-        }
     }
 
     public void HideDirect()
     {
-        isShown = false;
+        _isShown = false;
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, 0f).SetEase(tweenEase);
-
-        foreach (PlayerStatController psc in playerStatControllers)
-        {
-            psc.Show();
-        }
     }
 }

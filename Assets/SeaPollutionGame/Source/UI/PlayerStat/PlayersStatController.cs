@@ -5,116 +5,52 @@ using TMPro;
 
 public class PlayersStatController : MonoBehaviour
 {
-    [System.Serializable]
-    class PlayerStat
-    {
-        public PlayerState playerState { get; set; }
-        public TextMeshProUGUI txtCoinsValue = null;
-        public TextMeshProUGUI txtIncomeValue = null;
-        public Player player { get; set; }
-    }
-
-    [System.Serializable]
-    class MapType
-    {
-        public PollutionMapType mapType = PollutionMapType.NET;
-        public string title = "";
-    }
-
     [SerializeField]
-    private PlayersPieChart pieChart = null;
-
+    private PlayerStatController playerAController = null;
     [SerializeField]
-    private PlayerStat player1Stat = null;
+    private PlayerStatController playerBController = null;
     [SerializeField]
-    private PlayerStat player2Stat = null;
-
+    private ScoreMenu scoreMenu = null;
     [SerializeField]
-    private List<MapType> typeOrder = null;
-    private int currentTypeIndex = 0;
-
-    private WorldStateManager worldStateManager = null;
+    private GoalsMenu goalsMenu = null;
 
     private void Start()
     {
-        player1Stat.player = UIManager.Instance.player1;
-        player2Stat.player = UIManager.Instance.player2;
-
-        worldStateManager = UIManager.Instance.worldStateManager;
-        worldStateManager.AddEndPlayerTurnFinishEventListener(UpdateEndTurn);
-
-        player1Stat.playerState = worldStateManager.GetPlayerState(player1Stat.player.id);
-        player2Stat.playerState = worldStateManager.GetPlayerState(player2Stat.player.id);
-
-        pieChart.OnClick += PieChart_OnClick;
+        scoreMenu.OnClick += ScoreMenu_OnClick;
+        goalsMenu.OnClick += GoalsMenu_OnClick;
     }
 
-    private void Update()
+    private void GoalsMenu_OnClick(GoalsMenu menu)
     {
-        UpdateValues();
-    }
-
-    private void PieChart_OnClick(PlayersPieChart chart)
-    {
-        currentTypeIndex = (currentTypeIndex + 1) % typeOrder.Count;
-        UpdatePieChart();
-    }
-
-    private void UpdateEndTurn()
-    {
-        UpdatePieChart();
-        UpdateValues();
-    }
-
-    private void UpdatePieChart()
-    {
-        PollutionMap map1 = player1Stat.playerState.GetTurnPollutionMap(typeOrder[currentTypeIndex].mapType);
-        float value1 = map1.GetTotalPollution();
-
-        PollutionMap map2 = player2Stat.playerState.GetTurnPollutionMap(typeOrder[currentTypeIndex].mapType);
-        float value2 = map2.GetTotalPollution();
-
-        if (typeOrder[currentTypeIndex].mapType == PollutionMapType.FILTERED)
+        if(menu.isShown)
         {
-            value1 *= -1;
-            value2 *= -1;
-        }
-
-        pieChart.SetPlayersValue(value1, value2);
-        pieChart.SetTitle(typeOrder[currentTypeIndex].title);
-
-        pieChart.Draw();
-    }
-
-    private void UpdateValues()
-    {
-        UpdateCoins(player1Stat.txtCoinsValue, player1Stat.playerState.GetMoney());
-        UpdateCoins(player2Stat.txtCoinsValue, player2Stat.playerState.GetMoney());
-
-        UpdateIncome(player1Stat.txtIncomeValue, player1Stat.playerState.GetTurnIncome());
-        UpdateIncome(player2Stat.txtIncomeValue, player2Stat.playerState.GetTurnIncome());
-    }
-
-    private void UpdateCoins(TextMeshProUGUI txt, float value)
-    {
-        txt.text = value.ToString();
-    }
-
-    private void UpdateIncome(TextMeshProUGUI txt, float value)
-    {
-        if (value == 0) { txt.text = ""; return; }
-
-        string s = "(";
-        if (value > 0)
+            playerAController.Show();
+            playerBController.Show();
+            scoreMenu.Hide();
+            menu.Hide();
+        } else
         {
-            s += "+" + value;
+            playerAController.Hide();
+            playerBController.Hide();
+            scoreMenu.Hide();
+            menu.Show();
         }
-        else
-        {
-            s += value;
-        }
-        s += ")";
+    }
 
-        txt.text = s;
+    private void ScoreMenu_OnClick(ScoreMenu menu)
+    {
+        if(menu.isShown)
+        {
+            playerAController.Show();
+            playerBController.Show();
+            goalsMenu.Hide();
+            menu.Hide();
+        } else
+        {
+            playerAController.Hide();
+            playerBController.Hide();
+            goalsMenu.Hide();
+            menu.Show();
+        }
     }
 }

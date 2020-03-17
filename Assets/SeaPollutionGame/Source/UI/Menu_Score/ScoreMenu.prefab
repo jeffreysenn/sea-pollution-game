@@ -215,9 +215,6 @@ MonoBehaviour:
   detailsTargetPosition: {x: 0, y: 75}
   tweenDuration: 0.3
   tweenEase: 2
-  playerStatControllers:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1454908131074741359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 7063282390834516174, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_Name
-      value: ScoreChart
+      value: Score_Chart
       objectReference: {fileID: 0}
     - target: {fileID: 7063282390834516175, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -560,7 +557,7 @@ PrefabInstance:
     - target: {fileID: 7063282390834516174, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_Name
-      value: NetChart
+      value: Net_Chart
       objectReference: {fileID: 0}
     - target: {fileID: 7063282390834516175, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -817,7 +814,7 @@ PrefabInstance:
     - target: {fileID: 7063282390834516174, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_Name
-      value: ResourcesChart
+      value: Resources_Chart
       objectReference: {fileID: 0}
     - target: {fileID: 7063282390834516175, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -1069,7 +1066,7 @@ PrefabInstance:
     - target: {fileID: 7063282390834516174, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_Name
-      value: EfficiencyChart
+      value: Efficiency_Chart
       objectReference: {fileID: 0}
     - target: {fileID: 7063282390834516175, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -1321,7 +1318,7 @@ PrefabInstance:
     - target: {fileID: 7063282390834516174, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_Name
-      value: FilteredChart
+      value: Filtered_Chart
       objectReference: {fileID: 0}
     - target: {fileID: 7063282390834516175, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -1573,7 +1570,7 @@ PrefabInstance:
     - target: {fileID: 7063282390834516174, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_Name
-      value: ProducedChart
+      value: Produced_Chart
       objectReference: {fileID: 0}
     - target: {fileID: 7063282390834516175, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}

@@ -43,7 +43,8 @@ public class PlayerStatController : MonoBehaviour
     [SerializeField]
     private Ease tweenEase = Ease.InSine;
     
-    private bool isShown = true;
+    private bool _isShown = true;
+    public bool isShown { get { return _isShown; } }
 
     private void Start()
     {
@@ -94,9 +95,9 @@ public class PlayerStatController : MonoBehaviour
 
     public void Show()
     {
-        if (isShown) return;
+        if (_isShown) return;
 
-        isShown = true;
+        _isShown = true;
 
         contentCanvas.DOKill();
         contentCanvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
@@ -104,9 +105,9 @@ public class PlayerStatController : MonoBehaviour
 
     public void Hide()
     {
-        if (!isShown) return;
+        if (!_isShown) return;
 
-        isShown = false;
+        _isShown = false;
 
         contentCanvas.DOKill();
         contentCanvas.DOFade(0f, tweenDuration).SetEase(tweenEase);

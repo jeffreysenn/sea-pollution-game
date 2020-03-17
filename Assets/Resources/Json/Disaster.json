@@ -1,0 +1,19 @@
+{
+  "disasterList": [
+    {
+      "title": "Fire",
+      "damage": 100,
+      "chancePerTurn": 0.2
+    },
+    {
+      "title": "Flood",
+      "damage": 100,
+      "chancePerTurn": 0.2
+    },
+    {
+      "title": "Drought",
+      "damage": 100,
+      "chancePerTurn": 0.1
+    }
+  ]
+}

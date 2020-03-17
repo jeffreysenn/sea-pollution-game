@@ -14,6 +14,7 @@ public class AttribData
     public CountryAttrib[] countryList;
     public FactoryAttrib[] factoryList;
     public FilterAttrib[] filterList;
+    public RecyclerAttrib[] recyclerList;
 }
 
 /// <summary>
@@ -26,98 +27,154 @@ public class AttribLoader : MonoBehaviour
     /// Internal use only.
     /// </summary>
     [System.Serializable]
-    public struct JsonData
+    public class PlacementJson
     {
-        [System.Serializable]
-        public class PlacementJson
+        public bool urban = true, agriculture = true, forest = true, ocean = true;
+        public PlaceType GetSignature()
         {
-            public bool urban = true, agriculture = true, forest = true, ocean = true;
-            public PlaceType GetSignature()
-            {
-                var sig = PlaceType.NONE;
-                if (ocean) { sig |= PlaceType.OCEAN; }
-                if (urban) { sig |= PlaceType.URBAN; }
-                if (agriculture) { sig |= PlaceType.AGRICULTURE; }
-                if (forest) { sig |= PlaceType.FOREST; }
-                return sig;
-            }
-        }
-
-        [System.Serializable]
-        public class PolluterJson
-        {
-            public string title = "Default Polluter";
-            public EconomicAttrib economicAttrib = new EconomicAttrib { };
-            public PollutionAttrib pollutionAttrib = new PollutionAttrib { };
-            public VulnerabilityAttrib vulnerabilityAttrib = new VulnerabilityAttrib { };
-            public PlacementJson placementAttrib = new PlacementJson { };
-            public VisualAttrib visualAttrib = new VisualAttrib { };
-
-            public PolluterAttrib ToPolluterAttrib()
-            {
-                var r = new PolluterAttrib
-                {
-                    title = title,
-                    economicAttrib = economicAttrib,
-                    pollutionAttrib = pollutionAttrib,
-                    vulnerabilityAttrib = vulnerabilityAttrib,
-                    placementAttrib = new PlacementAttrib(placementAttrib.GetSignature()),
-                    visualAttrib = visualAttrib
-                };
-                return r;
-            }
-        }
-
-        public ScoreWeight scoreWeight;
-        public Pollutant[] pollutantList;
-        public Disaster[] disasterList;
-        public CountryAttrib[] countryList;
-        public PolluterJson[] factoryList;
-        public PolluterJson[] filterList;
-
-        public AttribData ToAttribData()
-        {
-            return new AttribData
-            {
-                scoreWeight = scoreWeight,
-                pollutantList = pollutantList,
-                disasterList = disasterList,
-                countryList = countryList,
-                factoryList = System.Array.ConvertAll(ToPolluterAttribs(factoryList), attrib => new FactoryAttrib(attrib)),
-                filterList = System.Array.ConvertAll(ToPolluterAttribs(filterList), attrib => new FilterAttrib(attrib)),
-            };
-        }
-
-        private PolluterAttrib[] ToPolluterAttribs(PolluterJson[] polluterJson)
-        {
-            var length = polluterJson.Length;
-            var result = new PolluterAttrib[length];
-            for (int i = 0; i != length; ++i)
-            {
-                var polluterAttrib = polluterJson[i].ToPolluterAttrib();
-                result[i] = polluterAttrib;
-            }
-            return result;
+            var sig = PlaceType.NONE;
+            if (ocean) { sig |= PlaceType.OCEAN; }
+            if (urban) { sig |= PlaceType.URBAN; }
+            if (agriculture) { sig |= PlaceType.AGRICULTURE; }
+            if (forest) { sig |= PlaceType.FOREST; }
+            return sig;
         }
     }
+
+    [System.Serializable]
+    public struct PlacementWrapper
+    {
+        public PlacementJson placementAttrib;
+    }
+
+    [System.Serializable]
+    public struct PlacementList
+    {
+        public PlacementWrapper[] list;
+    }
+
+    public interface IPolluterAttribList
+    {
+        PolluterAttrib[] GetPolluterAttribs();
+    }
+
+    [System.Serializable]
+    public struct PollutantList { public Pollutant[] pollutantList; }
+    [System.Serializable]
+    public struct DisasterList { public Disaster[] disasterList; }
+    [System.Serializable]
+    public struct CountryList { public CountryAttrib[] countryList; }
+    [System.Serializable]
+    public struct FactoryList : IPolluterAttribList
+    {
+        public FactoryAttrib[] list;
+
+        public PolluterAttrib[] GetPolluterAttribs()
+        {
+            return System.Array.ConvertAll(list, attrib => (PolluterAttrib)attrib);
+        }
+    }
+    [System.Serializable]
+    public struct FilterList : IPolluterAttribList
+    {
+        public FilterAttrib[] list;
+        public PolluterAttrib[] GetPolluterAttribs()
+        {
+            return System.Array.ConvertAll(list, attrib => (PolluterAttrib)attrib);
+        }
+    }
+    [System.Serializable]
+    public struct RecyclerList : IPolluterAttribList
+    {
+        public RecyclerAttrib[] list;
+        public PolluterAttrib[] GetPolluterAttribs()
+        {
+            return System.Array.ConvertAll(list, attrib => (PolluterAttrib)attrib);
+        }
+    }
+
+    public enum FileFor
+    {
+        SCORE_WEIGHT,
+        POLLUTANT,
+        DISASTER,
+        COUNTRY,
+        FACTORY,
+        FILTER,
+        RECYCLER,
+    }
+
+    [System.Serializable]
+    struct FileName
+    {
+        public FileFor fileFor;
+        public string name;
+    }
+
+    [SerializeField]
+    private FileName[] fileNames = new FileName[]
+    {
+        new FileName{ fileFor = FileFor.SCORE_WEIGHT, name = "ScoreWeight" },
+        new FileName{ fileFor = FileFor.POLLUTANT, name = "Pollutant" },
+        new FileName{ fileFor = FileFor.DISASTER, name = "Disaster" },
+        new FileName{ fileFor = FileFor.COUNTRY, name = "Country" },
+        new FileName{ fileFor = FileFor.FACTORY, name = "Factory" },
+        new FileName{ fileFor = FileFor.FILTER, name = "Filter" },
+        new FileName{ fileFor = FileFor.RECYCLER, name = "Recycler" },
+    };
+    [SerializeField] private string dir = "Json/";
+    [SerializeField] private string suffix = ".json";
 
     private AttribData attribData = null;
 
     public AttribData LoadLazy()
     {
-        if (attribData == null)
+        if (attribData != null) { return attribData; }
+
+        var fileData = new Dictionary<FileFor, string> { };
+        foreach (var filename in fileNames)
         {
 #if UNITY_WEBGL
-            var data = Resources.Load<TextAsset>("TweakMe");
-            var jsonData = JsonUtility.FromJson<JsonData>(data.text);
+            var data = Resources.Load<TextAsset>(dir + filename.name);
 #else
-        var path = Application.dataPath + "/Resources/TweakMe.json";
-        var data = System.IO.File.ReadAllText(path);
-        var jsonData = JsonUtility.FromJson<JsonData>(data);
+            var path = Application.dataPath + "/Resources/" + dir + filename.name + suffix;
+            var data = System.IO.File.ReadAllText(path);
 #endif
-            attribData = jsonData.ToAttribData();
+            fileData.Add(filename.fileFor, data.text);
         }
 
+        var scoreWeight = JsonUtility.FromJson<ScoreWeight>(fileData[FileFor.SCORE_WEIGHT]);
+        var pollutantList = JsonUtility.FromJson<PollutantList>(fileData[FileFor.POLLUTANT]);
+        var disasterList = JsonUtility.FromJson<DisasterList>(fileData[FileFor.DISASTER]);
+        var countryList = JsonUtility.FromJson<CountryList>(fileData[FileFor.COUNTRY]);
+        var factoryList = LoadPolluterList<FactoryList>(fileData[FileFor.FACTORY]);
+        var filterList = LoadPolluterList<FilterList>(fileData[FileFor.FILTER]);
+        var recyclerList = LoadPolluterList<RecyclerList>(fileData[FileFor.RECYCLER]);
+
+        attribData = new AttribData
+        {
+            scoreWeight = scoreWeight,
+            pollutantList = pollutantList.pollutantList,
+            disasterList = disasterList.disasterList,
+            countryList = countryList.countryList,
+            factoryList = factoryList.list,
+            filterList = filterList.list,
+            recyclerList = recyclerList.list
+        };
+
         return attribData;
+    }
+
+    private T LoadPolluterList<T>(string data) where T : IPolluterAttribList
+    {
+        var placementList = JsonUtility.FromJson<PlacementList>(data);
+        var polluterList = JsonUtility.FromJson<T>(data);
+        var baseList = polluterList.GetPolluterAttribs();
+        for (int i = 0; i != baseList.Length; ++i)
+        {
+            var sig = placementList.list[i].placementAttrib.GetSignature();
+            baseList[i].placementAttrib = new PlacementAttrib(sig);
+        }
+        return polluterList;
     }
 }

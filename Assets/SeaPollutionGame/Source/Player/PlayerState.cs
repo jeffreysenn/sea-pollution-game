@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using UnityEngine.Events;
 
+public class ResourceMap : Dictionary<string, float> { };
 
 public enum PollutionMapType
 {
@@ -21,6 +22,8 @@ public class PlayerState
         {PollutionMapType.FILTERED, new PollutionMap{} },
         {PollutionMapType.NET, new PollutionMap{} },
     };
+
+    private ResourceMap accumulatedResourceMap = new ResourceMap { };
 
     private Dictionary<PollutionMapType, UnityEvent> stateChangeEventMap = new Dictionary<PollutionMapType, UnityEvent> {
         { PollutionMapType.PRODUCED, new UnityEvent{ } },
@@ -64,6 +67,25 @@ public class PlayerState
         return accumulatedPollutionMap[type];
     }
 
+    public ResourceMap GetTurnResourceMap()
+    {
+        ResourceMap result = new ResourceMap { };
+        foreach (var polluter in polluters)
+        {
+            foreach (var pair in polluter.GetResourceMap())
+            {
+                if (!result.ContainsKey(pair.Key)) { result.Add(pair.Key, 0); }
+                result[pair.Key] += pair.Value;
+            }
+        }
+        return result;
+    }
+
+    public ResourceMap GetAccumulatedResourceMap()
+    {
+        return accumulatedResourceMap;
+    }
+
     public void AddPolluter(Polluter polluter)
     {
         Debug.Assert(!HasPolluter(polluter));
@@ -97,7 +119,10 @@ public class PlayerState
         }
     }
 
-    public void AccumulateMoney() { AddMoney(GetTurnIncome()); }
+    public void AccumulateMoney()
+    {
+        AddMoney(GetTurnIncome());
+    }
 
     public void AccumulatePollution()
     {
@@ -105,6 +130,15 @@ public class PlayerState
         {
             accumulatedPollutionMap[key] += GetTurnPollutionMap(key);
             stateChangeEventMap[key].Invoke();
+        }
+    }
+
+    public void AccumulateResource()
+    {
+        foreach (var pair in GetTurnResourceMap())
+        {
+            if (!accumulatedResourceMap.ContainsKey(pair.Key)) { accumulatedResourceMap.Add(pair.Key, 0); }
+            accumulatedResourceMap[pair.Key] += pair.Value;
         }
     }
 

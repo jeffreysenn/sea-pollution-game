@@ -12,6 +12,7 @@ public class AttribData
     public Pollutant[] pollutantList;
     public Disaster[] disasterList;
     public CountryAttrib[] countryList;
+    public Goal[] goalList;
     public FactoryAttrib[] factoryList;
     public FilterAttrib[] filterList;
     public RecyclerAttrib[] recyclerList;
@@ -42,21 +43,12 @@ public class AttribLoader : MonoBehaviour
     }
 
     [System.Serializable]
-    public struct PlacementWrapper
-    {
-        public PlacementJson placementAttrib;
-    }
+    public struct PlacementWrapper { public PlacementJson placementAttrib; }
 
     [System.Serializable]
-    public struct PlacementList
-    {
-        public PlacementWrapper[] list;
-    }
+    public struct PlacementList { public PlacementWrapper[] list; }
 
-    public interface IPolluterAttribList
-    {
-        PolluterAttrib[] GetPolluterAttribs();
-    }
+    public interface IPolluterAttribList { PolluterAttrib[] GetPolluterAttribs(); }
 
     [System.Serializable]
     public struct PollutantList { public Pollutant[] pollutantList; }
@@ -64,6 +56,8 @@ public class AttribLoader : MonoBehaviour
     public struct DisasterList { public Disaster[] disasterList; }
     [System.Serializable]
     public struct CountryList { public CountryAttrib[] countryList; }
+    [System.Serializable]
+    public struct GoalList { public Goal[] list; }
     [System.Serializable]
     public struct FactoryList : IPolluterAttribList
     {
@@ -99,6 +93,7 @@ public class AttribLoader : MonoBehaviour
         POLLUTANT,
         DISASTER,
         COUNTRY,
+        GOAL,
         FACTORY,
         FILTER,
         RECYCLER,
@@ -118,6 +113,7 @@ public class AttribLoader : MonoBehaviour
         new FileName{ fileFor = FileFor.POLLUTANT, name = "Pollutant" },
         new FileName{ fileFor = FileFor.DISASTER, name = "Disaster" },
         new FileName{ fileFor = FileFor.COUNTRY, name = "Country" },
+        new FileName{ fileFor = FileFor.GOAL, name = "Goal" },
         new FileName{ fileFor = FileFor.FACTORY, name = "Factory" },
         new FileName{ fileFor = FileFor.FILTER, name = "Filter" },
         new FileName{ fileFor = FileFor.RECYCLER, name = "Recycler" },
@@ -129,38 +125,41 @@ public class AttribLoader : MonoBehaviour
 
     public AttribData LoadLazy()
     {
-        if (attribData != null) { return attribData; }
-
-        var fileData = new Dictionary<FileFor, string> { };
-        foreach (var filename in fileNames)
+        if (attribData == null)
         {
+            var fileData = new Dictionary<FileFor, string> { };
+            foreach (var filename in fileNames)
+            {
 #if UNITY_WEBGL
-            var data = Resources.Load<TextAsset>(dir + filename.name);
+                var data = Resources.Load<TextAsset>(dir + filename.name);
 #else
             var path = Application.dataPath + "/Resources/" + dir + filename.name + suffix;
             var data = System.IO.File.ReadAllText(path);
 #endif
-            fileData.Add(filename.fileFor, data.text);
+                fileData.Add(filename.fileFor, data.text);
+            }
+
+            var scoreWeight = JsonUtility.FromJson<ScoreWeight>(fileData[FileFor.SCORE_WEIGHT]);
+            var pollutantList = JsonUtility.FromJson<PollutantList>(fileData[FileFor.POLLUTANT]);
+            var disasterList = JsonUtility.FromJson<DisasterList>(fileData[FileFor.DISASTER]);
+            var countryList = JsonUtility.FromJson<CountryList>(fileData[FileFor.COUNTRY]);
+            var goalList = JsonUtility.FromJson<GoalList>(fileData[FileFor.GOAL]);
+            var factoryList = LoadPolluterList<FactoryList>(fileData[FileFor.FACTORY]);
+            var filterList = LoadPolluterList<FilterList>(fileData[FileFor.FILTER]);
+            var recyclerList = LoadPolluterList<RecyclerList>(fileData[FileFor.RECYCLER]);
+
+            attribData = new AttribData
+            {
+                scoreWeight = scoreWeight,
+                pollutantList = pollutantList.pollutantList,
+                disasterList = disasterList.disasterList,
+                countryList = countryList.countryList,
+                goalList = goalList.list,
+                factoryList = factoryList.list,
+                filterList = filterList.list,
+                recyclerList = recyclerList.list
+            };
         }
-
-        var scoreWeight = JsonUtility.FromJson<ScoreWeight>(fileData[FileFor.SCORE_WEIGHT]);
-        var pollutantList = JsonUtility.FromJson<PollutantList>(fileData[FileFor.POLLUTANT]);
-        var disasterList = JsonUtility.FromJson<DisasterList>(fileData[FileFor.DISASTER]);
-        var countryList = JsonUtility.FromJson<CountryList>(fileData[FileFor.COUNTRY]);
-        var factoryList = LoadPolluterList<FactoryList>(fileData[FileFor.FACTORY]);
-        var filterList = LoadPolluterList<FilterList>(fileData[FileFor.FILTER]);
-        var recyclerList = LoadPolluterList<RecyclerList>(fileData[FileFor.RECYCLER]);
-
-        attribData = new AttribData
-        {
-            scoreWeight = scoreWeight,
-            pollutantList = pollutantList.pollutantList,
-            disasterList = disasterList.disasterList,
-            countryList = countryList.countryList,
-            factoryList = factoryList.list,
-            filterList = filterList.list,
-            recyclerList = recyclerList.list
-        };
 
         return attribData;
     }

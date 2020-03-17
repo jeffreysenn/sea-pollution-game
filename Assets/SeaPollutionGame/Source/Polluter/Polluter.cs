@@ -28,6 +28,7 @@ public class Polluter : MonoBehaviour
 
     private float profit = 0;
     private PollutionMap pollutionMap = new PollutionMap { };
+    private ResourceMap resourceMap = new ResourceMap { };
 
     private int ownerID = -1;
 
@@ -57,6 +58,9 @@ public class Polluter : MonoBehaviour
 
     public PollutionMap GetPollutionMap() { return pollutionMap; }
 
+    protected void SetResourceMap(ResourceMap map) { resourceMap = map; }
+    public ResourceMap GetResourceMap() { return resourceMap; }
+
     public void SetAttrib(PolluterAttrib attrib)
     {
         polluterAttrib = attrib;
@@ -67,9 +71,11 @@ public class Polluter : MonoBehaviour
 
     public void SetIdText(string s) { idTextMesh.text = s; }
     public TextMesh GetIdTextMesh() { return idTextMesh; }
-
-    public void Operate(PollutionMap input)
+    public Health GetHealthComp() { return health; }
+    public virtual void Operate(PollutionMap input)
     {
+        if (!GetHealthComp().IsAlive()) { return; }
+
         pollutionMap.Clear();
         var pollutionAttrib = GetAttrib().pollutionAttrib;
         foreach (var emission in pollutionAttrib.emissions)
@@ -91,6 +97,17 @@ public class Polluter : MonoBehaviour
             pollutionMap.Add(pollutantName, emissionAmount);
         }
         pollutionMapChangeEvent.Invoke();
+
+
+        resourceMap.Clear();
+        var resourceAttrib = GetAttrib().resourceAttrib;
+        if (resourceAttrib.products != null)
+        {
+            foreach (var product in resourceAttrib.products)
+            {
+                resourceMap.Add(product.resourceName, product.productPerTurn);
+            }
+        }
     }
 
     protected virtual void OnDeadth()

@@ -1,6 +1,8 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class Resource
 {
-    public string resourceName = "Default Resource";
-    public bool canAccumulate = true;
+    public string title = "default resource";
+    public Color32 color = new Color32();
 }

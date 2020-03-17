@@ -5,7 +5,4 @@ using System.Text;
 using System.Threading.Tasks;
 
 [System.Serializable]
-public class RecyclerAttrib : PolluterAttrib
-{
-    public RecycleAttrib recycleAttrib = new RecycleAttrib { };
-}
+public class RecyclerAttrib : PolluterAttrib { }

@@ -9,7 +9,9 @@ public class RecycleAttrib
     public struct Conversion
     {
         public string pollutantName;
+        public string convertTo;
         public float conversionRate;
+        public float maxConversion;
     }
 
     public Conversion[] conversions = null;

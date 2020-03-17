@@ -11,6 +11,8 @@ public class PolluterAttrib : System.ICloneable
     public PollutionAttrib pollutionAttrib = new PollutionAttrib { };
     public VulnerabilityAttrib vulnerabilityAttrib = new VulnerabilityAttrib { };
     public PlacementAttrib placementAttrib = new PlacementAttrib { };
+    public RecycleAttrib recycleAttrib = new RecycleAttrib { };
+    public ResourceAttrib resourceAttrib = new ResourceAttrib { };
     public VisualAttrib visualAttrib = new VisualAttrib { };
 
     public PolluterAttrib() { }

@@ -5,6 +5,6 @@ public class Filter : Polluter
 {
     public override void Mulfunction()
     {
-        SetPollutionMap(new PollutionMap { });
+        GetPollutionMap().Clear();
     }
 }

@@ -14,7 +14,7 @@ public class Space : Node
     {
         var placementAttrib = polluterAttrib.placementAttrib;
         return placementAttrib.CanPlaceOn(GetPlaceType())
-            && this.polluter == null
+            && polluter == null
             && (ownerID == playerID || !HasOwner());
     }
 

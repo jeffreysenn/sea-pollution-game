@@ -53,10 +53,12 @@ MonoBehaviour:
   - fileFor: 3
     name: Country
   - fileFor: 4
-    name: Factory
+    name: Goal
   - fileFor: 5
-    name: Filter
+    name: Factory
   - fileFor: 6
+    name: Filter
+  - fileFor: 7
     name: Recycler
   dir: Json/
   suffix: .json

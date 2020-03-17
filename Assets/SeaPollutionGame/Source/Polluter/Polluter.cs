@@ -9,6 +9,7 @@ public enum EntityType
     NONE,
     FACTORY,
     FILTER,
+    RECYCLER
 };
 
 public class Polluter : MonoBehaviour

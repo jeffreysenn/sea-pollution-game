@@ -34,14 +34,19 @@ public class PurchaseMenuController : MonoBehaviour
     private ScrollRect filtersScrollRect = null;
 
     [SerializeField]
+    private RectTransform recyclersMenu = null;
+    [SerializeField]
+    private ScrollRect recyclersScrollRect = null;
+
+    [SerializeField]
     private Button factoriesButton = null;
     [SerializeField]
     private Button filtersButton = null;
+    [SerializeField]
+    private Button recyclersButton = null;
 
     [SerializeField]
-    private GameObject spaceFactories = null;
-    [SerializeField]
-    private GameObject spaceFilters = null;
+    private GameObject temporarySpace = null;
 
     public List<PurchasableItem> purchasables = new List<PurchasableItem> { };
 
@@ -71,6 +76,12 @@ public class PurchaseMenuController : MonoBehaviour
         {
             filterAttribs.Add(filterAttrib);
         }
+        var recyclerAttribs = purchasables[2].polluterAttribs;
+        foreach(var recyclerAttrib in data.recyclerList)
+        {
+            Debug.Log(recyclerAttrib.title);
+            recyclerAttribs.Add(recyclerAttrib);
+        }
         
         
         foreach (var pur in purchasables)
@@ -83,13 +94,19 @@ public class PurchaseMenuController : MonoBehaviour
                 if(polluter is Factory)
                 {
                     purchasableIcon = Instantiate(pur.purchasableIcon, factoriesMenu);
-                    purchasableIcon.SetSpace(spaceFactories);
+                    purchasableIcon.SetSpace(temporarySpace);
                 }
 
                 if(polluter is Filter)
                 {
                     purchasableIcon = Instantiate(pur.purchasableIcon, filtersMenu);
-                    purchasableIcon.SetSpace(spaceFilters);
+                    purchasableIcon.SetSpace(temporarySpace);
+                }
+
+                if(polluter is Recycler)
+                {
+                    purchasableIcon = Instantiate(pur.purchasableIcon, recyclersMenu);
+                    purchasableIcon.SetSpace(temporarySpace);
                 }
 
                 purchasableIcon.SetPolluterAttributes(pur.polluterAttribs[i]);
@@ -106,41 +123,57 @@ public class PurchaseMenuController : MonoBehaviour
 
     public void ShowFactories()
     {
+        HideFilters();
+        HideRecyclers();
+
         factoriesButton.onClick.RemoveListener(ShowFactories);
         factoriesButton.interactable = false;
-
-        HideFilters();
-
         factoriesScrollRect.gameObject.SetActive(true);
-        //factoriesMenu.gameObject.SetActive(true);
-
-        filtersButton.interactable = true;
-        filtersButton.onClick.AddListener(ShowFilters);
     }
 
     public void ShowFilters()
     {
+        HideFactories();
+        HideRecyclers();
+
         filtersButton.onClick.RemoveListener(ShowFilters);
         filtersButton.interactable = false;
-
-        HideFactories();
-
-        //filtersMenu.gameObject.SetActive(true);
         filtersScrollRect.gameObject.SetActive(true);
+    }
 
-        factoriesButton.interactable = true;
-        factoriesButton.onClick.AddListener(ShowFactories);
+    public void ShowRecyclers()
+    {
+        HideFactories();
+        HideFilters();
+
+        recyclersButton.onClick.RemoveListener(HideRecyclers);
+        recyclersButton.interactable = false;
+        recyclersScrollRect.gameObject.SetActive(true);
     }
 
     public void HideFactories()
     {
         //factoriesMenu.gameObject.SetActive(false);
         factoriesScrollRect.gameObject.SetActive(false);
+
+        factoriesButton.interactable = true;
+        factoriesButton.onClick.AddListener(ShowFactories);
     }
 
     public void HideFilters()
     {
         //filtersMenu.gameObject.SetActive(false);
         filtersScrollRect.gameObject.SetActive(false);
+
+        filtersButton.interactable = true;
+        filtersButton.onClick.AddListener(ShowFilters);
+    }
+
+    public void HideRecyclers()
+    {
+        recyclersScrollRect.gameObject.SetActive(false);
+
+        recyclersButton.interactable = true;
+        recyclersButton.onClick.AddListener(ShowRecyclers);
     }
 }

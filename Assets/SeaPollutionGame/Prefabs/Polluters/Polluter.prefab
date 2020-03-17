@@ -182,7 +182,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7584874410836583695}
   - component: {fileID: 1437841119581754747}
-  - component: {fileID: 7451523539939551769}
   - component: {fileID: 4163770255252185031}
   m_Layer: 0
   m_Name: Polluter
@@ -220,19 +219,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7451523539939551769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365798465837297521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb08cde2eb502c24d833e48b16a4c4a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  descriptionText: {fileID: 0}
 --- !u!114 &4163770255252185031
 MonoBehaviour:
   m_ObjectHideFlags: 0

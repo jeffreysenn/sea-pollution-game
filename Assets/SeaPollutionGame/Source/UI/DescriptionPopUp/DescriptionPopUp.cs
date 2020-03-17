@@ -18,6 +18,7 @@ public class DescriptionPopUp : MonoBehaviour
 
     class PopUpContent
     {
+        public ScreenPosition defaultAnchor = ScreenPosition.LEFT;
         public CanvasGroup canvas = null;
         public bool isShown { get; set; }
     }
@@ -77,6 +78,7 @@ public class DescriptionPopUp : MonoBehaviour
     [SerializeField]
     private TutorialContent tutorialContent = null;
     
+    [Header("Tween")]
     [SerializeField]
     private float tweenDuration = 1f;
     [SerializeField]
@@ -96,6 +98,27 @@ public class DescriptionPopUp : MonoBehaviour
     [SerializeField]
     private string blockingRaycastTag = "BlockingUI";
     private bool isBlocked = false;
+
+    [Header("Contextual Anchors")]
+    [SerializeField]
+    private ScreenArea screenArea = null;
+    [SerializeField]
+    private RectTransform anchorTop = null;
+    [SerializeField]
+    private RectTransform anchorBot = null;
+    [SerializeField]
+    private RectTransform anchorLeft = null;
+    [SerializeField]
+    private RectTransform anchorRight = null;
+    [SerializeField]
+    private float positionOffset = 30f;
+    private ScreenPosition currentScreenPosition = ScreenPosition.MIDDLE;
+    
+    private Vector2 anchorTopVector = new Vector2(0.5f, 0);
+    private Vector2 anchorBotVector = new Vector2(0.5f, 1);
+    private Vector2 anchorLeftVector = new Vector2(1, 0.5f);
+    private Vector2 anchorRightVector = new Vector2(0, 0.5f);
+
 
     private List<PopUpContent> allPopupContents = new List<PopUpContent>();
 
@@ -155,6 +178,8 @@ public class DescriptionPopUp : MonoBehaviour
                 HidePopup(currentShownContent);
             }
         }
+
+        currentScreenPosition = screenArea.GetPosition(Input.mousePosition);
         
         /*
          * Raycast UI
@@ -580,6 +605,48 @@ public class DescriptionPopUp : MonoBehaviour
     private void ShowPopup(PopUpContent content)
     {
         currentShownContent = content;
+
+        // set position depending on screen area
+        RectTransform rt = content.canvas.GetComponent<RectTransform>();
+
+        if (currentScreenPosition == ScreenPosition.MIDDLE)
+        {
+            currentScreenPosition = content.defaultAnchor;
+        }
+
+        Vector2 newPosition = Vector2.zero;
+
+        switch (currentScreenPosition)
+        {
+            case ScreenPosition.TOP:
+            rt.anchorMax = anchorBotVector;
+            rt.anchorMin = anchorBotVector;
+            rt.pivot = anchorBotVector;
+            newPosition = new Vector2(0, -positionOffset);
+            break;
+            case ScreenPosition.BOTTOM:
+            rt.anchorMax = anchorTopVector;
+            rt.anchorMin = anchorTopVector;
+            rt.pivot = anchorTopVector;
+            newPosition = new Vector2(0, positionOffset);
+            break;
+            case ScreenPosition.LEFT:
+            rt.anchorMax = anchorRightVector;
+            rt.anchorMin = anchorRightVector;
+            rt.pivot = anchorRightVector;
+            newPosition = new Vector2(positionOffset, 0);
+            break;
+            case ScreenPosition.RIGHT:
+            rt.anchorMax = anchorLeftVector;
+            rt.anchorMin = anchorLeftVector;
+            rt.pivot = anchorLeftVector;
+            newPosition = new Vector2(-positionOffset, 0);
+            break;
+            default:
+            break;
+        }
+
+        rt.anchoredPosition = newPosition;
 
         if (!content.isShown)
         {

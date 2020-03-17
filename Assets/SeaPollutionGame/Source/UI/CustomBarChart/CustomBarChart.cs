@@ -36,18 +36,14 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
         widthTotalContent = totalContent.sizeDelta.x;
     }
 
-    public void SetValues(float left, float right)
+    public void SetValues(float left, float right, bool percentage = true)
     {
-        float[] values = SetLeftValue(left);
-        
-        SetTextValues(left, right);
-    }
+        float[] values = SetLeftValue(NormalizedRatio(left, right));
 
-    public void SetValuesPercentage(float left)
-    {
-        float[] values = SetLeftValue(left);
-
-        SetTextValues(values[0], values[1], true);
+        if (percentage)
+            SetTextValues(values[0], values[1], true);
+        else
+            SetTextValues(left, right);
     }
 
     private float[] SetLeftValue(float d)
@@ -96,5 +92,35 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         OnClick?.Invoke(this);
+    }
+
+
+    private float NormalizedRatio(float v1, float v2)
+    {
+        float value1 = v1;
+        float value2 = v2;
+
+        if (value1 < 0) value1 = 0;
+        if (value2 < 0) value2 = 0;
+
+        float ratio = 0f;
+
+
+        if (value1 == 0 && value2 == 0)
+        {
+            ratio = 50;
+        }
+        else
+        {
+            ratio = (value1) / (value1 + value2) * 100f;
+        }
+
+        if (value1 == Mathf.Infinity || value2 == Mathf.Infinity)
+        {
+            Debug.LogWarning("sanity infinity");
+            ratio = 50;
+        }
+
+        return ratio;
     }
 }

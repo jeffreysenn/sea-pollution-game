@@ -53,7 +53,7 @@ public class ScoreMenu : MonoBehaviour
         player1State = worldStateManager.GetPlayerState(player1.id);
         player2State = worldStateManager.GetPlayerState(player2.id);
 
-        scoreBar.SetValuesPercentage(50);
+        scoreBar.SetValues(50, 50, true);
 
         defaultDetailsPosition = detailsTransform.anchoredPosition;
 
@@ -87,10 +87,8 @@ public class ScoreMenu : MonoBehaviour
         float p1 = worldStateManager.GetScore(player1.id);
         float p2 = worldStateManager.GetScore(player2.id);
 
-        if(percentageValues)
-            scoreBar.SetValuesPercentage(NormalizedRatio(p1, p2));
-        else
-            scoreBar.SetValues(p1, p2);
+        
+        scoreBar.SetValues(p1, p2, percentageValues);
     }
 
     private void UpdateResources()
@@ -98,10 +96,8 @@ public class ScoreMenu : MonoBehaviour
         float p1 = player1State.GetMoney();
         float p2 = player2State.GetMoney();
 
-        if (percentageValues)
-            resourcesChart.SetValuesPercentage(NormalizedRatio(p1, p2));
-        else
-            resourcesChart.SetValues(p1, p2);
+        
+        resourcesChart.SetValues(p1, p2, percentageValues);
     }
 
     private void UpdateTotal()
@@ -109,10 +105,8 @@ public class ScoreMenu : MonoBehaviour
         float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
         float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.NET).GetTotalPollution();
         
-        if(percentageValues)
-            totalChart.SetValuesPercentage(NormalizedRatio(p1, p2));
-        else
-            totalChart.SetValues(p1, p2);
+        
+        totalChart.SetValues(p1, p2, percentageValues);
     }
 
     private void UpdatePollution()
@@ -120,10 +114,8 @@ public class ScoreMenu : MonoBehaviour
         float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
         float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.PRODUCED).GetTotalPollution();
 
-        if (percentageValues)
-            producedChart.SetValuesPercentage(NormalizedRatio(p1, p2));
-        else
-            producedChart.SetValues(p1, p2);
+        
+        producedChart.SetValues(p1, p2, percentageValues);
     }
 
     private void UpdateFiltered()
@@ -131,10 +123,8 @@ public class ScoreMenu : MonoBehaviour
         float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
         float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
 
-        if (percentageValues)
-            filteredChart.SetValuesPercentage(NormalizedRatio(p1, p2));
-        else
-            filteredChart.SetValues(p1, p2);
+        
+        filteredChart.SetValues(p1, p2, percentageValues);
     }
 
     private void UpdateEfficiency()
@@ -142,10 +132,8 @@ public class ScoreMenu : MonoBehaviour
         float p1 = worldStateManager.GetEfficiency(player1.id);
         float p2 = worldStateManager.GetEfficiency(player2.id);
 
-        if (percentageValues)
-            efficiencyChart.SetValuesPercentage(NormalizedRatio(p1, p2));
-        else
-            efficiencyChart.SetValues(p1, p2);
+        
+        efficiencyChart.SetValues(p1, p2, percentageValues);
     }
 
     public void Show()
@@ -189,33 +177,5 @@ public class ScoreMenu : MonoBehaviour
         {
             psc.Show();
         }
-    }
-
-    private float NormalizedRatio(float v1, float v2)
-    {
-        float value1 = v1;
-        float value2 = v2;
-
-        if (value1 < 0) value1 = 0;
-        if (value2 < 0) value2 = 0;
-
-        float ratio = 0f;
-
-
-        if(value1 == 0 && value2 == 0)
-        {
-            ratio = 50;
-        } else
-        {
-            ratio = (value1) / (value1 + value2) * 100f;
-        }
-        
-        if (value1 == Mathf.Infinity || value2 == Mathf.Infinity)
-        {
-            Debug.LogWarning("sanity infinity");
-            ratio = 50;
-        }
-
-        return ratio;
     }
 }

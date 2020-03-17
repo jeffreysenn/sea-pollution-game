@@ -31,15 +31,18 @@ public class PlayerState
         { PollutionMapType.NET, new UnityEvent{ } }
     };
 
+    private UnityEvent resourceChangeEvent = new UnityEvent { };
+
     private List<Polluter> polluters = new List<Polluter> { };
     private List<SeaEntrance> seaEntrances = new List<SeaEntrance> { };
 
     public UnityEvent GetStateChangeEvent(PollutionMapType type) { return stateChangeEventMap[type]; }
     public UnityEvent[] GetStateChangeEvents() { return stateChangeEventMap.Values.ToArray(); }
+    public UnityEvent GetResourceChangeEvent() { return resourceChangeEvent; }
 
     public float GetMoney() { return money; }
     public void SetMoney(float val) { money = val; }
-    public void AddMoney(float delta) { money += delta; }
+    public void AddMoney(float delta) { SetMoney(money + delta); }
 
     public float GetTurnIncome()
     {
@@ -140,6 +143,7 @@ public class PlayerState
             if (!accumulatedResourceMap.ContainsKey(pair.Key)) { accumulatedResourceMap.Add(pair.Key, 0); }
             accumulatedResourceMap[pair.Key] += pair.Value;
         }
+        resourceChangeEvent.Invoke();
     }
 
     private PollutionMap SumOwnedPolluterPollutionMapIf(System.Predicate<float> pred)

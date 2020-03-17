@@ -43,3 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592e2d44ed353f441ac383dab5c68470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileNames:
+  - fileFor: 0
+    name: ScoreWeight
+  - fileFor: 1
+    name: Pollutant
+  - fileFor: 2
+    name: Disaster
+  - fileFor: 3
+    name: Country
+  - fileFor: 4
+    name: Goal
+  - fileFor: 5
+    name: Factory
+  - fileFor: 6
+    name: Filter
+  - fileFor: 7
+    name: Recycler
+  dir: Json/
+  suffix: .json

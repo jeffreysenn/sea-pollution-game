@@ -7,7 +7,7 @@ public class FactorySpace : Space {
     {
         if(base.CanPlacePolluter(playerID, attrib))
         {
-            return attrib is FactoryAttrib;
+            return (attrib is FactoryAttrib) || (attrib is RecyclerAttrib);
         }
         return false;
     }

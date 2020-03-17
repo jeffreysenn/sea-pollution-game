@@ -15,18 +15,38 @@ public class ScoreWeight
 public class WorldStateManager : MonoBehaviour
 {
 
-    [SerializeField] int turnCount = 12;
+    [SerializeField] private int turnCount = 12;
 
-    SortedDictionary<int, PlayerState> playerStates = new SortedDictionary<int, PlayerState> { };
-    ScoreWeight scoreWeight = new ScoreWeight { };
-    int whoseTurn = 0;
-    Dictionary<int, UnityEvent> endPlayerTurnEvents = new Dictionary<int, UnityEvent> { };
+    private SortedDictionary<int, PlayerState> playerStates = new SortedDictionary<int, PlayerState> { };
+    private ScoreWeight scoreWeight = new ScoreWeight { };
+    private Goal[] goals = null;
 
-    UnityEvent endPlayerTurnFinishEvent = new UnityEvent { };
-    UnityEvent endTurnEvent = new UnityEvent { };
-    UnityEvent endGameEvent = new UnityEvent { };
+    private int whoseTurn = 0;
+    private Dictionary<int, UnityEvent> endPlayerTurnEvents = new Dictionary<int, UnityEvent> { };
+    private UnityEvent endPlayerTurnFinishEvent = new UnityEvent { };
+    private UnityEvent endTurnEvent = new UnityEvent { };
+    private UnityEvent endGameEvent = new UnityEvent { };
 
     public void SetScoreWeight(ScoreWeight weight) { scoreWeight = weight; }
+
+    public void SetGoals(Goal[] goals) { this.goals = goals; }
+    public Goal[] GetGoals() { return goals; }
+    public bool HasPlayerMetGoal(Goal goal, int playerID)
+    {
+        return GetPlayerProgress(goal, playerID) == 1;
+    }
+
+    public float GetPlayerProgress(Goal goal, int playerID)
+    {
+        var playerState = GetPlayerState(playerID);
+        var resourceMap = playerState.GetAccumulatedResourceMap();
+        float val = 0;
+        if (resourceMap.TryGetValue(goal.resourceName, out val))
+        {
+            return goal.GetProgress(val);
+        }
+        return 0;
+    }
 
     public void RegisterPlayer(int id)
     {
@@ -166,6 +186,7 @@ public class WorldStateManager : MonoBehaviour
                 var playerState = GetPlayerState(pair.Key);
                 playerState.AccumulateMoney();
                 playerState.AccumulatePollution();
+                playerState.AccumulateResource();
             });
         }
     }

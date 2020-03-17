@@ -1,0 +1,59 @@
+{
+  "list": [
+    {
+      "title": "Default Recycler",
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": -10
+      },
+      "pollutionAttrib": {
+        "emissions": [
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": -40
+          }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 1
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 1
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 1
+          }
+        ]
+      },
+      "recycleAttrib": {
+        "conversions": [
+          {
+            "pollutantName": "Phosphor",
+            "convertTo": "Money",
+            "conversionRate": 0.4,
+            "maxConversion": 20
+          }
+        ]
+      },
+      "visualAttrib": {
+        "imageName": "Wetlands"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": false
+      }
+    }
+  ]
+
+
+
+
+
+}

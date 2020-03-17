@@ -1,0 +1,13 @@
+{
+  "pollutantList": [
+    {
+      "title": "Phosphor",
+      "color": {
+        "r": 255,
+        "g": 100,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ]
+}

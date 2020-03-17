@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using UnityEngine.Events;
 
+public class ResourceMap : Dictionary<string, float> { };
 
 public enum PollutionMapType
 {
@@ -22,21 +23,26 @@ public class PlayerState
         {PollutionMapType.NET, new PollutionMap{} },
     };
 
+    private ResourceMap accumulatedResourceMap = new ResourceMap { };
+
     private Dictionary<PollutionMapType, UnityEvent> stateChangeEventMap = new Dictionary<PollutionMapType, UnityEvent> {
         { PollutionMapType.PRODUCED, new UnityEvent{ } },
         { PollutionMapType.FILTERED, new UnityEvent{ } },
         { PollutionMapType.NET, new UnityEvent{ } }
     };
 
+    private UnityEvent resourceChangeEvent = new UnityEvent { };
+
     private List<Polluter> polluters = new List<Polluter> { };
     private List<SeaEntrance> seaEntrances = new List<SeaEntrance> { };
 
     public UnityEvent GetStateChangeEvent(PollutionMapType type) { return stateChangeEventMap[type]; }
     public UnityEvent[] GetStateChangeEvents() { return stateChangeEventMap.Values.ToArray(); }
+    public UnityEvent GetResourceChangeEvent() { return resourceChangeEvent; }
 
     public float GetMoney() { return money; }
     public void SetMoney(float val) { money = val; }
-    public void AddMoney(float delta) { money += delta; }
+    public void AddMoney(float delta) { SetMoney(money + delta); }
 
     public float GetTurnIncome()
     {
@@ -62,6 +68,25 @@ public class PlayerState
     public PollutionMap GetAccumulatedPollutionMap(PollutionMapType type)
     {
         return accumulatedPollutionMap[type];
+    }
+
+    public ResourceMap GetTurnResourceMap()
+    {
+        ResourceMap result = new ResourceMap { };
+        foreach (var polluter in polluters)
+        {
+            foreach (var pair in polluter.GetResourceMap())
+            {
+                if (!result.ContainsKey(pair.Key)) { result.Add(pair.Key, 0); }
+                result[pair.Key] += pair.Value;
+            }
+        }
+        return result;
+    }
+
+    public ResourceMap GetAccumulatedResourceMap()
+    {
+        return accumulatedResourceMap;
     }
 
     public void AddPolluter(Polluter polluter)
@@ -97,7 +122,10 @@ public class PlayerState
         }
     }
 
-    public void AccumulateMoney() { AddMoney(GetTurnIncome()); }
+    public void AccumulateMoney()
+    {
+        AddMoney(GetTurnIncome());
+    }
 
     public void AccumulatePollution()
     {
@@ -106,6 +134,16 @@ public class PlayerState
             accumulatedPollutionMap[key] += GetTurnPollutionMap(key);
             stateChangeEventMap[key].Invoke();
         }
+    }
+
+    public void AccumulateResource()
+    {
+        foreach (var pair in GetTurnResourceMap())
+        {
+            if (!accumulatedResourceMap.ContainsKey(pair.Key)) { accumulatedResourceMap.Add(pair.Key, 0); }
+            accumulatedResourceMap[pair.Key] += pair.Value;
+        }
+        resourceChangeEvent.Invoke();
     }
 
     private PollutionMap SumOwnedPolluterPollutionMapIf(System.Predicate<float> pred)

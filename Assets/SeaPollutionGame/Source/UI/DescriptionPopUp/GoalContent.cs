@@ -36,7 +36,7 @@ public class GoalContent : PopUpContent
             int thresholdA = barPlayerAProgress.GetThreshold();
             bool withThresholdA = true;
 
-            if(goalItem.valueLeft > 1 - (thresholdA / 100))
+            if(goalItem.valueLeft > (thresholdA / 100))
             {
                 withThresholdA = false;
             }
@@ -44,13 +44,13 @@ public class GoalContent : PopUpContent
             int thresholdB = barPlayerBProgress.GetThreshold();
             bool withThresholdB = true;
 
-            if (goalItem.valueLeft > 1 - (thresholdB / 100))
+            if (goalItem.valueLeft > (thresholdB / 100))
             {
                 withThresholdB = false;
             }
 
-            barPlayerAProgress.SetValues(goalItem.valueLeft, 1 - goalItem.valueLeft, withThresholdA);
-            barPlayerBProgress.SetValues(goalItem.valueRight, 1 - goalItem.valueRight, withThresholdB);
+            barPlayerAProgress.SetValues(goalItem.valueLeft, 1 - goalItem.valueLeft, true, withThresholdA);
+            barPlayerBProgress.SetValues(goalItem.valueRight, 1 - goalItem.valueRight, true, withThresholdB);
         }
 
         imageToShow = false;

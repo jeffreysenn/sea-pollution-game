@@ -45,7 +45,7 @@ public class PolluterContent : PopUpPieChartContent
 
     public bool CheckGraphicPolluter(PolluterIcon polluterIcon)
     {
-        return CheckPolluter(polluterIcon.GetPolluter());
+        return CheckPolluter(polluterIcon.GetPolluter().GetAttrib());
     }
 
     public bool CheckPolluter(Polluter polluter)

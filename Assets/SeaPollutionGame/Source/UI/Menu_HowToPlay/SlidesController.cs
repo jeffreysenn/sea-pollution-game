@@ -59,6 +59,9 @@ public class SlidesController : MonoBehaviour
         int index = slides.IndexOf(slide);
 
         canvasPrevious.alpha = (index == 0) ? 0 : 1;
+        canvasPrevious.interactable = (canvasPrevious.alpha != 0);
+
         canvasNext.alpha = (index == slides.Count - 1) ? 0 : 1;
+        canvasNext.interactable = (canvasNext.alpha != 0);
     }
 }

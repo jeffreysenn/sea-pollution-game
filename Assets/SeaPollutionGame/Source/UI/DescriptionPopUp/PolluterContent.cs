@@ -15,6 +15,8 @@ public class PolluterContent : PopUpPieChartContent
     [SerializeField]
     private TextMeshProUGUI pieChartTitle = null;
     [SerializeField]
+    private TextMeshProUGUI maxPieText = null;
+    [SerializeField]
     private TextMeshProUGUI textEconomic = null;
     
 
@@ -75,17 +77,24 @@ public class PolluterContent : PopUpPieChartContent
 
             if(polluter is Filter)
             {
-                pieChartTitle.text = "Filters:";
+                pieChartTitle.text = "Filtering:";
+                maxPieText.text = "/" + Mathf.Abs(Util.SumMap(new PollutionMap(polluter.GetAttrib().pollutionAttrib.emissions)));
             }
 
             if(polluter is Factory)
             {
-                pieChartTitle.text = "Emits:";
+                pieChartTitle.text = "Emitting:";
+                maxPieText.text = "";
             }
 
             if(polluter is Recycler)
             {
-                pieChartTitle.text = "Converts:";
+                pieChartTitle.text = "Converting:";
+                maxPieText.text = "";
+                foreach(RecycleAttrib.Conversion conversion in polluter.GetAttrib().recycleAttrib.conversions)
+                {
+                    maxPieText.text += "/" + conversion.maxConversion.ToString() + "\n";
+                }
             }
 
             SetPieChart(pieChart, map);
@@ -126,6 +135,8 @@ public class PolluterContent : PopUpPieChartContent
             {
                 pieChartTitle.text = "Emits:";
             }
+
+            maxPieText.text = "";
 
             SetPieChart(pieChart, map);
 
@@ -188,10 +199,20 @@ public class PolluterContent : PopUpPieChartContent
 
                     textRecyclers.text = "";
 
+                    PollutionMap mapRecycle = new PollutionMap();
+
                     foreach(RecycleAttrib.Conversion conversion in recycleAttrib.conversions)
                     {
+                        mapRecycle.Add(conversion.pollutantName, conversion.maxConversion);
+
                         textRecyclers.text += "" + conversion.pollutantName + " to " + conversion.convertTo + "\n"
-                            + "Rate: " + conversion.conversionRate + " Max: " + conversion.maxConversion + "\n";
+                            + "Rate: " + conversion.conversionRate + "\n"; //+ " Max: " + conversion.maxConversion + "\n";
+                    }
+
+                    if(Util.SumMap(mapRecycle) != 0)
+                    {
+                        objectPieChart.SetActive(true);
+                        SetPieChart(pieChart, mapRecycle);
                     }
                 }
                 else

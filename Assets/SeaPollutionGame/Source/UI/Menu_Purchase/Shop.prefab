@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Transform
+  m_text: Eco-Dev
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad00ed7a17dc88849bc0793b7c31d5d2, type: 2}
   m_sharedMaterial: {fileID: 8047378342722158959, guid: ad00ed7a17dc88849bc0793b7c31d5d2,
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8211898335230951698}
-    characterCount: 9
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
     wordCount: 1

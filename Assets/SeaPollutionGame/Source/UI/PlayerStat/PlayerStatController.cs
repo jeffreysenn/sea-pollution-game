@@ -78,9 +78,9 @@ public class PlayerStatController : MonoBehaviour
 
     private void UpdateIncome(float value)
     {
-        if(value == 0) { txtIncome.text = ""; return; }
+        if(value == 0) { txtIncome.text = "0"; return; }
 
-        string s = "(";
+        string s = "";
         if(value > 0)
         {
             s += "+" + value;
@@ -88,7 +88,7 @@ public class PlayerStatController : MonoBehaviour
         {
             s += value;
         }
-        s += ")";
+        s += "";
 
         txtIncome.text = s;
     }

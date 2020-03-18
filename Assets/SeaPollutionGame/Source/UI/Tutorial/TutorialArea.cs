@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class TutorialArea : MonoBehaviour
+public class TutorialArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private CanvasGroup _canvasGroup = null;
@@ -30,8 +31,6 @@ public class TutorialArea : MonoBehaviour
     {
         if (isShown) return;
 
-        canvasGroup.DOKill();
-        canvasGroup.DOFade(1f, tweenDuration).SetEase(tweenEase);
 
         canvasGroup.blocksRaycasts = true;
 
@@ -42,8 +41,6 @@ public class TutorialArea : MonoBehaviour
     {
         if (!isShown) return;
 
-        canvasGroup.DOKill();
-        canvasGroup.DOFade(0f, tweenDuration).SetEase(tweenEase);
 
         canvasGroup.blocksRaycasts = false;
 
@@ -58,5 +55,17 @@ public class TutorialArea : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
 
         isShown = false;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(1f, tweenDuration).SetEase(tweenEase);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(0f, tweenDuration).SetEase(tweenEase);
     }
 }

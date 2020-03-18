@@ -52,12 +52,17 @@ public class GoalsMenu : MonoBehaviour
         {
             GoalItem goalItem = Instantiate(goalItemPrefab, detailsTransform);
             goalItem.SetGoal(goal);
+            goalItem.SetValues(0, 0);
+
             goalItems.Add(goalItem);
+
+            goalItem.SetTitle(goalItems.Count.ToString());
         }
         
         defaultDetailsPosition = detailsTransform.anchoredPosition;
 
         mainGoalItem.OnClick += MainGoalItem_OnClick;
+        mainGoalItem.SetGoal(null);
 
         player1State.GetResourceChangeEvent().AddListener(PlayerStateResourceChanged);
         player2State.GetResourceChangeEvent().AddListener(PlayerStateResourceChanged);
@@ -75,9 +80,14 @@ public class GoalsMenu : MonoBehaviour
 
         foreach(GoalItem gi in goalItems)
         {
-            a = worldStateManager.HasPlayerMetGoal(gi.GetGoal(), player1.id);
+            Goal g = gi.GetGoal();
 
-            b = worldStateManager.HasPlayerMetGoal(gi.GetGoal(), player2.id);
+            a = worldStateManager.HasPlayerMetGoal(g, player1.id);
+            b = worldStateManager.HasPlayerMetGoal(g, player2.id);
+
+            gi.SetValues(worldStateManager.GetPlayerProgress(g, player1.id), worldStateManager.GetPlayerProgress(g, player2.id));
+
+            gi.Show(a, b);
         }
     }
 

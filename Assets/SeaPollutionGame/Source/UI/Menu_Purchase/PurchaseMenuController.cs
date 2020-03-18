@@ -79,7 +79,6 @@ public class PurchaseMenuController : MonoBehaviour
         var recyclerAttribs = purchasables[2].polluterAttribs;
         foreach(var recyclerAttrib in data.recyclerList)
         {
-            Debug.Log(recyclerAttrib.title);
             recyclerAttribs.Add(recyclerAttrib);
         }
         

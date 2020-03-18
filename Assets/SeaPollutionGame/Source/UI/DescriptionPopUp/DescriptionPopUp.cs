@@ -58,6 +58,17 @@ public class DescriptionPopUp : MonoBehaviour
         //video
     }
 
+    [System.Serializable]
+    class GoalContent : PopUpContent
+    {
+        public TextMeshProUGUI textTitle = null;
+        public TextMeshProUGUI textResourceName = null;
+        public TextMeshProUGUI textDescription = null;
+        public TextMeshProUGUI textReward = null;
+        public CustomBarChart barPlayerAProgress = null;
+        public CustomBarChart barPlayerBProgress = null;
+    }
+
     [SerializeField]
     private WorldWindow worldWindow = null;
     
@@ -77,6 +88,9 @@ public class DescriptionPopUp : MonoBehaviour
 
     [SerializeField]
     private TutorialContent tutorialContent = null;
+
+    [SerializeField]
+    private GoalContent goalContent = null;
     
     [Header("Tween")]
     [SerializeField]
@@ -149,12 +163,14 @@ public class DescriptionPopUp : MonoBehaviour
         allPopupContents.Add(balticContent);
         allPopupContents.Add(disasterContent);
         allPopupContents.Add(tutorialContent);
+        allPopupContents.Add(goalContent);
 
         HideDirectPopup(polluterContent);
         HideDirectPopup(nodeContent);
         HideDirectPopup(balticContent);
         HideDirectPopup(disasterContent);
         HideDirectPopup(tutorialContent);
+        HideDirectPopup(goalContent);
     }
 
     private void Update()
@@ -295,6 +311,22 @@ public class DescriptionPopUp : MonoBehaviour
                 }
             }
 
+            GoalItem goalItem = rr.gameObject.GetComponentInChildren<GoalItem>();
+            if(goalItem != null)
+            {
+                hasHit = true;
+
+                if (goalItem.gameObject != currentGameObject)
+                {
+                    currentGameObject = goalItem.gameObject;
+
+                    if (CheckGraphicGoal(goalItem))
+                    {
+                        HidePopupOtherThan(goalContent);
+                        ShowPopup(goalContent);
+                    }
+                }
+            }
             
             if(raycastDisaster)
             {
@@ -450,6 +482,30 @@ public class DescriptionPopUp : MonoBehaviour
 
             tutorialContent.textTitle.text = tutorialArea.title;
             tutorialContent.textDescription.text = tutorialArea.description;
+        }
+
+        imageToShow = false;
+
+        return hasFoundData;
+    }
+
+    private bool CheckGraphicGoal(GoalItem goalItem)
+    {
+        bool hasFoundData = false;
+
+        Goal g = goalItem.GetGoal();
+        if (g != null)
+        {
+            hasFoundData = true;
+
+            goalContent.textTitle.text = g.title;
+            goalContent.textDescription.text = g.description;
+
+            goalContent.textResourceName.text = g.resourceName;
+            goalContent.textReward.text = g.reward.ToString();
+
+            goalContent.barPlayerAProgress.SetValues(goalItem.valueLeft, 1 - goalItem.valueLeft);
+            goalContent.barPlayerBProgress.SetValues(goalItem.valueRight, 1 - goalItem.valueRight);
         }
 
         imageToShow = false;

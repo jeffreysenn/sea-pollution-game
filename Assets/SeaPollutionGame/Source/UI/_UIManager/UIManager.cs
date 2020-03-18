@@ -55,6 +55,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Introduction sequence")]
     [SerializeField]
+    private bool startWithHowToPlay = true;
+    [SerializeField]
     private HowToPlayMenu playMenu = null;
     [SerializeField]
     private FlagMenu flagMenu = null;
@@ -82,8 +84,15 @@ public class UIManager : MonoBehaviour
         flagMenu.HideDirect();
         playMenu.HideDirect();
 
-        playMenu.OnContinue += PlayMenu_OnContinue;
-        playMenu.Show();
+        if(startWithHowToPlay)
+        {
+            playMenu.OnContinue += PlayMenu_OnContinue;
+            playMenu.Show();
+        } else
+        {
+            flagMenu.OnStart += FlagMenu_OnStart;
+            flagMenu.Show();
+        }
     }
 
     private void PlayMenu_OnContinue()

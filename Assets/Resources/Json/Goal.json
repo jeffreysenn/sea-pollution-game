@@ -1,11 +1,32 @@
 {
   "list": [
     {
+      "title": "Prepardness",
+      "resourceName": "Prepardness",
+      "value": 100,
+      "reward": 250,
+      "description": "Reach 100 in Prepardness"
+    },
+    {
       "title": "Bio-diversity",
       "resourceName": "Bio-diversity",
-      "value": 40,
-      "reward": 100,
-      "description":  "Reach 20 in Bio-diversity"
+      "value": 100,
+      "reward": 250,
+      "description": "Reach 100 in Bio-diversity"
+    },
+    {
+      "title": "SDG 9 Industry innovation and infrastructure",
+      "resourceName": "SDG 9",
+      "value": 100,
+      "reward": 250,
+      "description": "Reach 100 in SDG 9"
+    },
+    {
+      "title": "SDG 13",
+      "resourceName": "SDG 13",
+      "value": 100,
+      "reward": 250,
+      "description": "Reach 100 in SDG 13"
     }
   ]
 }

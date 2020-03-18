@@ -1,58 +1,94 @@
 {
   "list": [
     {
-      "title": "Recycler 1",
-      "economicAttrib": {
-        "price": 40,
-        "profitPerTurn": -10
-      },
-      "pollutionAttrib": {
-        "emissions": []
-      },
-      "vulnerabilityAttrib": {
-        "vulnerabilities": [
+      "title": "Biogas plant",
+      "resourceAttrib": {
+        "products": [
           {
-            "disasterName": "Flood",
-            "factor": 0.5
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
           },
           {
-            "disasterName": "Fire",
-            "factor": 0.5
-          },
-          {
-            "disasterName": "Drought",
-            "factor": 0.5
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
           }
         ]
+      },
+      "economicAttrib": {
+        "price": 80,
+        "profitPerTurn": -5,
+        "removalCost": 15
       },
       "recycleAttrib": {
         "conversions": [
           {
             "pollutantName": "Phosphor",
             "convertTo": "Money",
-            "conversionRate": 1,
-            "maxConversion": 20
+            "conversionRate": 0.5,
+            "maxConversion": 50
           }
         ]
       },
-      "visualAttrib": {
-        "imageName": "Wetlands"
+      "pollutionAttrib": {
+        "emissions": []
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
+        ]
       },
       "placementAttrib": {
-        "urban": false,
+        "urban": true,
         "agriculture": true,
-        "forest": false,
+        "forest": true,
         "ocean": false
+      },
+      "visualAttrib": {
+        "imageName": "Default"
       }
     },
     {
-      "title": "Recycler 2",
-      "economicAttrib": {
-        "price": 60,
-        "profitPerTurn": -10
+      "title": "Seaweed farm",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
       },
       "pollutionAttrib": {
         "emissions": []
+      },
+      "economicAttrib": {
+        "price": 80,
+        "profitPerTurn": -5,
+        "removalCost": 5
+      },
+      "recycleAttrib": {
+        "conversions": [
+          {
+            "pollutantName": "Phosphor",
+            "convertTo": "Money",
+            "conversionRate": 0.5,
+            "maxConversion": 50
+          }
+        ]
       },
       "vulnerabilityAttrib": {
         "vulnerabilities": [
@@ -62,32 +98,80 @@
           },
           {
             "disasterName": "Fire",
-            "factor": 0.5
+            "factor": 0
           },
           {
             "disasterName": "Drought",
-            "factor": 0.5
+            "factor": 0
           }
         ]
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": false,
+        "forest": false,
+        "ocean": true
+      },
+      "visualAttrib": {
+        "imageName": "Default"
+      }
+    },
+    {
+      "title": "Mussel farm",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": -5,
+        "removalCost": -5
+      },
+      "pollutionAttrib": {
+        "emissions": []
       },
       "recycleAttrib": {
         "conversions": [
           {
             "pollutantName": "Phosphor",
-            "convertTo": "Bio-diversity",
-            "conversionRate": 1,
-            "maxConversion": 40
+            "convertTo": "Money",
+            "conversionRate": 0.5,
+            "maxConversion": 20
           }
         ]
       },
-      "visualAttrib": {
-        "imageName": "Wetlands"
+      "vulnerabilityAttrib": {
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
+        ]
       },
       "placementAttrib": {
         "urban": false,
-        "agriculture": true,
+        "agriculture": false,
         "forest": false,
         "ocean": true
+      },
+      "visualAttrib": {
+        "imageName": "Default"
       }
     }
   ]

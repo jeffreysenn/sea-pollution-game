@@ -15,6 +15,8 @@ public class FlowEditorWindow : EditorWindow
     float colliderWidth = 0.6f;
     float colliderHeight = 0.6f;
     float percentHead = 0.4f;
+    float arrowWidth = 1.0f;
+    float arrowWidthMax = 2.0f;
 
     [MenuItem("Window/" + "FlowEditor")]
     public static void Init()
@@ -132,9 +134,9 @@ public class FlowEditorWindow : EditorWindow
         if (!(origin && target)) { return; }
         var cachedLineRenderer = flow.GetComponent<LineRenderer>();
         cachedLineRenderer.widthCurve = new AnimationCurve(
-            new Keyframe(0, 0.4f),
-            new Keyframe(0.999f - percentHead, 0.4f), // neck of arrow
-            new Keyframe(1 - percentHead, 1f),  // max width of arrow head
+            new Keyframe(0, arrowWidth),
+            new Keyframe(0.999f - percentHead, arrowWidth), // neck of arrow
+            new Keyframe(1 - percentHead, arrowWidthMax),  // max width of arrow head
             new Keyframe(1, 0f));  // tip of arrow
         cachedLineRenderer.positionCount = 4;
         var originPos = origin.transform.position;
@@ -197,6 +199,9 @@ public class FlowEditorWindow : EditorWindow
         colliderWidth = EditorGUILayout.FloatField("Collider Width", colliderWidth);
         colliderHeight = EditorGUILayout.FloatField("Collider Height", colliderHeight);
         percentHead = EditorGUILayout.FloatField("Percent Arrow Head", percentHead);
+        arrowWidth = EditorGUILayout.FloatField("Arrow body width", arrowWidth);
+        arrowWidthMax = EditorGUILayout.FloatField("Arrow max width", arrowWidthMax);
+
 
         if (GUILayout.Button("Delete"))
         {

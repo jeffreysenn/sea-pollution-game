@@ -79,23 +79,26 @@ public class Polluter : MonoBehaviour
 
         pollutionMap.Clear();
         var pollutionAttrib = GetAttrib().pollutionAttrib;
-        foreach (var emission in pollutionAttrib.emissions)
+        if (pollutionAttrib.emissions != null)
         {
-            var pollutantName = emission.pollutantName;
-            float emissionAmount = emission.emissionPerTurn;
-            if (emission.emissionPerTurn < 0)
+            foreach (var emission in pollutionAttrib.emissions)
             {
-                if (input.ContainsKey(pollutantName))
+                var pollutantName = emission.pollutantName;
+                float emissionAmount = emission.emissionPerTurn;
+                if (emission.emissionPerTurn < 0)
                 {
-                    float existingPollution = input[pollutantName];
-                    emissionAmount = (emissionAmount + existingPollution) > 0 ? emissionAmount : -existingPollution;
+                    if (input.ContainsKey(pollutantName))
+                    {
+                        float existingPollution = input[pollutantName];
+                        emissionAmount = (emissionAmount + existingPollution) > 0 ? emissionAmount : -existingPollution;
+                    }
+                    else
+                    {
+                        emissionAmount = 0;
+                    }
                 }
-                else
-                {
-                    emissionAmount = 0;
-                }
+                pollutionMap.Add(pollutantName, emissionAmount);
             }
-            pollutionMap.Add(pollutantName, emissionAmount);
         }
         pollutionMapChangeEvent.Invoke();
 
@@ -123,7 +126,8 @@ public class Polluter : MonoBehaviour
         health.AddDeathEventListener(OnDeadth);
     }
 
-    public virtual void Mulfunction() {
+    public virtual void Mulfunction()
+    {
         resourceMap.Clear();
     }
 

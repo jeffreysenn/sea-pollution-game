@@ -2,6 +2,14 @@
   "list": [
     {
       "title": "District heating Rural",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 80,
         "profitPerTurn": 25,
@@ -198,47 +206,6 @@
       }
     },
     {
-      "title": "Biogas plant",
-      "economicAttrib": {
-        "price": 80,
-        "profitPerTurn": 15,
-        "removalCost": 15
-      },
-      "pollutionAttrib": {
-        "emissions": [
-          {
-            "pollutantName": "Phosphor",
-            "emissionPerTurn": -5
-          }
-        ]
-      },
-      "vulnerabilityAttrib": {
-        "vulnerabilities": [
-          {
-            "disasterName": "Flood",
-            "factor": 0
-          },
-          {
-            "disasterName": "Fire",
-            "factor": 0.5
-          },
-          {
-            "disasterName": "Drought",
-            "factor": 0
-          }
-        ]
-      },
-      "placementAttrib": {
-        "urban": true,
-        "agriculture": true,
-        "forest": true,
-        "ocean": false
-      },
-      "visualAttrib": {
-        "imageName": "Default"
-      }
-    },
-    {
       "title": "Increase in fertilisation",
       "economicAttrib": {
         "price": 13,
@@ -324,6 +291,18 @@
     },
     {
       "title": "Precision technologies agriculture",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          },
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": 10,
@@ -333,7 +312,7 @@
         "emissions": [
           {
             "pollutantName": "Phosphor",
-            "emissionPerTurn": -5
+            "emissionPerTurn": 0
           }
         ]
       },
@@ -367,6 +346,18 @@
     },
     {
       "title": "Intensify biomass removal from forests",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": 5,
@@ -409,89 +400,19 @@
 
     },
     {
-      "title": "Seaweed farm",
-      "economicAttrib": {
-        "price": 80,
-        "profitPerTurn": 10,
-        "removalCost": 15
-      },
-      "pollutionAttrib": {
-        "emissions": [
-          {
-            "pollutantName": "Phosphor",
-            "emissionPerTurn": -40
-          }
-        ]
-      },
-      "vulnerabilityAttrib": {
-        "vulnerabilities": [
-          {
-            "disasterName": "Flood",
-            "factor": 0.5
-          },
-          {
-            "disasterName": "Fire",
-            "factor": 0
-          },
-          {
-            "disasterName": "Drought",
-            "factor": 0
-          }
-        ]
-      },
-      "placementAttrib": {
-        "urban": false,
-        "agriculture": false,
-        "forest": false,
-        "ocean": true
-      },
-      "visualAttrib": {
-        "imageName": "Default"
-      }
-    },
-    {
-      "title": "Mussel farm",
-      "economicAttrib": {
-        "price": 40,
-        "profitPerTurn": 10,
-        "removalCost": 10
-      },
-      "pollutionAttrib": {
-        "emissions": [
-          {
-            "pollutantName": "Phosphor",
-            "emissionPerTurn": -13
-          }
-        ]
-      },
-      "vulnerabilityAttrib": {
-        "vulnerabilities": [
-          {
-            "disasterName": "Flood",
-            "factor": 0.5
-          },
-          {
-            "disasterName": "Fire",
-            "factor": 0
-          },
-          {
-            "disasterName": "Drought",
-            "factor": 0
-          }
-        ]
-      },
-      "placementAttrib": {
-        "urban": false,
-        "agriculture": false,
-        "forest": false,
-        "ocean": true
-      },
-      "visualAttrib": {
-        "imageName": "Default"
-      }
-    },
-    {
       "title": "Irrigation with sea water",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 25,
         "profitPerTurn": 5,
@@ -533,6 +454,50 @@
       }
 
     },
+    {
+      "title": "Fish farm",
+      "economicAttrib": {
+        "price": 40,
+        "profitPerTurn": 10,
+        "removalCost": 10
+      },
+      "pollutionAttrib": {
+        "emissions": [
+          {
+            "pollutantName": "Phosphor",
+            "emissionPerTurn": 20
+          }
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.5
+          }
+        ]
+      },
+      "visualAttrib": {
+        "imageName": "Factory3"
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
+      }
+
+    },
+
+
     {
       "title": "Industry 1",
       "economicAttrib": {

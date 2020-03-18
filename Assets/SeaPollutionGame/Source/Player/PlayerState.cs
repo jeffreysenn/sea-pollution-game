@@ -16,6 +16,7 @@ public enum PollutionMapType
 public class PlayerState
 {
     private float money = 100;
+    private List<Goal> achievedGoals = new List<Goal> { };
     private Dictionary<PollutionMapType, PollutionMap> accumulatedPollutionMap = new Dictionary<PollutionMapType, PollutionMap>
     {
         {PollutionMapType.PRODUCED, new PollutionMap{} },
@@ -39,7 +40,7 @@ public class PlayerState
     public UnityEvent GetStateChangeEvent(PollutionMapType type) { return stateChangeEventMap[type]; }
     public UnityEvent[] GetStateChangeEvents() { return stateChangeEventMap.Values.ToArray(); }
     public UnityEvent GetResourceChangeEvent() { return resourceChangeEvent; }
-
+    public List<Goal> GetAchievedGoals() { return achievedGoals; }
     public float GetMoney() { return money; }
     public void SetMoney(float val) { money = val; }
     public void AddMoney(float delta) { SetMoney(money + delta); }
@@ -87,6 +88,16 @@ public class PlayerState
     public ResourceMap GetAccumulatedResourceMap()
     {
         return accumulatedResourceMap;
+    }
+
+    public float GetGoalBounusScore()
+    {
+        float sum = 0;
+        foreach(var goal in achievedGoals)
+        {
+            sum += goal.reward;
+        }
+        return sum;
     }
 
     public void AddPolluter(Polluter polluter)

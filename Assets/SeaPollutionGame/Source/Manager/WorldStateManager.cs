@@ -52,6 +52,7 @@ public class WorldStateManager : MonoBehaviour
     {
         playerStates.Add(id, new PlayerState { });
         endPlayerTurnEvents.Add(id, new UnityEvent { });
+        playerStates[id].GetResourceChangeEvent().AddListener(UpdateAchievedGoalName);
     }
 
     public PlayerState GetPlayerState(int id) { return playerStates[id]; }
@@ -138,7 +139,8 @@ public class WorldStateManager : MonoBehaviour
         return scoreWeight.money * playerState.GetMoney()
             + scoreWeight.emission * Util.SumMap(playerState.GetAccumulatedPollutionMap(PollutionMapType.NET))
             + scoreWeight.filtered * (-Util.SumMap(playerState.GetAccumulatedPollutionMap(PollutionMapType.FILTERED)))
-            + scoreWeight.efficiency * GetEfficiency(playerID);
+            + scoreWeight.efficiency * GetEfficiency(playerID)
+            + playerState.GetGoalBounusScore();
     }
 
     public void EndPlayerTurn()
@@ -188,6 +190,21 @@ public class WorldStateManager : MonoBehaviour
                 playerState.AccumulatePollution();
                 playerState.AccumulateResource();
             });
+        }
+    }
+
+    private void UpdateAchievedGoalName()
+    {
+        foreach (var pair in playerStates)
+        {
+            foreach (var goal in goals)
+            {
+                if (HasPlayerMetGoal(goal, pair.Key))
+                {
+                    var achievedGoals = pair.Value.GetAchievedGoals();
+                    if (!achievedGoals.Contains(goal)) { achievedGoals.Add(goal); }
+                }
+            }
         }
     }
 }

@@ -42,27 +42,14 @@ public class PlayerController : MonoBehaviour
     public bool TryDrop()
     {
         Space hitSpace = GetMouseHitComp<Space>();
-        if (hitSpace &&
-            (holdingPolluter.GetComponent<Factory>() && hitSpace.GetComponent<FactorySpace>()) ||
-            (holdingPolluter.GetComponent<Filter>() && hitSpace.GetComponent<FilterSpace>()))
+        if (hitSpace && hitSpace.CanPlacePolluter(stateManager.GetCurrentPlayerID(), holdingPolluter.GetAttrib()))
         {
-            var attrib = holdingPolluter.GetAttrib();
-            var placementAttrib = attrib.placementAttrib;
-            if (placementAttrib.CanPlaceOn(hitSpace.GetPlaceType()))
-            {
-                int currentPlayerID = stateManager.GetCurrentPlayerID();
-
-                if (hitSpace.CanPlacePolluter(currentPlayerID, holdingPolluter.GetAttrib()))
-                {
-                    Purchase();
-                    hitSpace.SetPolluter(holdingPolluter);
-                    TransformPolluter(hitSpace);
-                    SetPolluterText();
-                    state = State.EMPTY;
-
-                    return true;
-                }
-            }
+            Purchase();
+            hitSpace.SetPolluter(holdingPolluter);
+            TransformPolluter(hitSpace);
+            SetPolluterText();
+            state = State.EMPTY;
+            return true;
         }
         return false;
     }
@@ -112,7 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             case State.EMPTY:
                 {
-                    if(handlingRemove)
+                    if (handlingRemove)
                     {
                         if (Input.GetButtonDown("Fire2"))
                         {
@@ -126,15 +113,15 @@ public class PlayerController : MonoBehaviour
                 {
                     //FollowMouse();
 
-                    if(handlingCancelHold)
+                    if (handlingCancelHold)
                     {
                         if (Input.GetButtonDown("Fire2"))
                         {
                             CancelHold();
                         }
                     }
-                    
-                    if(handlingDrop)
+
+                    if (handlingDrop)
                     {
                         if (Input.GetButtonDown("Fire1"))
                         {

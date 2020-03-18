@@ -8,6 +8,7 @@ public class PollutionMap : Dictionary<string, float>
     public PollutionMap() : base() { }
     public PollutionMap(PollutionAttrib.Emission[] emissions) : base()
     {
+        if(emissions == null) { return; }
         foreach (var emission in emissions)
         {
             Add(emission.pollutantName, emission.emissionPerTurn);

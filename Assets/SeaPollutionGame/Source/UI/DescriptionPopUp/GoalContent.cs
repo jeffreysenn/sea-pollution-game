@@ -34,21 +34,11 @@ public class GoalContent : PopUpContent
             textReward.text = g.reward.ToString();
 
             int thresholdA = barPlayerAProgress.GetThreshold();
-            bool withThresholdA = true;
-
-            if(goalItem.valueLeft > (thresholdA / 100))
-            {
-                withThresholdA = false;
-            }
-
+            bool withThresholdA = goalItem.valueLeft < ((float) thresholdA / 100f);
+            
             int thresholdB = barPlayerBProgress.GetThreshold();
-            bool withThresholdB = true;
-
-            if (goalItem.valueRight > (thresholdB / 100))
-            {
-                withThresholdB = false;
-            }
-
+            bool withThresholdB = goalItem.valueRight < ((float) thresholdB / 100f);
+            
             barPlayerAProgress.SetValues(goalItem.valueLeft, 1 - goalItem.valueLeft, true, withThresholdA);
             barPlayerBProgress.SetValues(goalItem.valueRight, 1 - goalItem.valueRight, true, withThresholdB);
         }

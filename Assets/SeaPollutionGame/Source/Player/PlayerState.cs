@@ -45,6 +45,19 @@ public class PlayerState
     public void SetMoney(float val) { money = val; }
     public void AddMoney(float delta) { SetMoney(money + delta); }
 
+    public float GetAssetValue()
+    {
+        float sum = 0;
+        foreach (var polluter in polluters)
+        {
+            if (polluter.IsAlive())
+            {
+                sum += polluter.GetAttrib().economicAttrib.price;
+            }
+        }
+        return sum;
+    }
+
     public float GetTurnIncome()
     {
         float income = 0;
@@ -93,7 +106,7 @@ public class PlayerState
     public float GetGoalBounusScore()
     {
         float sum = 0;
-        foreach(var goal in achievedGoals)
+        foreach (var goal in achievedGoals)
         {
             sum += goal.reward;
         }

@@ -1,6 +1,6 @@
 {
   "money": 2,
-  "emission": -1,
+  "emission": 0.5,
   "filtered": 1,
   "efficiency": 2
 }

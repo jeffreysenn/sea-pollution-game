@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class ScoreWeight
 {
     public float money = 1;
-    public float emission = -1;
+    public float emission = 0.5f;
     public float filtered = 1;
     public float efficiency = 2;
 };
@@ -136,11 +136,11 @@ public class WorldStateManager : MonoBehaviour
     public float GetScore(int playerID)
     {
         var playerState = GetPlayerState(playerID);
-        return scoreWeight.money * playerState.GetMoney()
-            + scoreWeight.emission * Util.SumMap(playerState.GetAccumulatedPollutionMap(PollutionMapType.NET))
+        float score = scoreWeight.money * (playerState.GetMoney() + playerState.GetAssetValue())
             + scoreWeight.filtered * (-Util.SumMap(playerState.GetAccumulatedPollutionMap(PollutionMapType.FILTERED)))
             + scoreWeight.efficiency * GetEfficiency(playerID)
             + playerState.GetGoalBounusScore();
+        return score;
     }
 
     public void EndPlayerTurn()

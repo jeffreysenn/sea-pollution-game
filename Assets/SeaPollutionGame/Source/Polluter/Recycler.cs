@@ -18,7 +18,6 @@ public class Recycler : Polluter
 
         base.Operate(input);
 
-        GetPollutionMap().Clear();
         var recycleAttrib = GetAttrib().recycleAttrib;
         if (recycleAttrib.conversions != null)
         {

@@ -107,10 +107,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4333374139776853349}
   _toggled: 0
-  description: 'Toggle to enter the tutorial.
+  description: '<b>Toggle</b> to enter the tutorial mode.
 
-    Hover areas you want to know more
-    about.'
+    <b>Hover</b> areas
+    you want to know more about.'
 --- !u!222 &4333374139776853347
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4333374140733927600}
   _toggled: 0
-  description: Toggle to highlight flows of emissions.
+  description: <b>Toggle</b> to highlight flows of emissions.
 --- !u!222 &4333374140733927614
 CanvasRenderer:
   m_ObjectHideFlags: 0

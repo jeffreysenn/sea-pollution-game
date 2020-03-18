@@ -55,6 +55,7 @@ public class DescriptionPopUp : MonoBehaviour
     {
         public TextMeshProUGUI textTitle = null;
         public TextMeshProUGUI textDescription = null;
+        public LayoutGroup layoutGroup = null;
         //video
     }
 
@@ -507,7 +508,7 @@ public class DescriptionPopUp : MonoBehaviour
         if(tutorialArea != null)
         {
             hasFoundData = true;
-
+            
             tutorialContent.textTitle.text = tutorialArea.title;
             tutorialContent.textDescription.text = tutorialArea.description;
         }
@@ -747,6 +748,8 @@ public class DescriptionPopUp : MonoBehaviour
         }
 
         rt.anchoredPosition = newPosition;
+        
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
 
         if (!content.isShown)
         {

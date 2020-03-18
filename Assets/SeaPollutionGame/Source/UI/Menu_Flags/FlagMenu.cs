@@ -38,7 +38,7 @@ public class FlagMenu : MonoBehaviour
 
         btnStart.onClick.AddListener(BtnStart_OnClick);
 
-        Show();
+        //Show();
     }
 
     private void OnDestroy()
@@ -114,7 +114,7 @@ public class FlagMenu : MonoBehaviour
         return flagSelected.GetFlagType();
     }
 
-    private void Show()
+    public void Show()
     {
         menuCanvas.DOKill();
         menuCanvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
@@ -122,7 +122,7 @@ public class FlagMenu : MonoBehaviour
         menuCanvas.interactable = true;
     }
 
-    private void Hide()
+    public void Hide()
     {
         menuCanvas.DOKill();
         menuCanvas.DOFade(0f, tweenDuration).SetEase(tweenEase);
@@ -131,7 +131,7 @@ public class FlagMenu : MonoBehaviour
         menuCanvas.interactable = false;
     }
 
-    private void HideDirect()
+    public void HideDirect()
     {
         menuCanvas.DOKill();
         menuCanvas.DOFade(0f, 0f).SetEase(tweenEase);

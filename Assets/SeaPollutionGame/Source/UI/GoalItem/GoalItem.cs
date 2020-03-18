@@ -5,12 +5,16 @@ using UnityEngine.EventSystems;
 using System;
 using TMPro;
 
-public class GoalItem : MonoBehaviour, IPointerClickHandler
+public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private GameObject leftBorder = null;
     [SerializeField]
     private GameObject rightBorder = null;
+    [SerializeField]
+    private GameObject light = null;
+    [SerializeField]
+    private bool hoverable = false;
 
     [SerializeField]
     private TextMeshProUGUI title = null;
@@ -59,6 +63,7 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler
 
         isLeftShown = left;
         isRightShown = right;
+
     }
 
     public void Hide(bool left = false, bool right = false)
@@ -68,5 +73,17 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler
 
         isLeftShown = !left;
         isRightShown = !right;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(hoverable)
+            light.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(hoverable)
+            light.SetActive(false);
     }
 }

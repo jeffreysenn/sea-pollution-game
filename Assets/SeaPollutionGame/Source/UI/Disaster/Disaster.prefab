@@ -313,7 +313,7 @@ MonoBehaviour:
   disasterContent:
     canvasGroup: {fileID: 4812181391752815068}
     disasterIcon: {fileID: 4812181391752815069}
-  videoLoader: {fileID: 0}
+  worldWindow: {fileID: 0}
   tweenDuration: 0.5
   tweenEase: 21
   isDebug: 1

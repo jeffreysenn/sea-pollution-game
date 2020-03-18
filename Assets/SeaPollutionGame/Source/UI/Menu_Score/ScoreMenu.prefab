@@ -103,7 +103,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 400}
+  m_SizeDelta: {x: 300, y: 400}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &8517730581808346741
 CanvasRenderer:
@@ -302,6 +302,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7063282390834516169, guid: b2bc72dfdde2bd747a7ab66471397809,
+        type: 3}
+      propertyPath: hoverable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7063282390834516174, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_Name
@@ -432,17 +437,17 @@ PrefabInstance:
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 9
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -457,7 +462,7 @@ PrefabInstance:
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_text
-      value: Emissions
+      value: Emissions into sea
       objectReference: {fileID: 0}
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -1203,7 +1208,7 @@ PrefabInstance:
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
@@ -1228,7 +1233,7 @@ PrefabInstance:
     - target: {fileID: 435798610187314765, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}
       propertyPath: m_text
-      value: Filtered
+      value: Reduced
       objectReference: {fileID: 0}
     - target: {fileID: 7063282389568111469, guid: b2bc72dfdde2bd747a7ab66471397809,
         type: 3}

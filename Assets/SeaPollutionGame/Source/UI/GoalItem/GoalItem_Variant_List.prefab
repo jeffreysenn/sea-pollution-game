@@ -235,6 +235,11 @@ PrefabInstance:
       propertyPath: isRightShown
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9060325938463632588, guid: 49a06da3ee48ea345bdc9c34477253bd,
+        type: 3}
+      propertyPath: hoverable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49a06da3ee48ea345bdc9c34477253bd, type: 3}
 --- !u!224 &3649333838141295185 stripped

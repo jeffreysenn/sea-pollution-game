@@ -6,7 +6,7 @@ using TMPro;
 using System;
 using UnityEngine.EventSystems;
 
-public class CustomBarChart : MonoBehaviour, IPointerClickHandler
+public class CustomBarChart : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private RectTransform totalContent = null;
@@ -14,6 +14,10 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
     private RectTransform leftContent = null;
     [SerializeField]
     private RectTransform rightContent = null;
+    [SerializeField]
+    private GameObject light = null;
+    [SerializeField]
+    private bool hoverable = false;
 
     [SerializeField]
     private TextMeshProUGUI leftText = null;
@@ -127,5 +131,17 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
         }
 
         return ratio;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(hoverable)
+            light.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(hoverable)
+            light.SetActive(false);
     }
 }

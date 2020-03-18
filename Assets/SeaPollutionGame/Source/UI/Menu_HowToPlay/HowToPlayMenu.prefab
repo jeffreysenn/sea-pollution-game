@@ -312,7 +312,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Play
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad00ed7a17dc88849bc0793b7c31d5d2, type: 2}
   m_sharedMaterial: {fileID: 8047378342722158959, guid: ad00ed7a17dc88849bc0793b7c31d5d2,
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 6589039613323156053}
-    characterCount: 8
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.3137255}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.47058824}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 6589039613628193981}
   - component: {fileID: 6589039613628193980}
   m_Layer: 5
-  m_Name: Button_Continue
+  m_Name: Button_Play
   m_TagString: BlockingUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -77,7 +77,7 @@ public class PolluterContent : PopUpPieChartContent
 
             if(polluter is Filter)
             {
-                pieChartTitle.text = "Filtering:";
+                pieChartTitle.text = "Reducing:";
                 maxPieText.text = "/" + Mathf.Abs(Util.SumMap(new PollutionMap(polluter.GetAttrib().pollutionAttrib.emissions)));
             }
 
@@ -91,9 +91,13 @@ public class PolluterContent : PopUpPieChartContent
             {
                 pieChartTitle.text = "Converting:";
                 maxPieText.text = "";
-                foreach(RecycleAttrib.Conversion conversion in polluter.GetAttrib().recycleAttrib.conversions)
+
+                if(polluter.GetAttrib().recycleAttrib.conversions != null)
                 {
-                    maxPieText.text += "/" + conversion.maxConversion.ToString() + "\n";
+                    foreach (RecycleAttrib.Conversion conversion in polluter.GetAttrib().recycleAttrib.conversions)
+                    {
+                        maxPieText.text += "/" + conversion.maxConversion.ToString() + "\n";
+                    }
                 }
             }
 
@@ -130,7 +134,7 @@ public class PolluterContent : PopUpPieChartContent
             if (Util.SumMap(map) < 0)
             {
                 map = Util.MultiplyMap(map, (-1));
-                pieChartTitle.text = "Filters:";
+                pieChartTitle.text = "Reduces:";
             } else
             {
                 pieChartTitle.text = "Emits:";

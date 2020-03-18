@@ -212,10 +212,13 @@ PrefabInstance:
     - target: {fileID: 1095337033691370364, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: _description
-      value: '- Shows the current player. <b>Click</b> "End Turn" to pass the turn.
+      value: '- Shows the current player.
 
-        -
-        Shows the number of turns left before the end of the game.'
+        - Shows the number of turns left
+        before the end of the game.
+
+        - <b>Click</b> "End Turn" to pass the
+        turn.'
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370368, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -280,7 +283,7 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -30
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -290,7 +293,7 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 575
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -327,6 +330,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ed46d65fc871814ea6a2d8d40f54177,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!224 &124664681825277922 stripped
@@ -357,8 +366,8 @@ PrefabInstance:
     - target: {fileID: 1095337033691370364, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: _description
-      value: "- Here is a board tile. The colour tells by whom it is controlled.\n-
-        The letter in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
+      value: "- Here is a board tile. The colour tells who controls it.\n- The letter
+        in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
         U for Urban\n\t- F for Forest\n- <b>Place</b> components from the Shop on
         an available spot.\n- <b>Click</b> on a component, on an empty spot, or on
         arrows to see details."
@@ -431,7 +440,7 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 224
+      value: 215.7
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -477,6 +486,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
@@ -629,6 +654,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!224 &3985881511076229973 stripped
@@ -659,8 +700,8 @@ PrefabInstance:
     - target: {fileID: 1095337033691370364, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: _description
-      value: "- Here is a board tile. The colour tells by whom it is controlled.\n-
-        The letter in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
+      value: "- Here is a board tile. The colour tells who controls it.\n- The letter
+        in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
         U for Urban\n\t- F for Forest\n- <b>Place</b> components from the Shop on
         an available spot.\n- <b>Click</b> on a component, on an empty spot, or on
         arrows to see details."
@@ -733,7 +774,7 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -414
+      value: -406.9
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -780,6 +821,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!114 &5167182251534034458 stripped
@@ -810,8 +867,8 @@ PrefabInstance:
     - target: {fileID: 1095337033691370364, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: _description
-      value: "- Here is a board tile. The colour tells by whom it is controlled.\n-
-        The letter in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
+      value: "- Here is a board tile. The colour tells who controls it.\n- The letter
+        in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
         U for Urban\n\t- F for Forest\n- <b>Place</b> components from the Shop on
         an available spot.\n- <b>Click</b> on a component, on an empty spot, or on
         arrows to see details."
@@ -884,12 +941,12 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 66
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 284
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -931,6 +988,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!114 &7918858485923574260 stripped
@@ -961,8 +1034,8 @@ PrefabInstance:
     - target: {fileID: 1095337033691370364, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: _description
-      value: "- Here is a board tile. The colour tells by whom it is controlled.\n-
-        The letter in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
+      value: "- Here is a board tile. The colour tells who controls it.\n- The letter
+        in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
         U for Urban\n\t- F for Forest\n- <b>Place</b> components from the Shop on
         an available spot.\n- <b>Click</b> on a component, on an empty spot, or on
         arrows to see details."
@@ -1082,6 +1155,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!224 &7548637088498238354 stripped
@@ -1185,12 +1274,12 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -12
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -1200,7 +1289,7 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 450
+      value: 435
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -1232,6 +1321,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea08d3fccc2dc544a8f6e4582c222f80,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!114 &9177231806979178300 stripped
@@ -1341,22 +1436,22 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 575
+      value: 525
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 375
+      value: 370
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -1388,6 +1483,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 63c85fb41224c004e92d5efdfa7f5ad8,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!114 &9177231808127097872 stripped
@@ -1538,6 +1639,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!114 &9177231808279743940 stripped
@@ -1568,8 +1685,8 @@ PrefabInstance:
     - target: {fileID: 1095337033691370364, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: _description
-      value: "- Here is a board tile. The colour tells by whom it is controlled.\n-
-        The letter in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
+      value: "- Here is a board tile. The colour tells who controls it.\n- The letter
+        in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
         U for Urban\n\t- F for Forest\n- <b>Place</b> components from the Shop on
         an available spot.\n- <b>Click</b> on a component, on an empty spot, or on
         arrows to see details."
@@ -1642,12 +1759,12 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -266
+      value: -253
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 284
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -1689,6 +1806,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}
 --- !u!224 &8436977058545702628 stripped
@@ -1719,8 +1852,8 @@ PrefabInstance:
     - target: {fileID: 1095337033691370364, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: _description
-      value: "- Here is a board tile. The colour tells by whom it is controlled.\n-
-        The letter in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
+      value: "- Here is a board tile. The colour tells who controls it.\n- The letter
+        in the middle represents the type of the tile.\n\t- A for Agriculture\n\t-
         U for Urban\n\t- F for Forest\n- <b>Place</b> components from the Shop on
         an available spot.\n- <b>Click</b> on a component, on an empty spot, or on
         arrows to see details."
@@ -1793,7 +1926,7 @@ PrefabInstance:
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 75
+      value: 63.9
       objectReference: {fileID: 0}
     - target: {fileID: 1095337033691370371, guid: 2efbe1269ec37e94ebc19e500a88893b,
         type: 3}
@@ -1839,6 +1972,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15cbb3024c6407c4c8eb883180aac511,
+        type: 3}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095337035210473517, guid: 2efbe1269ec37e94ebc19e500a88893b,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efbe1269ec37e94ebc19e500a88893b, type: 3}

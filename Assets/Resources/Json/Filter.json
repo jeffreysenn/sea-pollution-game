@@ -34,11 +34,14 @@
         "products": [
           {
             "resourceName": "Bio-diversity",
-            "productPerTurn": 1
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Wetlands"
       },
@@ -48,7 +51,6 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Buffer strips",
@@ -80,7 +82,18 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "visualAttrib": {
         "imageName": "BufferStrips"
       },
@@ -90,10 +103,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Catch crops",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -122,7 +142,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "CatchCrops"
       },
@@ -132,10 +151,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Crop rotation",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -164,7 +190,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "CropRotation1"
       },
@@ -174,7 +199,6 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Retention ponds",
@@ -206,7 +230,9 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": []
+      },
       "visualAttrib": {
         "imageName": "RetentionPonds"
       },
@@ -216,7 +242,6 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Biochar application Agriculture",
@@ -248,7 +273,14 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "visualAttrib": {
         "imageName": "BiocharAgriculture"
       },
@@ -258,10 +290,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Biochar application Forest",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -290,7 +329,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "BiocharForest"
       },
@@ -300,10 +338,17 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Compost application Agriculture",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -332,7 +377,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -342,7 +386,6 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Compost application Forest",
@@ -374,7 +417,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -384,10 +426,17 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Sludge application Agriculture",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": -10
@@ -416,7 +465,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -426,10 +474,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Sludge application Forest",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -458,7 +513,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -468,7 +522,6 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Improving drainage management on farms",
@@ -484,6 +537,18 @@
           }
         ]
       },
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Prepardness",
+            "productPerTurn": 10
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "vulnerabilityAttrib": {
         "vulnerabilities": [
           {
@@ -500,7 +565,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -510,7 +574,6 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Restoration of riparian areas",
@@ -542,7 +605,18 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -552,7 +626,6 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Floodplains",
@@ -584,7 +657,22 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Prepardness",
+            "productPerTurn": 10
+          },
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -594,7 +682,6 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Liming /gypsum",
@@ -626,7 +713,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -636,10 +722,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Optimizing fertilization rates-based soil parameters using geo-location systems",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": -10
@@ -668,7 +761,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -678,10 +770,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Optimization of livestock density for nutrient management",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 25,
         "profitPerTurn": -8
@@ -710,7 +809,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -720,7 +818,6 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Microstrainer technologies at fish farms ",
@@ -752,7 +849,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -762,10 +858,17 @@
         "forest": false,
         "ocean": true
       }
-
     },
     {
       "title": "Connecting 100% of population to wastewater treatment",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 13,
         "profitPerTurn": -4
@@ -794,7 +897,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -804,7 +906,6 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Improved stormwater management",
@@ -836,7 +937,22 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Prepardness",
+            "productPerTurn": 10
+          },
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -846,10 +962,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Improving on-site treatments",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 10,
         "profitPerTurn": -2
@@ -878,7 +1001,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "ImprovingOn-siteTreatments"
       },
@@ -888,10 +1010,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Source separation of waste for scattered settlements",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Prepardness",
+            "productPerTurn": 10
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -920,7 +1049,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -930,10 +1058,21 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Urine-diversion toilets",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 13,
         "profitPerTurn": -4
@@ -962,7 +1101,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -972,10 +1110,25 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Wastewater improvements that deal with overflow",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Prepardness",
+            "productPerTurn": 10
+          },
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -1004,7 +1157,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -1014,10 +1166,17 @@
         "forest": true,
         "ocean": false
       }
-
     },
     {
       "title": "Biochar treated with source-separated blackwater as soil improver",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -1044,7 +1203,6 @@
             "disasterName": "Drought",
             "factor": 0
           }
-
         ]
       },
       "visualAttrib": {
@@ -1087,7 +1245,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -1097,10 +1254,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Biochar filter",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 15,
         "profitPerTurn": -6
@@ -1129,7 +1293,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -1139,10 +1302,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Enhanced wastewater treatment level through ultrafiltration and UV-disinfection",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 25,
         "profitPerTurn": -8
@@ -1171,7 +1341,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -1181,10 +1350,17 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Irrigation with sea water",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 400,
         "profitPerTurn": -10
@@ -1213,7 +1389,6 @@
           }
         ]
       },
-
       "visualAttrib": {
         "imageName": "IrrigationWithSeaWater"
       },
@@ -1223,7 +1398,6 @@
         "forest": false,
         "ocean": false
       }
-
     },
     {
       "title": "Mussel farming",
@@ -1255,7 +1429,18 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -1265,7 +1450,6 @@
         "forest": false,
         "ocean": true
       }
-
     },
     {
       "title": "Seaweed farming",
@@ -1297,7 +1481,18 @@
           }
         ]
       },
-
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "visualAttrib": {
         "imageName": "Default"
       },
@@ -1307,12 +1502,6 @@
         "forest": false,
         "ocean": true
       }
-
     }
   ]
-
-
-
-
-
 }

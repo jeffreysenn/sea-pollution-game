@@ -73,7 +73,7 @@ public class PlayerStatController : MonoBehaviour
     
     private void UpdateCoins(float value)
     {
-        txtCoinsValue.text = value.ToString();
+        txtCoinsValue.text = Mathf.Round(value).ToString();
     }
 
     private void UpdateIncome(float value)
@@ -83,10 +83,10 @@ public class PlayerStatController : MonoBehaviour
         string s = "";
         if(value > 0)
         {
-            s += "+" + value;
+            s += "+" + Mathf.Round(value);
         } else
         {
-            s += value;
+            s += Mathf.Round(value);
         }
         s += "";
 

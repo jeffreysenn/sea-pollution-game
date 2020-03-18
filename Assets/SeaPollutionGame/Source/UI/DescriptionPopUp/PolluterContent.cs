@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PolluterContent : PopUpPieChartContent
 {
+    public GameObject objectPieChart = null;
+
     public WorldWindow worldWindow { get; set; }
 
     [SerializeField]
@@ -66,6 +68,14 @@ public class PolluterContent : PopUpPieChartContent
             textEconomic.text = "Price: " + polluterAttrib.economicAttrib.price + " Income: " + polluterAttrib.economicAttrib.profitPerTurn + "\nRemoval cost: " + polluterAttrib.economicAttrib.removalCost;
 
             PollutionMap map = new PollutionMap(polluterAttrib.pollutionAttrib.emissions);
+
+            if(Util.SumMap(map) == 0)
+            {
+                objectPieChart.SetActive(false);
+            } else
+            {
+                objectPieChart.SetActive(true);
+            }
 
             if (Util.SumMap(map) < 0)
             {
@@ -129,13 +139,15 @@ public class PolluterContent : PopUpPieChartContent
             {
                 if (recycleAttrib.conversions != null)
                 {
+                    pieChartTitle.text = "Converts:";
+
                     objectRecyclers.SetActive(true);
 
                     textRecyclers.text = "";
 
                     foreach(RecycleAttrib.Conversion conversion in recycleAttrib.conversions)
                     {
-                        textRecyclers.text += "Convert: " + conversion.pollutantName + " to " + conversion.convertTo + "\n"
+                        textRecyclers.text += "" + conversion.pollutantName + " to " + conversion.convertTo + "\n"
                             + "Rate: " + conversion.conversionRate + " Max: " + conversion.maxConversion + "\n";
                     }
                 }

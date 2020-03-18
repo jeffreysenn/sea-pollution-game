@@ -33,8 +33,24 @@ public class GoalContent : PopUpContent
             textResourceName.text = g.resourceName;
             textReward.text = g.reward.ToString();
 
-            barPlayerAProgress.SetValues(goalItem.valueLeft, 1 - goalItem.valueLeft);
-            barPlayerBProgress.SetValues(goalItem.valueRight, 1 - goalItem.valueRight);
+            int thresholdA = barPlayerAProgress.GetThreshold();
+            bool withThresholdA = true;
+
+            if(goalItem.valueLeft > 1 - (thresholdA / 100))
+            {
+                withThresholdA = false;
+            }
+
+            int thresholdB = barPlayerBProgress.GetThreshold();
+            bool withThresholdB = true;
+
+            if (goalItem.valueLeft > 1 - (thresholdB / 100))
+            {
+                withThresholdB = false;
+            }
+
+            barPlayerAProgress.SetValues(goalItem.valueLeft, 1 - goalItem.valueLeft, withThresholdA);
+            barPlayerBProgress.SetValues(goalItem.valueRight, 1 - goalItem.valueRight, withThresholdB);
         }
 
         imageToShow = false;

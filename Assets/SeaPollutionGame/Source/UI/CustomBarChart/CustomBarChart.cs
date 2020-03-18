@@ -26,6 +26,7 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private int threshold = 10;
+    public int GetThreshold() { return threshold; }
 
     private float widthTotalContent = 1;
 
@@ -36,9 +37,9 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
         widthTotalContent = totalContent.sizeDelta.x;
     }
 
-    public void SetValues(float left, float right, bool percentage = true)
+    public void SetValues(float left, float right, bool percentage = true, bool withThreshold = true)
     {
-        float[] values = SetLeftValue(NormalizedRatio(left, right));
+        float[] values = SetLeftValue(NormalizedRatio(left, right), withThreshold);
 
         if (percentage)
             SetTextValues(values[0], values[1], true);
@@ -46,7 +47,7 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
             SetTextValues(left, right);
     }
 
-    private float[] SetLeftValue(float d)
+    private float[] SetLeftValue(float d, bool withThreshold = true)
     {
         float max = 100;
 
@@ -64,9 +65,13 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler
         */
 
         float value = d;
-        if (value < threshold) value = threshold;
-        if (value > max - threshold) value = max - threshold;
 
+        if(withThreshold)
+        {
+            if (value < threshold) value = threshold;
+            if (value > max - threshold) value = max - threshold;
+        }
+        
         float leftValue = (widthTotalContent * value) / max;
 
         float rightValue = (widthTotalContent * (max - value)) / max;

@@ -1,32 +1,27 @@
 {
   "list": [
     {
-      "title": "Default Recycler",
+      "title": "Recycler 1",
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": -10
       },
       "pollutionAttrib": {
-        "emissions": [
-          {
-            "pollutantName": "Phosphor",
-            "emissionPerTurn": -40
-          }
-        ]
+        "emissions": []
       },
       "vulnerabilityAttrib": {
         "vulnerabilities": [
           {
             "disasterName": "Flood",
-            "factor": 1
+            "factor": 0.5
           },
           {
             "disasterName": "Fire",
-            "factor": 1
+            "factor": 0.5
           },
           {
             "disasterName": "Drought",
-            "factor": 1
+            "factor": 0.5
           }
         ]
       },
@@ -35,7 +30,7 @@
           {
             "pollutantName": "Phosphor",
             "convertTo": "Money",
-            "conversionRate": 0.4,
+            "conversionRate": 1,
             "maxConversion": 20
           }
         ]
@@ -48,6 +43,51 @@
         "agriculture": true,
         "forest": false,
         "ocean": false
+      }
+    },
+    {
+      "title": "Recycler 2",
+      "economicAttrib": {
+        "price": 60,
+        "profitPerTurn": -10
+      },
+      "pollutionAttrib": {
+        "emissions": []
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0.5
+          }
+        ]
+      },
+      "recycleAttrib": {
+        "conversions": [
+          {
+            "pollutantName": "Phosphor",
+            "convertTo": "Bio-diversity",
+            "conversionRate": 1,
+            "maxConversion": 40
+          }
+        ]
+      },
+      "visualAttrib": {
+        "imageName": "Wetlands"
+      },
+      "placementAttrib": {
+        "urban": false,
+        "agriculture": true,
+        "forest": false,
+        "ocean": true
       }
     }
   ]

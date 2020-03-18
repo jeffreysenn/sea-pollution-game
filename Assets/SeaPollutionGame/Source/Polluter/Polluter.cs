@@ -123,7 +123,9 @@ public class Polluter : MonoBehaviour
         health.AddDeathEventListener(OnDeadth);
     }
 
-    public virtual void Mulfunction() { }
+    public virtual void Mulfunction() {
+        resourceMap.Clear();
+    }
 
     public EntityType GetEntityType() { return entityType; }
 

@@ -7,7 +7,8 @@ public class Recycler : Polluter
     public override void Mulfunction()
     {
         base.Mulfunction();
-        SetProfit(0);
+        var economicAttrib = GetAttrib().economicAttrib;
+        SetProfit(economicAttrib.profitPerTurn);
     }
 
     public override void Operate(PollutionMap input)

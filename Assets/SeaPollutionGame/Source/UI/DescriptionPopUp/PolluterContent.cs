@@ -50,9 +50,50 @@ public class PolluterContent : PopUpPieChartContent
 
     public bool CheckPolluter(Polluter polluter)
     {
-        imageIsDisaster = !polluter.IsAlive();
+        if(polluter != null)
+        {
+            imageIsDisaster = !polluter.IsAlive();
+            
+            bool check = CheckPolluter(polluter.GetAttrib());
 
-        return CheckPolluter(polluter.GetAttrib());
+            // special case in game
+            PollutionMap map = new PollutionMap(polluter.GetPollutionMap());
+
+            if (Util.SumMap(map) == 0)
+            {
+                objectPieChart.SetActive(false);
+            }
+            else
+            {
+                objectPieChart.SetActive(true);
+            }
+
+            if (Util.SumMap(map) < 0)
+            {
+                map = Util.MultiplyMap(map, (-1));
+            }
+
+            if(polluter is Filter)
+            {
+                pieChartTitle.text = "Filters:";
+            }
+
+            if(polluter is Factory)
+            {
+                pieChartTitle.text = "Emits:";
+            }
+
+            if(polluter is Recycler)
+            {
+                pieChartTitle.text = "Converts:";
+            }
+
+            SetPieChart(pieChart, map);
+
+            return check;
+        }
+
+        return false;
     }
 
     public bool CheckPolluter(PolluterAttrib polluterAttrib)
@@ -68,7 +109,7 @@ public class PolluterContent : PopUpPieChartContent
             textEconomic.text = "Price: " + polluterAttrib.economicAttrib.price + " Income: " + polluterAttrib.economicAttrib.profitPerTurn + "\nRemoval cost: " + polluterAttrib.economicAttrib.removalCost;
 
             PollutionMap map = new PollutionMap(polluterAttrib.pollutionAttrib.emissions);
-
+            
             if(Util.SumMap(map) == 0)
             {
                 objectPieChart.SetActive(false);
@@ -86,7 +127,9 @@ public class PolluterContent : PopUpPieChartContent
                 pieChartTitle.text = "Emits:";
             }
 
-            if(showVulnerabilities)
+            SetPieChart(pieChart, map);
+
+            if (showVulnerabilities)
             {
                 VulnerabilityAttrib vulnerabilityAttrib = polluterAttrib.vulnerabilityAttrib;
                 if (vulnerabilityAttrib != null)
@@ -167,8 +210,6 @@ public class PolluterContent : PopUpPieChartContent
             {
                 imageToShow = false;
             }
-
-            SetPieChart(pieChart, map);
         }
 
         return hasFoundData;

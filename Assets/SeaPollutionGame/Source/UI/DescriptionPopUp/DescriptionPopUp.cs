@@ -429,17 +429,9 @@ public class DescriptionPopUp : MonoBehaviour
             
         }
 
-        if(content.imageIsDisaster)
-        {
-            worldWindow.SetAlert();
-        } else
-        {
-            worldWindow.RemoveAlert();
-        }
-
         if (content.imageToShow)
         {
-            worldWindow.ShowImage(imageIsDisaster);
+            worldWindow.ShowImage(content.imageIsDisaster);
         }
         else
         {

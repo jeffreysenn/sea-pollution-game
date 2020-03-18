@@ -44,7 +44,7 @@ public class GoalContent : PopUpContent
             int thresholdB = barPlayerBProgress.GetThreshold();
             bool withThresholdB = true;
 
-            if (goalItem.valueLeft > (thresholdB / 100))
+            if (goalItem.valueRight > (thresholdB / 100))
             {
                 withThresholdB = false;
             }

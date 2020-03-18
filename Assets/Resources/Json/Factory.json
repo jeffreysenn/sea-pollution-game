@@ -2,6 +2,14 @@
   "list": [
     {
       "title": "District heating Rural",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 80,
         "profitPerTurn": 25,
@@ -199,6 +207,18 @@
     },
     {
       "title": "Biogas plant",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          },
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 80,
         "profitPerTurn": 15,
@@ -324,6 +344,18 @@
     },
     {
       "title": "Precision technologies agriculture",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          },
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": 10,
@@ -367,6 +399,18 @@
     },
     {
       "title": "Intensify biomass removal from forests",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": 5,
@@ -410,6 +454,18 @@
     },
     {
       "title": "Seaweed farm",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 80,
         "profitPerTurn": 10,
@@ -451,6 +507,18 @@
     },
     {
       "title": "Mussel farm",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "Bio-diversity",
+            "productPerTurn": 5
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": 10,
@@ -492,6 +560,18 @@
     },
     {
       "title": "Irrigation with sea water",
+      "resourceAttrib": {
+        "products": [
+          {
+            "resourceName": "SDG 9",
+            "productPerTurn": 4
+          },
+          {
+            "resourceName": "SDG 13",
+            "productPerTurn": 1.5
+          }
+        ]
+      },
       "economicAttrib": {
         "price": 25,
         "profitPerTurn": 5,

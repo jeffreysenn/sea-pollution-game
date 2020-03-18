@@ -7,9 +7,9 @@ using System;
 public class ModesController : MonoBehaviour
 {
     [SerializeField]
-    private ToggleButton toggleTutorial = null;
+    private ModeToggle toggleTutorial = null;
     [SerializeField]
-    private ToggleButton toggleFlows = null;
+    private ModeToggle toggleFlows = null;
     
     [SerializeField]
     private TutorialController tutorialController = null;

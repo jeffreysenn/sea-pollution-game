@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5a2cc59c58e3c42b563173720a12d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleTutorial: {fileID: 4333374139776853346}
-  toggleFlows: {fileID: 4333374140733927613}
+  toggleTutorial: {fileID: 2901971430314939223}
+  toggleFlows: {fileID: 4388930634372763197}
   tutorialController: {fileID: 0}
 --- !u!1 &4333374139776853351
 GameObject:
@@ -62,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4333374139776853350}
-  - component: {fileID: 4333374139776853346}
+  - component: {fileID: 2901971430314939223}
   - component: {fileID: 4333374139776853347}
   - component: {fileID: 4333374139776853348}
   - component: {fileID: 4333374139776853349}
@@ -93,7 +93,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4333374139776853346
+--- !u!114 &2901971430314939223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,11 +102,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4333374139776853351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4d83bcec6ee5f418a3984426d3288a, type: 3}
+  m_Script: {fileID: 11500000, guid: fd1dca5a7476b804198841a1a41e7de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4333374139776853349}
   _toggled: 0
+  description: 'Toggle to enter the tutorial.
+
+    Hover areas you want to know more
+    about.'
 --- !u!222 &4333374139776853347
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -643,7 +647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4333374140733927601}
-  - component: {fileID: 4333374140733927613}
+  - component: {fileID: 4388930634372763197}
   - component: {fileID: 4333374140733927614}
   - component: {fileID: 4333374140733927615}
   - component: {fileID: 4333374140733927600}
@@ -675,7 +679,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4333374140733927613
+--- !u!114 &4388930634372763197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -684,11 +688,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4333374140733927602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4d83bcec6ee5f418a3984426d3288a, type: 3}
+  m_Script: {fileID: 11500000, guid: fd1dca5a7476b804198841a1a41e7de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 4333374140733927600}
   _toggled: 0
+  description: Toggle to highlight flows of emissions.
 --- !u!222 &4333374140733927614
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -69,6 +69,12 @@ public class DescriptionPopUp : MonoBehaviour
         public CustomBarChart barPlayerBProgress = null;
     }
 
+    [System.Serializable]
+    class ModeContent : PopUpContent
+    {
+        public TextMeshProUGUI textDescription = null;
+    }
+
     [SerializeField]
     private WorldWindow worldWindow = null;
     
@@ -91,6 +97,9 @@ public class DescriptionPopUp : MonoBehaviour
 
     [SerializeField]
     private GoalContent goalContent = null;
+
+    [SerializeField]
+    private ModeContent modeContent = null;
     
     [Header("Tween")]
     [SerializeField]
@@ -164,6 +173,7 @@ public class DescriptionPopUp : MonoBehaviour
         allPopupContents.Add(disasterContent);
         allPopupContents.Add(tutorialContent);
         allPopupContents.Add(goalContent);
+        allPopupContents.Add(modeContent);
 
         HideDirectPopup(polluterContent);
         HideDirectPopup(nodeContent);
@@ -171,6 +181,7 @@ public class DescriptionPopUp : MonoBehaviour
         HideDirectPopup(disasterContent);
         HideDirectPopup(tutorialContent);
         HideDirectPopup(goalContent);
+        HideDirectPopup(modeContent);
     }
 
     private void Update()
@@ -324,6 +335,23 @@ public class DescriptionPopUp : MonoBehaviour
                     {
                         HidePopupOtherThan(goalContent);
                         ShowPopup(goalContent);
+                    }
+                }
+            }
+
+            ModeToggle modeToggle = rr.gameObject.GetComponentInChildren<ModeToggle>();
+            if(modeToggle != null)
+            {
+                hasHit = true;
+
+                if (modeToggle.gameObject != currentGameObject)
+                {
+                    currentGameObject = modeToggle.gameObject;
+
+                    if (CheckGraphicMode(modeToggle))
+                    {
+                        HidePopupOtherThan(modeContent);
+                        ShowPopup(modeContent);
                     }
                 }
             }
@@ -506,6 +534,22 @@ public class DescriptionPopUp : MonoBehaviour
 
             goalContent.barPlayerAProgress.SetValues(goalItem.valueLeft, 1 - goalItem.valueLeft);
             goalContent.barPlayerBProgress.SetValues(goalItem.valueRight, 1 - goalItem.valueRight);
+        }
+
+        imageToShow = false;
+
+        return hasFoundData;
+    }
+
+    private bool CheckGraphicMode(ModeToggle modeToggle)
+    {
+        bool hasFoundData = false;
+        
+        if (modeToggle != null)
+        {
+            hasFoundData = true;
+
+            modeContent.textDescription.text = modeToggle.GetDescription();
         }
 
         imageToShow = false;

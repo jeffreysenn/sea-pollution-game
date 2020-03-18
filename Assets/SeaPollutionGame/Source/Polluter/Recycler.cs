@@ -9,13 +9,16 @@ public class Recycler : Polluter
         base.Mulfunction();
         var economicAttrib = GetAttrib().economicAttrib;
         SetProfit(economicAttrib.profitPerTurn);
+        GetPollutionMap().Clear();
     }
 
     public override void Operate(PollutionMap input)
     {
+        if (!GetHealthComp().IsAlive()) { return; }
+
         base.Operate(input);
-        var resourceMap = GetResourceMap();
-        resourceMap.Clear();
+
+        GetPollutionMap().Clear();
         var recycleAttrib = GetAttrib().recycleAttrib;
         if (recycleAttrib.conversions != null)
         {
@@ -26,11 +29,14 @@ public class Recycler : Polluter
                     float pollution = input[conversion.pollutantName];
                     float maxConversion = conversion.maxConversion;
                     float proccessed = pollution > maxConversion ? maxConversion : pollution;
+                    var pollutionMap = GetPollutionMap();
+                    if (!pollutionMap.ContainsKey(conversion.pollutantName)) { pollutionMap.Add(conversion.pollutantName, 0); }
+                    pollutionMap[conversion.pollutantName] -= proccessed;
                     float converted = proccessed * conversion.conversionRate;
                     if (conversion.convertTo == "Money") { SetProfit(GetAttrib().economicAttrib.profitPerTurn + converted); }
                     else
                     {
-                        resourceMap.Add(conversion.convertTo, converted);
+                        GetResourceMap().Add(conversion.convertTo, converted);
                     }
                 }
             }

@@ -37,6 +37,7 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     {
         polluterAttrib = attrib;
     }
+    public PolluterAttrib GetPolluterAttributes() { return polluterAttrib; }
     
     public Polluter GetPolluter() { return targetPolluter; }
 
@@ -47,30 +48,19 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
         int id = UIManager.Instance.worldStateManager.GetCurrentPlayerID();
 
         // spaces
-        Space[] spaces = UIManager.Instance.spaceManager.spaces;
-        foreach (Space s in spaces)
-        {
-            if(s.CanPlacePolluter(id, polluterAttrib))
-            {
-                s.Highlight();
-            }
-        }
+        //UIManager.Instance.spaceManager.HightlightAvailablePlaces(id, polluterAttrib);
 
         // flows
-        UIManager.Instance.flowManager.Show();
+        //UIManager.Instance.flowManager.Show();
 
         playerController.Hold();
     }
 
     private void OnDestroy()
     {
-        Space[] spaces = UIManager.Instance.spaceManager.spaces;
-        foreach (Space s in spaces)
-        {
-            s.HideHighlight();
-        }
+        //UIManager.Instance.spaceManager.HideHighlight();
 
-        UIManager.Instance.flowManager.Hide();
+        //UIManager.Instance.flowManager.Hide();
     }
 
     private void Update()

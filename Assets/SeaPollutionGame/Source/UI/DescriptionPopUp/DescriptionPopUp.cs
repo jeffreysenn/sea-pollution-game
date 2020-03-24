@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -41,12 +39,6 @@ public class DescriptionPopUp : MonoBehaviour
 
     [SerializeField]
     private ModeContent modeContent = null;
-    
-    [Header("Tween")]
-    [SerializeField]
-    private float tweenDuration = 1f;
-    [SerializeField]
-    private Ease tweenEase = Ease.Linear;
 
     [Header("Raycast")]
     [SerializeField]
@@ -90,9 +82,6 @@ public class DescriptionPopUp : MonoBehaviour
     private GameObject currentGameObject = null;
     private PopUpContent currentShownContent = null;
 
-    private bool imageToShow = false;
-    private bool imageIsDisaster = false;
-
     GraphicRaycaster graphicRaycaster = null;
     PointerEventData pointerEventData = null;
     EventSystem eventSystem = null;
@@ -129,6 +118,7 @@ public class DescriptionPopUp : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (playerController.GetState() == PlayerController.State.HOLDING)
         {
             if (currentShownContent != null)
@@ -138,6 +128,7 @@ public class DescriptionPopUp : MonoBehaviour
 
             return;
         }
+        */
 
         if(Input.GetButtonDown("Fire2"))
         {
@@ -244,6 +235,22 @@ public class DescriptionPopUp : MonoBehaviour
                     {
                         HidePopupOtherThan(tutorialContent);
                         ShowPopup(tutorialContent);
+                    }
+                }
+            }
+
+            PolluterIcon polluterIcon = rr.gameObject.GetComponentInChildren<PolluterIcon>();
+            if(polluterIcon != null)
+            {
+                hasHit = true;
+
+                if(polluterIcon.gameObject != currentGameObject)
+                {
+                    currentGameObject = polluterIcon.gameObject;
+
+                    if(polluterContent.CheckGraphicPolluter(polluterIcon))
+                    {
+
                     }
                 }
             }
@@ -421,13 +428,7 @@ public class DescriptionPopUp : MonoBehaviour
         
         LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
 
-        if (!content.isShown)
-        {
-            //content.canvas.DOKill();
-            content.canvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
-            content.isShown = true;
-            
-        }
+        content.ShowPopup();
 
         if (content.imageToShow)
         {
@@ -442,24 +443,20 @@ public class DescriptionPopUp : MonoBehaviour
     private void HidePopup(PopUpContent content)
     {
         currentShownContent = null;
-
+        
         if (content.isShown)
         {
-            //content.canvas.DOKill();
-            content.canvas.DOFade(0f, tweenDuration).SetEase(tweenEase);
-            content.isShown = false;
-            
             worldWindow.HideImage();
         }
+
+        content.HidePopup();
     }
 
     private void HideDirectPopup(PopUpContent content)
     {
         currentShownContent = null;
 
-        content.canvas.DOKill();
-        content.canvas.DOFade(0f, 0f);
-        content.isShown = false;
+        content.HideDirectPopup();
 
         worldWindow.HideDirectImage();
         

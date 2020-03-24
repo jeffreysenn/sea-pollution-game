@@ -40,14 +40,32 @@ public class PolluterContent : PopUpPieChartContent
     [SerializeField]
     private TextMeshProUGUI textRecyclers = null;
 
+    private bool purchaseCheck = false;
+    private bool iconCheck = false;
+
+    public override void HidePopup(bool instant = false)
+    {
+        base.HidePopup(instant);
+    }
+
     public bool CheckGraphicPolluter(PurchasableIcon purchasableIcon)
     {
-        return CheckPolluter(purchasableIcon.GetPolluterAttributes());
+        PolluterAttrib attrib = purchasableIcon.GetPolluterAttributes();
+        bool check = CheckPolluter(attrib);
+
+        purchaseCheck = check;
+        
+        return check;
     }
 
     public bool CheckGraphicPolluter(PolluterIcon polluterIcon)
     {
-        return CheckPolluter(polluterIcon.GetPolluter().GetAttrib());
+        PolluterAttrib attrib = polluterIcon.GetPolluterAttributes();
+        bool check = CheckPolluter(attrib);
+
+        iconCheck = check;
+
+        return check;
     }
 
     public bool CheckPolluter(Polluter polluter)

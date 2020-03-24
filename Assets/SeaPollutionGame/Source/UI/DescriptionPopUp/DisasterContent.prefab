@@ -294,4 +294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultAnchor: 3
   canvas: {fileID: 7456584688450758936}
+  tweenDuration: 0.25
+  tweenEase: 1
   textTitle: {fileID: 7456584687527378548}

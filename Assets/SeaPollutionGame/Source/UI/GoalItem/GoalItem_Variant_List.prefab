@@ -190,6 +190,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 424896487754993081, guid: 49a06da3ee48ea345bdc9c34477253bd,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 424896487754993081, guid: 49a06da3ee48ea345bdc9c34477253bd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 424896487754993082, guid: 49a06da3ee48ea345bdc9c34477253bd,
         type: 3}
       propertyPath: m_Name

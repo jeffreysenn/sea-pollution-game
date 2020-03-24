@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class PolluterIcon : MonoBehaviour, IPointerClickHandler
+public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 {
     /*
      * PolluterIcon:
@@ -30,6 +30,8 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
     public PlayerController playerController { get; set; }
+
+    private bool isDragging = false;
 
     public void SetPolluterAttributes(PolluterAttrib attrib)
     {
@@ -75,9 +77,30 @@ public class PolluterIcon : MonoBehaviour, IPointerClickHandler
     {
         transform.position = Input.mousePosition;
 
+        /*
         if(Input.GetButtonDown("Fire2")) {
             playerController.CancelHold();
             Destroy(gameObject);
+        }
+        */
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            InstantiatePolluter();
+
+            playerController.Hold(polluterDragged);
+
+            bool dropped = playerController.TryDrop();
+
+            if (dropped)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                playerController.CancelHold();
+                Destroy(gameObject);
+            }
         }
     }
 

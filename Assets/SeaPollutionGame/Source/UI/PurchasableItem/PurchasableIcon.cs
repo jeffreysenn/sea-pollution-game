@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
+public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler //, IPointerClickHandler
 {
     /*
      * PurchasableIcon:
@@ -29,12 +29,14 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
 
     public int polluterId { get; set; }
 
+    private bool isDragging = false;
+
     private void Start()
     {
         worldStateManager = FindObjectOfType<WorldStateManager>();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void InstantiatePolluterIcon()
     {
         if (!gameObject.activeInHierarchy) return;
 
@@ -53,6 +55,11 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
         newIcon.polluterId = polluterId;
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        InstantiatePolluterIcon();
+    }
+
 
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
@@ -63,4 +70,18 @@ public class PurchasableIcon : MonoBehaviour, IPointerClickHandler
     public void SetText(string s) { targetText.text = s; }
 
     public PolluterIcon GetPolluterIcon() { return targetPolluterIcon; }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (isDragging) return;
+        isDragging = true;
+
+        InstantiatePolluterIcon();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (!isDragging) return;
+        isDragging = false;
+    }
 }

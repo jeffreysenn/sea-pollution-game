@@ -1362,7 +1362,7 @@
         ]
       },
       "economicAttrib": {
-        "price": 400,
+        "price": 40,
         "profitPerTurn": -10
       },
       "pollutionAttrib": {

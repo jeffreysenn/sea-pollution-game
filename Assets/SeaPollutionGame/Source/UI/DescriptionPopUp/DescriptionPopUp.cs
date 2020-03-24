@@ -115,83 +115,16 @@ public class DescriptionPopUp : MonoBehaviour
 
         polluterContent.worldWindow = worldWindow;
     }
-
+    
     private void Update()
     {
-        /*
-        if (playerController.GetState() == PlayerController.State.HOLDING)
-        {
-            if (currentShownContent != null)
-            {
-                HidePopup(currentShownContent);
-            }
-
-            return;
-        }
-        */
-
-        if(Input.GetButtonDown("Fire2"))
-        {
-            currentGameObject = null;
-
-            if(currentShownContent != null)
-            {
-                HidePopup(currentShownContent);
-            }
-        }
-
+        transform.position = Input.mousePosition;
         currentScreenPosition = screenArea.GetPosition(Input.mousePosition);
-        
-        /*
-         * Raycast UI
-         *  if true: hide the current shown content if any and show the new one at mouse position
-         */
 
         bool uiRaycast = UIRaycasting();
-
-        if(uiRaycast)
-        {
-            currentFromGame = false;
-            transform.position = Input.mousePosition;
-        }
-
-        /*
-         * Raycast in game on click: 
-         *  hide the current shown content
-         *  
-         *  if hit show the content at the object position
-         *  if misses hide the current content
-         */
-
-        bool igRaycast = false;
-
-        if (Input.GetButtonDown("Fire1") && !isBlocked && !uiRaycast)
-        {
-            if (currentShownContent != null)
-            {
-                HidePopup(currentShownContent);
-            }
-
-            igRaycast = InGameRaycasting();
-
-            if (!igRaycast)
-            {
-                currentGameObject = null;
-
-                if (currentShownContent != null)
-                {
-                    HidePopup(currentShownContent);
-                }
-            }
-            else
-            {
-                currentFromGame = true;
-                transform.position = Camera.main.WorldToScreenPoint(currentGameObject.transform.position);
-            }
-        }
-
-        // cleanup
-        if (!uiRaycast && !currentFromGame)
+        bool igRaycast = InGameRaycasting();
+        
+        if(!uiRaycast && !igRaycast)
         {
             currentGameObject = null;
 
@@ -200,6 +133,8 @@ public class DescriptionPopUp : MonoBehaviour
                 HidePopup(currentShownContent);
             }
         }
+
+        
     }
 
     private bool UIRaycasting()
@@ -239,6 +174,7 @@ public class DescriptionPopUp : MonoBehaviour
                 }
             }
 
+            /*
             PolluterIcon polluterIcon = rr.gameObject.GetComponentInChildren<PolluterIcon>();
             if(polluterIcon != null)
             {
@@ -250,10 +186,10 @@ public class DescriptionPopUp : MonoBehaviour
 
                     if(polluterContent.CheckGraphicPolluter(polluterIcon))
                     {
-
                     }
                 }
             }
+            */
 
             PurchasableIcon purchasableIcon = rr.gameObject.GetComponentInChildren<PurchasableIcon>();
             if (purchasableIcon != null)
@@ -341,47 +277,43 @@ public class DescriptionPopUp : MonoBehaviour
         {
             if (hit.transform.gameObject.GetComponent<DrawDescription>() != null)
             {
+                hasHit = true;
+
                 if (hit.transform.gameObject != currentGameObject)
                 {
                     currentGameObject = hit.transform.gameObject;
-
+                    
                     if (polluterContent.CheckPolluter(currentGameObject.GetComponentInChildren<Polluter>()) && raycastPolluter)
                     {
-                        hasHit = true;
-
                         HidePopupOtherThan(polluterContent);
                         ShowPopup(polluterContent);
                     }
                     else if (balticContent.CheckBalticSea(currentGameObject.GetComponentInChildren<Node>(), balticTag) && raycastBaltic)
                     {
-                        hasHit = true;
-
                         HidePopupOtherThan(balticContent);
                         ShowPopup(balticContent);
                     }
                     else if (nodeContent.CheckNode(currentGameObject.GetComponentInChildren<Node>()) && raycastNode)
                     {
-                        hasHit = true;
-
                         HidePopupOtherThan(nodeContent);
                         ShowPopup(nodeContent);
                     }
                     else if (nodeContent.CheckFlow(currentGameObject.GetComponentInChildren<Flow>()) && raycastFlow)
                     {
-                        hasHit = true;
-
                         HidePopupOtherThan(nodeContent);
                         ShowPopup(nodeContent);
                     }
                 }
             }
         }
-
+        
         return hasHit;
     }
 
     private void ShowPopup(PopUpContent content)
     {
+        if (playerController.GetState() == PlayerController.State.HOLDING) return;
+
         currentShownContent = content;
 
         // set position depending on screen area
@@ -474,3 +406,75 @@ public class DescriptionPopUp : MonoBehaviour
     }
 
 }
+
+/*
+        if (playerController.GetState() == PlayerController.State.HOLDING)
+        {
+            if (currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+
+            return;
+        }
+
+        if(Input.GetButtonDown("Fire2"))
+        {
+            currentGameObject = null;
+
+            if(currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+        }
+
+        currentScreenPosition = screenArea.GetPosition(Input.mousePosition);
+        
+
+        bool uiRaycast = UIRaycasting();
+
+        if(uiRaycast)
+        {
+            currentFromGame = false;
+            transform.position = Input.mousePosition;
+        }
+    
+
+        bool igRaycast = false;
+
+        if (Input.GetButtonDown("Fire1") && !isBlocked && !uiRaycast)
+        {
+            if (currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+
+            igRaycast = InGameRaycasting();
+
+            if (!igRaycast)
+            {
+                currentGameObject = null;
+
+                if (currentShownContent != null)
+                {
+                    HidePopup(currentShownContent);
+                }
+            }
+            else
+            {
+                currentFromGame = true;
+                transform.position = Camera.main.WorldToScreenPoint(currentGameObject.transform.position);
+            }
+        }
+
+        // cleanup
+        if (!uiRaycast && !currentFromGame)
+        {
+            currentGameObject = null;
+
+            if (currentShownContent != null)
+            {
+                HidePopup(currentShownContent);
+            }
+        }
+*/

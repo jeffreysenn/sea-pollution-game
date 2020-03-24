@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler //, IPointerClickHandler
+public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler //, IPointerClickHandler
 {
     /*
      * PurchasableIcon:
@@ -44,8 +44,14 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         {
             return;
         }
+        
+        PolluterIcon newIcon = null;
 
-        PolluterIcon newIcon = Instantiate(targetPolluterIcon, shopTransform);
+        newIcon = Instantiate(targetPolluterIcon, shopTransform);
+
+        newIcon.OnDrag += NewIcon_OnDrag;
+        newIcon.OnRelease += NewIcon_OnRelease;
+
         newIcon.transform.position = Input.mousePosition;
 
         newIcon.SetPolluterAttributes(polluterAttrib);
@@ -55,6 +61,16 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         newIcon.polluterId = polluterId;
     }
 
+    private void NewIcon_OnDrag()
+    {
+        ShowHighlight();
+    }
+
+    private void NewIcon_OnRelease()
+    {
+        HideHighlight();
+    }
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         InstantiatePolluterIcon();
@@ -73,15 +89,39 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isDragging) return;
-        isDragging = true;
-
         InstantiatePolluterIcon();
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!isDragging) return;
-        isDragging = false;
+        if (playerController.GetState() != PlayerController.State.HOLDING)
+            ShowHighlight();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(playerController.GetState() != PlayerController.State.HOLDING)
+            HideHighlight();
+    }
+
+    private void ShowHighlight(bool space = true, bool flow = true)
+    {
+        if(space)
+        {
+            int id = UIManager.Instance.worldStateManager.GetCurrentPlayerID();
+            UIManager.Instance.spaceManager.HightlightAvailablePlaces(id, polluterAttrib);
+        }
+
+        if(flow)
+            UIManager.Instance.flowManager.Show();
+    }
+
+    private void HideHighlight(bool space = true, bool flow = true)
+    {
+        if(space)
+            UIManager.Instance.spaceManager.HideHighlight();
+
+        if(flow)
+            UIManager.Instance.flowManager.Hide();
     }
 }

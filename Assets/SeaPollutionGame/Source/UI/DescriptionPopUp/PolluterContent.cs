@@ -43,11 +43,6 @@ public class PolluterContent : PopUpPieChartContent
     private bool purchaseCheck = false;
     private bool iconCheck = false;
 
-    public override void HidePopup(bool instant = false)
-    {
-        base.HidePopup(instant);
-    }
-
     public bool CheckGraphicPolluter(PurchasableIcon purchasableIcon)
     {
         PolluterAttrib attrib = purchasableIcon.GetPolluterAttributes();

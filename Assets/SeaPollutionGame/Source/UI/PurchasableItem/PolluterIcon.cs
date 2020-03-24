@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using System;
 
 public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 {
-    /*
-     * PolluterIcon:
-     *  OnClick: Creates the target Polluter if the space is correct
-     *  Fire2: Remove the GameObject (cancel)
-     */
+    public event Action OnDrag;
+    public event Action OnRelease;
+    
 
     [SerializeField]
     private Polluter targetPolluter = null;
@@ -45,22 +44,14 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 
     private void Start()
     {
-        int id = UIManager.Instance.worldStateManager.GetCurrentPlayerID();
-
-        // spaces
-        //UIManager.Instance.spaceManager.HightlightAvailablePlaces(id, polluterAttrib);
-
-        // flows
-        //UIManager.Instance.flowManager.Show();
+        OnDrag?.Invoke();
 
         playerController.Hold();
     }
 
     private void OnDestroy()
     {
-        //UIManager.Instance.spaceManager.HideHighlight();
-
-        //UIManager.Instance.flowManager.Hide();
+        OnRelease?.Invoke();
     }
 
     private void Update()

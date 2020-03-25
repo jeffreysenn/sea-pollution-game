@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using System;
 
 public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler //, IPointerClickHandler
 {
@@ -31,6 +32,8 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnter
 
     private bool isDragging = false;
 
+    public event Action<PurchasableIcon, bool> OnBuy;
+
     private void Start()
     {
         worldStateManager = FindObjectOfType<WorldStateManager>();
@@ -42,6 +45,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnter
 
         if (worldStateManager.GetCurrentPlayerState().GetMoney() < polluterAttrib.economicAttrib.price)
         {
+            OnBuy?.Invoke(this, false);
             return;
         }
         
@@ -59,6 +63,8 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnter
         newIcon.SetText(targetText.text);
         newIcon.playerController = playerController;
         newIcon.polluterId = polluterId;
+
+        OnBuy?.Invoke(this, true);
     }
 
     private void NewIcon_OnDrag()

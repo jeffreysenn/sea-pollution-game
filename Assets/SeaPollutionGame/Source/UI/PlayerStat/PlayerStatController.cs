@@ -24,12 +24,17 @@ public class PlayerStatController : MonoBehaviour
     private PlayerNumber playerNumber = PlayerNumber.ONE;
     
     private Player player = null;
+    public Player GetPlayer() { return player; }
 
     [Header("Header")]
+    [SerializeField]
+    private TextMeshProUGUI txtCoinsTitle = null;
     [SerializeField]
     private TextMeshProUGUI txtCoinsValue = null;
     [SerializeField]
     private TextMeshProUGUI txtIncome = null;
+
+    private Color defaultColorTxt = Color.white;
 
     [Header("Content")]
     [SerializeField]
@@ -61,6 +66,8 @@ public class PlayerStatController : MonoBehaviour
         pieChart.SetPlayer(player);
         pieChart.Activate();
 
+        defaultColorTxt = txtCoinsValue.color;
+
         Update();
     }
 
@@ -91,6 +98,20 @@ public class PlayerStatController : MonoBehaviour
         s += "";
 
         txtIncome.text = s;
+    }
+
+    public void FeedbackCoins()
+    {
+        txtCoinsValue.DORestart();
+        txtCoinsValue.DOKill();
+        Sequence flashingSequenceValue = Feedback.Instance.ErrorText(txtCoinsValue, defaultColorTxt);
+
+        txtCoinsTitle.DORestart();
+        txtCoinsValue.DOKill();
+        Sequence flashingSequenceTitle = Feedback.Instance.ErrorText(txtCoinsTitle, defaultColorTxt);
+
+        flashingSequenceValue.Play();
+        flashingSequenceTitle.Play();
     }
 
     public void Show()

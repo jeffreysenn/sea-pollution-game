@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 public class ScoreMenu : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class ScoreMenu : MonoBehaviour
     private CustomBarChart filteredChart = null;
     [SerializeField]
     private CustomBarChart efficiencyChart = null;
+    [SerializeField]
+    private CustomBarChart assetValueChart = null;
 
     [Header("Tween")]
     [SerializeField]
@@ -73,6 +76,7 @@ public class ScoreMenu : MonoBehaviour
             UpdatePollution();
             UpdateFiltered();
             UpdateEfficiency();
+            UpdateAssetValue();
         }
     }
 
@@ -122,6 +126,11 @@ public class ScoreMenu : MonoBehaviour
         float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
         float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.FILTERED).GetTotalPollution();
 
+        if(p1 <= 0 && p2 <= 0)
+        {
+            p1 *= -1;
+            p2 *= -1;
+        }
         
         filteredChart.SetValues(p1, p2, percentageValues);
     }
@@ -135,11 +144,21 @@ public class ScoreMenu : MonoBehaviour
         efficiencyChart.SetValues(p1, p2, percentageValues);
     }
 
+    private void UpdateAssetValue()
+    {
+        float p1 = player1State.GetAssetValue();
+        float p2 = player2State.GetAssetValue();
+
+        assetValueChart.SetValues(p1, p2, percentageValues);
+    }
+
     public void Show()
     {
         if (_isShown) return;
 
         _isShown = true;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(detailsTransform);
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(detailsTargetPosition, tweenDuration).SetEase(tweenEase);

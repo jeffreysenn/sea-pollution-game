@@ -38,6 +38,7 @@ public class PurchaseMenuController : MonoBehaviour
     [SerializeField]
     private ScrollRect recyclersScrollRect = null;
 
+    [Header("Button")]
     [SerializeField]
     private Button factoriesButton = null;
     [SerializeField]
@@ -45,6 +46,7 @@ public class PurchaseMenuController : MonoBehaviour
     [SerializeField]
     private Button recyclersButton = null;
 
+    [Header("Misc")]
     [SerializeField]
     private GameObject temporarySpace = null;
 
@@ -115,9 +117,19 @@ public class PurchaseMenuController : MonoBehaviour
 
                 purchasableIcon.polluterId = (i + 1);
                 purchasableIcon.SetText(purchasableIcon.polluterId.ToString());
+
+                purchasableIcon.OnBuy += PurchasableIcon_OnBuy;
             }
         }
         
+    }
+
+    private void PurchasableIcon_OnBuy(PurchasableIcon icon, bool success)
+    {
+        if(!success)
+        {
+            Feedback.Instance.FeedbackInsufficientCoins();
+        }
     }
 
     public void ShowFactories()

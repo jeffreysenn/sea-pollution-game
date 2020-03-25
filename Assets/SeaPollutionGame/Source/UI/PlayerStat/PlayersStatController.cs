@@ -53,4 +53,17 @@ public class PlayersStatController : MonoBehaviour
             menu.Show();
         }
     }
+
+    public void FeedbackNotEnoughCoins(int playerId)
+    {
+        if(playerId == playerAController.GetPlayer().id)
+        {
+            playerAController.FeedbackCoins();
+        }
+
+        if(playerId == playerBController.GetPlayer().id)
+        {
+            playerBController.FeedbackCoins();
+        }
+    }
 }

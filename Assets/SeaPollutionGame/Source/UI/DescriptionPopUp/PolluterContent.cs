@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PolluterContent : PopUpPieChartContent
 {
@@ -16,9 +17,17 @@ public class PolluterContent : PopUpPieChartContent
     private TextMeshProUGUI pieChartTitle = null;
     [SerializeField]
     private TextMeshProUGUI maxPieText = null;
+
+    [Header("Economic")]
     [SerializeField]
-    private TextMeshProUGUI textEconomic = null;
-    
+    private TextMeshProUGUI textCoins = null;
+    [SerializeField]
+    private TextMeshProUGUI textIncome = null;
+    [SerializeField]
+    private TextMeshProUGUI textRemoval = null;
+
+    private Color defaultColorText = Color.black;
+
 
     [Header("Vulnerabilities")]
     [SerializeField]
@@ -42,6 +51,13 @@ public class PolluterContent : PopUpPieChartContent
 
     private bool purchaseCheck = false;
     private bool iconCheck = false;
+
+    private Sequence currentSequence = null;
+
+    private void Start()
+    {
+        defaultColorText = textCoins.color;
+    }
 
     public bool CheckGraphicPolluter(PurchasableIcon purchasableIcon)
     {
@@ -102,7 +118,7 @@ public class PolluterContent : PopUpPieChartContent
 
             if(polluter is Recycler)
             {
-                pieChartTitle.text = "Converting:";
+                pieChartTitle.text = "Transforming:";
                 maxPieText.text = "";
 
                 if(polluter.GetAttrib().recycleAttrib.conversions != null)
@@ -132,7 +148,9 @@ public class PolluterContent : PopUpPieChartContent
             
             textTitle.text = polluterAttrib.title;
 
-            textEconomic.text = "Price: " + polluterAttrib.economicAttrib.price + " Income: " + polluterAttrib.economicAttrib.profitPerTurn + "\nRemoval cost: " + polluterAttrib.economicAttrib.removalCost;
+            textCoins.text = "Price: " + polluterAttrib.economicAttrib.price;
+            textIncome.text = " Income: " + polluterAttrib.economicAttrib.profitPerTurn;
+            textRemoval.text = "Removal cost: " + polluterAttrib.economicAttrib.removalCost;
 
             PollutionMap map = new PollutionMap(polluterAttrib.pollutionAttrib.emissions);
             
@@ -196,7 +214,7 @@ public class PolluterContent : PopUpPieChartContent
 
                     foreach (ResourceAttrib.Product product in resourceAttrib.products)
                     {
-                        textResources.text += "Produce: " + product.productPerTurn + " of " + product.resourceName + " per turn\n";
+                        textResources.text += "Produces: " + product.productPerTurn + " of " + product.resourceName + " per turn\n";
                     }
 
                 } else
@@ -210,7 +228,7 @@ public class PolluterContent : PopUpPieChartContent
             {
                 if (recycleAttrib.conversions != null)
                 {
-                    pieChartTitle.text = "Converts:";
+                    pieChartTitle.text = "Transforms:";
 
                     objectRecyclers.SetActive(true);
 
@@ -251,5 +269,32 @@ public class PolluterContent : PopUpPieChartContent
         }
 
         return hasFoundData;
+    }
+
+    public override void ShowPopup()
+    {
+        if (currentSequence != null)
+        {
+            currentSequence.Restart();
+            currentSequence.Kill();
+            currentSequence = null;
+        }
+
+        base.ShowPopup();
+    }
+
+    public void FeedbackCoins()
+    {
+        if(currentSequence != null)
+        {
+            currentSequence.Restart();
+            currentSequence.Kill();
+            currentSequence = null;
+        }
+
+        currentSequence = Feedback.Instance.ErrorText(textCoins, defaultColorText);
+
+        currentSequence.Play();
+
     }
 }

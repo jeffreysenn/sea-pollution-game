@@ -268,6 +268,8 @@ public class DescriptionPopUp : MonoBehaviour
 
     private bool InGameRaycasting()
     {
+        if (isBlocked) return false;
+
         bool hasHit = false;
 
         RaycastHit hit;
@@ -403,6 +405,11 @@ public class DescriptionPopUp : MonoBehaviour
                 HideDirectPopup(puc);
             }
         }
+    }
+
+    public void FeedbackNotEnoughCoins()
+    {
+        polluterContent.FeedbackCoins();
     }
 
 }

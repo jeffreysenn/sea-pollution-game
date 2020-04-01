@@ -37,7 +37,7 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
 
         UpdateCurrentPieChart();
 
-        pollutionPie.OnPieChartClick += OnPieChartClick;
+        //pollutionPie.OnPieChartClick += OnPieChartClick;
     }
 
     private void UpdateCurrentPieChart()
@@ -56,12 +56,12 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnClick();
+        //OnClick();
     }
 
     private void OnPieChartClick(PieChartController pcc)
     {
-        OnClick();
+        //OnClick();
     }
 
     public void OnClick()

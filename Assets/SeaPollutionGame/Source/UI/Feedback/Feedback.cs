@@ -8,7 +8,7 @@ public class Feedback : MonoBehaviour
 {
     [Header("Text Feedback")]
     [SerializeField]
-    private Color flashingColor = Color.red;
+    private Color errorColor = Color.red;
     [SerializeField]
     private Ease flashingEase = Ease.Linear;
     [SerializeField]
@@ -59,7 +59,7 @@ public class Feedback : MonoBehaviour
 
         for (int i = 0; i < flashingIteration; i++)
         {
-            Tween flashingTweenRed = target.DOColor(flashingColor, flashingDuration).SetEase(flashingEase);
+            Tween flashingTweenRed = target.DOColor(errorColor, flashingDuration).SetEase(flashingEase);
             Tween flashingTweenBack = target.DOColor(defaultColor, flashingDuration).SetEase(flashingEase);
 
             flashingSequence.Append(flashingTweenRed);

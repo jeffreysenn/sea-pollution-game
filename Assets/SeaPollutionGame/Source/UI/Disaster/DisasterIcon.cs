@@ -10,6 +10,8 @@ public class DisasterIcon : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private TextMeshProUGUI disasterText = null;
+    [SerializeField]
+    private string defaultText = "No system shock";
 
     private Disaster disaster;
 
@@ -18,10 +20,18 @@ public class DisasterIcon : MonoBehaviour, IPointerClickHandler
     public void SetDisaster(Disaster d) {
         disaster = d;
 
-        if (d == null)
-            disasterText.text = "";
-        else
-            disasterText.text = d.title;
+        if(d == null)
+        {
+            disasterText.text = defaultText;
+        } else
+        {
+            if (d.title == "")
+                disasterText.text = defaultText;
+            else
+                disasterText.text = d.title;
+        }
+
+
     }
     public Disaster GetDisaster() { return disaster; }
 

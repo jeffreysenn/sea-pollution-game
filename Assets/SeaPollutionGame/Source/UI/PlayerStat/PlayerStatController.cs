@@ -33,7 +33,8 @@ public class PlayerStatController : MonoBehaviour
     private TextMeshProUGUI txtCoinsValue = null;
     [SerializeField]
     private TextMeshProUGUI txtIncome = null;
-
+    [SerializeField]
+    private Color negativeIncomeColor = Color.red;
     private Color defaultColorTxt = Color.white;
 
     [Header("Content")]
@@ -91,9 +92,11 @@ public class PlayerStatController : MonoBehaviour
         if(value > 0)
         {
             s += "+" + Mathf.Round(value);
+            txtIncome.color = defaultColorTxt;
         } else
         {
             s += Mathf.Round(value);
+            txtIncome.color = negativeIncomeColor;
         }
         s += "";
 

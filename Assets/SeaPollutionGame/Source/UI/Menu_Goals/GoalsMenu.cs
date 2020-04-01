@@ -6,11 +6,28 @@ using DG.Tweening;
 
 public class GoalsMenu : MonoBehaviour
 {
+    [System.Serializable]
+    class GoalLine
+    {
+        public Transform lineTransform = null;
+        public int numberPerLine = 3;
+        private int _currentNumber = 0;
+        public int currentNumber
+        {
+            get { return _currentNumber; }
+            set { _currentNumber = value; }
+        }
+    }
+
     [SerializeField]
     private GoalItem mainGoalItem = null;
 
     [SerializeField]
     private GoalItem goalItemPrefab = null;
+
+    [Header("Lines")]
+    [SerializeField]
+    private List<GoalLine> goalLines = null;
 
     [Header("Tween")]
     [SerializeField]
@@ -50,7 +67,19 @@ public class GoalsMenu : MonoBehaviour
 
         foreach(Goal goal in attribData.goalList)
         {
-            GoalItem goalItem = Instantiate(goalItemPrefab, detailsTransform);
+            Transform targetTransform = null;
+            for(int i = 0; i < goalLines.Count; i++)
+            {
+                if(goalLines[i].currentNumber < goalLines[i].numberPerLine)
+                {
+                    targetTransform = goalLines[i].lineTransform;
+                    goalLines[i].currentNumber += 1;
+                    Debug.Log(goal.title + " " + i + " " + goalLines[i].currentNumber + "/" + goalLines[i].numberPerLine);
+                    break;
+                }
+            }
+
+            GoalItem goalItem = Instantiate(goalItemPrefab, targetTransform);
             goalItem.SetGoal(goal);
             goalItem.SetValues(0, 0);
 

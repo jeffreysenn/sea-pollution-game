@@ -19,7 +19,19 @@ public class EndTurnController : MonoBehaviour
         public float tweenXOffset = 0f;
     }
 
+    [System.Serializable]
+    class TurnNumber
+    {
+        public RectTransform rectTransform = null;
+        public HorizontalLayoutGroup layoutGroup = null;
+        public int defaultPadding = 20;
+        public int offsetPadding = 50;
+    }
+
     WorldStateManager worldStateManager = null;
+
+    [SerializeField]
+    private TurnNumber turnNumber = null;
 
     [SerializeField]
     private Button endTurnButton = null;
@@ -99,6 +111,24 @@ public class EndTurnController : MonoBehaviour
 
         currentPlayer.playerInformation.DOKill();
         currentPlayer.playerInformation.DOLocalMoveX(currentPlayer.tweenXOffset, tweenDuration).SetEase(tweenEase);
+        
+        // move turn number
+        turnNumber.rectTransform.DOKill();
+        turnNumber.rectTransform.DOLocalMoveX(-currentPlayer.tweenXOffset, tweenDuration).SetEase(tweenEase);
+
+        //padding
+        if (currentPlayer.tweenXOffset < 0)
+        {
+            turnNumber.layoutGroup.padding.left = turnNumber.offsetPadding;
+            turnNumber.layoutGroup.padding.right = turnNumber.defaultPadding;
+        } else
+        {
+            turnNumber.layoutGroup.padding.left = turnNumber.defaultPadding;
+            turnNumber.layoutGroup.padding.right = turnNumber.offsetPadding;
+        }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(turnNumber.rectTransform);
+
     }
 
     private void ShowPlayersExcept(int exceptFromId = 0)

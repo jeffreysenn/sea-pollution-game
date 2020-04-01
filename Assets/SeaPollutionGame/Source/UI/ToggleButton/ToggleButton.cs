@@ -13,6 +13,11 @@ public class ToggleButton : MonoBehaviour
     private bool _toggled = false;
     public bool toggled { get; set; }
 
+    [SerializeField]
+    private Sprite offSprite = null;
+    [SerializeField]
+    private Sprite onSprite = null;
+
     public event Action<ToggleButton, bool> OnToggle;
 
     private void Start()
@@ -43,11 +48,13 @@ public class ToggleButton : MonoBehaviour
     {
         if (toggled)
         {
-            button.targetGraphic.color = button.colors.pressedColor;
+            button.image.overrideSprite = onSprite;
+            //button.targetGraphic.color = button.colors.pressedColor;
         }
         else
         {
-            button.targetGraphic.color = button.colors.normalColor;
+            button.image.overrideSprite = offSprite;
+            //button.targetGraphic.color = button.colors.normalColor;
         }
     }
 }

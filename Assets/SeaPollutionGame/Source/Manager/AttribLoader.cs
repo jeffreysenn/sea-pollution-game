@@ -136,7 +136,10 @@ public class AttribLoader : MonoBehaviour
             var path = Application.dataPath + "/Resources/" + dir + filename.name + suffix;
             var data = System.IO.File.ReadAllText(path);
 #endif
-                fileData.Add(filename.fileFor, data.text);
+                // HACK(Xiaoyue Chen): replace "Phosphor" to "Emission"
+                var data_str = data.ToString();
+                var replaced_str = data_str.Replace("\"Phosphor\"", "\"Emission\"");
+                fileData.Add(filename.fileFor, replaced_str);
             }
 
             var scoreWeight = JsonUtility.FromJson<ScoreWeight>(fileData[FileFor.SCORE_WEIGHT]);

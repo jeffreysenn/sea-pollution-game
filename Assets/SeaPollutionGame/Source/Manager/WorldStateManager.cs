@@ -15,7 +15,7 @@ public class ScoreWeight
 public class WorldStateManager : MonoBehaviour
 {
 
-    [SerializeField] private int turnCount = 12;
+    [SerializeField] private int turnCount = 18;
 
     private SortedDictionary<int, PlayerState> playerStates = new SortedDictionary<int, PlayerState> { };
     private ScoreWeight scoreWeight = new ScoreWeight { };

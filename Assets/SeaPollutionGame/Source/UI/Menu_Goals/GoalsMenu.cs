@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DG.Tweening;
+using System.Linq;
 
 public class GoalsMenu : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class GoalsMenu : MonoBehaviour
     [Header("Lines")]
     [SerializeField]
     private List<GoalLine> goalLines = null;
+
+    [Header("Images")]
+    [SerializeField]
+    private string folderPath = "Images/Goals/";
 
     [Header("Tween")]
     [SerializeField]
@@ -63,6 +68,9 @@ public class GoalsMenu : MonoBehaviour
         player1State = worldStateManager.GetPlayerState(player1.id);
         player2State = worldStateManager.GetPlayerState(player2.id);
 
+        //load images from resources
+        List<Sprite> sprites = Resources.LoadAll(folderPath, typeof(Sprite)).Cast<Sprite>().ToList();
+
         AttribData attribData = UIManager.Instance.attribLoader.LoadLazy();
 
         foreach(Goal goal in attribData.goalList)
@@ -74,7 +82,6 @@ public class GoalsMenu : MonoBehaviour
                 {
                     targetTransform = goalLines[i].lineTransform;
                     goalLines[i].currentNumber += 1;
-                    Debug.Log(goal.title + " " + i + " " + goalLines[i].currentNumber + "/" + goalLines[i].numberPerLine);
                     break;
                 }
             }
@@ -82,6 +89,13 @@ public class GoalsMenu : MonoBehaviour
             GoalItem goalItem = Instantiate(goalItemPrefab, targetTransform);
             goalItem.SetGoal(goal);
             goalItem.SetValues(0, 0);
+            
+            Sprite s = sprites.Find(x => x.name.ToLower().Equals(goal.iconName.ToLower()));
+            if(s!= null)
+            {
+                goalItem.SetImage(s);
+            }
+
 
             goalItems.Add(goalItem);
 

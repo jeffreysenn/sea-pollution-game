@@ -293,6 +293,7 @@ MonoBehaviour:
   leftBorder: {fileID: 424896487116967414}
   rightBorder: {fileID: 7127579825321826745}
   light: {fileID: 231108577009430007}
+  image: {fileID: 424896487511091230}
   hoverable: 1
   title: {fileID: 5572674024399659501}
   isLeftShown: 0

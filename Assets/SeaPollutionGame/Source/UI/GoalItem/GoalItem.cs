@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -13,6 +14,8 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     private GameObject rightBorder = null;
     [SerializeField]
     private GameObject light = null;
+    [SerializeField]
+    private Image image = null;
     [SerializeField]
     private bool hoverable = false;
 
@@ -54,6 +57,11 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public void SetTitle(string s)
     {
         title.text = s;
+    }
+
+    public void SetImage(Sprite s)
+    {
+        image.overrideSprite = s;
     }
 
     public void Show(bool left = false, bool right = false)

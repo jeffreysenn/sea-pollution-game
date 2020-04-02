@@ -207,6 +207,7 @@ MonoBehaviour:
     numberPerLine: 2
   - lineTransform: {fileID: 5439102707059186250}
     numberPerLine: 3
+  folderPath: Images/Goals/
   detailsTransform: {fileID: 6448885477637613496}
   detailsTargetPosition: {x: 0, y: -50}
   tweenDuration: 0.3
@@ -265,7 +266,7 @@ MonoBehaviour:
     m_Top: 5
     m_Bottom: 5
   m_ChildAlignment: 1
-  m_Spacing: 5
+  m_Spacing: 15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -326,7 +327,7 @@ MonoBehaviour:
     m_Top: 5
     m_Bottom: 5
   m_ChildAlignment: 1
-  m_Spacing: 5
+  m_Spacing: 15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0

@@ -15,6 +15,9 @@ public class PlayersStatController : MonoBehaviour
     [SerializeField]
     private GoalsMenu goalsMenu = null;
 
+    public event Action<bool> OnGoalsMenuToggled;
+    public event Action<bool> OnScoresMenuToggled;
+
     private void Start()
     {
         scoreMenu.OnClick += ScoreMenu_OnClick;
@@ -37,6 +40,9 @@ public class PlayersStatController : MonoBehaviour
             scoreMenu.Hide();
             goalsMenu.Show();
         }
+
+        OnGoalsMenuToggled?.Invoke(goalsMenu.isShown);
+        OnScoresMenuToggled?.Invoke(scoreMenu.isShown);
     }
 
     public void ToggleScoresMenu()
@@ -55,6 +61,9 @@ public class PlayersStatController : MonoBehaviour
             goalsMenu.Hide();
             scoreMenu.Show();
         }
+
+        OnGoalsMenuToggled?.Invoke(goalsMenu.isShown);
+        OnScoresMenuToggled?.Invoke(scoreMenu.isShown);
     }
 
     private void GoalsMenu_OnClick(GoalsMenu menu)

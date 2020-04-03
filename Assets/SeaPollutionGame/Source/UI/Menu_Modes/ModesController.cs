@@ -29,6 +29,9 @@ public class ModesController : MonoBehaviour
         flowManager = UIManager.Instance.flowManager;
         flowManager.OnDisplay += FlowManager_OnDisplay;
 
+        playersStatController.OnGoalsMenuToggled += PlayersStatController_OnGoalsMenuToggled;
+        playersStatController.OnScoresMenuToggled += PlayersStatController_OnScoresMenuToggled;
+
         scoreMenu = playersStatController.GetScoreMenu();
         scoreMainBar = scoreMenu.GetScoreBar();
 
@@ -37,12 +40,35 @@ public class ModesController : MonoBehaviour
         toggleGoals.OnToggle += ToggleGoals_OnToggle;
         toggleScores.OnToggle += ToggleScores_OnToggle;
 
-        toggleTutorial.toggled = false;
-        toggleFlows.toggled = false;
-        toggleGoals.toggled = false;
-        toggleScores.toggled = false;
+        toggleTutorial.Untoggle();
+        toggleFlows.Untoggle();
+        toggleGoals.Untoggle();
+        toggleScores.Untoggle();
 
         scoreMainBar.OnValueChanged += ScoreMainBar_OnValueChanged;
+    }
+
+    private void PlayersStatController_OnScoresMenuToggled(bool shown)
+    {
+        if(shown)
+        {
+            toggleScores.Toggle();
+        } else
+        {
+            toggleScores.Untoggle();
+        }
+    }
+
+    private void PlayersStatController_OnGoalsMenuToggled(bool shown)
+    {
+        if (shown)
+        {
+            toggleGoals.Toggle();
+        }
+        else
+        {
+            toggleGoals.Untoggle();
+        }
     }
 
     private void FlowManager_OnDisplay(bool shown)

@@ -11,17 +11,21 @@ public class ToggleButton : MonoBehaviour
 
     [SerializeField]
     private bool _toggled = false;
-    public bool toggled { get; set; }
+    public bool toggled { get { return _toggled; } }
 
     [SerializeField]
     private Sprite offSprite = null;
     [SerializeField]
     private Sprite onSprite = null;
+    [SerializeField]
+    private GameObject glow = null;
 
     public event Action<ToggleButton, bool> OnToggle;
 
     private void Start()
     {
+        glow.SetActive(false);
+
         button.onClick.AddListener(OnClick);
 
         if(toggled)
@@ -37,7 +41,7 @@ public class ToggleButton : MonoBehaviour
 
     private void OnClick()
     {
-        toggled = !toggled;
+        _toggled = !_toggled;
 
         ChangeGraphic();
 
@@ -50,11 +54,27 @@ public class ToggleButton : MonoBehaviour
         {
             button.image.overrideSprite = onSprite;
             //button.targetGraphic.color = button.colors.pressedColor;
+            glow.SetActive(true);
         }
         else
         {
             button.image.overrideSprite = offSprite;
             //button.targetGraphic.color = button.colors.normalColor;
+            glow.SetActive(false);
         }
+    }
+
+    public void Toggle()
+    {
+        _toggled = true;
+
+        ChangeGraphic();
+    }
+
+    public void Untoggle()
+    {
+        _toggled = false;
+
+        ChangeGraphic();
     }
 }

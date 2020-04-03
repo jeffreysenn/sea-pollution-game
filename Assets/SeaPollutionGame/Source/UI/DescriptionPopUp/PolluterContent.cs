@@ -129,6 +129,7 @@ public class PolluterContent : PopUpPieChartContent
                     }
                 }
             }
+            
 
             SetPieChart(pieChart, map);
 

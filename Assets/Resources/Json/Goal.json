@@ -14,7 +14,7 @@
       "value": 100,
       "reward": 200,
       "description": "Reach 100 in Bio-diversity",
-      "iconName": "Achievement_Yellow"
+      "iconName": "Achievement_Gold"
     },
     {
       "title": "SDG 9 Industry innovation and infrastructure",
@@ -25,20 +25,20 @@
       "iconName": "Achievement_Purple"
     },
     {
-      "title": "SDG 13 Climate action",
-      "resourceName": "SDG 13",
-      "value": 100,
-      "reward": 200,
-      "description": "Reach 100 in SDG 13\nTake urgent action to combat climate change and its impacts",
-      "iconName": "Achievement_Green"
-    },
-    {
       "title": "Sum Goal",
       "resourceName": "ANY",
       "value": 100,
       "reward": 200,
       "description": "Sum of all goals reach 100",
       "iconName": "Achievement_Blue"
+    },
+    {
+      "title": "SDG 13 Climate action",
+      "resourceName": "SDG 13",
+      "value": 100,
+      "reward": 200,
+      "description": "Reach 100 in SDG 13\nTake urgent action to combat climate change and its impacts",
+      "iconName": "Achievement_Green"
     }
   ]
 }

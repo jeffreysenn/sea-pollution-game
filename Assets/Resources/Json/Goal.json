@@ -4,7 +4,7 @@
       "title": "Prepardness",
       "resourceName": "Prepardness",
       "value": 100,
-      "reward": 250,
+      "reward": 200,
       "description": "Reach 100 in Prepardness",
       "iconName": "Achievement_Red"
     },
@@ -12,15 +12,15 @@
       "title": "Bio-diversity",
       "resourceName": "Bio-diversity",
       "value": 100,
-      "reward": 250,
+      "reward": 200,
       "description": "Reach 100 in Bio-diversity",
-      "iconName": "Achievement_Green"
+      "iconName": "Achievement_Yellow"
     },
     {
       "title": "SDG 9 Industry innovation and infrastructure",
       "resourceName": "SDG 9",
       "value": 100,
-      "reward": 250,
+      "reward": 200,
       "description": "Reach 100 in SDG 9",
       "iconName": "Achievement_Purple"
     },
@@ -28,9 +28,17 @@
       "title": "SDG 13 Climate action",
       "resourceName": "SDG 13",
       "value": 100,
-      "reward": 250,
+      "reward": 200,
       "description": "Reach 100 in SDG 13\nTake urgent action to combat climate change and its impacts",
-      "iconName": "Achievement_Gold"
+      "iconName": "Achievement_Green"
+    },
+    {
+      "title": "Sum Goal",
+      "resourceName": "ANY",
+      "value": 100,
+      "reward": 200,
+      "description": "Sum of all goals reach 100",
+      "iconName": "Achievement_Blue"
     }
   ]
 }

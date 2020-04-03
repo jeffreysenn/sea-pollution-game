@@ -15,7 +15,7 @@ public enum PollutionMapType
 
 public class PlayerState
 {
-    private float money = 100;
+    private float money = 120;
     private List<Goal> achievedGoals = new List<Goal> { };
     private Dictionary<PollutionMapType, PollutionMap> accumulatedPollutionMap = new Dictionary<PollutionMapType, PollutionMap>
     {
@@ -24,7 +24,7 @@ public class PlayerState
         {PollutionMapType.NET, new PollutionMap{} },
     };
 
-    private ResourceMap accumulatedResourceMap = new ResourceMap { };
+    private ResourceMap accumulatedResourceMap = new ResourceMap { { "ANY", 0 } };
 
     private Dictionary<PollutionMapType, UnityEvent> stateChangeEventMap = new Dictionary<PollutionMapType, UnityEvent> {
         { PollutionMapType.PRODUCED, new UnityEvent{ } },
@@ -166,6 +166,8 @@ public class PlayerState
         {
             if (!accumulatedResourceMap.ContainsKey(pair.Key)) { accumulatedResourceMap.Add(pair.Key, 0); }
             accumulatedResourceMap[pair.Key] += pair.Value;
+
+            accumulatedResourceMap["ANY"] += pair.Value;
         }
         resourceChangeEvent.Invoke();
     }

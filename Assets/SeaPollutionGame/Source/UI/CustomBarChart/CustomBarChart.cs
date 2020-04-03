@@ -35,6 +35,7 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler, IPointerEnter
     private float widthTotalContent = 1;
 
     public event Action<CustomBarChart> OnClick;
+    public event Action<CustomBarChart> OnValueChanged;
 
     private void Awake()
     {
@@ -49,6 +50,8 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler, IPointerEnter
             SetTextValues(values[0], values[1], true);
         else
             SetTextValues(left, right);
+
+        OnValueChanged?.Invoke(this);
     }
 
     private float[] SetLeftValue(float d, bool withThreshold = true)
@@ -143,5 +146,12 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler, IPointerEnter
     {
         if(hoverable)
             light.SetActive(false);
+    }
+
+    public Vector2 GetInBetweenPosition()
+    {
+        Vector2 pos = new Vector2(leftContent.position.x, leftContent.position.y);
+
+        return pos;
     }
 }

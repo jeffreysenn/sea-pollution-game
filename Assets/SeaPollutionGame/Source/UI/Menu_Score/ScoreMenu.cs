@@ -89,7 +89,6 @@ public class ScoreMenu : MonoBehaviour
     {
         float p1 = worldStateManager.GetScore(player1.id);
         float p2 = worldStateManager.GetScore(player2.id);
-
         
         scoreBar.SetValues(p1, p2, percentageValues);
     }
@@ -181,4 +180,6 @@ public class ScoreMenu : MonoBehaviour
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, 0f).SetEase(tweenEase);
     }
+
+    public CustomBarChart GetScoreBar() { return scoreBar; }
 }

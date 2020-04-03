@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PlayersStatController : MonoBehaviour
 {
@@ -20,38 +21,50 @@ public class PlayersStatController : MonoBehaviour
         goalsMenu.OnClick += GoalsMenu_OnClick;
     }
 
-    private void GoalsMenu_OnClick(GoalsMenu menu)
+    public void ToggleGoalsMenu()
     {
-        if(menu.isShown)
+        if (goalsMenu.isShown)
         {
             playerAController.Show();
             playerBController.Show();
             scoreMenu.Hide();
-            menu.Hide();
-        } else
+            goalsMenu.Hide();
+        }
+        else
         {
             playerAController.Hide();
             playerBController.Hide();
             scoreMenu.Hide();
-            menu.Show();
+            goalsMenu.Show();
         }
+    }
+
+    public void ToggleScoresMenu()
+    {
+        if (scoreMenu.isShown)
+        {
+            playerAController.Show();
+            playerBController.Show();
+            goalsMenu.Hide();
+            scoreMenu.Hide();
+        }
+        else
+        {
+            playerAController.Hide();
+            playerBController.Hide();
+            goalsMenu.Hide();
+            scoreMenu.Show();
+        }
+    }
+
+    private void GoalsMenu_OnClick(GoalsMenu menu)
+    {
+        ToggleGoalsMenu();
     }
 
     private void ScoreMenu_OnClick(ScoreMenu menu)
     {
-        if(menu.isShown)
-        {
-            playerAController.Show();
-            playerBController.Show();
-            goalsMenu.Hide();
-            menu.Hide();
-        } else
-        {
-            playerAController.Hide();
-            playerBController.Hide();
-            goalsMenu.Hide();
-            menu.Show();
-        }
+        ToggleScoresMenu();
     }
 
     public void FeedbackNotEnoughCoins(int playerId)
@@ -66,4 +79,6 @@ public class PlayersStatController : MonoBehaviour
             playerBController.FeedbackCoins();
         }
     }
+
+    public ScoreMenu GetScoreMenu() { return scoreMenu; }
 }

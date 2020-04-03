@@ -10,22 +10,39 @@ public class ModesController : MonoBehaviour
     private ModeToggle toggleTutorial = null;
     [SerializeField]
     private ModeToggle toggleFlows = null;
+    [SerializeField]
+    private ModeToggle toggleGoals = null;
+    [SerializeField]
+    private ModeToggle toggleScores = null;
     
     [SerializeField]
     private TutorialController tutorialController = null;
+    [SerializeField]
+    private PlayersStatController playersStatController = null;
 
     private FlowManager flowManager = null;
+    private ScoreMenu scoreMenu = null;
+    private CustomBarChart scoreMainBar = null;
 
     private void Start()
     {
         flowManager = UIManager.Instance.flowManager;
         flowManager.OnDisplay += FlowManager_OnDisplay;
 
+        scoreMenu = playersStatController.GetScoreMenu();
+        scoreMainBar = scoreMenu.GetScoreBar();
+
         toggleTutorial.OnToggle += ToggleTutorial_OnToggle;
         toggleFlows.OnToggle += ToggleFlows_OnToggle;
+        toggleGoals.OnToggle += ToggleGoals_OnToggle;
+        toggleScores.OnToggle += ToggleScores_OnToggle;
 
         toggleTutorial.toggled = false;
         toggleFlows.toggled = false;
+        toggleGoals.toggled = false;
+        toggleScores.toggled = false;
+
+        scoreMainBar.OnValueChanged += ScoreMainBar_OnValueChanged;
     }
 
     private void FlowManager_OnDisplay(bool shown)
@@ -61,6 +78,19 @@ public class ModesController : MonoBehaviour
             flowManager.Hide();
     }
 
+    private void ToggleGoals_OnToggle(ToggleButton btn, bool toggle)
+    {
+        playersStatController.ToggleGoalsMenu();
+    }
 
+    private void ToggleScores_OnToggle(ToggleButton btn, bool toggle)
+    {
+        playersStatController.ToggleScoresMenu();
+    }
+    
+    private void ScoreMainBar_OnValueChanged(CustomBarChart obj)
+    {
+        toggleScores.transform.position = obj.GetInBetweenPosition();
+    }
 
 }

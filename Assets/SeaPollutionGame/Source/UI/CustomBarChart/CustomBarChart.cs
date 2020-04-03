@@ -15,7 +15,7 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler, IPointerEnter
     [SerializeField]
     private RectTransform rightContent = null;
     [SerializeField]
-    private GameObject light = null;
+    private GameObject glow = null;
     [SerializeField]
     private bool hoverable = false;
 
@@ -139,13 +139,13 @@ public class CustomBarChart : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(hoverable)
-            light.SetActive(true);
+            glow.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if(hoverable)
-            light.SetActive(false);
+            glow.SetActive(false);
     }
 
     public Vector2 GetInBetweenPosition()

@@ -9,8 +9,6 @@ public class HowToPlayMenu : MonoBehaviour
 {
     [SerializeField]
     private Button btnContinue = null;
-    [SerializeField]
-    private SlidesController slidesController = null;
 
     [SerializeField]
     private CanvasGroup menuCanvas = null;

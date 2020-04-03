@@ -130,6 +130,9 @@ public class PolluterContent : PopUpPieChartContent
                 }
             }
             
+            if(polluter.GetProfit() == 0)
+                textIncome.text = "";
+
 
             SetPieChart(pieChart, map);
 

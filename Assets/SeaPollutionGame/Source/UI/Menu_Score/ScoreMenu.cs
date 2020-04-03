@@ -22,6 +22,8 @@ public class ScoreMenu : MonoBehaviour
     [SerializeField]
     private CustomBarChart filteredChart = null;
     [SerializeField]
+    private CustomBarChart recycledChart = null;
+    [SerializeField]
     private CustomBarChart efficiencyChart = null;
     [SerializeField]
     private CustomBarChart assetValueChart = null;
@@ -73,8 +75,11 @@ public class ScoreMenu : MonoBehaviour
         {
             UpdateResources();
             UpdateTotal();
+
             UpdatePollution();
             UpdateFiltered();
+            UpdateRecycled();
+
             UpdateEfficiency();
             UpdateAssetValue();
         }
@@ -132,6 +137,11 @@ public class ScoreMenu : MonoBehaviour
         }
         
         filteredChart.SetValues(p1, p2, percentageValues);
+    }
+
+    private void UpdateRecycled()
+    {
+        recycledChart.SetValues(0, 0, percentageValues);
     }
 
     private void UpdateEfficiency()

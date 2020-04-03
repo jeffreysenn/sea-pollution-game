@@ -6,23 +6,23 @@ using UnityEngine.EventSystems;
 public class LightComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
-    private GameObject light = null;
+    private GameObject glow = null;
 
     [SerializeField]
     private bool startToggle = false;
 
     private void Start()
     {
-        light.SetActive(startToggle);
+        glow.SetActive(startToggle);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        light.SetActive(true);
+        glow.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        light.SetActive(false);
+        glow.SetActive(false);
     }
 }

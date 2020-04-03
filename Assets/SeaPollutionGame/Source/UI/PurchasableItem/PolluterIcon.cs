@@ -30,8 +30,6 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 
     public PlayerController playerController { get; set; }
 
-    private bool isDragging = false;
-
     public void SetPolluterAttributes(PolluterAttrib attrib)
     {
         polluterAttrib = attrib;

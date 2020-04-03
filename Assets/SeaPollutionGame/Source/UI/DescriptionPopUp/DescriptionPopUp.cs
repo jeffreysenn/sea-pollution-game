@@ -78,7 +78,7 @@ public class DescriptionPopUp : MonoBehaviour
 
     private List<PopUpContent> allPopupContents = new List<PopUpContent>();
 
-    private bool currentFromGame = false;
+    //private bool currentFromGame = false;
     private GameObject currentGameObject = null;
     private PopUpContent currentShownContent = null;
 

@@ -55,8 +55,8 @@ public class DisasterUIController : MonoBehaviour
             defaultContent.disasterIcon.SetDisaster(tempDefaultDisaster);
         }
 
-        defaultContent.disasterIcon.OnClick += DisasterIcon_OnClick;
-        disasterContent.disasterIcon.OnClick += DisasterIcon_OnClick;
+        //defaultContent.disasterIcon.OnClick += DisasterIcon_OnClick;
+        //disasterContent.disasterIcon.OnClick += DisasterIcon_OnClick;
 
         worldWindow.videoLoader.OnClipFinish += VideoLoader_OnClipFinish;
 
@@ -70,8 +70,8 @@ public class DisasterUIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        defaultContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
-        disasterContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
+        //defaultContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
+        //disasterContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
 
         worldWindow.videoLoader.OnClipFinish -= VideoLoader_OnClipFinish;
     }

@@ -13,7 +13,7 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     [SerializeField]
     private GameObject rightBorder = null;
     [SerializeField]
-    private GameObject light = null;
+    private GameObject glow = null;
     [SerializeField]
     private Image image = null;
     [SerializeField]
@@ -86,12 +86,12 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(hoverable)
-            light.SetActive(true);
+            glow.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if(hoverable)
-            light.SetActive(false);
+            glow.SetActive(false);
     }
 }

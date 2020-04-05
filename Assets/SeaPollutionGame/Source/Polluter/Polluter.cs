@@ -18,12 +18,17 @@ public class Polluter : MonoBehaviour
     private EntityType entityType = EntityType.NONE;
     [SerializeField]
     private TextMesh idTextMesh = null;
+    [Header("Death")]
+    [SerializeField]
+    private Health health = null;
+    [SerializeField]
+    private GameObject flareObject = null;
     [SerializeField]
     private Color onDeathColor = Color.red;
     [SerializeField]
     private Renderer meshRenderer = null;
     [SerializeField]
-    private Health health = null;
+    private Color onDeathTextColor = Color.black;
 
     private PolluterAttrib polluterAttrib = null;
 
@@ -119,10 +124,13 @@ public class Polluter : MonoBehaviour
         Mulfunction();
 
         meshRenderer.material.SetColor("_Color", onDeathColor);
+        flareObject.SetActive(true);
+        idTextMesh.color = onDeathTextColor;
     }
 
     protected void Awake()
     {
+        flareObject.SetActive(false);
         health.AddDeathEventListener(OnDeadth);
     }
 

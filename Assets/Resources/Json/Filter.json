@@ -378,7 +378,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "CompostApplicationAgriculture"
       },
       "placementAttrib": {
         "urban": false,
@@ -418,7 +418,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "CompostApplicationForest"
       },
       "placementAttrib": {
         "urban": false,
@@ -466,7 +466,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "SludgeApplicationAgriculture"
       },
       "placementAttrib": {
         "urban": false,
@@ -514,7 +514,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "SludgeApplicationForest"
       },
       "placementAttrib": {
         "urban": false,
@@ -618,7 +618,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "RestorationRiparianAreas"
       },
       "placementAttrib": {
         "urban": true,
@@ -674,7 +674,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "Floodplains"
       },
       "placementAttrib": {
         "urban": false,
@@ -714,7 +714,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "Liming"
       },
       "placementAttrib": {
         "urban": false,
@@ -810,7 +810,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "OptimizationLivestock"
       },
       "placementAttrib": {
         "urban": false,
@@ -898,7 +898,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "ConnectingPopulationToWastewater"
       },
       "placementAttrib": {
         "urban": true,
@@ -1002,7 +1002,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "ImprovingOn-siteTreatments"
+        "imageName": "ImprovingOnsiteTreatments"
       },
       "placementAttrib": {
         "urban": false,
@@ -1050,7 +1050,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "SourceSeperationOfWaste"
       },
       "placementAttrib": {
         "urban": false,
@@ -1158,7 +1158,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "WastewaterImprovementWithOverflow"
       },
       "placementAttrib": {
         "urban": true,
@@ -1206,7 +1206,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "BiocharTreatedWithSourceSeperatedBlackwater"
       },
       "placementAttrib": {
         "urban": false,
@@ -1246,7 +1246,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "IncinerationAndPhosphorus"
       },
       "placementAttrib": {
         "urban": false,

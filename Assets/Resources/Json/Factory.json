@@ -42,7 +42,7 @@
         "ocean": false
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "DistrictHeatingRural"
       }
     },
     {
@@ -161,7 +161,7 @@
         "ocean": false
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "BuildingHousesForRent"
       }
     },
     {
@@ -334,7 +334,7 @@
       },
 
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "PrecisionTechnologiesAgriculture"
       },
       "placementAttrib": {
         "urban": false,

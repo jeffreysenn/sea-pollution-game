@@ -566,7 +566,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "ImprovingDrainageManagementOnFarms"
       },
       "placementAttrib": {
         "urban": false,
@@ -762,7 +762,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "OptimizingFertRatesGeoLocat"
       },
       "placementAttrib": {
         "urban": false,
@@ -850,7 +850,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "MicrostrainerAtFishFarms"
       },
       "placementAttrib": {
         "urban": false,
@@ -954,7 +954,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "StormwaterManagement"
       },
       "placementAttrib": {
         "urban": true,
@@ -1102,7 +1102,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "UrineSeparation"
       },
       "placementAttrib": {
         "urban": true,
@@ -1294,7 +1294,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "BiocharFilter"
       },
       "placementAttrib": {
         "urban": true,
@@ -1342,7 +1342,7 @@
         ]
       },
       "visualAttrib": {
-        "imageName": "Default"
+        "imageName": "EnhancedWastewaterTreatment"
       },
       "placementAttrib": {
         "urban": false,

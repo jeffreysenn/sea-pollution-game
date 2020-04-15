@@ -18,6 +18,14 @@ public class PolluterContent : PopUpPieChartContent
     [SerializeField]
     private TextMeshProUGUI maxPieText = null;
 
+    [Header("Icons")]
+    [SerializeField]
+    private PolluterIcon factoryIcon = null;
+    [SerializeField]
+    private PolluterIcon filterIcon = null;
+    [SerializeField]
+    private PolluterIcon recyclerIcon = null;
+
     [Header("Economic")]
     [SerializeField]
     private TextMeshProUGUI textCoins = null;
@@ -27,8 +35,7 @@ public class PolluterContent : PopUpPieChartContent
     private TextMeshProUGUI textRemoval = null;
 
     private Color defaultColorText = Color.black;
-
-
+    
     [Header("Vulnerabilities")]
     [SerializeField]
     private GameObject objectVulnerabilities = null;
@@ -57,12 +64,17 @@ public class PolluterContent : PopUpPieChartContent
     private void Start()
     {
         defaultColorText = textCoins.color;
+
+        factoryIcon.gameObject.SetActive(false);
+        filterIcon.gameObject.SetActive(false);
+        recyclerIcon.gameObject.SetActive(false);
     }
 
     public bool CheckGraphicPolluter(PurchasableIcon purchasableIcon)
     {
         PolluterAttrib attrib = purchasableIcon.GetPolluterAttributes();
-        bool check = CheckPolluter(attrib);
+
+        bool check = CheckPolluter(attrib, purchasableIcon.polluterId);
 
         purchaseCheck = check;
         
@@ -72,7 +84,8 @@ public class PolluterContent : PopUpPieChartContent
     public bool CheckGraphicPolluter(PolluterIcon polluterIcon)
     {
         PolluterAttrib attrib = polluterIcon.GetPolluterAttributes();
-        bool check = CheckPolluter(attrib);
+
+        bool check = CheckPolluter(attrib, polluterIcon.polluterId);
 
         iconCheck = check;
 
@@ -85,7 +98,7 @@ public class PolluterContent : PopUpPieChartContent
         {
             imageIsDisaster = !polluter.IsAlive();
             
-            bool check = CheckPolluter(polluter.GetAttrib());
+            bool check = CheckPolluter(polluter.GetAttrib(), polluter.polluterId);
 
             // special case in game
             PollutionMap map = new PollutionMap(polluter.GetPollutionMap());
@@ -142,7 +155,7 @@ public class PolluterContent : PopUpPieChartContent
         return false;
     }
 
-    public bool CheckPolluter(PolluterAttrib polluterAttrib)
+    public bool CheckPolluter(PolluterAttrib polluterAttrib, int id = 0)
     {
         bool hasFoundData = false;
 
@@ -269,6 +282,29 @@ public class PolluterContent : PopUpPieChartContent
             else
             {
                 imageToShow = false;
+            }
+
+            //icons
+            factoryIcon.gameObject.SetActive(false);
+            filterIcon.gameObject.SetActive(false);
+            recyclerIcon.gameObject.SetActive(false);
+
+            if(polluterAttrib is FactoryAttrib)
+            {
+                factoryIcon.SetText(id.ToString());
+                factoryIcon.gameObject.SetActive(true);
+            }
+
+            if(polluterAttrib is FilterAttrib)
+            {
+                filterIcon.SetText(id.ToString());
+                filterIcon.gameObject.SetActive(true);
+            }
+
+            if(polluterAttrib is RecyclerAttrib)
+            {
+                recyclerIcon.SetText(id.ToString());
+                recyclerIcon.gameObject.SetActive(true);
             }
         }
 

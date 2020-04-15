@@ -622,7 +622,7 @@ MonoBehaviour:
   canvasPrevious: {fileID: 223106153485268652}
   btnNext: {fileID: 223106153377899028}
   canvasNext: {fileID: 223106153377899031}
-  tweenDuration: 0.5
+  tweenDuration: 0.7
   tweenEase: 3
 --- !u!114 &223106153457951793
 MonoBehaviour:

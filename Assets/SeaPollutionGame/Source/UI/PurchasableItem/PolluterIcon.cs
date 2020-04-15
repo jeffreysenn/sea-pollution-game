@@ -9,7 +9,9 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 {
     public event Action OnDrag;
     public event Action OnRelease;
-    
+
+    [SerializeField]
+    private bool isInteractible = true;
 
     [SerializeField]
     private Polluter targetPolluter = null;
@@ -42,9 +44,12 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 
     private void Start()
     {
-        OnDrag?.Invoke();
+        if(isInteractible)
+        {
+            OnDrag?.Invoke();
 
-        playerController.Hold();
+            playerController.Hold();
+        }
     }
 
     private void OnDestroy()
@@ -54,31 +59,34 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 
     private void Update()
     {
-        transform.position = Input.mousePosition;
-
-        /*
-        if(Input.GetButtonDown("Fire2")) {
-            playerController.CancelHold();
-            Destroy(gameObject);
-        }
-        */
-
-        if(Input.GetButtonUp("Fire1"))
+        if(isInteractible)
         {
-            InstantiatePolluter();
+            transform.position = Input.mousePosition;
 
-            playerController.Hold(polluterDragged);
-
-            bool dropped = playerController.TryDrop();
-
-            if (dropped)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
+            /*
+            if(Input.GetButtonDown("Fire2")) {
                 playerController.CancelHold();
                 Destroy(gameObject);
+            }
+            */
+
+            if (Input.GetButtonUp("Fire1"))
+            {
+                InstantiatePolluter();
+
+                playerController.Hold(polluterDragged);
+
+                bool dropped = playerController.TryDrop();
+
+                if (dropped)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    playerController.CancelHold();
+                    Destroy(gameObject);
+                }
             }
         }
     }

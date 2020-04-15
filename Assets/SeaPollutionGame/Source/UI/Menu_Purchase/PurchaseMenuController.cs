@@ -95,20 +95,19 @@ public class PurchaseMenuController : MonoBehaviour
                 if(polluter is Factory)
                 {
                     purchasableIcon = Instantiate(pur.purchasableIcon, factoriesMenu);
-                    purchasableIcon.SetSpace(temporarySpace);
                 }
 
                 if(polluter is Filter)
                 {
                     purchasableIcon = Instantiate(pur.purchasableIcon, filtersMenu);
-                    purchasableIcon.SetSpace(temporarySpace);
                 }
 
                 if(polluter is Recycler)
                 {
                     purchasableIcon = Instantiate(pur.purchasableIcon, recyclersMenu);
-                    purchasableIcon.SetSpace(temporarySpace);
                 }
+
+                purchasableIcon.SetSpace(temporarySpace);
 
                 purchasableIcon.SetPolluterAttributes(pur.polluterAttribs[i]);
                 purchasableIcon.playerController = playerController;

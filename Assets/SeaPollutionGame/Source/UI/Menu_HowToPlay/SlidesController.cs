@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class SlidesController : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class SlidesController : MonoBehaviour
     [SerializeField]
     private CanvasGroup canvasNext = null;
 
+    [Header("Transition")]
+    [SerializeField]
+    private float tweenDuration = 0.25f;
+    [SerializeField]
+    private Ease tweenEase = Ease.Linear;
+
     private GameObject currentSlide = null;
     private int currentIndex = 0;
 
@@ -28,7 +35,12 @@ public class SlidesController : MonoBehaviour
 
         foreach(GameObject g in slides)
         {
-            g.SetActive(false);
+            Image i = g.GetComponentInChildren<Image>();
+
+            if(i!=null)
+            {
+                i.DOFade(0f, 0f);
+            }
         }
 
         currentSlide = slides[currentIndex];
@@ -50,11 +62,21 @@ public class SlidesController : MonoBehaviour
 
     void ShowSlide(GameObject slide)
     {
-        currentSlide.SetActive(false);
+        Image currentImage = currentSlide.GetComponentInChildren<Image>();
+        if(currentImage != null)
+        {
+            currentImage.DOFade(0f, tweenDuration).SetEase(tweenEase);
+        }
+        //currentSlide.SetActive(false);
 
         currentSlide = slide;
+        currentImage = currentSlide.GetComponentInChildren<Image>();
+        if (currentImage != null)
+        {
+            currentImage.DOFade(1f, tweenDuration).SetEase(tweenEase);
+        }
 
-        slide.SetActive(true);
+        //slide.SetActive(true);
 
         int index = slides.IndexOf(slide);
 

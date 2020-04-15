@@ -245,7 +245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnContinue: {fileID: 6589039613628193980}
-  slidesController: {fileID: 3096041735625014435}
   menuCanvas: {fileID: 6589039614084021838}
   tweenDuration: 0.25
   tweenEase: 1
@@ -944,15 +943,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3021906911523428497}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3096041735625014435 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 223106153457951794, guid: e8f6e4187e3560e438a6adbdcc5429f0,
-    type: 3}
-  m_PrefabInstance: {fileID: 3021906911523428497}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa20a11336cfefd42977681761017498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

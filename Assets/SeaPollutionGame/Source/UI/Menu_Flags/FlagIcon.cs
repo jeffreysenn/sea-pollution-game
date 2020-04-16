@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 using DG.Tweening;
+using TMPro;
 
 public class FlagIcon : MonoBehaviour, IPointerClickHandler
 {
@@ -16,6 +17,9 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
     private CanvasGroup selectedCanvas = null;
 
     [SerializeField]
+    private TextMeshProUGUI txtTitle = null;
+
+    [SerializeField]
     private float tweenDuration = 0.25f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
@@ -26,6 +30,9 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        string flagText = flagType.ToString();
+        txtTitle.text = flagText[0].ToString().ToUpper() + flagText.Substring(1).ToLower();
+
         HideDirectSelected();
     }
 
@@ -61,6 +68,16 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
 
         selectedCanvas.DOKill();
         selectedCanvas.DOFade(0f, 0f).SetEase(tweenEase);
+    }
+
+    public void ShowText()
+    {
+        txtTitle.gameObject.SetActive(true);
+    }
+
+    public void HideText()
+    {
+        txtTitle.gameObject.SetActive(false);
     }
 
     public CountryType GetFlagType() { return flagType; }

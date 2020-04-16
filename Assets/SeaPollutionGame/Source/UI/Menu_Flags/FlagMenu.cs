@@ -61,6 +61,7 @@ public class FlagMenu : MonoBehaviour
         {
             FlagIcon temp = Instantiate(icon, targetTransform);
             temp.OnClick += FlagIcon_OnClick;
+            temp.ShowText();
             flags.Add(temp);
         }
 
@@ -90,6 +91,7 @@ public class FlagMenu : MonoBehaviour
             FlagIcon ingameFlag = (FlagIcon) Instantiate(flagSelected, countrySelected.transform);
             ingameFlag.HideDirectSelected();
             ingameFlag.isClickable = false;
+            ingameFlag.HideText();
 
             RectTransform rectTransformFlag = ingameFlag.GetComponent<RectTransform>();
             rectTransformFlag.anchorMin = new Vector2(0, 0);
@@ -97,7 +99,7 @@ public class FlagMenu : MonoBehaviour
 
             rectTransformFlag.offsetMin = Vector2.zero;
             rectTransformFlag.offsetMax = Vector2.zero;
-
+            
             countrySelected.SetActive(true);
 
             Hide();

@@ -66,8 +66,13 @@ public class PolluterContent : PopUpPieChartContent
         defaultColorText = textCoins.color;
 
         factoryIcon.gameObject.SetActive(false);
+        factoryIcon.SetInteractible(false);
+
         filterIcon.gameObject.SetActive(false);
+        filterIcon.SetInteractible(false);
+
         recyclerIcon.gameObject.SetActive(false);
+        recyclerIcon.SetInteractible(false);
     }
 
     public bool CheckGraphicPolluter(PurchasableIcon purchasableIcon)
@@ -291,18 +296,21 @@ public class PolluterContent : PopUpPieChartContent
 
             if(polluterAttrib is FactoryAttrib)
             {
+                factoryIcon.SetPolluterAttributes(polluterAttrib);
                 factoryIcon.SetText(id.ToString());
                 factoryIcon.gameObject.SetActive(true);
             }
 
             if(polluterAttrib is FilterAttrib)
             {
+                filterIcon.SetPolluterAttributes(polluterAttrib);
                 filterIcon.SetText(id.ToString());
                 filterIcon.gameObject.SetActive(true);
             }
 
             if(polluterAttrib is RecyclerAttrib)
             {
+                recyclerIcon.SetPolluterAttributes(polluterAttrib);
                 recyclerIcon.SetText(id.ToString());
                 recyclerIcon.gameObject.SetActive(true);
             }

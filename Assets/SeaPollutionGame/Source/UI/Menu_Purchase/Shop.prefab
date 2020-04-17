@@ -57,7 +57,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 60, y: 60}
+  m_CellSize: {x: 70, y: 70}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 60, y: 60}
+  m_CellSize: {x: 70, y: 70}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 60, y: 60}
+  m_CellSize: {x: 70, y: 70}
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -1545,13 +1545,13 @@ MonoBehaviour:
   recyclersButton: {fileID: 5510460930839091984}
   temporarySpace: {fileID: 0}
   purchasables:
-  - purchasableIcon: {fileID: 2891178732856297018, guid: 74460d383164ef6408eee5bb97605f4c,
+  - purchasableIcon: {fileID: 2850784806943883982, guid: a0388b7c62fd81c4e9adcead099fc846,
       type: 3}
     polluterAttribs: []
-  - purchasableIcon: {fileID: 7188566009168135827, guid: 6f6deaa61a6b66743bea9f4b14b037fe,
+  - purchasableIcon: {fileID: 5406827928747062480, guid: 6408499cc1fd1b348b208fc0d7a756d9,
       type: 3}
     polluterAttribs: []
-  - purchasableIcon: {fileID: 526986901092742844, guid: 2b32c17ec820c384e9f372e6eb3ab964,
+  - purchasableIcon: {fileID: 4117611673797262999, guid: 85d630f02924d304ebbf02663f8500b0,
       type: 3}
     polluterAttribs: []
 --- !u!1 &5348853959476024899

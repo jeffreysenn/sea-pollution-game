@@ -11,12 +11,22 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnter
      * PurchasableIcon:
      *  OnClick: Creates the corresponding PolluterIcon with attributes
      */
+    [Serializable]
+    class PlacementTypeObject
+    {
+        public PlaceType placeType;
+        public GameObject gameObject;
+    }
 
     [SerializeField]
     private TextMeshProUGUI targetText = null;
 
     [SerializeField]
     private PolluterIcon targetPolluterIcon = null;
+
+    [Header("Types")]
+    [SerializeField]
+    private List<PlacementTypeObject> placementTypeObjects = null;
 
     private GameObject spaceForPolluter = null;
 
@@ -85,7 +95,21 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnter
 
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
-    public void SetPolluterAttributes(PolluterAttrib attrib) { polluterAttrib = attrib; }
+    public void SetPolluterAttributes(PolluterAttrib attrib) {
+        polluterAttrib = attrib;
+        
+        foreach (PlacementTypeObject pto in placementTypeObjects)
+        {
+            if (attrib.placementAttrib.CanPlaceOn(pto.placeType))
+            {
+                //pto.gameObject.SetActive(true);
+            }
+            else
+            {
+                pto.gameObject.SetActive(false);
+            }
+        }
+    }
 
     public PolluterAttrib GetPolluterAttributes() { return polluterAttrib; }
 

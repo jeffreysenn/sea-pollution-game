@@ -7,17 +7,29 @@ using System;
 
 public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 {
+    [Serializable]
+    class PlacementTypeObject
+    {
+        public PlaceType placeType;
+        public GameObject gameObject;
+    }
+
     public event Action OnDrag;
     public event Action OnRelease;
 
     [SerializeField]
     private bool isInteractible = true;
+    public void SetInteractible(bool v) { isInteractible = v; }
 
     [SerializeField]
     private Polluter targetPolluter = null;
 
     [SerializeField]
     private TextMeshProUGUI targetText = null;
+
+    [Header("Types")]
+    [SerializeField]
+    private List<PlacementTypeObject> placementTypeObjects = null;
     
     private GameObject spaceForPolluter = null;
 
@@ -35,6 +47,17 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     public void SetPolluterAttributes(PolluterAttrib attrib)
     {
         polluterAttrib = attrib;
+
+        foreach(PlacementTypeObject pto in placementTypeObjects)
+        {
+            if(attrib.placementAttrib.CanPlaceOn(pto.placeType))
+            {
+                //pto.gameObject.SetActive(true);
+            } else
+            {
+                pto.gameObject.SetActive(false);
+            }
+        }
     }
     public PolluterAttrib GetPolluterAttributes() { return polluterAttrib; }
     

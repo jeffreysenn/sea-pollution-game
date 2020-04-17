@@ -11,6 +11,7 @@ public enum PollutionMapType
     PRODUCED,
     FILTERED,
     NET,
+    RECYCLED,
 }
 
 public class PlayerState
@@ -21,6 +22,7 @@ public class PlayerState
     {
         {PollutionMapType.PRODUCED, new PollutionMap{} },
         {PollutionMapType.FILTERED, new PollutionMap{} },
+        {PollutionMapType.RECYCLED, new PollutionMap{} },
         {PollutionMapType.NET, new PollutionMap{} },
     };
 
@@ -29,6 +31,7 @@ public class PlayerState
     private Dictionary<PollutionMapType, UnityEvent> stateChangeEventMap = new Dictionary<PollutionMapType, UnityEvent> {
         { PollutionMapType.PRODUCED, new UnityEvent{ } },
         { PollutionMapType.FILTERED, new UnityEvent{ } },
+        { PollutionMapType.RECYCLED, new UnityEvent{ } },
         { PollutionMapType.NET, new UnityEvent{ } }
     };
 
@@ -72,8 +75,9 @@ public class PlayerState
     {
         switch (type)
         {
-            case PollutionMapType.PRODUCED: return SumOwnedPolluterPollutionMapIf(val => val > 0);
-            case PollutionMapType.FILTERED: return SumOwnedPolluterPollutionMapIf(val => val < 0);
+            case PollutionMapType.PRODUCED: return SumOwnedPolluterPollutionMapIf(polluter => polluter.GetComponent<Factory>());
+            case PollutionMapType.FILTERED: return SumOwnedPolluterPollutionMapIf(polluter => polluter.GetComponent<Filter>());
+            case PollutionMapType.RECYCLED: return SumOwnedPolluterPollutionMapIf(polluter => polluter.GetComponent<Recycler>());
             case PollutionMapType.NET: return SumSeaEntrancePollution();
         }
         return null;
@@ -172,15 +176,18 @@ public class PlayerState
         resourceChangeEvent.Invoke();
     }
 
-    private PollutionMap SumOwnedPolluterPollutionMapIf(System.Predicate<float> pred)
+    private PollutionMap SumOwnedPolluterPollutionMapIf(System.Predicate<Polluter> polluterPred)
     {
         var result = new PollutionMap { };
         foreach (var polluter in polluters)
         {
-            foreach (var pair in polluter.GetPollutionMap())
+            if (polluterPred(polluter))
             {
-                if (!result.ContainsKey(pair.Key)) { result.Add(pair.Key, 0); }
-                if (pred(pair.Value)) { result[pair.Key] += pair.Value; }
+                foreach (var pair in polluter.GetPollutionMap())
+                {
+                    if (!result.ContainsKey(pair.Key)) { result.Add(pair.Key, 0); }
+                    result[pair.Key] += pair.Value;
+                }
             }
         }
         return result;

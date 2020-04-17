@@ -12,7 +12,7 @@ public class DisasterManager : MonoBehaviour
     WorldStateManager stateManager = null;
     DisasterEvent disasterEvent = new DisasterEvent { };
     UnityEvent noDisasterEvent = new UnityEvent { };
-
+    CameraManager cameraManager = null;
 
     public void SetDisasters(Disaster[] arr)
     {
@@ -26,6 +26,7 @@ public class DisasterManager : MonoBehaviour
     void Start()
     {
         stateManager = FindObjectOfType<WorldStateManager>();
+        cameraManager = FindObjectOfType<CameraManager>();
         stateManager.AddEndTurnEventListener(GenDisaster);
     }
 
@@ -64,6 +65,7 @@ public class DisasterManager : MonoBehaviour
                 health.AddHealth(-damage);
             }
         }
+        cameraManager.SetState(CameraManager.State.CINEMA);
     }
 
 }

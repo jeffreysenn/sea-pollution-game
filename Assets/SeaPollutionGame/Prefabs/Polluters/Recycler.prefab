@@ -20,6 +20,9 @@ MonoBehaviour:
   onDeathMaterial: {fileID: 2100000, guid: 74eeea78dbb440240a1429904d192f5f, type: 2}
   meshRenderer: {fileID: 1853006248519577806}
   onDeathTextColor: {r: 0, g: 0, b: 0, a: 1}
+  deathEffects:
+  - disasterName: Fire
+    effectObject: {fileID: 4001908308887320900}
 --- !u!1001 &1027140073416083056
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,6 +20,9 @@ MonoBehaviour:
   onDeathMaterial: {fileID: 2100000, guid: 74eeea78dbb440240a1429904d192f5f, type: 2}
   meshRenderer: {fileID: 7706977345653519122}
   onDeathTextColor: {r: 0, g: 0, b: 0, a: 1}
+  deathEffects:
+  - disasterName: Fire
+    effectObject: {fileID: 8148423237552442579}
 --- !u!1001 &9007971360486933932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,6 +140,12 @@ TextMesh:
 --- !u!1 &4956842693957663384 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4163718674804473652, guid: e14f444f41f0bf64881969daf314487c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9007971360486933932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8148423237552442579 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 871373937738336639, guid: e14f444f41f0bf64881969daf314487c,
     type: 3}
   m_PrefabInstance: {fileID: 9007971360486933932}
   m_PrefabAsset: {fileID: 0}

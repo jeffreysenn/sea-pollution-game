@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class Health : MonoBehaviour
 {
-    UnityEvent deathEvent = new UnityEvent { };
+    public event Action<Disaster> OnDeathFrom;
     float hp = 100;
 
-    public void AddHealth(float dh) { 
+    public void AddHealth(float dh, Disaster from = null) { 
         hp += dh; 
         if(hp > 100) { hp = 100; }
-        else if(hp <= 0) { deathEvent.Invoke(); }
+        else if(hp <= 0) {
+            OnDeathFrom?.Invoke(from);
+        }
     }
 
     public float GetHealth() { return hp; }
-
-    public void AddDeathEventListener(UnityAction action) { deathEvent.AddListener(action); }
 
     public bool IsAlive() { return hp > 0; }
 }

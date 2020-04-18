@@ -14,6 +14,13 @@ public enum EntityType
 
 public class Polluter : MonoBehaviour
 {
+    [Serializable]
+    class DeathEffect
+    {
+        public string disasterName = null;
+        public GameObject effectObject = null;
+    }
+
     [SerializeField]
     private EntityType entityType = EntityType.NONE;
     [SerializeField]
@@ -31,6 +38,9 @@ public class Polluter : MonoBehaviour
     private Renderer meshRenderer = null;
     [SerializeField]
     private Color onDeathTextColor = Color.black;
+    [Header("Death Effects")]
+    [SerializeField]
+    private List<DeathEffect> deathEffects = new List<DeathEffect>();
 
     private PolluterAttrib polluterAttrib = null;
 
@@ -121,7 +131,7 @@ public class Polluter : MonoBehaviour
         }
     }
 
-    protected virtual void OnDeadth()
+    protected virtual void OnDeath(Disaster from)
     {
         Mulfunction();
 
@@ -129,12 +139,24 @@ public class Polluter : MonoBehaviour
         meshRenderer.material = onDeathMaterial;
         flareObject.SetActive(true);
         idTextMesh.color = onDeathTextColor;
+        
+        if(from != null)
+        {
+            foreach (DeathEffect de in deathEffects)
+                de.effectObject.SetActive(de.disasterName == from.title);
+        }
+
     }
 
     protected void Awake()
     {
         flareObject.SetActive(false);
-        health.AddDeathEventListener(OnDeadth);
+
+        foreach (DeathEffect de in deathEffects)
+            de.effectObject.SetActive(false);
+
+        //health.AddDeathEventListener(OnDeath);
+        health.OnDeathFrom += OnDeath;
     }
 
     public virtual void Mulfunction()

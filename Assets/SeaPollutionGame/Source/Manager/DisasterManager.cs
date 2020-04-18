@@ -62,7 +62,7 @@ public class DisasterManager : MonoBehaviour
                 var vulnerability = System.Array.Find(vulnerabilities,
                     vul => { return vul.disasterName == disaster.title; });
                 float damage = vulnerability.factor * disaster.damage;
-                health.AddHealth(-damage);
+                health.AddHealth(-damage, disaster);
             }
         }
         cameraManager.SetState(CameraManager.State.CINEMA);

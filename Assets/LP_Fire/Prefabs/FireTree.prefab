@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 463604}
   - component: {fileID: 19824620}
   - component: {fileID: 19906524}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SmokeTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4778,6 +4778,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4837,7 +4838,7 @@ GameObject:
   - component: {fileID: 496228}
   - component: {fileID: 19816738}
   - component: {fileID: 19969336}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FireTreeTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9661,6 +9662,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9720,7 +9722,7 @@ GameObject:
   - component: {fileID: 408354}
   - component: {fileID: 19809598}
   - component: {fileID: 19986724}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FireTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14548,6 +14550,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14606,7 +14609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 469724}
   - component: {fileID: 10833696}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14635,8 +14638,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196880}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 0.6177761, b: 0, a: 1}
   m_Intensity: 2
   m_Range: 15

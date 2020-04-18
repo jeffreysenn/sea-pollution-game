@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 472404}
   - component: {fileID: 19862052}
   - component: {fileID: 19968048}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FireThick_w_smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4793,6 +4793,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4852,7 +4853,7 @@ GameObject:
   - component: {fileID: 488342}
   - component: {fileID: 19860282}
   - component: {fileID: 19922110}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SmokeThick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9618,6 +9619,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9676,7 +9678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455028}
   - component: {fileID: 10829230}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9705,8 +9707,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162534}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 0.6177761, b: 0, a: 1}
   m_Intensity: 3
   m_Range: 10
@@ -9768,7 +9771,7 @@ GameObject:
   - component: {fileID: 416138}
   - component: {fileID: 19839226}
   - component: {fileID: 19981042}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14646,6 +14649,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

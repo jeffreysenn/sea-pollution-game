@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 415678}
   - component: {fileID: 19849284}
   - component: {fileID: 19917030}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FlameThrower_2_Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,6 +4841,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4900,7 +4901,7 @@ GameObject:
   - component: {fileID: 489044}
   - component: {fileID: 19856620}
   - component: {fileID: 19932098}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Gas_Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9719,6 +9720,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9777,7 +9779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 413168}
   - component: {fileID: 10858242}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9806,8 +9808,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192358}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 0.6177761, b: 0, a: 1}
   m_Intensity: 3
   m_Range: 10

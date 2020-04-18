@@ -26,6 +26,8 @@ public class Polluter : MonoBehaviour
     [SerializeField]
     private Color onDeathColor = Color.red;
     [SerializeField]
+    private Material onDeathMaterial = null;
+    [SerializeField]
     private Renderer meshRenderer = null;
     [SerializeField]
     private Color onDeathTextColor = Color.black;
@@ -123,7 +125,8 @@ public class Polluter : MonoBehaviour
     {
         Mulfunction();
 
-        meshRenderer.material.SetColor("_Color", onDeathColor);
+        //meshRenderer.material.SetColor("_Color", onDeathColor);
+        meshRenderer.material = onDeathMaterial;
         flareObject.SetActive(true);
         idTextMesh.color = onDeathTextColor;
     }

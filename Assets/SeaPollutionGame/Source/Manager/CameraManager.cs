@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 [System.Serializable]
 public class CameraRef
@@ -30,6 +31,8 @@ public class CameraManager : MonoBehaviour
     private CinemachineVirtualCamera gameCam = null, cineCam = null;
     private CinemachineDollyCart dolly = null;
 
+    public event Action<State> OnStateChanged;
+
     public void SetState(State state)
     {
         if (state == State.CINEMA)
@@ -38,6 +41,7 @@ public class CameraManager : MonoBehaviour
         }
         SwitchCamera();
         this.state = state;
+        OnStateChanged?.Invoke(state);
     }
 
     private void Awake()

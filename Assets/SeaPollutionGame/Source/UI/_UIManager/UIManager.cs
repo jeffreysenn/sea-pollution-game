@@ -53,6 +53,10 @@ public class UIManager : MonoBehaviour
     private Player _player2 = null;
     public Player player2 { get { return _player2; } }
 
+    [SerializeField]
+    private CameraManager _cameraManager = null;
+    public CameraManager cameraManager { get { return _cameraManager; } }
+
     [Header("Introduction sequence")]
     [SerializeField]
     private bool startWithHowToPlay = true;

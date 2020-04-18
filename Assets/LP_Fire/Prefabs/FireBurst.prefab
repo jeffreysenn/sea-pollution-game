@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 416770}
   - component: {fileID: 19884102}
   - component: {fileID: 19982810}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: FireBurst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4832,6 +4832,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4891,7 +4892,7 @@ GameObject:
   - component: {fileID: 478896}
   - component: {fileID: 19884700}
   - component: {fileID: 19920646}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: SmokeBurst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9768,6 +9769,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9827,7 +9829,7 @@ GameObject:
   - component: {fileID: 426746}
   - component: {fileID: 10850060}
   - component: {fileID: 11449218}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9856,8 +9858,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192366}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 0.6177761, b: 0, a: 1}
   m_Intensity: 4
   m_Range: 10

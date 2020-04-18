@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440398}
   - component: {fileID: 10886136}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: 240
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,8 +39,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109904}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.81541586, b: 0.61764705, a: 1}
   m_Intensity: 0.5
   m_Range: 10
@@ -79,7 +80,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -101,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471374}
   - component: {fileID: 10857984}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: 120
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,8 +131,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150898}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.81541586, b: 0.61764705, a: 1}
   m_Intensity: 0.5
   m_Range: 10
@@ -170,7 +172,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -191,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495256}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Night_Fire_Light  !!Check_Guide!!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438390}
   - component: {fileID: 10853832}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,8 +256,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199086}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 0.81541586, b: 0.61764705, a: 1}
   m_Intensity: 0.5
   m_Range: 10
@@ -294,7 +297,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

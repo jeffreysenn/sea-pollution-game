@@ -21,12 +21,16 @@ public class DisasterUIController : MonoBehaviour
     }
     
     private DisasterManager disasterManager = null;
+    private CameraManager cameraManager = null;
 
     [SerializeField]
     private DisasterContent defaultContent = null;
 
     [SerializeField]
     private DisasterContent disasterContent = null;
+
+    [SerializeField]
+    private GameObject blockingUI = null;
 
     [SerializeField]
     private WorldWindow worldWindow = null;
@@ -47,6 +51,10 @@ public class DisasterUIController : MonoBehaviour
     private void Start()
     {
         disasterManager = UIManager.Instance.disasterManager;
+        cameraManager = UIManager.Instance.cameraManager;
+        cameraManager.OnStateChanged += CameraManager_OnStateChanged;
+
+        blockingUI.SetActive(false);
 
         if (isDebug)
         {
@@ -74,6 +82,8 @@ public class DisasterUIController : MonoBehaviour
         //disasterContent.disasterIcon.OnClick -= DisasterIcon_OnClick;
 
         worldWindow.videoLoader.OnClipFinish -= VideoLoader_OnClipFinish;
+
+        cameraManager.OnStateChanged -= CameraManager_OnStateChanged;
     }
 
 
@@ -158,5 +168,10 @@ public class DisasterUIController : MonoBehaviour
         {
 
         }
+    }
+    
+    private void CameraManager_OnStateChanged(CameraManager.State state)
+    {
+        blockingUI.SetActive(state == CameraManager.State.CINEMA);
     }
 }

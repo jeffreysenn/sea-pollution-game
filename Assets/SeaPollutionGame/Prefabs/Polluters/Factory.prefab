@@ -17,7 +17,7 @@ MonoBehaviour:
   health: {fileID: 4956792780016032363}
   flareObject: {fileID: 1475498743514550081}
   onDeathColor: {r: 1, g: 0.8392157, b: 0, a: 1}
-  meshRenderer: {fileID: 5551231580231470582}
+  meshRenderer: {fileID: 7706977345653519122}
   onDeathTextColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1001 &9007971360486933932
 PrefabInstance:
@@ -26,6 +26,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1726586378744919742, guid: e14f444f41f0bf64881969daf314487c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5b59fdc035ec204f92c602607b3e4b5, type: 2}
     - target: {fileID: 3461950400387074138, guid: e14f444f41f0bf64881969daf314487c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -116,9 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d5570698c94e84e99e3ac1f397deb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!23 &5551231580231470582 stripped
+--- !u!23 &7706977345653519122 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3461950400387074138, guid: e14f444f41f0bf64881969daf314487c,
+  m_CorrespondingSourceObject: {fileID: 1726586378744919742, guid: e14f444f41f0bf64881969daf314487c,
     type: 3}
   m_PrefabInstance: {fileID: 9007971360486933932}
   m_PrefabAsset: {fileID: 0}

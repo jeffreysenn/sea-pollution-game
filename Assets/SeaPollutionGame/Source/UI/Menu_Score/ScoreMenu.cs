@@ -141,7 +141,16 @@ public class ScoreMenu : MonoBehaviour
 
     private void UpdateRecycled()
     {
-        recycledChart.SetValues(0, 0, percentageValues);
+        float p1 = player1State.GetAccumulatedPollutionMap(PollutionMapType.RECYCLED).GetTotalPollution();
+        float p2 = player2State.GetAccumulatedPollutionMap(PollutionMapType.RECYCLED).GetTotalPollution();
+
+        if (p1 <= 0 && p2 <= 0)
+        {
+            p1 *= -1;
+            p2 *= -1;
+        }
+
+        recycledChart.SetValues(p1, p2, percentageValues);
     }
 
     private void UpdateEfficiency()

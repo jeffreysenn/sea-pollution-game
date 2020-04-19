@@ -31,8 +31,12 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     [SerializeField]
     private bool isRightShown = false;
 
+    public AudioClip completionClip = null;
+
     public event Action<GoalItem> OnClick;
 
+    public bool IsLeftCompleted() { return isLeftShown; }
+    public bool IsRightCompleted() { return isRightShown; }
     public bool IsCompleted() { return isLeftShown && isRightShown; }
 
     private float _valueLeft = 0f;

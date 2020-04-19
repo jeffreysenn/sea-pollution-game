@@ -100,7 +100,11 @@ public class GoalsMenu : MonoBehaviour
             GoalItem goalItem = Instantiate(goalItemPrefab, targetTransform);
             goalItem.SetGoal(goal);
             goalItem.SetValues(0, 0);
-            
+
+            goalItem.completionClip = completionClips[currentClipIndex];
+            currentClipIndex = ((currentClipIndex + 1) % completionClips.Count);
+
+
             Sprite s = sprites.Find(x => x.name.ToLower().Equals(goal.iconName.ToLower()));
             if(s!= null)
             {
@@ -139,15 +143,14 @@ public class GoalsMenu : MonoBehaviour
             a = worldStateManager.HasPlayerMetGoal(g, player1.id);
             b = worldStateManager.HasPlayerMetGoal(g, player2.id);
 
-            gi.SetValues(worldStateManager.GetPlayerProgress(g, player1.id), worldStateManager.GetPlayerProgress(g, player2.id));
-
-            if (a && b && !gi.IsCompleted())
+            if ((a && !gi.IsLeftCompleted()) || (b && !gi.IsRightCompleted()))
             {
                 audioSource.Stop();
-                audioSource.clip = completionClips[currentClipIndex];
+                audioSource.clip = gi.completionClip;
                 audioSource.Play();
-                currentClipIndex = ((currentClipIndex + 1) % completionClips.Count);
             }
+
+            gi.SetValues(worldStateManager.GetPlayerProgress(g, player1.id), worldStateManager.GetPlayerProgress(g, player2.id));
 
             gi.Show(a, b);
         }

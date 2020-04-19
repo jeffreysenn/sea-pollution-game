@@ -91,6 +91,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 697330378020558560}
     m_Modifications:
+    - target: {fileID: 8056488124218506892, guid: 3d1b723c4bedeef4ba0604b4292eb1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056488124423045243, guid: 3d1b723c4bedeef4ba0604b4292eb1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056488124838775849, guid: 3d1b723c4bedeef4ba0604b4292eb1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8056488124912654128, guid: 3d1b723c4bedeef4ba0604b4292eb1ae,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -150,6 +165,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lights
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056488126022426827, guid: 3d1b723c4bedeef4ba0604b4292eb1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d1b723c4bedeef4ba0604b4292eb1ae, type: 3}

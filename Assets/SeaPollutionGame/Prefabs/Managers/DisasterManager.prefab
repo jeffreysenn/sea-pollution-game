@@ -48,12 +48,12 @@ MonoBehaviour:
     type: 2}
   defaultSkybox:
     disasterName: None
-    front: {fileID: 2800000, guid: 70797ab05989b4fb295f60eaf537cd3a, type: 3}
-    back: {fileID: 2800000, guid: ccbc3f25708ed491e86a569f0a679e73, type: 3}
-    left: {fileID: 2800000, guid: 530cdbf9e0f2f45239f957330e5cb249, type: 3}
-    right: {fileID: 2800000, guid: ad1066355bbf24261a04760a57add9b0, type: 3}
+    front: {fileID: 2800000, guid: a012f6533cc69f041b6d208e6392b9a8, type: 3}
+    back: {fileID: 2800000, guid: bb6d0d07340f1dd479a25b0b7c1a3037, type: 3}
+    left: {fileID: 2800000, guid: 0c0d26add5c0f1a4a9b3e9f56e0fbbad, type: 3}
+    right: {fileID: 2800000, guid: 5e3d98dbfa248914583f65b5bf18261b, type: 3}
     up: {fileID: 2800000, guid: 4b733fcd5d5b54a4d8f2dff5482e0126, type: 3}
-    down: {fileID: 2800000, guid: 0986bee61deb042389dfc7a860a1fa3a, type: 3}
+    down: {fileID: 2800000, guid: 5c127d05536f56741a512205e647b1f3, type: 3}
   disasterSkyboxes:
   - disasterName: Drought
     front: {fileID: 2800000, guid: dca4c933094124d7092f3534e1e38254, type: 3}
@@ -63,12 +63,12 @@ MonoBehaviour:
     up: {fileID: 2800000, guid: f5f1d10dc0ae740b3b8c26e0c7d86355, type: 3}
     down: {fileID: 2800000, guid: f52cd27c764164cc5a18f562b8573ef0, type: 3}
   - disasterName: Fire
-    front: {fileID: 2800000, guid: 70797ab05989b4fb295f60eaf537cd3a, type: 3}
-    back: {fileID: 2800000, guid: ccbc3f25708ed491e86a569f0a679e73, type: 3}
-    left: {fileID: 2800000, guid: 530cdbf9e0f2f45239f957330e5cb249, type: 3}
-    right: {fileID: 2800000, guid: ad1066355bbf24261a04760a57add9b0, type: 3}
+    front: {fileID: 2800000, guid: a012f6533cc69f041b6d208e6392b9a8, type: 3}
+    back: {fileID: 2800000, guid: bb6d0d07340f1dd479a25b0b7c1a3037, type: 3}
+    left: {fileID: 2800000, guid: 0c0d26add5c0f1a4a9b3e9f56e0fbbad, type: 3}
+    right: {fileID: 2800000, guid: 5e3d98dbfa248914583f65b5bf18261b, type: 3}
     up: {fileID: 2800000, guid: 4b733fcd5d5b54a4d8f2dff5482e0126, type: 3}
-    down: {fileID: 2800000, guid: 0986bee61deb042389dfc7a860a1fa3a, type: 3}
+    down: {fileID: 2800000, guid: 5c127d05536f56741a512205e647b1f3, type: 3}
   - disasterName: Flood
     front: {fileID: 2800000, guid: f633a00123da84f42be8aa4ad87a09bd, type: 3}
     back: {fileID: 2800000, guid: 6ca71f6b27d774011a7dcf3e877db3c1, type: 3}

@@ -12,12 +12,16 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private CountryType flagType = CountryType.SWEDEN;
+    [SerializeField]
+    private string flagSubtitle = "";
 
     [SerializeField]
     private CanvasGroup selectedCanvas = null;
 
     [SerializeField]
     private TextMeshProUGUI txtTitle = null;
+    [SerializeField]
+    private TextMeshProUGUI txtSubtitle = null;
 
     [SerializeField]
     private float tweenDuration = 0.25f;
@@ -38,6 +42,7 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
     {
         string flagText = flagType.ToString();
         txtTitle.text = flagText[0].ToString().ToUpper() + flagText.Substring(1).ToLower();
+        txtSubtitle.text = flagSubtitle.ToString();
 
         HideDirectSelected();
     }
@@ -84,11 +89,13 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
     public void ShowText()
     {
         txtTitle.gameObject.SetActive(true);
+        txtSubtitle.gameObject.SetActive(true);
     }
 
     public void HideText()
     {
         txtTitle.gameObject.SetActive(false);
+        txtSubtitle.gameObject.SetActive(false);
     }
 
     public CountryType GetFlagType() { return flagType; }

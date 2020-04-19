@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: flagType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5844638189214111742, guid: 697da72451f40604bad6f8db6abbab93,
+        type: 3}
+      propertyPath: flagSubtitle
+      value: "S\u0142upia river basin"
+      objectReference: {fileID: 0}
     - target: {fileID: 9068305580202419575, guid: 697da72451f40604bad6f8db6abbab93,
         type: 3}
       propertyPath: m_Name

@@ -30,7 +30,15 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     [Header("Types")]
     [SerializeField]
     private List<PlacementTypeObject> placementTypeObjects = null;
-    
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip startDragClip = null;
+    [SerializeField]
+    private AudioClip stopDragClip = null;
+
     private GameObject spaceForPolluter = null;
 
     private PolluterAttrib polluterAttrib = null;
@@ -71,6 +79,10 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
         {
             OnDrag?.Invoke();
 
+            audioSource.Stop();
+            audioSource.clip = startDragClip;
+            audioSource.Play();
+
             playerController.Hold();
         }
     }
@@ -98,6 +110,10 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
                 InstantiatePolluter();
 
                 playerController.Hold(polluterDragged);
+
+                audioSource.Stop();
+                audioSource.clip = stopDragClip;
+                audioSource.Play();
 
                 bool dropped = playerController.TryDrop();
 

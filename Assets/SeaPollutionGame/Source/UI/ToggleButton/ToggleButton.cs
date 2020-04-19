@@ -20,6 +20,14 @@ public class ToggleButton : MonoBehaviour
     [SerializeField]
     private GameObject glow = null;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip toggleOnClip = null;
+    [SerializeField]
+    private AudioClip toggleOffClip = null;
+
     public event Action<ToggleButton, bool> OnToggle;
 
     private void Start()
@@ -44,6 +52,16 @@ public class ToggleButton : MonoBehaviour
         _toggled = !_toggled;
 
         ChangeGraphic();
+
+        audioSource.Stop();
+        if (_toggled)
+        {
+            audioSource.clip = toggleOnClip;
+        } else
+        {
+            audioSource.clip = toggleOffClip;
+        }
+        audioSource.Play();
 
         OnToggle?.Invoke(this, toggled);
     }

@@ -23,6 +23,12 @@ public class Feedback : MonoBehaviour
     [SerializeField]
     private DescriptionPopUp descriptionPopUp = null;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip cantBuyClip = null;
+
     // singleton
     private static Feedback _instance;
 
@@ -56,6 +62,10 @@ public class Feedback : MonoBehaviour
     public Sequence ErrorText(TextMeshProUGUI target, Color defaultColor)
     {
         Sequence flashingSequence = DOTween.Sequence();
+
+        audioSource.Stop();
+        audioSource.clip = cantBuyClip;
+        audioSource.Play();
 
         for (int i = 0; i < flashingIteration; i++)
         {

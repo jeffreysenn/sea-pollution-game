@@ -38,6 +38,14 @@ public class ScoreMenu : MonoBehaviour
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip slideInClip = null;
+    [SerializeField]
+    private AudioClip slideOutClip = null;
+
     private Vector2 defaultDetailsPosition = Vector2.zero;
 
     WorldStateManager worldStateManager = null;
@@ -180,6 +188,10 @@ public class ScoreMenu : MonoBehaviour
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(detailsTargetPosition, tweenDuration).SetEase(tweenEase);
+
+        audioSource.Stop();
+        audioSource.clip = slideInClip;
+        audioSource.Play();
     }
 
     public void Hide()
@@ -190,6 +202,10 @@ public class ScoreMenu : MonoBehaviour
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, tweenDuration).SetEase(tweenEase);
+
+        audioSource.Stop();
+        audioSource.clip = slideOutClip;
+        audioSource.Play();
     }
 
     public void HideDirect()

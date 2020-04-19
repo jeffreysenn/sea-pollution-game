@@ -44,6 +44,17 @@ public class GoalsMenu : MonoBehaviour
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip slideInClip = null;
+    [SerializeField]
+    private AudioClip slideOutClip = null;
+    [SerializeField]
+    private List<AudioClip> completionClips = null;
+    private int currentClipIndex = 0;
+
     private Vector2 defaultDetailsPosition = Vector2.zero;
 
     public event Action<GoalsMenu> OnClick;
@@ -130,6 +141,14 @@ public class GoalsMenu : MonoBehaviour
 
             gi.SetValues(worldStateManager.GetPlayerProgress(g, player1.id), worldStateManager.GetPlayerProgress(g, player2.id));
 
+            if (a && b && !gi.IsCompleted())
+            {
+                audioSource.Stop();
+                audioSource.clip = completionClips[currentClipIndex];
+                audioSource.Play();
+                currentClipIndex = ((currentClipIndex + 1) % completionClips.Count);
+            }
+
             gi.Show(a, b);
         }
     }
@@ -142,6 +161,10 @@ public class GoalsMenu : MonoBehaviour
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(detailsTargetPosition, tweenDuration).SetEase(tweenEase);
+
+        audioSource.Stop();
+        audioSource.clip = slideInClip;
+        audioSource.Play();
     }
 
     public void Hide()
@@ -152,6 +175,10 @@ public class GoalsMenu : MonoBehaviour
 
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, tweenDuration).SetEase(tweenEase);
+
+        audioSource.Stop();
+        audioSource.clip = slideOutClip;
+        audioSource.Play();
     }
 
     public void HideDirect()

@@ -33,6 +33,8 @@ public class GoalItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public event Action<GoalItem> OnClick;
 
+    public bool IsCompleted() { return isLeftShown && isRightShown; }
+
     private float _valueLeft = 0f;
     public float valueLeft { get { return _valueLeft; } }
     private float _valueRight = 0f;

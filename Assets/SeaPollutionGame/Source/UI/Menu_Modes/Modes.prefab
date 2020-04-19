@@ -60,6 +60,9 @@ MonoBehaviour:
   offSprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
   onSprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
   glow: {fileID: 4070375736122542137}
+  audioSource: {fileID: 7583321508403075977}
+  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
+  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
   description: <b>Toggle</b> to show the goals.
 --- !u!222 &1197101977740614468
 CanvasRenderer:
@@ -140,18 +143,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1288594298590500728}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7583321508403075977}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!82 &7583321508403075977
 AudioSource:
   m_ObjectHideFlags: 0
@@ -610,6 +602,9 @@ MonoBehaviour:
   offSprite: {fileID: 21300000, guid: 2032695cdfebb164c866b18bea3ca3ae, type: 3}
   onSprite: {fileID: 21300000, guid: 2032695cdfebb164c866b18bea3ca3ae, type: 3}
   glow: {fileID: 3110843842339437258}
+  audioSource: {fileID: 4300197667593871104}
+  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
+  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
   description: <b>Toggle</b> to open score details.
 --- !u!222 &1069779620381418758
 CanvasRenderer:
@@ -689,18 +684,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7926434880455793974}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4300197667593871104}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!82 &4300197667593871104
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1133,6 +1117,9 @@ MonoBehaviour:
   offSprite: {fileID: 21300000, guid: cbee1fffedba6af49be3a7367ee3cdbf, type: 3}
   onSprite: {fileID: 21300000, guid: cbee1fffedba6af49be3a7367ee3cdbf, type: 3}
   glow: {fileID: 1322027390455621431}
+  audioSource: {fileID: 6543167299762619536}
+  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
+  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
   description: '<b>Toggle</b> to enter the tutorial mode.
 
     <b>Hover</b> areas
@@ -1215,18 +1202,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5666143355889145497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6543167299762619536}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!82 &6543167299762619536
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1832,6 +1808,9 @@ MonoBehaviour:
   offSprite: {fileID: 21300000, guid: c6675a1f34e5d0d429b627f85c41b8df, type: 3}
   onSprite: {fileID: 21300000, guid: c6675a1f34e5d0d429b627f85c41b8df, type: 3}
   glow: {fileID: 3699722175269558328}
+  audioSource: {fileID: 8527477419774446902}
+  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
+  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
   description: <b>Toggle</b> to highlight flows of emissions.
 --- !u!222 &4333374140733927614
 CanvasRenderer:
@@ -1912,18 +1891,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4761611558171699677}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8527477419774446902}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!82 &8527477419774446902
 AudioSource:
   m_ObjectHideFlags: 0

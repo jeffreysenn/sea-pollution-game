@@ -146,6 +146,12 @@ public class Polluter : MonoBehaviour
                 de.effectObject.SetActive(de.disasterName == from.title);
         }
 
+        AudioSource audioSource = GetComponent<AudioSource>();
+        if(audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.Play();
+        }
     }
 
     protected void Awake()

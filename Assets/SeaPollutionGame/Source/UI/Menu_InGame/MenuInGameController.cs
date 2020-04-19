@@ -29,6 +29,14 @@ public class MenuInGameController : MonoBehaviour
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip openMenu = null;
+    [SerializeField]
+    private AudioClip closeMenu = null;
+
     private bool isShown = false;
 
     private void Start()
@@ -89,6 +97,9 @@ public class MenuInGameController : MonoBehaviour
         menuContent.interactable = true;
 
         isShown = true;
+
+        audioSource.clip = openMenu;
+        audioSource.Play();
     }
 
     void HideMenu()
@@ -99,6 +110,9 @@ public class MenuInGameController : MonoBehaviour
         menuContent.interactable = false;
 
         isShown = false;
+
+        audioSource.clip = closeMenu;
+        audioSource.Play();
     }
 
     void HideDirectMenu()

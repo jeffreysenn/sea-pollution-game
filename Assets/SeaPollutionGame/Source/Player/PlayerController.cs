@@ -24,6 +24,16 @@ public class PlayerController : MonoBehaviour
     Polluter holdingPolluter = null;
     WorldStateManager stateManager = null;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip purchaseClip = null;
+    [SerializeField]
+    private AudioClip errorClip = null;
+    [SerializeField]
+    private AudioClip componentSoldClip = null;
+
     public State GetState() { return state; }
 
     public void Hold(Polluter polluter = null)
@@ -51,6 +61,11 @@ public class PlayerController : MonoBehaviour
             state = State.EMPTY;
             return true;
         }
+
+        audioSource.Stop();
+        audioSource.clip = errorClip;
+        audioSource.Play();
+
         return false;
     }
 
@@ -64,6 +79,11 @@ public class PlayerController : MonoBehaviour
             playerState.AddMoney(-polluter.GetAttrib().economicAttrib.removalCost);
             playerState.RemovePolluter(polluter);
             Destroy(polluter.gameObject);
+
+            audioSource.Stop();
+            audioSource.clip = componentSoldClip;
+            audioSource.Play();
+
             return true;
         }
         return false;
@@ -187,5 +207,9 @@ public class PlayerController : MonoBehaviour
         float price = holdingPolluter.GetAttrib().economicAttrib.price;
         playerState.AddMoney(-price);
         playerState.AddPolluter(holdingPolluter);
+
+        audioSource.Stop();
+        audioSource.clip = purchaseClip;
+        audioSource.Play();
     }
 }

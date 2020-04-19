@@ -24,6 +24,12 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip onClickClip = null;
+
     private bool isSelected = false;
 
     public bool isClickable = true;
@@ -50,6 +56,9 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
 
         selectedCanvas.DOKill();
         selectedCanvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
+
+        audioSource.clip = onClickClip;
+        audioSource.Play();
     }
 
     public void Deselect()
@@ -60,6 +69,8 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
 
         selectedCanvas.DOKill();
         selectedCanvas.DOFade(0f, tweenDuration).SetEase(tweenEase);
+
+        audioSource.Stop();
     }
 
     public void HideDirectSelected()

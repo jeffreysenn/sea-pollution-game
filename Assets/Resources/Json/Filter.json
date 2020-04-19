@@ -1362,14 +1362,14 @@
         ]
       },
       "economicAttrib": {
-        "price": 40,
+        "price": 15,
         "profitPerTurn": -10
       },
       "pollutionAttrib": {
         "emissions": [
           {
             "pollutantName": "Phosphor",
-            "emissionPerTurn": -40
+            "emissionPerTurn": -5
           }
         ]
       },

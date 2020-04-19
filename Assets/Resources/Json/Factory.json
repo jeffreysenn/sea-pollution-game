@@ -75,7 +75,7 @@
       "placementAttrib": {
         "urban": true,
         "agriculture": true,
-        "forest": false,
+        "forest": true,
         "ocean": false
       },
       "visualAttrib": {
@@ -167,7 +167,7 @@
     {
       "title": "Slaughterhouse",
       "economicAttrib": {
-        "price": 80,
+        "price": 40,
         "profitPerTurn": 25,
         "removalCost": 15
       },
@@ -626,6 +626,43 @@
         "ocean": false
       }
 
+    },
+    {
+      "title": "Small Green house",
+      "economicAttrib": {
+        "price": 10,
+        "profitPerTurn": 4,
+        "removalCost": 10
+      },
+      "pollutionAttrib": {
+        "emissions": [
+        ]
+      },
+      "vulnerabilityAttrib": {
+        "vulnerabilities": [
+          {
+            "disasterName": "Flood",
+            "factor": 0.5
+          },
+          {
+            "disasterName": "Fire",
+            "factor": 0.2
+          },
+          {
+            "disasterName": "Drought",
+            "factor": 0
+          }
+        ]
+      },
+      "placementAttrib": {
+        "urban": true,
+        "agriculture": true,
+        "forest": true,
+        "ocean": false
+      },
+      "visualAttrib": {
+        "imageName": "SmallGreenHouse"
+      }
     }
   ]
 }

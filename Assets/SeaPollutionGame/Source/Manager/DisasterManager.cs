@@ -9,15 +9,15 @@ public class DisasterEvent : UnityEvent<Disaster> { }
 public class DisasterManager : MonoBehaviour
 {
     [System.Serializable]
-    struct DisasterSkybox
+    class DisasterSkybox
     {
-        public string disasterName;
-        public Texture front;
-        public Texture back;
-        public Texture left;
-        public Texture right;
-        public Texture up;
-        public Texture down;
+        public string disasterName = null;
+        public Texture front = null;
+        public Texture back = null;
+        public Texture left = null;
+        public Texture right = null;
+        public Texture up = null;
+        public Texture down = null;
     }
 
     Disaster[] disasters = null;

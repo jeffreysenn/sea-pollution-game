@@ -88,7 +88,8 @@ public class UIManager : MonoBehaviour
         flagMenu.HideDirect();
         playMenu.HideDirect();
 
-        if(startWithHowToPlay)
+        Debug.Log(SingletonLevelManager.instance.currentNbScenes);
+        if(startWithHowToPlay && SingletonLevelManager.instance.currentNbScenes <= 1)
         {
             playMenu.OnContinue += PlayMenu_OnContinue;
             playMenu.Show();

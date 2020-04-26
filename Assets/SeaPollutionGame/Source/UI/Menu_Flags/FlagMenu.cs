@@ -37,6 +37,7 @@ public class FlagMenu : MonoBehaviour
         GenerateFlags();
 
         btnStart.onClick.AddListener(BtnStart_OnClick);
+        btnStart.interactable = false;
 
         //Show();
     }
@@ -80,6 +81,7 @@ public class FlagMenu : MonoBehaviour
                 icon.Deselect();
             }
         }
+        btnStart.interactable = true;
     }
 
     private void BtnStart_OnClick()

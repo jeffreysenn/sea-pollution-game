@@ -7,7 +7,11 @@ using System.Linq;
 public class SingletonLevelManager : MonoBehaviour
 {
     List<int> sceneIndice = new List<int> { };
-    private static SingletonLevelManager instance = null;
+
+    private static SingletonLevelManager _instance;
+    public static SingletonLevelManager instance { get { return _instance; } }
+    
+    public int currentNbScenes;
 
     public void LoadRandomLevel()
     {
@@ -29,16 +33,16 @@ public class SingletonLevelManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if(_instance != null && _instance != this)
         {
-            instance = this;
+            _instance.currentNbScenes++;
+            Destroy(this.gameObject);
+        } else
+        {
+            _instance = this;
             DontDestroyOnLoad(this);
-
-            if(SceneManager.GetActiveScene().buildIndex == 0) { LoadRandomLevel(); }
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
+            
+            if (SceneManager.GetActiveScene().buildIndex == 0) { LoadRandomLevel(); }
         }
     }
 

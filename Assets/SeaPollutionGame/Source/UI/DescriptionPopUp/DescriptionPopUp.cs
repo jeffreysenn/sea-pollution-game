@@ -412,6 +412,11 @@ public class DescriptionPopUp : MonoBehaviour
         polluterContent.FeedbackCoins();
     }
 
+    public void FeedbackNotEnoughRemovalCoins()
+    {
+        polluterContent.FeedbackRemovalCoins();
+    }
+
 }
 
 /*

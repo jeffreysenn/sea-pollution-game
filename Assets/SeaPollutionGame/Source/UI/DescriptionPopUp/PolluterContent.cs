@@ -345,4 +345,19 @@ public class PolluterContent : PopUpPieChartContent
         currentSequence.Play();
 
     }
+
+    public void FeedbackRemovalCoins()
+    {
+        if (currentSequence != null)
+        {
+            currentSequence.Restart();
+            currentSequence.Kill();
+            currentSequence = null;
+        }
+
+        currentSequence = Feedback.Instance.ErrorText(textRemoval, defaultColorText);
+
+        currentSequence.Play();
+
+    }
 }

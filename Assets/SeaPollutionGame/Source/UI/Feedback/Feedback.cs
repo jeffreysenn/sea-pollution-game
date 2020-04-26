@@ -59,6 +59,12 @@ public class Feedback : MonoBehaviour
         descriptionPopUp.FeedbackNotEnoughCoins();
     }
 
+    public void FeedbackInsufficientRemovalCoins()
+    {
+        playersStatController.FeedbackNotEnoughCoins(worldStateManager.GetCurrentPlayerID());
+        descriptionPopUp.FeedbackNotEnoughRemovalCoins();
+    }
+
     public Sequence ErrorText(TextMeshProUGUI target, Color defaultColor)
     {
         Sequence flashingSequence = DOTween.Sequence();

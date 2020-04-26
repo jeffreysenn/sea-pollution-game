@@ -89,6 +89,8 @@ public class PlayerController : MonoBehaviour
 
             return true;
         }
+
+        Feedback.Instance.FeedbackInsufficientRemovalCoins();
         return false;
     }
 

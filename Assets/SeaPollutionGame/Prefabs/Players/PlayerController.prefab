@@ -49,9 +49,9 @@ MonoBehaviour:
   handlingCancelHold: 0
   handlingRemove: 1
   audioSource: {fileID: 5787065330925711777}
-  purchaseClip: {fileID: 8300000, guid: cf2711cf45ece4e4f86aabaa8c39d678, type: 3}
-  errorClip: {fileID: 8300000, guid: 28e0195e87fbb11408b14c3596a3dee1, type: 3}
-  componentSoldClip: {fileID: 8300000, guid: 04b99a708615b55459d8f9654a94776e, type: 3}
+  purchaseClip: {fileID: 8300000, guid: 971855533f751064b9dbf5bd6c429f3a, type: 3}
+  errorClip: {fileID: 8300000, guid: 7860a1f15abf53942a861a33bc604e58, type: 3}
+  componentSoldClip: {fileID: 8300000, guid: 1289e022b44a3b74d823df7403f37ef4, type: 3}
 --- !u!82 &5787065330925711777
 AudioSource:
   m_ObjectHideFlags: 0

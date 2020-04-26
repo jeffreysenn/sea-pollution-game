@@ -56,10 +56,12 @@ public class ToggleButton : MonoBehaviour
         audioSource.Stop();
         if (_toggled)
         {
-            audioSource.clip = toggleOnClip;
+            if(toggleOnClip != null)
+                audioSource.clip = toggleOnClip;
         } else
         {
-            audioSource.clip = toggleOffClip;
+            if(toggleOffClip != null)
+                audioSource.clip = toggleOffClip;
         }
         audioSource.Play();
 

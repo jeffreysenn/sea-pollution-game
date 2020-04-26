@@ -332,8 +332,7 @@ MonoBehaviour:
   - placeType: 1
     gameObject: {fileID: 6009470508278392111}
   audioSource: {fileID: 6942973270956915360}
-  startDragClip: {fileID: 8300000, guid: c0bd3dd6a3bf2ea4b943e5f024653c9d, type: 3}
-  stopDragClip: {fileID: 8300000, guid: 28e0195e87fbb11408b14c3596a3dee1, type: 3}
+  startDragClip: {fileID: 8300000, guid: 5833cfb6f49b18943ad5e8b5e2c3f94f, type: 3}
 --- !u!82 &6942973270956915360
 AudioSource:
   m_ObjectHideFlags: 0

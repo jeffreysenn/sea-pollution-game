@@ -63,8 +63,6 @@ public class PlayerController : MonoBehaviour
         }
 
         audioSource.Stop();
-        Debug.Log("PlayerController: temporary fix in volume AudioSource");
-        audioSource.volume = 0.3f;
         audioSource.clip = errorClip;
         audioSource.Play();
 
@@ -83,7 +81,6 @@ public class PlayerController : MonoBehaviour
             Destroy(polluter.gameObject);
 
             audioSource.Stop();
-            audioSource.volume = 1f;
             audioSource.clip = componentSoldClip;
             audioSource.Play();
 
@@ -214,7 +211,6 @@ public class PlayerController : MonoBehaviour
         playerState.AddPolluter(holdingPolluter);
 
         audioSource.Stop();
-        audioSource.volume = 1f;
         audioSource.clip = purchaseClip;
         audioSource.Play();
     }

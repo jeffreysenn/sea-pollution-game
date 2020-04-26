@@ -75,6 +75,12 @@ public class DescriptionPopUp : MonoBehaviour
     private Vector2 anchorLeftVector = new Vector2(1, 0.5f);
     private Vector2 anchorRightVector = new Vector2(0, 0.5f);
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip popUpOpen = null;
+
 
     private List<PopUpContent> allPopupContents = new List<PopUpContent>();
 
@@ -372,6 +378,9 @@ public class DescriptionPopUp : MonoBehaviour
         {
             worldWindow.HideImage();
         }
+
+        audioSource.clip = popUpOpen;
+        audioSource.Play();
     }
 
     private void HidePopup(PopUpContent content)

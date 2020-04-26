@@ -37,6 +37,8 @@ public class EndTurnController : MonoBehaviour
     private Button endTurnButton = null;
     [SerializeField]
     private Button newGameButton = null;
+    [SerializeField]
+    private float timeBeforeNewGame = 0.8f;
 
     [SerializeField]
     private List<InfoPlayerEndTurn> playersInfo = null;
@@ -44,12 +46,19 @@ public class EndTurnController : MonoBehaviour
     [SerializeField]
     private PlayersStatController playersStatController = null;
 
+    [Header("Tween")]
     [SerializeField]
     private float tweenDuration = 1f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
     private int currentPlayerID = 0;
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource audioSource = null;
+    [SerializeField]
+    private AudioClip reachEndGameClip = null;
 
     private void Start()
     {
@@ -70,8 +79,14 @@ public class EndTurnController : MonoBehaviour
 
     private void OnDestroy()
     {
+        RemoveListeners();
+    }
+
+    private void RemoveListeners()
+    {
         endTurnButton.onClick.RemoveListener(OnBtnClick);
         newGameButton.onClick.RemoveListener(OnNewBtnClick);
+
     }
 
     private void OnEndTurn()
@@ -85,6 +100,10 @@ public class EndTurnController : MonoBehaviour
 
     private void OnEndGame()
     {
+        audioSource.Stop();
+        audioSource.clip = reachEndGameClip;
+        audioSource.Play();
+
         playersStatController.ToggleScoresMenu();
 
         HidePlayersExcept();
@@ -102,6 +121,13 @@ public class EndTurnController : MonoBehaviour
 
     private void OnNewBtnClick()
     {
+        RemoveListeners();
+        StartCoroutine(NewGameTimer());
+    }
+
+    IEnumerator NewGameTimer()
+    {
+        yield return new WaitForSeconds(timeBeforeNewGame);
         UIManager.Instance.levelController.LoadRandomLevel();
     }
 

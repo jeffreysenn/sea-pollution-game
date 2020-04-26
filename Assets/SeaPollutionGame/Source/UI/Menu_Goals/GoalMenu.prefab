@@ -214,13 +214,14 @@ MonoBehaviour:
   tweenDuration: 0.3
   tweenEase: 2
   audioSource: {fileID: 2059357882992001858}
-  slideInClip: {fileID: 8300000, guid: 8824a3caae9d0cb43980749b7294c6ee, type: 3}
-  slideOutClip: {fileID: 8300000, guid: 611bcf79766c086408c6624f39097feb, type: 3}
+  slideInClip: {fileID: 8300000, guid: 2ffae6d4efaa03147b2e6a1f2fc42423, type: 3}
+  slideOutClip: {fileID: 8300000, guid: 2bc8df2dae7ddf94f97f87035924eb38, type: 3}
   completionClips:
-  - {fileID: 8300000, guid: 2786ab9b02c17034cbf489337febbeb6, type: 3}
-  - {fileID: 8300000, guid: f01507785a63c5b45b12d3198de81b5e, type: 3}
-  - {fileID: 8300000, guid: 5002db4a1e82a344b9697963b9f7ace0, type: 3}
-  - {fileID: 8300000, guid: 6cd15416d6b2717488087babb5a7d3a2, type: 3}
+  - {fileID: 8300000, guid: 7258f8503391f9742bcf4ac10890c3e8, type: 3}
+  - {fileID: 8300000, guid: 62f7bc87a477fbf4bb2f559981b420f4, type: 3}
+  - {fileID: 8300000, guid: 7b2048fb19d7d804988178b91c18b9e1, type: 3}
+  - {fileID: 8300000, guid: 4a1b99feaf6aaa348bd7b5b2a36792ef, type: 3}
+  - {fileID: 8300000, guid: 5ea68eb0b751f6b48a9ebd428b44a7ac, type: 3}
 --- !u!82 &2059357882992001858
 AudioSource:
   m_ObjectHideFlags: 0

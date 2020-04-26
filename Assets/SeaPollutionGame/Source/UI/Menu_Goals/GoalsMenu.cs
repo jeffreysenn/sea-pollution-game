@@ -69,6 +69,9 @@ public class GoalsMenu : MonoBehaviour
     Player player1 = null; PlayerState player1State = null;
     Player player2 = null; PlayerState player2State = null;
 
+    int player1GoalsCount = 0;
+    int player2GoalsCount = 0;
+
     private void Start()
     {
         worldStateManager = UIManager.Instance.worldStateManager;
@@ -136,18 +139,41 @@ public class GoalsMenu : MonoBehaviour
         bool a = false;
         bool b = false;
 
-        foreach(GoalItem gi in goalItems)
+        for(int i = 0; i < goalItems.Count; i++)
         {
+            GoalItem gi = goalItems[i];
             Goal g = gi.GetGoal();
 
             a = worldStateManager.HasPlayerMetGoal(g, player1.id);
             b = worldStateManager.HasPlayerMetGoal(g, player2.id);
 
-            if ((a && !gi.IsLeftCompleted()) || (b && !gi.IsRightCompleted()))
+            if (a && !gi.IsLeftCompleted())
             {
                 audioSource.Stop();
-                audioSource.clip = gi.completionClip;
-                audioSource.Play();
+                if (player1GoalsCount < completionClips.Count)
+                {
+                    audioSource.clip = completionClips[player1GoalsCount];
+                    player1GoalsCount++;
+                    audioSource.Play();
+                }
+                else
+                {
+                    Debug.LogWarning("GoalsMenu: doesn't have sound for completion: " + player1GoalsCount);
+                }
+            }
+
+            if(b && !gi.IsRightCompleted())
+            {
+                audioSource.Stop();
+                if(player2GoalsCount < completionClips.Count)
+                {
+                    audioSource.clip = completionClips[player2GoalsCount];
+                    player2GoalsCount++;
+                    audioSource.Play();
+                } else
+                {
+                    Debug.LogWarning("GoalsMenu: doesn't have sound for completion: " + player2GoalsCount);
+                }
             }
 
             gi.SetValues(worldStateManager.GetPlayerProgress(g, player1.id), worldStateManager.GetPlayerProgress(g, player2.id));

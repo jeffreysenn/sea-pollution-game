@@ -8,6 +8,7 @@ public class MenuInGameController : MonoBehaviour
 {
     private SingletonLevelManager levelController = null;
 
+    [Header("Buttons")]
     [SerializeField]
     private Button btnOpen = null;
     [SerializeField]
@@ -16,7 +17,10 @@ public class MenuInGameController : MonoBehaviour
     private Button btnNewGame = null;
     [SerializeField]
     private Button btnQuit = null;
+    [SerializeField]
+    private float timeBeforeAction = 1f;
 
+    [Header("Tween")]
     [SerializeField]
     private CanvasGroup menuContent = null;
     private RectTransform menuTransform = null;
@@ -48,13 +52,23 @@ public class MenuInGameController : MonoBehaviour
 
         HideDirectMenu();
 
+        AddListeners();
+    }
+
+    private void OnDestroy()
+    {
+        RemoveListeners();
+    }
+
+    void AddListeners()
+    {
         btnOpen.onClick.AddListener(OpenOnClick);
         btnRestart.onClick.AddListener(RestartOnClick);
         btnNewGame.onClick.AddListener(NewGameOnClick);
         btnQuit.onClick.AddListener(QuitOnClick);
     }
 
-    private void OnDestroy()
+    void RemoveListeners()
     {
         btnOpen.onClick.RemoveListener(OpenOnClick);
         btnRestart.onClick.RemoveListener(RestartOnClick);
@@ -75,17 +89,37 @@ public class MenuInGameController : MonoBehaviour
 
     void RestartOnClick()
     {
-        levelController.LoadCurrentLevel();
+        RemoveListeners();
+        StartCoroutine(RestartTimer());
     }
 
     void NewGameOnClick()
     {
-        levelController.LoadRandomLevel();
+        RemoveListeners();
+        StartCoroutine(NewGameTimer());
     }
 
     void QuitOnClick()
     {
-        //levelController.LoadHomeLevel();
+        RemoveListeners();
+        StartCoroutine(QuitTimer());
+    }
+
+    IEnumerator RestartTimer()
+    {
+        yield return new WaitForSeconds(timeBeforeAction);
+        levelController.LoadCurrentLevel();
+    }
+
+    IEnumerator NewGameTimer()
+    {
+        yield return new WaitForSeconds(timeBeforeAction);
+        levelController.LoadRandomLevel();
+    }
+
+    IEnumerator QuitTimer()
+    {
+        yield return new WaitForSeconds(timeBeforeAction);
         Application.Quit();
     }
 

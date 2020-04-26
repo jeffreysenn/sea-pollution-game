@@ -234,7 +234,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 4
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -319,7 +319,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 60}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5075660300128533908
 CanvasRenderer:
@@ -421,7 +421,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efcb5a6cba87b154ea65a5ba6d9ab8ea, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f9a8c630cd159684cbe03b442f683b94, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1045,7 +1045,7 @@ GameObject:
   - component: {fileID: 5756548146558092219}
   - component: {fileID: 4305010535256785406}
   m_Layer: 5
-  m_Name: Button_Home
+  m_Name: Button_Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1171,7 +1171,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efcb5a6cba87b154ea65a5ba6d9ab8ea, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b5f15644adf6b1549ba79c1bb19f2829, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1467,13 +1467,14 @@ MonoBehaviour:
   btnRestart: {fileID: 5756548147395494910}
   btnNewGame: {fileID: 5161188327640692237}
   btnQuit: {fileID: 5756548146558092219}
+  timeBeforeAction: 0.8
   menuContent: {fileID: 5756548147257160120}
   menuTargetPosition: {x: 0, y: 0}
   tweenDuration: 0.25
   tweenEase: 1
   audioSource: {fileID: 6966262349418206230}
-  openMenu: {fileID: 8300000, guid: 43f5a8551d9775d45abb4c2ccd072fdb, type: 3}
-  closeMenu: {fileID: 8300000, guid: fa96470316371e9449e4c47f139875ec, type: 3}
+  openMenu: {fileID: 8300000, guid: 334d8bffb0069da45afc6d048170f76d, type: 3}
+  closeMenu: {fileID: 8300000, guid: bbcb1e6371bc8c54ea8003f0745ca5e0, type: 3}
 --- !u!82 &6966262349418206230
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1608,7 +1609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 0}
+  m_AnchoredPosition: {x: -450, y: 0}
   m_SizeDelta: {x: 380, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &5756548147257160120
@@ -1636,12 +1637,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1788,7 +1789,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efcb5a6cba87b154ea65a5ba6d9ab8ea, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f4f64ddd01d5700429054576b76980b4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

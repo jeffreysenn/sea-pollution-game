@@ -533,7 +533,7 @@ MonoBehaviour:
   tweenDuration: 0.25
   tweenEase: 1
   audioSource: {fileID: 3337186578651535774}
-  onClickClip: {fileID: 8300000, guid: 638f5afd3c4dc4f4d83456dda176e972, type: 3}
+  onClickClip: {fileID: 8300000, guid: 69b50e0741a664749b164c97b0b95c3a, type: 3}
   isClickable: 1
 --- !u!222 &5352419738584964378
 CanvasRenderer:

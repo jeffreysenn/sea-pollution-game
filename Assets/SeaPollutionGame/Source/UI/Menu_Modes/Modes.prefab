@@ -61,8 +61,8 @@ MonoBehaviour:
   onSprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
   glow: {fileID: 4070375736122542137}
   audioSource: {fileID: 7583321508403075977}
-  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
-  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
+  toggleOnClip: {fileID: 0}
+  toggleOffClip: {fileID: 0}
   description: <b>Toggle</b> to show the goals.
 --- !u!222 &1197101977740614468
 CanvasRenderer:
@@ -154,7 +154,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 54ca08e3a4592524f857948e68c52873, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -603,8 +603,8 @@ MonoBehaviour:
   onSprite: {fileID: 21300000, guid: 2032695cdfebb164c866b18bea3ca3ae, type: 3}
   glow: {fileID: 3110843842339437258}
   audioSource: {fileID: 4300197667593871104}
-  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
-  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
+  toggleOnClip: {fileID: 0}
+  toggleOffClip: {fileID: 0}
   description: <b>Toggle</b> to open score details.
 --- !u!222 &1069779620381418758
 CanvasRenderer:
@@ -695,7 +695,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 54ca08e3a4592524f857948e68c52873, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1118,8 +1118,8 @@ MonoBehaviour:
   onSprite: {fileID: 21300000, guid: cbee1fffedba6af49be3a7367ee3cdbf, type: 3}
   glow: {fileID: 1322027390455621431}
   audioSource: {fileID: 6543167299762619536}
-  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
-  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
+  toggleOnClip: {fileID: 8300000, guid: 3173c0d3e9aafc3469f93307b026110b, type: 3}
+  toggleOffClip: {fileID: 8300000, guid: afd4818900a78944f857f223d4ad7829, type: 3}
   description: '<b>Toggle</b> to enter the tutorial mode.
 
     <b>Hover</b> areas
@@ -1809,8 +1809,8 @@ MonoBehaviour:
   onSprite: {fileID: 21300000, guid: c6675a1f34e5d0d429b627f85c41b8df, type: 3}
   glow: {fileID: 3699722175269558328}
   audioSource: {fileID: 8527477419774446902}
-  toggleOnClip: {fileID: 8300000, guid: 52425a24d04c6ea4aa59f449b8daf5db, type: 3}
-  toggleOffClip: {fileID: 8300000, guid: eb969373f64f9974783b8f06b4156ca0, type: 3}
+  toggleOnClip: {fileID: 8300000, guid: a865005edc11fc24680b5a0aff88a673, type: 3}
+  toggleOffClip: {fileID: 8300000, guid: a865005edc11fc24680b5a0aff88a673, type: 3}
   description: <b>Toggle</b> to highlight flows of emissions.
 --- !u!222 &4333374140733927614
 CanvasRenderer:

@@ -8,7 +8,7 @@
     {
       "title": "Flood",
       "damage": 100,
-      "chancePerTurn": 0.1
+      "chancePerTurn": 1
     },
     {
       "title": "Drought",

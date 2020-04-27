@@ -84,6 +84,8 @@ MonoBehaviour:
     fx:
     - {fileID: 4958002237446779626}
     - {fileID: 4958002238015773835}
+  fadeInTimer: 1
+  fadeOutTimer: 3
 --- !u!1001 &467086628857560566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -305,6 +307,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FX
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856985993950667610, guid: 15028aae0799bd648983507bbd0671d4,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019327991858786787, guid: 15028aae0799bd648983507bbd0671d4,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15028aae0799bd648983507bbd0671d4, type: 3}

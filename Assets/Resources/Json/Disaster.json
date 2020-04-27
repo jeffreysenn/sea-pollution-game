@@ -3,17 +3,17 @@
     {
       "title": "Fire",
       "damage": 100,
-      "chancePerTurn": 0.5
+      "chancePerTurn": 0.1
     },
     {
       "title": "Flood",
       "damage": 100,
-      "chancePerTurn": 0.5
+      "chancePerTurn": 0.1
     },
     {
       "title": "Drought",
       "damage": 100,
-      "chancePerTurn": 0
+      "chancePerTurn": 0.1
     }
   ]
 }

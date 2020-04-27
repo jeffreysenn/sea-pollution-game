@@ -41,6 +41,7 @@ public class Polluter : MonoBehaviour
     [Header("Death Effects")]
     [SerializeField]
     private List<DeathEffect> deathEffects = new List<DeathEffect>();
+    private bool isDead = false;
 
     private PolluterAttrib polluterAttrib = null;
 
@@ -133,24 +134,29 @@ public class Polluter : MonoBehaviour
 
     protected virtual void OnDeath(Disaster from)
     {
-        Mulfunction();
-
-        //meshRenderer.material.SetColor("_Color", onDeathColor);
-        meshRenderer.material = onDeathMaterial;
-        flareObject.SetActive(true);
-        idTextMesh.color = onDeathTextColor;
-        
-        if(from != null)
+        if(!isDead)
         {
-            foreach (DeathEffect de in deathEffects)
-                de.effectObject.SetActive(de.disasterName == from.title);
-        }
+            Mulfunction();
 
-        AudioSource audioSource = GetComponent<AudioSource>();
-        if(audioSource != null)
-        {
-            audioSource.Stop();
-            audioSource.Play();
+            //meshRenderer.material.SetColor("_Color", onDeathColor);
+            meshRenderer.material = onDeathMaterial;
+            flareObject.SetActive(true);
+            idTextMesh.color = onDeathTextColor;
+
+            if (from != null)
+            {
+                foreach (DeathEffect de in deathEffects)
+                    de.effectObject.SetActive(de.disasterName == from.title);
+            }
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.Stop();
+                audioSource.Play();
+            }
+
+            isDead = true;
         }
     }
 

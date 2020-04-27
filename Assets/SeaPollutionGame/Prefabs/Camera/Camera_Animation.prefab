@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Path: {fileID: 3711759671281743698}
   m_UpdateMethod: 0
   m_PositionUnits: 2
-  m_Speed: 0.1
+  m_Speed: 0.2
   m_Position: 0
 --- !u!1 &3711759671281743697
 GameObject:

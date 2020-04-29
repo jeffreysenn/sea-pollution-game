@@ -8,8 +8,8 @@ public class VisibilityController : MonoBehaviour
 
     public void SetVisible(bool shouldVisible)
     {
-        var renderer = GetComponent<Renderer>();
-        if (renderer)
+        var renderers = GetComponentsInChildren<Renderer>();
+        foreach(var renderer in renderers)
         {
             renderer.enabled = shouldVisible;
         }

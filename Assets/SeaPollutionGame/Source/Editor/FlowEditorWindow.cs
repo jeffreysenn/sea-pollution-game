@@ -100,8 +100,7 @@ public class FlowEditorWindow : EditorWindow
                     var flows = obj.GetComponentsInChildren<Flow>();
                     foreach (var flow in flows)
                     {
-                        UpdateArrow(flow);
-                        UpdateCollider(flow);
+                        UpdateFlow(flow);
                     }
                 }
                 {
@@ -125,6 +124,7 @@ public class FlowEditorWindow : EditorWindow
     {
         UpdateArrow(flow);
         UpdateCollider(flow);
+        UpdateParticle(flow);
     }
 
     private void UpdateArrow(Flow flow)
@@ -146,6 +146,18 @@ public class FlowEditorWindow : EditorWindow
               Vector3.Lerp(originPos, targetPos, 0.999f - percentHead),
               Vector3.Lerp(originPos, targetPos, 1 - percentHead),
               targetPos });
+    }
+
+    private void UpdateParticle(Flow flow)
+    {
+        var originPos = flow.GetNode(PutDir.IN).transform.position;
+        var targetPos = flow.GetNode(PutDir.OUT).transform.position;
+        var particleControllers = flow.GetComponentsInChildren<FlowParticleController>();
+        foreach (var controller in particleControllers)
+        {
+            controller.SetStartPos(originPos);
+            controller.SetEndPos(targetPos);
+        }
     }
 
     private void UpdateCollider(Flow flow)

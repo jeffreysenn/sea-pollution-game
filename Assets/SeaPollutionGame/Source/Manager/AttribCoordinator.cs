@@ -9,10 +9,6 @@ public class AttribCoordinator : MonoBehaviour
         var attribLoader = FindObjectOfType<AttribLoader>();
         var attribData = attribLoader.LoadLazy();
 
-        var worldStateManager = FindObjectOfType<WorldStateManager>();
-        worldStateManager.SetScoreWeight(attribData.scoreWeight);
-        worldStateManager.SetGoals(attribData.goalList);
-
         var baseEmissionManager = FindObjectOfType<BaseEmissionManager>();
         baseEmissionManager.CountryAttribs = attribData.countryList;
 

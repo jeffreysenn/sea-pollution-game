@@ -26,7 +26,8 @@ public class TurnNumberController : MonoBehaviour
         txtNumber.text = currentNumberTurn.ToString();
         txtTotal.text = totalNumberTurn.ToString();
 
-        worldStateManager.AddEndTurnEventListener(OnEndTurn);
+        var endTurnEvent = worldStateManager.GetEndTurnEvent();
+        endTurnEvent.AddListener(OnEndTurn);
     }
 
     private void OnEndTurn()

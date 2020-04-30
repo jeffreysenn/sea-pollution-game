@@ -56,7 +56,8 @@ public class DisasterManager : MonoBehaviour
         RenderSettings.skybox = skyboxTexture;
         SetSkybox(defaultSkybox, false);
 
-        stateManager.AddEndTurnEventListener(GenDisaster);
+        var endTurnEvent = stateManager.GetEndTurnEvent();
+        endTurnEvent.AddListener(GenDisaster);
     }
 
     private void OnDestroy()

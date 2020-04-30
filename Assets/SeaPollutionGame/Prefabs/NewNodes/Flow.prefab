@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7442e73c00f1e438332bd173c167a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPollution: 40
+  maxPollution: 60
   curves:
   - serializedVersion: 2
     m_Curve:
@@ -277,20 +277,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0.8454099
+      outSlope: 0.8454099
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
+      time: 1.0092163
+      value: 0.8532015
+      inSlope: 0.8454099
+      outSlope: 0.8454099
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -315,6 +315,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 841121199942744659}
     m_Modifications:
+    - target: {fileID: 4995854138936049881, guid: 7b4daafe452301d468a02591b0ed24c0,
+        type: 3}
+      propertyPath: maxPollution
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7707151953886646141, guid: 7b4daafe452301d468a02591b0ed24c0,
         type: 3}
       propertyPath: m_Name

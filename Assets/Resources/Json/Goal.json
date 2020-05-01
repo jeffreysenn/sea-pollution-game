@@ -17,11 +17,11 @@
       "iconName": "Achievement_Gold"
     },
     {
-      "title": "SDG 9 Industry innovation and infrastructure",
+      "title": "SDG 9",
       "resourceName": "SDG 9",
       "value": 100,
       "reward": 200,
-      "description": "Reach 100 in SDG 9",
+      "description": "Reach 100 in SDG 9\nIndustry innovation and infrastructure",
       "iconName": "Achievement_Purple"
     },
     {

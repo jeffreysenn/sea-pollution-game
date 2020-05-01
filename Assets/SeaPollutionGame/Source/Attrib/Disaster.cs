@@ -5,4 +5,5 @@ public class Disaster
     public float damage = 0;
     public float chancePerTurn = 0.1f;
     public string clipTitle = "World_Farm_Fine_Rabbit";
+    public string description = "";
 }

@@ -3,17 +3,23 @@
     {
       "title": "Fire",
       "damage": 100,
-      "chancePerTurn": 0.1
+      "chancePerTurn": 0.1,
+      "clipTitle": "",
+      "description": ""
     },
     {
       "title": "Flood",
       "damage": 100,
-      "chancePerTurn": 0.1
+      "chancePerTurn": 0.1,
+      "clipTitle": "",
+      "description": ""
     },
     {
       "title": "Drought",
       "damage": 100,
-      "chancePerTurn": 0.1
+      "chancePerTurn": 0.1,
+      "clipTitle": "",
+      "description": ""
     }
   ]
 }

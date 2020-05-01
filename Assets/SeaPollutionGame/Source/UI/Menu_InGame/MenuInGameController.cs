@@ -132,8 +132,8 @@ public class MenuInGameController : MonoBehaviour
 
         isShown = true;
 
-        audioSource.clip = openMenu;
-        audioSource.Play();
+
+        audioSource.PlayOneShot(openMenu);
     }
 
     void HideMenu()
@@ -145,8 +145,7 @@ public class MenuInGameController : MonoBehaviour
 
         isShown = false;
 
-        audioSource.clip = closeMenu;
-        audioSource.Play();
+        audioSource.PlayOneShot(closeMenu);
     }
 
     void HideDirectMenu()

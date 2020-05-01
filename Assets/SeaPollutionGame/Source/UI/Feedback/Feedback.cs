@@ -69,9 +69,8 @@ public class Feedback : MonoBehaviour
     {
         Sequence flashingSequence = DOTween.Sequence();
 
-        audioSource.Stop();
-        audioSource.clip = cantBuyClip;
-        audioSource.Play();
+
+        audioSource.PlayOneShot(cantBuyClip);
 
         for (int i = 0; i < flashingIteration; i++)
         {

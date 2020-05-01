@@ -102,9 +102,8 @@ public class EndTurnController : MonoBehaviour
 
     private void OnEndGame()
     {
-        audioSource.Stop();
-        audioSource.clip = reachEndGameClip;
-        audioSource.Play();
+
+        audioSource.PlayOneShot(reachEndGameClip);
 
         playersStatController.ToggleScoresMenu();
 

@@ -62,9 +62,7 @@ public class PlayerController : MonoBehaviour
             return true;
         }
 
-        audioSource.Stop();
-        audioSource.clip = errorClip;
-        audioSource.Play();
+        audioSource.PlayOneShot(errorClip);
 
         return false;
     }
@@ -80,9 +78,7 @@ public class PlayerController : MonoBehaviour
             playerState.RemovePolluter(polluter);
             Destroy(polluter.gameObject);
 
-            audioSource.Stop();
-            audioSource.clip = componentSoldClip;
-            audioSource.Play();
+            audioSource.PlayOneShot(componentSoldClip);
 
             return true;
         }
@@ -210,8 +206,6 @@ public class PlayerController : MonoBehaviour
         playerState.AddMoney(-price);
         playerState.AddPolluter(holdingPolluter);
 
-        audioSource.Stop();
-        audioSource.clip = purchaseClip;
-        audioSource.Play();
+        audioSource.PlayOneShot(purchaseClip);
     }
 }

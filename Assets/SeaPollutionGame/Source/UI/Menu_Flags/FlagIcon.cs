@@ -62,8 +62,8 @@ public class FlagIcon : MonoBehaviour, IPointerClickHandler
         selectedCanvas.DOKill();
         selectedCanvas.DOFade(1f, tweenDuration).SetEase(tweenEase);
 
-        audioSource.clip = onClickClip;
-        audioSource.Play();
+
+        audioSource.PlayOneShot(onClickClip);
     }
 
     public void Deselect()

@@ -82,9 +82,7 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
         {
             OnDrag?.Invoke();
 
-            audioSource.Stop();
-            audioSource.clip = startDragClip;
-            audioSource.Play();
+            audioSource.PlayOneShot(startDragClip);
 
             playerController.Hold();
         }
@@ -133,9 +131,8 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
                 {
                     playerController.CancelHold();
 
-                    audioSource.Stop();
-                    audioSource.clip = stopDragUIClip;
-                    audioSource.Play();
+
+                    audioSource.PlayOneShot(stopDragUIClip);
 
                     Destroy(gameObject);
                 } else

@@ -192,9 +192,8 @@ public class GoalsMenu : MonoBehaviour
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(detailsTargetPosition, tweenDuration).SetEase(tweenEase);
 
-        audioSource.Stop();
-        audioSource.clip = slideInClip;
-        audioSource.Play();
+
+        audioSource.PlayOneShot(slideInClip);
     }
 
     public void Hide()
@@ -206,9 +205,8 @@ public class GoalsMenu : MonoBehaviour
         detailsTransform.DOKill();
         detailsTransform.DOAnchorPos(defaultDetailsPosition, tweenDuration).SetEase(tweenEase);
 
-        audioSource.Stop();
-        audioSource.clip = slideOutClip;
-        audioSource.Play();
+
+        audioSource.PlayOneShot(slideOutClip);
     }
 
     public void HideDirect()

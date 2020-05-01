@@ -379,8 +379,8 @@ public class DescriptionPopUp : MonoBehaviour
             worldWindow.HideImage();
         }
 
-        audioSource.clip = popUpOpen;
-        audioSource.Play();
+
+        audioSource.PlayOneShot(popUpOpen);
     }
 
     private void HidePopup(PopUpContent content)

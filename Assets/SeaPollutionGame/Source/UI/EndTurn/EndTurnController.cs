@@ -63,18 +63,20 @@ public class EndTurnController : MonoBehaviour
     private void Start()
     {
         worldStateManager = FindObjectOfType<WorldStateManager>();
-        if(worldStateManager == null) { Debug.LogError("[EndTurnController] Start: WorldStateManager not found"); return; }
+        if (worldStateManager == null) { Debug.LogError("[EndTurnController] Start: WorldStateManager not found"); return; }
 
         newGameButton.gameObject.SetActive(false);
 
         endTurnButton.onClick.AddListener(OnBtnClick);
 
         currentPlayerID = worldStateManager.GetCurrentPlayerID();
-        
+
         ShowPlayer(currentPlayerID);
 
-        worldStateManager.AddEndPlayerTurnFinishEventListener(OnEndTurn);
-        worldStateManager.AddEndGameEventListener(OnEndGame);
+        var endPlayerTurnFinishEvent = worldStateManager.GetEndPlayerTurnFinishEvent();
+        endPlayerTurnFinishEvent.AddListener(OnEndTurn);
+        var endGameEvent = worldStateManager.GetEndGameEvent();
+        endGameEvent.AddListener(OnEndGame);
     }
 
     private void OnDestroy()
@@ -94,7 +96,7 @@ public class EndTurnController : MonoBehaviour
         currentPlayerID = worldStateManager.GetCurrentPlayerID();
 
         HidePlayer(currentPlayerID);
-        
+
         ShowPlayersExcept(currentPlayerID);
     }
 
@@ -137,7 +139,7 @@ public class EndTurnController : MonoBehaviour
 
         currentPlayer.playerInformation.DOKill();
         currentPlayer.playerInformation.DOLocalMoveX(currentPlayer.tweenXOffset, tweenDuration).SetEase(tweenEase);
-        
+
         // move turn number
         turnNumber.rectTransform.DOKill();
         turnNumber.rectTransform.DOLocalMoveX(-currentPlayer.tweenXOffset, tweenDuration).SetEase(tweenEase);
@@ -147,7 +149,8 @@ public class EndTurnController : MonoBehaviour
         {
             turnNumber.layoutGroup.padding.left = turnNumber.offsetPadding;
             turnNumber.layoutGroup.padding.right = turnNumber.defaultPadding;
-        } else
+        }
+        else
         {
             turnNumber.layoutGroup.padding.left = turnNumber.defaultPadding;
             turnNumber.layoutGroup.padding.right = turnNumber.offsetPadding;
@@ -170,9 +173,9 @@ public class EndTurnController : MonoBehaviour
 
     private void HidePlayersExcept(int exceptFromId = 0)
     {
-        foreach(InfoPlayerEndTurn ip in playersInfo)
+        foreach (InfoPlayerEndTurn ip in playersInfo)
         {
-            if(ip.playerID != exceptFromId)
+            if (ip.playerID != exceptFromId)
             {
                 HidePlayer(ip.playerID);
             }

@@ -100,9 +100,9 @@ public class ScoreMenu : MonoBehaviour
 
     private void UpdateScore()
     {
-        float p1 = worldStateManager.GetScore(player1.id);
-        float p2 = worldStateManager.GetScore(player2.id);
-        
+        float p1 = worldStateManager.GetPlayerState(player1.id).GetScore();
+        float p2 = worldStateManager.GetPlayerState(player2.id).GetScore();
+
         scoreBar.SetValues(p1, p2, percentageValues);
     }
 
@@ -163,10 +163,9 @@ public class ScoreMenu : MonoBehaviour
 
     private void UpdateEfficiency()
     {
-        float p1 = worldStateManager.GetEfficiency(player1.id);
-        float p2 = worldStateManager.GetEfficiency(player2.id);
+        float p1 = player1State.GetEfficiency();
+        float p2 = player2State.GetEfficiency();
 
-        
         efficiencyChart.SetValues(p1, p2, percentageValues);
     }
 

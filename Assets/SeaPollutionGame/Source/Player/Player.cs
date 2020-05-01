@@ -8,8 +8,13 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        var worldStateObj = FindObjectOfType<WorldStateManager>();
-        var worldState = worldStateObj.GetComponent<WorldStateManager>();
-        worldState.RegisterPlayer(id);
+        var worldStateManager = FindObjectOfType<WorldStateManager>();
+        worldStateManager.RegisterPlayer(id);
+
+        var attribLoader = FindObjectOfType<AttribLoader>();
+        var attribData = attribLoader.LoadLazy();
+        var playerState = worldStateManager.GetPlayerState(id);
+        playerState.SetScoreWeight(attribData.scoreWeight);
+        playerState.SetGoals(attribData.goalList);
     }
 }

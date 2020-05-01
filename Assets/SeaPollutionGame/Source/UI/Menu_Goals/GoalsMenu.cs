@@ -144,8 +144,8 @@ public class GoalsMenu : MonoBehaviour
             GoalItem gi = goalItems[i];
             Goal g = gi.GetGoal();
 
-            a = worldStateManager.HasPlayerMetGoal(g, player1.id);
-            b = worldStateManager.HasPlayerMetGoal(g, player2.id);
+            a = worldStateManager.GetPlayerState(player1.id).HasMetGoal(g);
+            b = worldStateManager.GetPlayerState(player2.id).HasMetGoal(g);
 
             if (a && !gi.IsLeftCompleted())
             {
@@ -176,7 +176,8 @@ public class GoalsMenu : MonoBehaviour
                 }
             }
 
-            gi.SetValues(worldStateManager.GetPlayerProgress(g, player1.id), worldStateManager.GetPlayerProgress(g, player2.id));
+            gi.SetValues(worldStateManager.GetPlayerState(player1.id).GetProgress(g), 
+                         worldStateManager.GetPlayerState(player2.id).GetProgress(g));
 
             gi.Show(a, b);
         }

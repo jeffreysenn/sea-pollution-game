@@ -30,7 +30,7 @@ public class PlayerPieChart : MonoBehaviour, IPointerClickHandler
         if (player == null) { Debug.LogError("[PlayerPieChart] Active: Player not found"); return; }
 
         var playerState = worldStateManager.GetPlayerState(player.id);
-        foreach (var stateChangeEvent in playerState.GetStateChangeEvents())
+        foreach (var stateChangeEvent in playerState.GetPollutionChangeEvents())
         {
             stateChangeEvent.AddListener(UpdateCurrentPieChart);
         }

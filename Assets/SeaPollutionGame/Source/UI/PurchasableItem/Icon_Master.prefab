@@ -242,6 +242,8 @@ GameObject:
   - component: {fileID: 3226118952363417250}
   - component: {fileID: 8319975555644847930}
   - component: {fileID: 6942973270956915360}
+  - component: {fileID: 4139105641827384433}
+  - component: {fileID: 1463293171899091864}
   m_Layer: 5
   m_Name: Icon_Master
   m_TagString: Untagged
@@ -332,7 +334,8 @@ MonoBehaviour:
   - placeType: 1
     gameObject: {fileID: 6009470508278392111}
   audioSource: {fileID: 6942973270956915360}
-  startDragClip: {fileID: 8300000, guid: 5833cfb6f49b18943ad5e8b5e2c3f94f, type: 3}
+  startDragClip: {fileID: 8300000, guid: c0bd3dd6a3bf2ea4b943e5f024653c9d, type: 3}
+  stopDragUIClip: {fileID: 8300000, guid: 5833cfb6f49b18943ad5e8b5e2c3f94f, type: 3}
 --- !u!82 &6942973270956915360
 AudioSource:
   m_ObjectHideFlags: 0
@@ -429,6 +432,44 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!223 &4139105641827384433
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226118952363417252}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &1463293171899091864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3226118952363417252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &5311884672723295940
 GameObject:
   m_ObjectHideFlags: 0

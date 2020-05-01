@@ -7,6 +7,7 @@ TagManager:
   - Sea
   - BlockingUI
   - Ground
+  - UI_Shop
   layers:
   - Default
   - TransparentFX

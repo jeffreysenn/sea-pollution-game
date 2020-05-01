@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using System;
+using UnityEngine.UI;
 
 public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 {
@@ -20,6 +21,8 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     [SerializeField]
     private bool isInteractible = true;
     public void SetInteractible(bool v) { isInteractible = v; }
+    [SerializeField]
+    private string tagShopUI = "UI_Shop";
 
     [SerializeField]
     private Polluter targetPolluter = null;
@@ -36,6 +39,8 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     private AudioSource audioSource = null;
     [SerializeField]
     private AudioClip startDragClip = null;
+    [SerializeField]
+    private AudioClip stopDragUIClip = null;
 
     private GameObject spaceForPolluter = null;
 
@@ -105,20 +110,51 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
 
             if (Input.GetButtonUp("Fire1"))
             {
-                InstantiatePolluter();
+                GraphicRaycaster graphicRaycaster = GetComponent<GraphicRaycaster>();
+                EventSystem eventSystem = EventSystem.current;
+                PointerEventData pointerEventData = new PointerEventData(eventSystem);
+                pointerEventData.position = Input.mousePosition;
+                List<RaycastResult> graphicResults = new List<RaycastResult>();
+                graphicRaycaster.Raycast(pointerEventData, graphicResults);
 
-                playerController.Hold(polluterDragged);
+                EventSystem.current.RaycastAll(pointerEventData, graphicResults);
 
-                bool dropped = playerController.TryDrop();
-
-                if (dropped)
+                bool onUI = false;
+                foreach(RaycastResult rr in graphicResults)
                 {
-                    Destroy(gameObject);
+                    if(rr.gameObject.tag == tagShopUI)
+                    {
+                        onUI = true;
+                        break;
+                    }
                 }
-                else
+
+                if(onUI)
                 {
                     playerController.CancelHold();
+
+                    audioSource.Stop();
+                    audioSource.clip = stopDragUIClip;
+                    audioSource.Play();
+
                     Destroy(gameObject);
+                } else
+                {
+                    InstantiatePolluter();
+
+                    playerController.Hold(polluterDragged);
+
+                    bool dropped = playerController.TryDrop();
+
+                    if (dropped)
+                    {
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        playerController.CancelHold();
+                        Destroy(gameObject);
+                    }
                 }
             }
         }

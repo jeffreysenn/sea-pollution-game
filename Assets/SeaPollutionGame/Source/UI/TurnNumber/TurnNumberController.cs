@@ -34,10 +34,7 @@ public class TurnNumberController : MonoBehaviour
     {
         if(totalNumberTurn != worldStateManager.GetRemainingTurnCount())
         {
-            totalNumberTurn = worldStateManager.GetRemainingTurnCount();
-
             currentNumberTurn++;
-
             txtNumber.text = currentNumberTurn.ToString();
         }
     }

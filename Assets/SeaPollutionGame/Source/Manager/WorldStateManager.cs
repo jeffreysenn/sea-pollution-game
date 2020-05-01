@@ -63,6 +63,7 @@ public class WorldStateManager : MonoBehaviour, IPlayerIDManager, ITurnManager, 
     {
         playerIDManager = new PlayerIDManager();
         turnManager = new TurnManager(playerIDManager);
+        turnManager.SetTotalTurnCount(turnCount);
         playerStateManager = new PlayerStateManager();
     }
 

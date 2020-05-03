@@ -63,7 +63,7 @@ MonoBehaviour:
   audioSource: {fileID: 7583321508403075977}
   toggleOnClip: {fileID: 0}
   toggleOffClip: {fileID: 0}
-  description: <b>Toggle</b> to show the goals.
+  description: <b>Toggle</b> to show the awards.
 --- !u!222 &1197101977740614468
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2429,7 +2429,7 @@ MonoBehaviour:
   audioSource: {fileID: 2664313261556337341}
   toggleOnClip: {fileID: 0}
   toggleOffClip: {fileID: 0}
-  description: <b>Toggle</b> to show the graphs.
+  description: <b>Toggle</b> to show the progress charts.
 --- !u!222 &332008131669409639
 CanvasRenderer:
   m_ObjectHideFlags: 0

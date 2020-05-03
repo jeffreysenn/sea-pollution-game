@@ -14,6 +14,7 @@ public class GraphController : MonoBehaviour
     {
         public string name;
         public PlayerStateBlackboard.Key key;
+        public string description;
         [Header("only if key is Pollution")]
         public PollutionMapType pollutionType;
         [Header("only if key is Resource")]
@@ -33,6 +34,8 @@ public class GraphController : MonoBehaviour
     [SerializeField]
     private Sprite dropDownImageOpened = null;
     private Sprite dropDownImageDefault = null;
+    [SerializeField]
+    private TextMeshProUGUI dropDownDescription = null;
 
     [Header("Tween")]
     [SerializeField]
@@ -112,6 +115,8 @@ public class GraphController : MonoBehaviour
     {
         PlayerStateBlackboard.Key key = dropDownValues[v].key;
 
+        dropDownDescription.text = dropDownValues[v].description;
+
         if(key == PlayerStateBlackboard.Key.POLLUTION)
         {
             Plot(key, dropDownValues[v].pollutionType, "Emission");
@@ -158,7 +163,7 @@ public class GraphController : MonoBehaviour
             for (int i = 0; i != balckboard.Count; ++i)
             {
                 float val = getValueFuc.Invoke(balckboard[i]);
-                graph.DataSource.AddPointToCategory(category, i, val);
+                graph.DataSource.AddPointToCategory(category, i + 1, val);
             }
         }
         graph.DataSource.EndBatch();
@@ -188,7 +193,7 @@ public class GraphController : MonoBehaviour
 
     public void ShowItem(GraphChart.GraphEventArgs args)
     {
-        txtHoverItem.text = args.YString;
+        txtHoverItem.text = String.Format("{0:0}", args.Value.y);
         LayoutRebuilder.ForceRebuildLayoutImmediate(hoverItem);
 
         Vector3 pos = Vector3.zero;

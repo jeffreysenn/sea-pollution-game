@@ -14,11 +14,15 @@ public class ModesController : MonoBehaviour
     private ModeToggle toggleGoals = null;
     [SerializeField]
     private ModeToggle toggleScores = null;
+    [SerializeField]
+    private ModeToggle togglePlot = null;
     
     [SerializeField]
     private TutorialController tutorialController = null;
     [SerializeField]
     private PlayersStatController playersStatController = null;
+    [SerializeField]
+    private GraphController graphController = null;
 
     private FlowManager flowManager = null;
     private ScoreMenu scoreMenu = null;
@@ -39,11 +43,13 @@ public class ModesController : MonoBehaviour
         toggleFlows.OnToggle += ToggleFlows_OnToggle;
         toggleGoals.OnToggle += ToggleGoals_OnToggle;
         toggleScores.OnToggle += ToggleScores_OnToggle;
+        togglePlot.OnToggle += TogglePlot_OnToggle;
 
         toggleTutorial.Untoggle();
         toggleFlows.Untoggle();
         toggleGoals.Untoggle();
         toggleScores.Untoggle();
+        togglePlot.Untoggle();
 
         scoreMainBar.OnValueChanged += ScoreMainBar_OnValueChanged;
     }
@@ -113,7 +119,15 @@ public class ModesController : MonoBehaviour
     {
         playersStatController.ToggleScoresMenu();
     }
-    
+
+    private void TogglePlot_OnToggle(ToggleButton btn, bool toggle)
+    {
+        if (toggle)
+            graphController.Show();
+        else
+            graphController.Hide();
+    }
+
     private void ScoreMainBar_OnValueChanged(CustomBarChart obj)
     {
         toggleScores.transform.position = obj.GetInBetweenPosition();

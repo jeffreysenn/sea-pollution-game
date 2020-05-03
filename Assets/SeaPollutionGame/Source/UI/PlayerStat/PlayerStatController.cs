@@ -109,12 +109,14 @@ public class PlayerStatController : MonoBehaviour
         txtCoinsValue.DOKill();
         Sequence flashingSequenceValue = Feedback.Instance.ErrorText(txtCoinsValue, defaultColorTxt);
 
+        /*
         txtCoinsTitle.DORestart();
         txtCoinsValue.DOKill();
         Sequence flashingSequenceTitle = Feedback.Instance.ErrorText(txtCoinsTitle, defaultColorTxt);
 
-        flashingSequenceValue.Play();
         flashingSequenceTitle.Play();
+        */
+        flashingSequenceValue.Play();
     }
 
     public void Show()

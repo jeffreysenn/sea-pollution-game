@@ -57,8 +57,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 9092245601583787529}
   _toggled: 0
-  offSprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
-  onSprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
+  offSprite: {fileID: 21300000, guid: 22701b049bf6b764cab93f5e7874299c, type: 3}
+  onSprite: {fileID: 21300000, guid: 0fb21d822e34294429287fac3e64fb27, type: 3}
   glow: {fileID: 4070375736122542137}
   audioSource: {fileID: 7583321508403075977}
   toggleOnClip: {fileID: 0}
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 55d4093e89ef9ca4c83b512b47df98cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 630a1205c4135be4d878889f2e2b3e94, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cbee1fffedba6af49be3a7367ee3cdbf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf9f4263f5f92a4e9f258f0651b82e3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3102b9391c2f2e43a52d00f4082af11, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -901,8 +901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 3775658500632045497}
   _toggled: 0
-  offSprite: {fileID: 21300000, guid: 2032695cdfebb164c866b18bea3ca3ae, type: 3}
-  onSprite: {fileID: 21300000, guid: 2032695cdfebb164c866b18bea3ca3ae, type: 3}
+  offSprite: {fileID: 21300000, guid: 4ee6ed5a40366f244b05eca70f0541dc, type: 3}
+  onSprite: {fileID: 21300000, guid: f2a570b10296b7a439475f30d6d0e880, type: 3}
   glow: {fileID: 3110843842339437258}
   audioSource: {fileID: 4300197667593871104}
   toggleOnClip: {fileID: 0}
@@ -1418,8 +1418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4333374139776853349}
   _toggled: 0
-  offSprite: {fileID: 21300000, guid: cbee1fffedba6af49be3a7367ee3cdbf, type: 3}
-  onSprite: {fileID: 21300000, guid: cbee1fffedba6af49be3a7367ee3cdbf, type: 3}
+  offSprite: {fileID: 21300000, guid: 6cf9f4263f5f92a4e9f258f0651b82e3, type: 3}
+  onSprite: {fileID: 21300000, guid: 8758ea5aec8580d41ac08f690ffc6e61, type: 3}
   glow: {fileID: 1322027390455621431}
   audioSource: {fileID: 6543167299762619536}
   toggleOnClip: {fileID: 8300000, guid: 3173c0d3e9aafc3469f93307b026110b, type: 3}
@@ -2110,8 +2110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 4333374140733927600}
   _toggled: 0
-  offSprite: {fileID: 21300000, guid: c6675a1f34e5d0d429b627f85c41b8df, type: 3}
-  onSprite: {fileID: 21300000, guid: c6675a1f34e5d0d429b627f85c41b8df, type: 3}
+  offSprite: {fileID: 21300000, guid: 7263b79ebe97fd54e84be6d67afeffbd, type: 3}
+  onSprite: {fileID: 21300000, guid: 3180bcbd1f510f34985ca7d257190be8, type: 3}
   glow: {fileID: 3699722175269558328}
   audioSource: {fileID: 8527477419774446902}
   toggleOnClip: {fileID: 8300000, guid: a865005edc11fc24680b5a0aff88a673, type: 3}
@@ -2356,7 +2356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c6675a1f34e5d0d429b627f85c41b8df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7263b79ebe97fd54e84be6d67afeffbd, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2423,12 +2423,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 3626890529153942930}
   _toggled: 0
-  offSprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
-  onSprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
+  offSprite: {fileID: 21300000, guid: f3102b9391c2f2e43a52d00f4082af11, type: 3}
+  onSprite: {fileID: 21300000, guid: d55c906fb9fa0f3408150755306d8e12, type: 3}
   glow: {fileID: 1140681599102257408}
   audioSource: {fileID: 2664313261556337341}
-  toggleOnClip: {fileID: 0}
-  toggleOffClip: {fileID: 0}
+  toggleOnClip: {fileID: 8300000, guid: 3173c0d3e9aafc3469f93307b026110b, type: 3}
+  toggleOffClip: {fileID: 8300000, guid: afd4818900a78944f857f223d4ad7829, type: 3}
   description: <b>Toggle</b> to show the progress charts.
 --- !u!222 &332008131669409639
 CanvasRenderer:
@@ -2456,7 +2456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3102b9391c2f2e43a52d00f4082af11, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2669,7 +2669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8148b544b125bd4ba47d9376d475b93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22701b049bf6b764cab93f5e7874299c, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2898,7 +2898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2032695cdfebb164c866b18bea3ca3ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ee6ed5a40366f244b05eca70f0541dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

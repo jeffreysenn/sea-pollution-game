@@ -7878,7 +7878,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is a short description of the category shown in th graph
+  m_text: This is a short description of the category shown in the graph
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ad00ed7a17dc88849bc0793b7c31d5d2, type: 2}
   m_sharedMaterial: {fileID: 8047378342722158959, guid: ad00ed7a17dc88849bc0793b7c31d5d2,
@@ -7924,7 +7924,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 56
+  m_firstOverflowCharacterIndex: 57
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7948,7 +7948,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 464729548}
-    characterCount: 61
+    characterCount: 62
     spriteCount: 0
     spaceCount: 11
     wordCount: 12
@@ -39338,7 +39338,7 @@ PrefabInstance:
     - target: {fileID: 5444773871417603561, guid: 6734efd8883672f4d8b609b4c97293be,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 90.43
       objectReference: {fileID: 0}
     - target: {fileID: 5444773871417603561, guid: 6734efd8883672f4d8b609b4c97293be,
         type: 3}

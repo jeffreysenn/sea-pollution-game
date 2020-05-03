@@ -8,9 +8,14 @@ public class DisasterEffectController : MonoBehaviour
     class DisasterEffect
     {
         public string title;
+        [Header("Sound")]
         public List<GameObject> sound;
+        [Header("Lights")]
         public List<GameObject> lights;
+        [Header("FX")]
         public List<GameObject> fx;
+        [Range(0f, 100f)]
+        public float minimalParticlePercentage = 0f;
     }
 
     class AudioSourceProcessed
@@ -75,7 +80,7 @@ public class DisasterEffectController : MonoBehaviour
 
                 foreach(GameObject g in de.fx)
                 {
-                    StartCoroutine(FadeOutFX(g));
+                    StartCoroutine(FadeOutFX(g, de.minimalParticlePercentage));
                 }
 
                 foreach (GameObject g in de.lights)
@@ -218,7 +223,7 @@ public class DisasterEffectController : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator FadeOutFX(GameObject go)
+    IEnumerator FadeOutFX(GameObject go, float minPercentage)
     {
         if(go.activeInHierarchy)
         {
@@ -226,11 +231,13 @@ public class DisasterEffectController : MonoBehaviour
 
             ParticleSystem.EmissionModule[] em = new ParticleSystem.EmissionModule[particleSystems.Length];
             float[] initialEmissions = new float[particleSystems.Length];
+            float[] minPercentageEmissions = new float[particleSystems.Length];
 
             for(int i = 0; i < particleSystems.Length; i++)
             {
                 em[i] = particleSystems[i].emission;
                 initialEmissions[i] = em[i].rateOverTime.constant;
+                minPercentageEmissions[i] = initialEmissions[i] * (minPercentage / 100f); 
 
                 ParticleSystemProcessed psp = new ParticleSystemProcessed();
                 psp.particleSystem = particleSystems[i];
@@ -246,21 +253,24 @@ public class DisasterEffectController : MonoBehaviour
 
                 for (int i = 0; i < particleSystems.Length; i++)
                 {
-                    em[i].rateOverTime = new ParticleSystem.MinMaxCurve(Mathf.Lerp(initialEmissions[i], 0f, (timer / fadeOutTimer)));
+                    em[i].rateOverTime = new ParticleSystem.MinMaxCurve(Mathf.Lerp(initialEmissions[i], minPercentageEmissions[i], (timer / fadeOutTimer)));
                 }
 
                 yield return null;
             }
 
+            if (minPercentage > 0f)
+                yield break;
+            
             bool allFinished = false;
 
-            while(!allFinished)
+            while (!allFinished)
             {
                 bool finished = true;
 
-                for(int i = 0; i < particleSystems.Length; i++)
+                for (int i = 0; i < particleSystems.Length; i++)
                 {
-                    if(particleSystems[i].particleCount > 0)
+                    if (particleSystems[i].particleCount > 0)
                     {
                         finished = false;
                         break;
@@ -271,11 +281,12 @@ public class DisasterEffectController : MonoBehaviour
 
                 yield return null;
             }
-
+            
+            
             // reset values
             ResetParticles();
         }
-
+        
         go.SetActive(false);
     }
 
@@ -300,7 +311,8 @@ public class DisasterEffectController : MonoBehaviour
 
     void OnNoDisaster()
     {
-        //DisableAllEffects();
+        ResetVolumes();
+        ResetParticles();
     }
 
     void DisableAllEffects()

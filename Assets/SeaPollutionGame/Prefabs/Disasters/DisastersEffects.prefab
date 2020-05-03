@@ -59,6 +59,7 @@ MonoBehaviour:
     fx:
     - {fileID: 4958002237631773355}
     - {fileID: 4958002237991139670}
+    minimalParticlePercentage: 0
   - title: Flood
     sound:
     - {fileID: 5368473683741363660}
@@ -71,6 +72,7 @@ MonoBehaviour:
     fx:
     - {fileID: 4958002237013328436}
     - {fileID: 4958002237268682484}
+    minimalParticlePercentage: 30
   - title: Drought
     sound:
     - {fileID: 5368473683746558996}
@@ -84,6 +86,7 @@ MonoBehaviour:
     fx:
     - {fileID: 4958002237446779626}
     - {fileID: 4958002238015773835}
+    minimalParticlePercentage: 0
   fadeInTimer: 1
   fadeOutTimer: 3
 --- !u!1001 &467086628857560566

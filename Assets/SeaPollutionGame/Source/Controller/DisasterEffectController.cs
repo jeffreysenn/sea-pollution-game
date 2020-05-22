@@ -166,6 +166,11 @@ public class DisasterEffectController : MonoBehaviour
                 yield return null;
             }
         }
+
+        if(!disasterManager.transitionEnabled)
+        {
+            CameraManager_OnStateChanged(CameraManager.State.GAME);
+        }
     }
 
     IEnumerator FadeOutSound(GameObject go)

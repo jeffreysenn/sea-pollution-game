@@ -113,4 +113,12 @@ public class UIManager : MonoBehaviour
         flagMenu.OnStart -= FlagMenu_OnStart;
         flagMenu.Hide();
     }
+
+    public void ChangeVolume(float value)
+    {
+        if (value < 0f && value > 1f) return;
+
+        AudioListener.volume = value;
+    }
+    public float GetVolume() { return AudioListener.volume; }
 }

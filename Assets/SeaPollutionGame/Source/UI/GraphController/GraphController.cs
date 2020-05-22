@@ -217,7 +217,6 @@ public class GraphController : MonoBehaviour
             {
                 if (disastersHistory.ContainsKey(i) && disastersHistory[i] != null && !disasterInstantied.Contains(i))
                 {
-                    Debug.Log("ADD LINE " + i);
                     GameObject newLine = Instantiate(disasterLinePrefab, disasterTransform);
 
                     RectTransform lineTransform = newLine.GetComponent<RectTransform>();

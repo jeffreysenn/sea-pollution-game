@@ -38,6 +38,8 @@ public class DisasterManager : MonoBehaviour
 
     private Material skyboxTexture = null;
 
+    public bool transitionEnabled = true;
+
     public void SetDisasters(Disaster[] arr)
     {
         disasters = new Disaster[arr.Length];
@@ -102,7 +104,8 @@ public class DisasterManager : MonoBehaviour
             }
         }
 
-        cameraManager.SetState(CameraManager.State.CINEMA);
+        if(transitionEnabled)
+            cameraManager.SetState(CameraManager.State.CINEMA);
 
         //change skybox
         foreach(DisasterSkybox ds in disasterSkyboxes)

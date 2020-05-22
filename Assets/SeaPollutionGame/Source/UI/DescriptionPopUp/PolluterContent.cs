@@ -10,6 +10,11 @@ public class PolluterContent : PopUpPieChartContent
     public GameObject objectPieChart = null;
 
     public WorldWindow worldWindow { get; set; }
+    
+    [SerializeField]
+    private SideTextController sideTextController = null;
+    [SerializeField]
+    private HealthBar healthBar = null;
 
     [SerializeField]
     private TextMeshProUGUI textTitle = null;
@@ -82,7 +87,9 @@ public class PolluterContent : PopUpPieChartContent
         bool check = CheckPolluter(attrib, purchasableIcon.polluterId);
 
         purchaseCheck = check;
-        
+
+        healthBar.Hide();
+
         return check;
     }
 
@@ -93,6 +100,8 @@ public class PolluterContent : PopUpPieChartContent
         bool check = CheckPolluter(attrib, polluterIcon.polluterId);
 
         iconCheck = check;
+
+        healthBar.Hide();
 
         return check;
     }
@@ -153,6 +162,9 @@ public class PolluterContent : PopUpPieChartContent
 
 
             SetPieChart(pieChart, map);
+
+            healthBar.SetValuePercentage(polluter.GetHealthComp().GetHealth());
+            healthBar.Show();
 
             return check;
         }
@@ -314,6 +326,9 @@ public class PolluterContent : PopUpPieChartContent
                 recyclerIcon.SetText(id.ToString());
                 recyclerIcon.gameObject.SetActive(true);
             }
+
+            //text
+            sideTextController.SetTemporaryText(polluterAttrib.title);
         }
 
         return hasFoundData;
@@ -329,6 +344,14 @@ public class PolluterContent : PopUpPieChartContent
         }
 
         base.ShowPopup();
+    }
+
+    public override void HidePopup(bool instant = false)
+    {
+        base.HidePopup(instant);
+
+        //text
+        sideTextController.ResetTemporaryText();
     }
 
     public void FeedbackCoins()

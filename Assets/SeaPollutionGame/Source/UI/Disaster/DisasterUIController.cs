@@ -36,6 +36,9 @@ public class DisasterUIController : MonoBehaviour
     private WorldWindow worldWindow = null;
 
     [SerializeField]
+    private SideTextController sideTextController = null;
+
+    [SerializeField]
     private float tweenDuration = 0.25f;
     [SerializeField]
     private Ease tweenEase = Ease.Flash;
@@ -60,6 +63,7 @@ public class DisasterUIController : MonoBehaviour
         {
             Disaster tempDefaultDisaster = new Disaster();
             tempDefaultDisaster.clipTitle = defaultVideoClip;
+            tempDefaultDisaster.title = defaultContent.disasterIcon.GetTitle();
             defaultContent.disasterIcon.SetDisaster(tempDefaultDisaster);
         }
 
@@ -95,6 +99,8 @@ public class DisasterUIController : MonoBehaviour
         currentContentShown = content;
 
         worldWindow.videoLoader.LoadVideo(content.disasterIcon.GetDisaster().clipTitle);
+
+        sideTextController.SetText(content.disasterIcon.GetTitle(), content.disasterIcon.GetDescription());
     }
 
     private void HideContent(DisasterContent content)

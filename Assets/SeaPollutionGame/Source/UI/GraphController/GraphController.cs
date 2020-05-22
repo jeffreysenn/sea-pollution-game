@@ -26,6 +26,13 @@ public class GraphController : MonoBehaviour
     [SerializeField]
     private GraphChart graph = null;
 
+    [Header("Disaster")]
+    [SerializeField]
+    private RectTransform disasterTransform = null;
+    [SerializeField]
+    private GameObject disasterLinePrefab = null;
+    private List<GameObject> disasterLines = new List<GameObject>();
+
     [Header("Dropdown")]
     [SerializeField]
     private List<StringBlackboard> dropDownValues = new List<StringBlackboard>();
@@ -54,14 +61,20 @@ public class GraphController : MonoBehaviour
     private Vector2 hoverOffset = Vector2.zero;
     
     private WorldStateManager worldStateManager = null;
+    private DisasterManager disasterManager = null;
+
     private Dictionary<int, StateHistory> histories = new Dictionary<int, StateHistory> { };
+    private Dictionary<int, Disaster> disastersHistory = new Dictionary<int, Disaster>();
+    private int totalTurnCount = 0;
 
     private void Start()
     {
         HideDirect();
         HideDirectItem();
 
-        worldStateManager = FindObjectOfType<WorldStateManager>();
+        worldStateManager = UIManager.Instance.worldStateManager;
+        disasterManager = UIManager.Instance.disasterManager;
+        totalTurnCount = worldStateManager.GetRemainingTurnCount();
 
         dropDownImageDefault = dropDown.image.sprite;
 
@@ -72,6 +85,9 @@ public class GraphController : MonoBehaviour
 
         worldStateManager.GetEndTurnEvent().AddListener(OnEndTurn);
         dropDown.onValueChanged.AddListener(OnDropdownChanged);
+
+        disasterManager.AddDisasterEventListener(OnDisaster);
+        disasterManager.AddNoDisasterEventListener(OnNoDisaster);
     }
 
     private void Update()
@@ -129,6 +145,16 @@ public class GraphController : MonoBehaviour
         }
     }
 
+    private void OnDisaster(Disaster d)
+    {
+        disastersHistory.Add(totalTurnCount - worldStateManager.GetRemainingTurnCount(), d);
+    }
+
+    private void OnNoDisaster()
+    {
+        disastersHistory.Add(totalTurnCount - worldStateManager.GetRemainingTurnCount(), null);
+    }
+
     public void SetStateHistory(int id, StateHistory history) { histories[id] = history; }
 
     public void Plot(PlayerStateBlackboard.Key key)
@@ -158,15 +184,55 @@ public class GraphController : MonoBehaviour
         foreach (var playerID in pids)
         {
             var category = "Player " + playerID.ToString();
+
             graph.DataSource.ClearCategory(category);
-            var balckboard = worldStateManager.GetStateHistory(playerID);
-            for (int i = 0; i != balckboard.Count; ++i)
+
+            var blackboard = worldStateManager.GetStateHistory(playerID);
+
+            for (int i = 0; i != blackboard.Count; ++i)
             {
-                float val = getValueFuc.Invoke(balckboard[i]);
+                float val = getValueFuc.Invoke(blackboard[i]);
+
                 graph.DataSource.AddPointToCategory(category, i + 1, val);
             }
         }
         graph.DataSource.EndBatch();
+
+        //clear already existing lines
+        foreach(Transform child in disasterTransform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        disasterLines = new List<GameObject>();
+        List<int> disasterInstantied = new List<int>();
+
+        //add lines
+        foreach (var playerID in pids)
+        {
+            var category = "Player " + playerID.ToString();
+            var blackboard = worldStateManager.GetStateHistory(playerID);
+
+            for (int i = 0; i != blackboard.Count; ++i)
+            {
+                if (disastersHistory.ContainsKey(i) && disastersHistory[i] != null && !disasterInstantied.Contains(i))
+                {
+                    Debug.Log("ADD LINE " + i);
+                    GameObject newLine = Instantiate(disasterLinePrefab, disasterTransform);
+
+                    RectTransform lineTransform = newLine.GetComponent<RectTransform>();
+
+                    ChartAndGraph.DoubleVector3 point = graph.DataSource.GetPoint(category, i);
+                    Vector3 pos = Vector3.zero;
+                    graph.PointToWorldSpace(out pos, point.x, point.y);
+
+                    lineTransform.position = new Vector3(pos.x, lineTransform.position.y, lineTransform.position.z);
+
+                    disasterLines.Add(newLine);
+                    disasterInstantied.Add(i);
+                }
+            }
+        }
     }
 
     public void Show()

@@ -46,6 +46,8 @@ public class DisasterManager : MonoBehaviour
         System.Array.Copy(arr, disasters, arr.Length);
     }
 
+    public Disaster[] GetDisasters() { return disasters; }
+
     public void AddDisasterEventListener(UnityAction<Disaster> action) { disasterEvent.AddListener(action); }
     public void AddNoDisasterEventListener(UnityAction action) { noDisasterEvent.AddListener(action); }
 

@@ -70,6 +70,11 @@ public class UIManager : MonoBehaviour
 
     public static UIManager Instance { get { return _instance; } }
 
+    [SerializeField]
+    private bool recordingDebug = false;
+    [SerializeField]
+    private int disasterDebug = 0;
+
 
     private void Awake()
     {
@@ -96,6 +101,30 @@ public class UIManager : MonoBehaviour
         {
             flagMenu.OnStart += FlagMenu_OnStart;
             flagMenu.Show();
+        }
+    }
+    
+    private void Update()
+    {
+        if(recordingDebug)
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Disaster[] disasters = disasterManager.GetDisasters();
+                foreach(Disaster d in disasters)
+                {
+                    d.chancePerTurn = 0;
+                }
+                Debug.Log("DEBUG UIManager: all disasters at 0");
+            }
+
+            if(Input.GetKeyDown(KeyCode.T))
+            {
+                Disaster[] disasters = disasterManager.GetDisasters();
+                disasters[disasterDebug].chancePerTurn = 1;
+
+                Debug.Log("DEBUG UIManager: " + disasters[disasterDebug].title + " at 1");
+            }
         }
     }
 

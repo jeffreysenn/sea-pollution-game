@@ -120,7 +120,10 @@ public class PurchaseMenuController : MonoBehaviour
                 purchasableIcon.OnBuy += PurchasableIcon_OnBuy;
             }
         }
-        
+
+        recyclersButton.onClick.AddListener(ShowRecyclers);
+        filtersButton.onClick.AddListener(ShowFilters);
+        factoriesButton.onClick.AddListener(ShowFactories);
     }
 
     private void PurchasableIcon_OnBuy(PurchasableIcon icon, bool success)
@@ -135,8 +138,7 @@ public class PurchaseMenuController : MonoBehaviour
     {
         HideFilters();
         HideRecyclers();
-
-        factoriesButton.onClick.RemoveListener(ShowFactories);
+        
         factoriesButton.interactable = false;
         factoriesScrollRect.gameObject.SetActive(true);
     }
@@ -145,8 +147,7 @@ public class PurchaseMenuController : MonoBehaviour
     {
         HideFactories();
         HideRecyclers();
-
-        filtersButton.onClick.RemoveListener(ShowFilters);
+        
         filtersButton.interactable = false;
         filtersScrollRect.gameObject.SetActive(true);
     }
@@ -155,8 +156,7 @@ public class PurchaseMenuController : MonoBehaviour
     {
         HideFactories();
         HideFilters();
-
-        recyclersButton.onClick.RemoveListener(HideRecyclers);
+        
         recyclersButton.interactable = false;
         recyclersScrollRect.gameObject.SetActive(true);
     }
@@ -167,7 +167,6 @@ public class PurchaseMenuController : MonoBehaviour
         factoriesScrollRect.gameObject.SetActive(false);
 
         factoriesButton.interactable = true;
-        factoriesButton.onClick.AddListener(ShowFactories);
     }
 
     public void HideFilters()
@@ -176,7 +175,6 @@ public class PurchaseMenuController : MonoBehaviour
         filtersScrollRect.gameObject.SetActive(false);
 
         filtersButton.interactable = true;
-        filtersButton.onClick.AddListener(ShowFilters);
     }
 
     public void HideRecyclers()
@@ -184,6 +182,5 @@ public class PurchaseMenuController : MonoBehaviour
         recyclersScrollRect.gameObject.SetActive(false);
 
         recyclersButton.interactable = true;
-        recyclersButton.onClick.AddListener(ShowRecyclers);
     }
 }

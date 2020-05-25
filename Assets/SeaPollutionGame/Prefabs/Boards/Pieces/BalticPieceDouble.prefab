@@ -8649,6 +8649,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 1951944751345616889, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2533029439806868688, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
         type: 3}
       propertyPath: m_TagString
@@ -8819,6 +8824,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BalticPieceDouble
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634286284892081334, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
+        type: 3}
+      propertyPath: m_text
+      value: O
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634286284892081334, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634286284892081334, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634286284892081334, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634286284892081334, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5710271202787285173, guid: 1a82ead50ff52de4eb06cdcfee6d3be4,
         type: 3}

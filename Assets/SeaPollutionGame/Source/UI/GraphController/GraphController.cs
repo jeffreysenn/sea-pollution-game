@@ -220,6 +220,8 @@ public class GraphController : MonoBehaviour
                     GameObject newLine = Instantiate(disasterLinePrefab, disasterTransform);
 
                     RectTransform lineTransform = newLine.GetComponent<RectTransform>();
+                    TextMeshProUGUI lineText = lineTransform.GetComponentInChildren<TextMeshProUGUI>();
+                    lineText.text = disastersHistory[i].title;
 
                     ChartAndGraph.DoubleVector3 point = graph.DataSource.GetPoint(category, i);
                     Vector3 pos = Vector3.zero;

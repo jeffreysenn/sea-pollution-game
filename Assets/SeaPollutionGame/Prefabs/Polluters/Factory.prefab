@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityType: 1
-  idTextMesh: {fileID: 3410016740944583803}
+  idTextMesh: {fileID: 1086169217479748964}
   health: {fileID: 4956792780016032363}
   flareObject: {fileID: 4956842693957663384}
   onDeathColor: {r: 1, g: 0.8392157, b: 0, a: 1}
@@ -30,6 +30,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1342347520418191852, guid: e14f444f41f0bf64881969daf314487c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1726586378744919742, guid: e14f444f41f0bf64881969daf314487c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -105,6 +110,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8219182706642086088, guid: e14f444f41f0bf64881969daf314487c,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219182706642086088, guid: e14f444f41f0bf64881969daf314487c,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219182706642086088, guid: e14f444f41f0bf64881969daf314487c,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219182706642086088, guid: e14f444f41f0bf64881969daf314487c,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14f444f41f0bf64881969daf314487c, type: 3}
 --- !u!1 &1961929602711300829 stripped
@@ -131,12 +156,18 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 9007971360486933932}
   m_PrefabAsset: {fileID: 0}
---- !u!102 &3410016740944583803 stripped
-TextMesh:
-  m_CorrespondingSourceObject: {fileID: 5931361729791678935, guid: e14f444f41f0bf64881969daf314487c,
+--- !u!114 &1086169217479748964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8219182706642086088, guid: e14f444f41f0bf64881969daf314487c,
     type: 3}
   m_PrefabInstance: {fileID: 9007971360486933932}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4956842693957663384 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4163718674804473652, guid: e14f444f41f0bf64881969daf314487c,

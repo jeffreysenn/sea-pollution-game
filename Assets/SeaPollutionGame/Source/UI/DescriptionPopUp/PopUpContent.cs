@@ -17,6 +17,11 @@ public abstract class PopUpContent : MonoBehaviour
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
+    public void SetStickyPosition(Vector3 pos)
+    {
+
+    }
+
     public virtual void ShowPopup()
     {
         if (!isShown)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public enum EntityType
 {
@@ -24,7 +25,7 @@ public class Polluter : MonoBehaviour
     [SerializeField]
     private EntityType entityType = EntityType.NONE;
     [SerializeField]
-    private TextMesh idTextMesh = null;
+    private TextMeshPro idTextMesh = null;
     [Header("Death")]
     [SerializeField]
     private Health health = null;
@@ -89,7 +90,7 @@ public class Polluter : MonoBehaviour
     public PolluterAttrib GetAttrib() { return polluterAttrib; }
 
     public void SetIdText(string s) { idTextMesh.text = s; }
-    public TextMesh GetIdTextMesh() { return idTextMesh; }
+    public TextMeshPro GetIdTextMesh() { return idTextMesh; }
     public Health GetHealthComp() { return health; }
     public virtual void Operate(PollutionMap input)
     {

@@ -16,6 +16,9 @@ MonoBehaviour:
   idTextMesh: {fileID: 1086169217479748964}
   health: {fileID: 4956792780016032363}
   flareObject: {fileID: 4956842693957663384}
+  flareRenderers:
+  - {fileID: 1260582735587003675}
+  - {fileID: 1260582735603556802}
   onDeathColor: {r: 1, g: 0.8392157, b: 0, a: 1}
   onDeathMaterial: {fileID: 2100000, guid: 74eeea78dbb440240a1429904d192f5f, type: 2}
   meshRenderer: {fileID: 7706977345653519122}
@@ -171,6 +174,18 @@ MonoBehaviour:
 --- !u!1 &4956842693957663384 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4163718674804473652, guid: e14f444f41f0bf64881969daf314487c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9007971360486933932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1260582735587003675 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7817337906062690487, guid: e14f444f41f0bf64881969daf314487c,
+    type: 3}
+  m_PrefabInstance: {fileID: 9007971360486933932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1260582735603556802 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7817337906079769710, guid: e14f444f41f0bf64881969daf314487c,
     type: 3}
   m_PrefabInstance: {fileID: 9007971360486933932}
   m_PrefabAsset: {fileID: 0}

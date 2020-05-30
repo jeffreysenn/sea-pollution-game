@@ -7,6 +7,7 @@ using System;
 public class Health : MonoBehaviour
 {
     public event Action<Disaster> OnDeathFrom;
+    public event Action<float> OnHealthModified;
     float hp = 100;
 
     public void AddHealth(float dh, Disaster from = null) { 
@@ -15,6 +16,7 @@ public class Health : MonoBehaviour
         else if(hp <= 0) {
             OnDeathFrom?.Invoke(from);
         }
+        OnHealthModified?.Invoke(hp);
     }
 
     public float GetHealth() { return hp; }

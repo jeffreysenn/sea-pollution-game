@@ -30,7 +30,7 @@ public class Polluter : MonoBehaviour
     [SerializeField]
     private Health health = null;
     [SerializeField]
-    private GameObject flareObject = null;
+    private List<Renderer> flareRenderers = new List<Renderer>();
     [SerializeField]
     private Color onDeathColor = Color.red;
     [SerializeField]
@@ -45,6 +45,10 @@ public class Polluter : MonoBehaviour
     private bool isDead = false;
 
     private PolluterAttrib polluterAttrib = null;
+
+    private Dictionary<Renderer, MaterialPropertyBlock> rendererMaterialPropertyBlocks = new Dictionary<Renderer, MaterialPropertyBlock>();
+    private Dictionary<MaterialPropertyBlock, float> materialPropertyBlocks = new Dictionary<MaterialPropertyBlock, float>();
+    private float maxHealth = 0f;
 
     private float profit = 0;
     private PollutionMap pollutionMap = new PollutionMap { };
@@ -138,10 +142,8 @@ public class Polluter : MonoBehaviour
         if(!isDead)
         {
             Mulfunction();
-
-            //meshRenderer.material.SetColor("_Color", onDeathColor);
+            
             meshRenderer.material = onDeathMaterial;
-            flareObject.SetActive(true);
             idTextMesh.color = onDeathTextColor;
 
             if (from != null)
@@ -160,16 +162,44 @@ public class Polluter : MonoBehaviour
             isDead = true;
         }
     }
+    
+    private void Health_OnHealthModified(float value)
+    {
+        float ratio = maxHealth / value;
+
+        foreach(Renderer renderer in rendererMaterialPropertyBlocks.Keys)
+        {
+            MaterialPropertyBlock materialPropertyBlock = rendererMaterialPropertyBlocks[renderer];
+
+            Color color = materialPropertyBlock.GetColor("_TintColor");
+            float maxAlpha = materialPropertyBlocks[materialPropertyBlock];
+
+            materialPropertyBlock.SetColor("_TintColor", new Color(color.r, color.g, color.b, maxAlpha - maxAlpha / ratio));
+            renderer.SetPropertyBlock(materialPropertyBlock);
+        }
+    }
 
     protected void Awake()
     {
-        flareObject.SetActive(false);
-
         foreach (DeathEffect de in deathEffects)
             de.effectObject.SetActive(false);
 
-        //health.AddDeathEventListener(OnDeath);
+        foreach(Renderer renderer in flareRenderers)
+        {
+            MaterialPropertyBlock temp = new MaterialPropertyBlock();
+            Color initialColor = renderer.material.GetColor("_TintColor");
+
+            temp.SetColor("_TintColor", new Color(initialColor.r, initialColor.g, initialColor.b, 0f));
+
+            materialPropertyBlocks.Add(temp, initialColor.a);
+            rendererMaterialPropertyBlocks.Add(renderer, temp);
+
+            renderer.SetPropertyBlock(temp);
+        }
+        
         health.OnDeathFrom += OnDeath;
+        health.OnHealthModified += Health_OnHealthModified;
+        maxHealth = health.GetHealth();
     }
 
     public virtual void Mulfunction()

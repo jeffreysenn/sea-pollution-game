@@ -229,6 +229,13 @@ public class GraphController : MonoBehaviour
 
                     lineTransform.position = new Vector3(pos.x, lineTransform.position.y, lineTransform.position.z);
 
+                    //size
+                    Vector3 nextPos = Vector3.zero;
+                    graph.PointToWorldSpace(out nextPos, point.x + 1, point.y);
+                    Debug.Log(nextPos.x + " " + pos.x + " " + (nextPos.x - pos.x));
+
+                    lineTransform.sizeDelta = new Vector2((nextPos.x - pos.x) * 2.275f, lineTransform.sizeDelta.y);
+
                     disasterLines.Add(newLine);
                     disasterInstantied.Add(i);
                 }

@@ -232,9 +232,15 @@ public class GraphController : MonoBehaviour
                     //size
                     Vector3 nextPos = Vector3.zero;
                     graph.PointToWorldSpace(out nextPos, point.x + 1, point.y);
-                    Debug.Log(nextPos.x + " " + pos.x + " " + (nextPos.x - pos.x));
 
-                    lineTransform.sizeDelta = new Vector2((nextPos.x - pos.x) * 2.275f, lineTransform.sizeDelta.y);
+                    GameObject nextLineMarker = Instantiate(disasterLinePrefab, disasterTransform);
+                    RectTransform nextLineTransform = nextLineMarker.GetComponent<RectTransform>();
+                    nextLineTransform.position = new Vector3(nextPos.x, nextLineTransform.position.y, nextLineTransform.position.z);
+
+                    //Debug.Log(nextPos.x + " " + pos.x + " = " + (nextPos.x - pos.x));
+
+
+                    lineTransform.sizeDelta = new Vector2((nextLineTransform.anchoredPosition.x - lineTransform.anchoredPosition.x), lineTransform.sizeDelta.y);
 
                     disasterLines.Add(newLine);
                     disasterInstantied.Add(i);

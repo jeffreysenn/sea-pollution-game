@@ -90,6 +90,8 @@ public class PolluterContent : PopUpPieChartContent
 
         healthBar.Hide();
 
+        imageIsDisaster = false;
+
         return check;
     }
 
@@ -102,6 +104,8 @@ public class PolluterContent : PopUpPieChartContent
         iconCheck = check;
 
         healthBar.Hide();
+
+        imageIsDisaster = false;
 
         return check;
     }

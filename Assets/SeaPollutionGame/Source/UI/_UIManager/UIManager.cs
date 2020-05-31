@@ -57,6 +57,10 @@ public class UIManager : MonoBehaviour
     private CameraManager _cameraManager = null;
     public CameraManager cameraManager { get { return _cameraManager; } }
 
+    [SerializeField]
+    private CursorController _cursorController = null;
+    public CursorController cursorController { get { return _cursorController; } }
+
     [Header("Introduction sequence")]
     [SerializeField]
     private bool startWithHowToPlay = true;

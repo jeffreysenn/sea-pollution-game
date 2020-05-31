@@ -54,6 +54,7 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     public void SetSpace(GameObject s) { spaceForPolluter = s; }
 
     public PlayerController playerController { get; set; }
+    private Vector3 grabOffset = Vector3.zero;
 
     public void SetPolluterAttributes(PolluterAttrib attrib)
     {
@@ -80,6 +81,8 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     {
         if(isInteractible)
         {
+            grabOffset = UIManager.Instance.cursorController.GetGrabOffset();
+
             OnDrag?.Invoke();
 
             audioSource.PlayOneShot(startDragClip);
@@ -97,7 +100,7 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
     {
         if(isInteractible)
         {
-            transform.position = Input.mousePosition;
+            transform.position = Input.mousePosition + grabOffset;
 
             /*
             if(Input.GetButtonDown("Fire2")) {

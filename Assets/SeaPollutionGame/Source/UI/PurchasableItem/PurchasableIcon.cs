@@ -44,9 +44,12 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnter
 
     public event Action<PurchasableIcon, bool> OnBuy;
 
+    private Vector3 grabOffset = Vector3.zero;
+
     private void Start()
     {
         worldStateManager = FindObjectOfType<WorldStateManager>();
+        grabOffset = UIManager.Instance.cursorController.GetGrabOffset();
     }
 
     private void InstantiatePolluterIcon()
@@ -66,7 +69,7 @@ public class PurchasableIcon : MonoBehaviour, IPointerDownHandler, IPointerEnter
         newIcon.OnDrag += NewIcon_OnDrag;
         newIcon.OnRelease += NewIcon_OnRelease;
 
-        newIcon.transform.position = Input.mousePosition;
+        newIcon.transform.position = Input.mousePosition + grabOffset;
 
         newIcon.SetPolluterAttributes(polluterAttrib);
         newIcon.SetSpace(spaceForPolluter);

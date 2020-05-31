@@ -8,6 +8,16 @@ using System;
 
 public class FlagMenu : MonoBehaviour
 {
+    [System.Serializable]
+    class DifficultySetting
+    {
+        public string title = "";
+        [Range(0f, 1f)]
+        public float frequency = 0.1f;
+        public bool defaultSetting = false;
+    }
+
+    [Header("Flags")]
     [SerializeField]
     private List<FlagIcon> flagsPrefab = null;
     [SerializeField]
@@ -20,31 +30,53 @@ public class FlagMenu : MonoBehaviour
     [SerializeField]
     private GameObject countrySelected = null;
 
+    [Header("Tween")]
     [SerializeField]
     private float tweenDuration = 0.5f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
 
+    [Header("Difficulty")]
+    [SerializeField]
+    private Slider difficultySlider = null;
+    [SerializeField]
+    private TextMeshProUGUI difficultyText = null;
+    [SerializeField]
+    private List<DifficultySetting> difficultySettings = new List<DifficultySetting>();
+
     private List<FlagIcon> flags = null;
     private FlagIcon flagSelected = null;
+    private DisasterManager disasterManager = null;
 
     public event Action<CountryType> OnStart;
 
     private void Start()
     {
         countrySelected.SetActive(false);
+        disasterManager = UIManager.Instance.disasterManager;
 
         GenerateFlags();
 
         btnStart.onClick.AddListener(BtnStart_OnClick);
         btnStart.interactable = false;
 
-        //Show();
+        difficultySlider.maxValue = difficultySettings.Count - 1;
+        for (int i = 0; i < difficultySettings.Count; i++)
+        {
+            if (difficultySettings[i].defaultSetting)
+            {
+                difficultySlider.value = i;
+                break;
+            }
+        }
+        difficultySlider.onValueChanged.AddListener(DifficultySlider_OnValueChanged);
     }
 
     private void OnDestroy()
     {
         btnStart.onClick.RemoveListener(BtnStart_OnClick);
+        difficultySlider.onValueChanged.RemoveListener(DifficultySlider_OnValueChanged);
+
         foreach(FlagIcon icon in flags)
         {
             icon.OnClick -= FlagIcon_OnClick;
@@ -109,6 +141,20 @@ public class FlagMenu : MonoBehaviour
             OnStart?.Invoke(GetSelectedFlag());
         }
 
+    }
+
+    private void DifficultySlider_OnValueChanged(float value)
+    {
+        int index = Mathf.RoundToInt(value);
+
+        DifficultySetting difficultySetting = difficultySettings[index];
+
+        foreach(Disaster d in disasterManager.GetDisasters())
+        {
+            d.chancePerTurn = difficultySetting.frequency;
+        }
+
+        difficultyText.text = difficultySetting.title;
     }
 
     public CountryType GetSelectedFlag() {

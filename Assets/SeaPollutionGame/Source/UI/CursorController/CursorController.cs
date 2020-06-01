@@ -13,6 +13,8 @@ public class CursorController : MonoBehaviour
 
     [Header("Textures")]
     [SerializeField]
+    private Texture2D cursorDefault = null;
+    [SerializeField]
     private Texture2D cursorOnClick = null;
     [SerializeField]
     private Texture2D cursorOnGrab = null;
@@ -21,7 +23,13 @@ public class CursorController : MonoBehaviour
 
     private bool isGrabbing = false;
     private bool isClicking = false;
-    
+    private CursorMode cursorMode = CursorMode.Auto;
+
+    private void Awake()
+    {
+        Cursor.SetCursor(cursorDefault, hotSpot, cursorMode);
+    }
+
     void Start()
     {
         playerController = UIManager.Instance.playerController;
@@ -31,17 +39,17 @@ public class CursorController : MonoBehaviour
     {
         if (!isGrabbing && playerController.GetState() == PlayerController.State.HOLDING)
         {
-            Cursor.SetCursor(cursorOnGrab, hotSpot, CursorMode.ForceSoftware);
+            Cursor.SetCursor(cursorOnGrab, hotSpot, cursorMode);
             isGrabbing = true;
         } else if (!isClicking && Input.GetMouseButton(0))
         {
-            Cursor.SetCursor(cursorOnClick, hotSpot, CursorMode.ForceSoftware);
+            Cursor.SetCursor(cursorOnClick, hotSpot, cursorMode);
             isClicking = true;
         }
         
         if (Input.GetMouseButtonUp(0))
         {
-            Cursor.SetCursor(null, hotSpot, CursorMode.ForceSoftware);
+            Cursor.SetCursor(cursorDefault, hotSpot, cursorMode);
             isGrabbing = false;
             isClicking = false;
         }

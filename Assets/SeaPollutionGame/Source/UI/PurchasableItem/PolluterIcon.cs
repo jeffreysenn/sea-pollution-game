@@ -114,7 +114,7 @@ public class PolluterIcon : MonoBehaviour //, IPointerClickHandler
                 GraphicRaycaster graphicRaycaster = GetComponent<GraphicRaycaster>();
                 EventSystem eventSystem = EventSystem.current;
                 PointerEventData pointerEventData = new PointerEventData(eventSystem);
-                pointerEventData.position = Input.mousePosition;
+                pointerEventData.position = Input.mousePosition + grabOffset;
                 List<RaycastResult> graphicResults = new List<RaycastResult>();
                 graphicRaycaster.Raycast(pointerEventData, graphicResults);
 

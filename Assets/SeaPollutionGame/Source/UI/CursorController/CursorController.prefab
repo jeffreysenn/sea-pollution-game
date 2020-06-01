@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4264cfaf45acad4098fb103be7deba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotSpot: {x: 20, y: 10}
-  grabOffset: {x: 0, y: 0}
-  cursorOnClick: {fileID: 2800000, guid: 6d503ec16a7dc6042bdf0599a8a056a5, type: 3}
-  cursorOnGrab: {fileID: 2800000, guid: 2e545b612e160f74eb10df51f7cd21a4, type: 3}
+  hotSpot: {x: 10, y: 5}
+  grabOffset: {x: 0, y: -2.5}
+  cursorDefault: {fileID: 2800000, guid: 13613301707b00c428cf3459b19b4656, type: 3}
+  cursorOnClick: {fileID: 2800000, guid: ef7daf45d585cf64e9601d03bfaf5888, type: 3}
+  cursorOnGrab: {fileID: 2800000, guid: 3a1eba1d91b6d644fb0097bc96d21b2b, type: 3}

@@ -31,17 +31,17 @@ public class CursorController : MonoBehaviour
     {
         if (!isGrabbing && playerController.GetState() == PlayerController.State.HOLDING)
         {
-            Cursor.SetCursor(cursorOnGrab, hotSpot, CursorMode.Auto);
+            Cursor.SetCursor(cursorOnGrab, hotSpot, CursorMode.ForceSoftware);
             isGrabbing = true;
         } else if (!isClicking && Input.GetMouseButton(0))
         {
-            Cursor.SetCursor(cursorOnClick, hotSpot, CursorMode.Auto);
+            Cursor.SetCursor(cursorOnClick, hotSpot, CursorMode.ForceSoftware);
             isClicking = true;
         }
         
         if (Input.GetMouseButtonUp(0))
         {
-            Cursor.SetCursor(null, hotSpot, CursorMode.Auto);
+            Cursor.SetCursor(null, hotSpot, CursorMode.ForceSoftware);
             isGrabbing = false;
             isClicking = false;
         }

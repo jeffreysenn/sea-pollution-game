@@ -166,9 +166,8 @@ public class PolluterContent : PopUpPieChartContent
 
 
             SetPieChart(pieChart, map);
-
-            healthBar.SetValuePercentage(polluter.GetHealthComp().GetHealth());
-            healthBar.Show();
+            
+            healthBar.Show(polluter.GetHealthComp());
 
             return check;
         }

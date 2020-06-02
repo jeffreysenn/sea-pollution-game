@@ -87,6 +87,19 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    public bool TryRepair(Polluter polluter)
+    {
+        if (CanRepair(polluter))
+        {
+            var playerState = stateManager.GetCurrentPlayerState();
+            playerState.AddMoney(-GetRepairCost(polluter));
+            var healthComp = polluter.GetComponentInChildren<Health>();
+            healthComp.Recover();
+            return true;
+        }
+        return false;
+    }
+
     private void Start()
     {
         stateManager = FindObjectOfType<WorldStateManager>();
@@ -122,7 +135,7 @@ public class PlayerController : MonoBehaviour
                         if (Input.GetButtonDown("Fire2"))
                         {
                             var hitSpace = GetMouseHitComp<Space>();
-                            if (hitSpace) { TryRemove(hitSpace); }
+                            if (hitSpace) { TryRepair(hitSpace.GetPolluter()); }
                         }
                     }
                 }
@@ -158,6 +171,32 @@ public class PlayerController : MonoBehaviour
             && polluter.GetAttrib().economicAttrib.removalCost <= stateManager.GetCurrentPlayerState().GetMoney())
         {
             return true;
+        }
+        return false;
+    }
+
+    public float GetRepairCost(Polluter polluter)
+    {
+        var healthComp = polluter.GetComponentInChildren<Health>();
+        var economicAttrib = polluter.GetAttrib().economicAttrib;
+        var extraRatio = economicAttrib.repairExtraRatio;
+        var lostHealthRatio = 1 - healthComp.GetHealthPercent();
+        var repairCost = (lostHealthRatio + extraRatio) * economicAttrib.price;
+        return repairCost;
+    }
+
+    public bool CanRepair(Polluter polluter)
+    {
+        if (polluter.GetOwnerID() == stateManager.GetCurrentPlayerID())
+        {
+            var healthComp = polluter.GetComponentInChildren<Health>();
+            if (healthComp.GetHealthPercent() < 1 && healthComp.GetHealthPercent() > 0)
+            {
+                if (stateManager.GetCurrentPlayerState().GetMoney() >= GetRepairCost(polluter))
+                {
+                    return true;
+                }
+            }
         }
         return false;
     }

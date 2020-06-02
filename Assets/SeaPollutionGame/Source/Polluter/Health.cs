@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
         hp += dh; 
         if(hp > 100) { hp = 100; }
         else if(hp <= 0) {
+            hp = 0;
             OnDeathFrom?.Invoke(from);
         }
         OnHealthModified?.Invoke(hp);
@@ -22,4 +23,12 @@ public class Health : MonoBehaviour
     public float GetHealth() { return hp; }
 
     public bool IsAlive() { return hp > 0; }
+
+    public void Recover()
+    {
+        hp = 100;
+        OnHealthModified?.Invoke(hp);
+    }
+
+    public float GetHealthPercent() { return GetHealth() / 100; }
 }

@@ -16,27 +16,22 @@ public class DescriptionPopUp : MonoBehaviour
 
     [SerializeField]
     private WorldWindow worldWindow = null;
-    
     [SerializeField]
     private PolluterContent polluterContent = null;
-
+    [SerializeField]
+    private ContextualPolluterContent contextualPolluterContent = null;
     [SerializeField]
     private NodeContent nodeContent = null;
-
     [SerializeField]
     private BalticContent balticContent = null;
     [SerializeField]
     private string balticTag = "Sea";
-
     [SerializeField]
     private DisasterContent disasterContent = null;
-
     [SerializeField]
     private TutorialContent tutorialContent = null;
-
     [SerializeField]
     private GoalContent goalContent = null;
-
     [SerializeField]
     private ModeContent modeContent = null;
 
@@ -53,6 +48,7 @@ public class DescriptionPopUp : MonoBehaviour
     private bool raycastDisaster = false;
     [SerializeField]
     private string blockingRaycastTag = "BlockingUI";
+    public string GetBlockingTag() { return blockingRaycastTag; }
     private bool isBlocked = false;
 
     [Header("Contextual Anchors")]
@@ -111,15 +107,18 @@ public class DescriptionPopUp : MonoBehaviour
         allPopupContents.Add(goalContent);
         allPopupContents.Add(modeContent);
 
-        HideDirectPopup(polluterContent);
-        HideDirectPopup(nodeContent);
-        HideDirectPopup(balticContent);
-        HideDirectPopup(disasterContent);
-        HideDirectPopup(tutorialContent);
-        HideDirectPopup(goalContent);
-        HideDirectPopup(modeContent);
+        foreach(PopUpContent puc in allPopupContents)
+        {
+            puc.parentPopUp = this;
+            HideDirectPopup(puc);
+        }
 
+        //specific to PolluterContent
         polluterContent.worldWindow = worldWindow;
+
+        //specific to ContextualPolluterContent
+        contextualPolluterContent.parentPopUp = this;
+        contextualPolluterContent.HideDirectPopup();
     }
     
     private void Update()
@@ -140,7 +139,57 @@ public class DescriptionPopUp : MonoBehaviour
             }
         }
 
-        
+        // specific to ContextualPolluterContent (right click to show, left click outside to close)
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (contextualPolluterContent.isShown)
+                contextualPolluterContent.HideDirectPopup();
+
+            Space space = playerController.GetMouseHitComp<Space>();
+            if(space != null)
+            {
+                Polluter polluter = space.GetPolluter();
+
+                if(polluter != null)
+                {
+                    if(contextualPolluterContent.CheckPolluter(polluter, space))
+                    {
+                        if (currentShownContent != null)
+                            ShowPopup(contextualPolluterContent, false, true, ScreenPositionUtils.GetOppositePosition(currentShownContent.currentAnchor, true, false));
+                        else 
+                            ShowPopup(contextualPolluterContent, false);
+                    }
+                }
+            }
+        }
+
+        if(Input.GetButtonDown("Fire1") && contextualPolluterContent.isShown)
+        {
+            //check outside of content itself
+            bool isInsideContent = false;
+
+            pointerEventData = new PointerEventData(eventSystem);
+            pointerEventData.position = Input.mousePosition;
+            List<RaycastResult> graphicResults = new List<RaycastResult>();
+            graphicRaycaster.Raycast(pointerEventData, graphicResults);
+
+            EventSystem.current.RaycastAll(pointerEventData, graphicResults);
+
+            foreach (RaycastResult rr in graphicResults)
+            {
+                ContextualPolluterContent temp = rr.gameObject.GetComponentInChildren<ContextualPolluterContent>();
+                if(temp != null)
+                {
+                    isInsideContent = true;
+                    break;
+                }
+            }
+
+            if(!isInsideContent)
+            {
+                contextualPolluterContent.HideDirectPopup();
+            }
+        }
     }
 
     private bool UIRaycasting()
@@ -318,11 +367,11 @@ public class DescriptionPopUp : MonoBehaviour
         return hasHit;
     }
 
-    private void ShowPopup(PopUpContent content)
+    private void ShowPopup(PopUpContent content, bool save = true, bool useSpecificPosition = false, ScreenPosition specificPosition = ScreenPosition.MIDDLE)
     {
         if (playerController.GetState() == PlayerController.State.HOLDING) return;
 
-        currentShownContent = content;
+        if(save) currentShownContent = content;
 
         // set position depending on screen area
         RectTransform rt = content.canvas.GetComponent<RectTransform>();
@@ -332,9 +381,19 @@ public class DescriptionPopUp : MonoBehaviour
             currentScreenPosition = content.defaultAnchor;
         }
 
+        ScreenPosition screenPosition = ScreenPosition.MIDDLE;
+
+        if(useSpecificPosition)
+        {
+            screenPosition = specificPosition;
+        } else
+        {
+            screenPosition = currentScreenPosition;
+        }
+
         Vector2 newPosition = Vector2.zero;
 
-        switch (currentScreenPosition)
+        switch (screenPosition)
         {
             case ScreenPosition.TOP:
             rt.anchorMax = anchorBotVector;
@@ -365,9 +424,10 @@ public class DescriptionPopUp : MonoBehaviour
         }
 
         rt.anchoredPosition = newPosition;
+        content.currentAnchor = screenPosition;
         
         LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
-
+        
         content.ShowPopup();
 
         if (content.imageToShow)

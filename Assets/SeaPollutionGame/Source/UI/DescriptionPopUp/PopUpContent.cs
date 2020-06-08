@@ -6,6 +6,7 @@ using DG.Tweening;
 public abstract class PopUpContent : MonoBehaviour
 {
     public ScreenPosition defaultAnchor = ScreenPosition.LEFT;
+    public ScreenPosition currentAnchor = ScreenPosition.MIDDLE;
     public CanvasGroup canvas = null;
     public bool isShown { get; set; }
     public bool imageToShow { get; set; }
@@ -16,11 +17,8 @@ public abstract class PopUpContent : MonoBehaviour
     private float tweenDuration = 0.25f;
     [SerializeField]
     private Ease tweenEase = Ease.Linear;
-
-    public void SetStickyPosition(Vector3 pos)
-    {
-
-    }
+    
+    public DescriptionPopUp parentPopUp { protected get; set; }
 
     public virtual void ShowPopup()
     {

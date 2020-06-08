@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
         return Physics.RaycastAll(raycastOrigin, Vector3.down, 9999);
     }
 
-    private T GetMouseHitComp<T>() where T : class
+    public T GetMouseHitComp<T>() where T : class
     {
         foreach (var hit in MouseRaycastDownAll())
         {

@@ -47,7 +47,7 @@ MonoBehaviour:
   boardPlaneY: 0
   handlingDrop: 0
   handlingCancelHold: 0
-  handlingRemove: 1
+  handlingRemove: 0
   audioSource: {fileID: 5787065330925711777}
   purchaseClip: {fileID: 8300000, guid: 971855533f751064b9dbf5bd6c429f3a, type: 3}
   errorClip: {fileID: 8300000, guid: 7860a1f15abf53942a861a33bc604e58, type: 3}

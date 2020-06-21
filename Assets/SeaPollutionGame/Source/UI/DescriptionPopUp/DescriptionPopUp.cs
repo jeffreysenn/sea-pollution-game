@@ -89,10 +89,12 @@ public class DescriptionPopUp : MonoBehaviour
     EventSystem eventSystem = null;
 
     private PlayerController playerController = null;
+    private WorldStateManager worldStateManager = null;
 
     private void Start()
     {
         playerController = UIManager.Instance.playerController;
+        worldStateManager = UIManager.Instance.worldStateManager;
 
         graphicRaycaster = GetComponent<GraphicRaycaster>();
         if(graphicRaycaster == null) { Debug.LogError("[DescriptionPopUp] Start: no GraphicRaycaster found"); }
@@ -152,12 +154,15 @@ public class DescriptionPopUp : MonoBehaviour
 
                 if(polluter != null)
                 {
-                    if(contextualPolluterContent.CheckPolluter(polluter, space))
+                    if(polluter.GetOwnerID() == worldStateManager.GetCurrentPlayerID())
                     {
-                        if (currentShownContent != null)
-                            ShowPopup(contextualPolluterContent, false, true, ScreenPositionUtils.GetOppositePosition(currentShownContent.currentAnchor, true, false));
-                        else 
-                            ShowPopup(contextualPolluterContent, false);
+                        if (contextualPolluterContent.CheckPolluter(polluter, space))
+                        {
+                            if (currentShownContent != null)
+                                ShowPopup(contextualPolluterContent, false, true, ScreenPositionUtils.GetOppositePosition(currentShownContent.currentAnchor, true, false));
+                            else
+                                ShowPopup(contextualPolluterContent, false);
+                        }
                     }
                 }
             }

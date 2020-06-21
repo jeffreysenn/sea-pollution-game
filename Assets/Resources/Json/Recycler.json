@@ -133,7 +133,7 @@
       "economicAttrib": {
         "price": 40,
         "profitPerTurn": -5,
-        "removalCost": -5
+        "removalCost": 5
       },
       "pollutionAttrib": {
         "emissions": []

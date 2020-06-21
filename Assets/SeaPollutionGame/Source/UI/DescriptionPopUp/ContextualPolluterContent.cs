@@ -42,11 +42,15 @@ public class ContextualPolluterContent : PopUpContent
 
     private string defaultTag = null;
 
+    private void Awake()
+    {
+        ownRectTransform = GetComponent<RectTransform>();
+        defaultTag = transform.tag;
+    }
+
     private void Start()
     {
         playerController = UIManager.Instance.playerController;
-        ownRectTransform = GetComponent<RectTransform>();
-        defaultTag = transform.tag;
 
         startingPos = ownRectTransform.anchoredPosition;
 
@@ -129,12 +133,11 @@ public class ContextualPolluterContent : PopUpContent
             bool canRepair = playerController.CanRepair(polluter);
             btnRepair.interactable = canRepair;
 
-            if (canRepair)
-                txtRepair.text = repairInitialText +  " (-" + playerController.GetRepairCost(polluter).ToString() +")";
-            else
-                txtRepair.text = repairInitialText;
+            bool canRemove = playerController.CanRemove(polluter);
+            btnSell.interactable = canRemove;
 
-            txtSell.text = sellInitialText + " (-" + polluterAttrib.economicAttrib.removalCost + ")";
+            txtRepair.text = repairInitialText +  " -" + Mathf.CeilToInt(playerController.GetRepairCost(polluter)).ToString() +"";
+            txtSell.text = sellInitialText + " -" + Mathf.CeilToInt(polluterAttrib.economicAttrib.removalCost).ToString() + "";
 
             return true;
         }

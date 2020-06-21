@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool CanRemove(Polluter polluter)
+    public bool CanRemove(Polluter polluter)
     {
         if (polluter.GetOwnerID() == stateManager.GetCurrentPlayerID()
             && polluter.GetAttrib().economicAttrib.removalCost <= stateManager.GetCurrentPlayerState().GetMoney())
